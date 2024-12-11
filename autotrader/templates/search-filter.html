@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %} Autotrader - {% trans "Search results" %}{% endblock %}
+
+{% block content %}
+
+<style>
+    a.active {
+        color: var(--primary_red) !important;
+        background-color: white;
+
+    }
+
+    .datepicker table {
+      background-color: #ff0000; /* Red background */
+    }
+</style>
+
+<section>
+    <div class="container pt-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Auction History</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<section>
+    <div class="container mt-4">
+
+        <div class="container mt-4" style="min-height: 50vh;">
+            <!-- Nav tabs for different search types -->
+            <ul class="nav nav-underline nav-justified justify-content-center align-items-center" id="myTabs"
+                role="tablist">
+                <li class="nav-item justify-content-center align-items-center" role="presentation"
+                    style="max-width: fit-content;">
+                    <a class="nav-link active text-dark text-heading text-center fs-6" id="searchByMakeModel-tab"
+                        data-bs-toggle="pill" href="#searchByMakeModel" role="tab" aria-controls="searchByMakeModel"
+                        aria-selected="true" style="max-width: fit-content;">Search By Make/Model</a>
+                </li>
+                <li class="nav-item" role="presentation" style="max-width: fit-content;">
+                    <a class="nav-link text-dark text-heading" id="searchByVinLot-tab" data-bs-toggle="pill"
+                        href="#searchByVinLot" role="tab" aria-controls="searchByVinLot" aria-selected="false"
+                        style="max-width: fit-content;">Search by Vin or Lot</a>
+                </li>
+            </ul>
+
+            <!-- Tab content -->
+            <div class="tab-content mt-5" id="myTabContent">
+                <div class="tab-pane fade show active" id="searchByMakeModel" role="tabpanel"
+                    aria-labelledby="searchByMakeModel-tab">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <!-- Center the entire content vertically and horizontally -->
+                        <div class="text-center" style="max-width: 500px; width: 100%;">
+                            <!-- Make sure the content doesn't exceed 500px width -->
+                            <h3 class="text-heading  text-dark">Search Auction History</h3>
+                            <p class="hero-sub-text text-dark">Filter by make, model, year, and more to find past
+                                auction data.</p>
+                            <div class="container">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="select-make"
+                                            class="col-4 col-form-label d-block text-start">Make</label>
+                                        <select class="form-control" name="select-make" id="" placeholder="">
+                                            <option value="Select Make"> Select Make</option>
+
+                                            <option value="BMW"> BMW</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="select-make"
+                                            class="col-4 col-form-label d-block text-start">Model</label>
+                                        <select class="form-control" name="select-Model" id="" placeholder="">
+                                            <option value="Select Model"> Select Model</option>
+
+                                            <option value="BMW"> BMW - M3</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="select-make"
+                                            class="col-4 col-form-label d-block text-start">Year</label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <select class="form-control" name="select-make" id="" placeholder="">
+                                                    <option value="2007"> 2007</option>
+
+                                                    <option value="2008"> 2008</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <select class="form-control" name="select-make" id="" placeholder="">
+                                                    <option value="2010"> 2010</option>
+
+                                                    <option value="2008"> 2008</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="select-make"
+                                            class="col-4 col-form-label d-block text-start">Auction</label>
+                                        <select class="form-control" name="select-Auction" id="" placeholder="">
+                                            <option value="Select Auction"> Select Auction</option>
+
+                                            <option value="IAAI"> IAAI</option>
+                                            <option value="Coopart"> Coopart</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="select-make"
+                                            class="col-4 col-form-label d-block text-start">Sale Date</label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="date" class="form-control" id="date" name="date">
+
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="date" class="form-control" id="date" name="date">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="my-5 row">
+                                        <button type="submit" class="btn btn-danger d-block w-100">Find Your
+                                            Car</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="searchByVinLot" role="tabpanel" aria-labelledby="searchByVinLot-tab">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <!-- Center the entire content vertically and horizontally -->
+                        <div class="text-center" style="max-width: 500px; width: 100%;">
+                            
+                            <div class="container">
+                                <form>
+                                    <div class="mb-3">
+                                            
+                                    </div>
+                                   
+                                    <div class="my-5 row">
+                                        <div class="col-8">
+                                        <input type="text" class="form-control" name="search-vin" id="" placeholder="Search by VIN/LOT" />
+
+                                        </div>
+
+                                        <button type="submit" class="col btn btn-danger d-block w-100">Find Your
+                                            Car</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+
+
+{% endblock %}

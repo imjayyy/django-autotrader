@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %} Autotrader - {% trans "Search results" %}{% endblock %}
+
+{% block content %}
+
+<style>
+    .accordion-button:not(.collapsed) {
+        color: red;
+        background-color: white;
+
+    }
+    .custom-card-service{
+        /* background-ov: red; */
+        position: relative;
+        background-image: url("{% static '/images/assets/a59a63a0e8908652e6828d4c58629d3b.png' %}");
+        background-size: cover;  /* Make the background image cover the container */
+        background-position: center;  /* Center the image */      
+        color: white;
+        min-height: 300px;
+    }
+
+   
+</style>
+
+<section>
+    <div class="container pt-5">
+        <h3 class="text-start">About Us</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">About Us</li>
+            </ol>
+        </nav>
+    </div>
+    </section>
+
+
+<section>
+
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center align-items-center ">
+            <div class="alert alert-danger rounded-pill text-danger text-center"
+                style="font-size: 10px; padding: 5px;">
+                ABOUT OUR COMPANY
+            </div>
+            <br>
+
+        </div>
+        <h2 class="fw-bold fs-2">About Autotrader Dealership</h2>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <img src="{% static '/images/assets/about-us.png' %}" class="img-fluid rounded" style="max-height: 60vh ;" srcset="">
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <h5 class="text-start my-3 fs-3">Everything you need to build an amazing dealership automotive responsive website</h5>
+                <p class="text-muted text-start pt-2">We aim to continually innovate and integrate the latest technology into our services. From easy online bookings to advanced vehicle tracking systems, our goal is to make the car rental process seamless and efficient for our customers. Quality is at the heart of everything we do. We maintain a diverse fleet of well-maintained vehicles that meet the highest standards of safety and comfort.</p>
+                <div id="just-a-wrapper">
+                <div class="text-start d-flex align-items-center bg-light rounded-pill">
+                    <i class="bi bi-check-circle-fill text-danger fs-2"></i>
+                    <span class="ms-4">CHEAPEST PRICES AND INTERESTING OFFERS</span>
+                </div>
+                <div class="text-start d-flex align-items-center bg-light rounded-pill  my-3">
+                    <i class="bi bi-check-circle-fill text-danger fs-2"></i>
+                    <span class="ms-4">QUALITY WORK AND OPERATION</span>
+                </div>
+                <div class="text-start d-flex align-items-center bg-light rounded-pill">
+                    <i class="bi bi-check-circle-fill text-danger fs-2"></i>
+                    <span class="ms-4">RELIABILITY AND SECURITY</span>
+                </div>
+                </div>
+            
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+</section>
+
+
+
+
+
+<section>
+
+    <div class="container mt-5 pt-5">
+        <div class="d-flex justify-content-center align-items-center mt-5">
+            <div class="alert alert-danger rounded-pill text-danger text-center"
+                style="font-size: 10px; padding: 5px;">
+                SERVICES
+            </div>
+            <br>
+
+        </div>
+        <h2 class="fw-bolder">Our Services</h2>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col">
+                        <div class="card" style="max-width: 300px;">
+                            <div class="card-body" >
+                                <div class="d-flex ">                            
+                                <img src="{% static '/images/assets/services-card-auction-icon.png' %}" class="img-fluid" alt="" srcset="">
+                                
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <h3 class="hero-sub-text text-start fs-5" >Auction Calculator</h3>
+                                </div>
+                                <p class="text-start">Calculate the price of an Auctioned Vehicle.</p>
+                                <div class="d-flex">
+                                    <button class="btn btn-danger rounded-circle"><i class="bi bi-arrow-up-right fs-3 fw-bold"></i></button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+             
+            
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+</section>
+
+<section>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <img src="{% static '/images/assets/autozone-img12 1.png' %}" alt="" class="img-fluid" >
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-body rounded custom-card-service" style="background-color: #2B3339;  " >
+                        <div class="mt-5">
+                            <h3 class="py-3">How You Can Find a Car with Autotrader?</h3>
+                            Dolore soluta ducimus odio omnis, proident orci quaerat, per autem? Dui omnis, parturient arcu viverra.
+                        </div>
+                        <button class="btn btn-danger my-3"> Search Car</button>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-body rounded custom-card-service" style="background-color: #C91F3B;" >
+                        <div class="mt-5">
+                            <h3 class="py-2">Contact Autotrader: Auto Auction Marketplace   </h3>
+                            Dolore soluta ducimus odio omnis, proident orci quaerat, per autem? Dui omnis, parturient arcu viverra.
+                        </div>
+                        <button class="btn btn-dark my-3"> Contact Us</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<section>
+    <div class="container mt-5 pt-5">
+        <div class="d-flex justify-content-center align-items-center mt-5">
+            <div class="alert alert-danger rounded-pill text-danger text-center"
+                style="font-size: 10px; padding: 5px;">
+                FAQs
+            </div>
+            <br>
+
+        </div>
+        <h2 class="fw-bolder">Frequently Asked Questions</h2>
+    </div>
+    <div class="container faq-container">
+        <div class="  align-items-center justify-content-center">
+            <div class="faq-card g-3" >
+    
+                <div class="accordion" id="faqAccordion">
+    
+                    <!-- FAQ Item 1 -->
+                    <div class="accordion-item my-5 ">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button faq-card-header" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <span class="faq-title">What is Bootstrap 5?</span>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body faq-card-body">
+                                Bootstrap 5 is a front-end framework used to build responsive, mobile-first websites quickly and easily. It includes pre-designed components like navigation bars, cards, modals, and more.
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- FAQ Item 2 -->
+                    <div class="accordion-item my-5">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button faq-card-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <span class="faq-title">How do I install Bootstrap 5?</span>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body faq-card-body">
+                                You can install Bootstrap 5 by including the Bootstrap CDN in your HTML file, or by downloading and hosting the files locally. You can also use package managers like npm or yarn to install Bootstrap.
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- FAQ Item 3 -->
+                    <div class="accordion-item my-5">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button faq-card-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <span class="faq-title">Is Bootstrap 5 free to use?</span>
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body faq-card-body">
+                                Yes, Bootstrap 5 is an open-source project, and it is completely free to use for both personal and commercial projects.
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- FAQ Item 4 -->
+                    <div class="accordion-item my-5">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button faq-card-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <span class="faq-title">What are the new features in Bootstrap 5?</span>
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body faq-card-body">
+                                Bootstrap 5 introduces several new features, including the removal of jQuery dependency, new utilities like offcanvas and placeholders, and updates to forms, modals, and more.
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

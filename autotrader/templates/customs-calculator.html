@@ -1,0 +1,390 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %} Autotrader - {% trans "Search results" %}{% endblock %}
+
+{% block content %}
+
+<style>
+    a.active {
+        color: var(--primary_red) !important;
+        
+
+    }
+
+    .datepicker table {
+      background-color: #ff0000; /* Red background */
+    }
+
+
+   
+/* ----------- */
+
+
+
+</style>
+
+<section>
+    <div class="container pt-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Customs Calculator</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<section>
+    <div class="container mt-4">
+
+        <div class="container mt-4" style="min-height: 50vh;">
+            <!-- Nav tabs for different search types -->
+            <ul class="nav nav-underline nav-justified justify-content-center align-items-center" id="myTabs"
+                role="tablist">
+                <li class="nav-item justify-content-center align-items-center" role="presentation"
+                    style="max-width: fit-content;">
+                    <a class="nav-link active text-dark text-heading text-center fs-6" id="searchByMakeModel-tab"
+                        data-bs-toggle="pill" href="#searchByMakeModel" role="tab" aria-controls="searchByMakeModel"
+                        aria-selected="true" style="max-width: fit-content;"><i class="bi bi-car-front m-3"></i>
+                        Detailed Customs Fee Calculator</a>
+                </li>
+                <li class="nav-item" role="presentation" style="max-width: fit-content;">
+                    <a class="nav-link text-dark text-heading" id="searchByVinLot-tab" data-bs-toggle="pill"
+                        href="#searchByVinLot" role="tab" aria-controls="searchByVinLot" aria-selected="false"
+                        style="max-width: fit-content;"><i class="bi bi-hammer m-3"></i>Auction Calculator</a>
+                </li>
+            </ul>
+
+            <!-- Tab content -->
+            <div class="tab-content mt-5" id="myTabContent">
+                <div class="tab-pane fade show active" id="searchByMakeModel" role="tabpanel"
+                    aria-labelledby="searchByMakeModel-tab">
+                    <div class="d-flex justify-content-center d-block">
+                        <!-- Center the entire content vertically and horizontally -->
+                         
+                        <div class="row g-3 " >
+                            <div class="col-lg-6 col-md-6 col-sm-12 card mx-2">
+
+                                <div class="card-head p-3 mt-3">
+                                    <h5 class="text-start text-dark">Vehicle data</h5>
+                                    <p class="text-start text-muted">Calculation of customs duty and other payments of the car.</p>
+                                    <hr>
+                                </div>
+                                <div class="text-center card-body bg-light rounded" style=" background: white !important;">
+                                    <!-- Make sure the content doesn't exceed 500px width -->
+                                    
+                                    <div class="container">
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="select-make"
+                                                    class="col-4 col-form-label d-block text-start">Type of vehicle</label>
+                                                <select class="form-control" name="select-Type of vehicle" id="" placeholder="">
+                                                    <option value="Select Type of vehicle"> Select Type of vehicle</option>
+        
+                                                    <option value="Passenger"> Passenger</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="select-make"
+                                                    class="col-4 col-form-label d-block text-start">Engine Type</label>
+                                                <select class="form-control" name="select-Engine Type" id="" placeholder="">
+                                                    <option value="Select Engine Type"> Select Engine Type</option>
+        
+                                                    <option value="Petrol"> Petrol</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                               
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label for="select-make"
+                                                        class="form-label d-block text-start">Invoice Value(USD)</label>
+                                                        <input type="text" class="form-control" pretext="$" value="2400">
+                                                    </div>
+                                                    <div class="col-6 d-block">
+                                                        <label for="select-make"
+                                                        class="form-label d-block text-start fs-6">Transportation costs (USD)</label>
+                                                        <input type="text" class="form-control" pretext="$" value="2400">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label for="select-make"
+                                                        class="form-label d-block text-start">Other expenses (USD)</label>
+                                                        <input type="text" class="form-control" pretext="$" value="0">
+                                                    </div>
+                                                    <div class="col-6 d-block">
+                                                        <label for="select-make"
+                                                        class="form-label d-block text-start fs-6">Engine Capacity (cm3)</label>
+                                                        <input type="text" class="form-control" pretext="$" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="select-make"
+                                                    class="form-label d-block text-start">Date of Issue</label>
+                                                    <input type="date" class="form-control" id="date" name="date">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="select-make"
+                                                    class="form-label d-block text-start">About the country of origin (production) and the country of the sender</label>
+                                                    <select type="text" class="form-control" >
+                                                        <option value="">Other Countries</option>
+                                                    </select>
+                                            </div>
+                                            <div class="my-5 row">
+                                                <button type="submit" class="btn btn-danger d-block w-100">Find Your
+                                                    Car</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col card mx-2">
+                                <div class="card-head p-3 mt-3">
+                                    <h5 class="text-start text-dark">Result</h5>
+                                    <br>    
+                                    <hr>
+                                </div>
+                                <div class="text-center card-body bg-light rounded" style=" background: white !important;">
+                                    <!-- Make sure the content doesn't exceed 500px width -->
+                                    
+                                    <div class="container">
+                                        <div class="row border-bottom p-2" >
+                                            <div class="col-6 text-start d-block">Import customs duty</div>
+                                            <div class="col-6 text-end text-muted"> 0 AZN</div>
+                                        </div>
+                                        <div class="row border-bottom p-2" >
+                                            <div class="col-6 text-start">Value added tax (VAT)</div>
+                                            <div class="col-6 text-end text-muted"> 0 AZN</div>
+                                        </div>
+                                        <div class="row border-bottom p-2" >
+                                            <div class="col-6 text-start d-block">Customs fees for customs clearance of goods</div>
+                                            <div class="col-6 text-end text-muted"> 0 AZN</div>
+                                        </div>
+                                        <div class="row border-bottom p-2" >
+                                            <div class="col-6 text-start">Excise tax</div>
+                                            <div class="col-6 text-end text-muted"> 0 AZN</div>
+                                        </div>
+                                        <div class="row border-bottom p-2" >
+                                            <div class="col-6 text-start">Customs fees for issuing certificates</div>
+                                            <div class="col-6 text-end text-muted"> 0 AZN</div>
+                                        </div>
+                                        <div class="row border-bottom p-2" >
+                                            <div class="col-6 text-start">Electronic customs service fee</div>
+                                            <div class="col-6 text-end text-muted"> 0 AZN</div>
+                                        </div>
+                                        <div class="row border-bottom p-2" >
+                                            <div class="col-6 text-start">VAT on electronic customs services</div>
+                                            <div class="col-6 text-end text-muted"> 0 AZN</div>
+                                        </div>
+                                        <div class="row border-bottom p-2" >
+                                            <div class="col-6 text-start">Disposal fee</div>
+                                            <div class="col-6 text-end text-muted"> 0 AZN</div>
+                                        </div>
+                                        <div class="row border-bottom p-2" >
+                                            <div class="col-6 text-start d-block">Conducting customs expertise fee</div>
+                                            <div class="col-6 text-end text-muted "> 0 AZN</div>
+                                        </div>
+                                    
+                                        <div class="row border-bottom p-2" >
+                                            <div class="col-6 text-start d-block" >Certificate of compliance with standards fee</div>
+                                            <div class="col-6 text-end text-muted align-items-center"> 0 AZN</div>
+                                        </div>
+                                    
+                                        
+                                        <div class="row p-2 my-4 border rounded" style="background-color: #D1E7DD; border-color: green;">
+                                            
+                                            <div class="col-6 text-start d-block text-success" >Final Price</div>
+                                            <div class="col-6 text-end align-items-center text-success"> 0 AZN</div>
+                                        
+                                        </div>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="searchByVinLot" role="tabpanel" aria-labelledby="searchByVinLot-tab">
+                    <div class="d-flex justify-content-center d-block " >
+                            
+                        <div class="steps">
+                            <progress id="progress" value=0 max=100 ></progress>
+                            <div class="step-item m-2">
+                                <button class="step-button text-center" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    1
+                                </button>
+                                <div class="step-title">
+                                    Auction Calculator
+                                </div>
+                            </div>
+                            <div class="step-item m-2">
+                                <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    2
+                                </button>
+                                <div class="step-title">
+                                    Contact Info
+                                </div>
+                            </div>
+                            <div class="step-item m-2">
+                                <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    3
+                                </button>
+                                <div class="step-title">
+                                    Confirm Order
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center d-block">
+                        <!-- Center the entire content vertically and horizontally -->
+                        
+                        <div class="w-100">
+                            <!-- Center the entire content vertically and horizontally -->
+                            <div class="row g-3 " >
+                                <div class="col-lg-6 col-md-6 col-sm-12 card mx-2">
+    
+                                    <div class="card-head p-3 mt-3">
+                                        <h5 class="text-start text-dark">Auction Calculator</h5>
+                                        <p class="text-start text-muted">Find Out the Final Price for Any Vehicle.</p>
+                                        <hr>
+                                    </div>
+                                    <div class="text-center card-body bg-light rounded" style=" background: white !important;">
+                                        <!-- Make sure the content doesn't exceed 500px width -->
+                                        
+                                        <div class="container">
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="select-make"
+                                                        class="col-4 col-form-label d-block text-start">Auction</label>
+                                                    <select class="form-control" name="select-Auction" id="" placeholder="">
+                                                        <option value="Select Auction"> Select Auction</option>
+            
+                                                        <option value="IAAI"> IAAI</option>
+                                                        <option value="Coopart"> Coopart</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="select-make"
+                                                        class="col-4 col-form-label d-block text-start">Lot Number *</label>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="select-make"
+                                                        class="col-4 col-form-label d-block text-start">State</label>
+                                                    <select class="form-control" name="select-State" id="" placeholder="">
+                                                        <option value="Select State"> Select State</option>
+            
+                                                        <option value="TX"> Texas (TX)</option>
+                                                        <option value="CA"> CA</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="select-make"
+                                                        class="col-4 col-form-label d-block text-start">City</label>
+                                                    <select class="form-control" name="select-City" id="" placeholder="">
+                                                        <option value="Select City"> Select City</option>
+            
+                                                        <option value="TX"> Houston (TX)</option>
+                                                        <option value="CA"> CA</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="select-make"
+                                                        class="form-label d-block text-start">Vehicle Type *</label>
+                                                        <input type="text" class="form-control" id="date" name="date">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="select-make"
+                                                        class="form-label d-block text-start">Bid Amount (USD)</label>
+                                                        <input type="text" class="form-control" id="date" name="date">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="select-make"
+                                                        class="form-label d-block text-start">Destination:</label>
+                                                        <select name="" id="" class="form-control">
+                                                            <option value="">  Azerbaijan</option>
+                                                        </select>   
+                                                </div>
+                                                <div class="my-5 row g-4">
+                                                    <button type="submit" class="col-6 btn btn-primary m-2">Calculate</button>
+                                                        <button type="submit" class="col-5 btn btn-light border m-2">Clear</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col card mx-2">
+                                    <div class="card-head p-3 mt-3">
+                                        <h5 class="text-start text-dark">Result</h5>
+                                        <br>    
+                                        <hr>
+                                    </div>
+                                    <div class="text-center card-body bg-light rounded" style=" background: white !important;">
+                                        <!-- Make sure the content doesn't exceed 500px width -->
+                                        
+                                        <div class="container">
+                                            <div class="row border-bottom p-2" >
+                                                <div class="col-6 text-start d-block">Bid</div>
+                                                <div class="col-6 text-end text-muted"> 0 AZN</div>
+                                            </div>
+                                            <div class="row border-bottom p-2" >
+                                                <div class="col-6 text-start">Auction Fee</div>
+                                                <div class="col-6 text-end text-muted"> 0 AZN</div>
+                                            </div>
+                                            <div class="row border-bottom p-2" >
+                                                <div class="col-6 text-start d-block">Shipping Fee</div>
+                                                <div class="col-6 text-end text-muted"> 0 AZN</div>
+                                            </div>
+                                            
+                                            
+                                            <div class="row p-2 my-4 border rounded" style="background-color: #D1E7DD; border-color: green;">
+                                                
+                                                <div class="col-6 text-start d-block text-success" >Final Price</div>
+                                                <div class="col-6 text-end align-items-center text-success"> 0 AZN</div>
+                                            
+                                            </div>
+                                            
+                                            <div class="my-5 row g-4">
+                                                <button type="submit" class="col-6 btn btn-danger m-2">Order Now</button>
+                                                    <button type="submit" class="col-5 btn btn-success border m-2"><i class="bi bi-whatsapp me-2"></i>Write to Us</button>
+                                            </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+
+
+{% endblock %}

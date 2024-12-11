@@ -1,0 +1,384 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "Home" %}{% endblock %}
+
+{% block content %}
+
+
+
+<section class="hero-section">
+    <div class="container pt-5" >
+        <h1 class="text-center hero-main-text fs-sm-4">{% trans "Order your car from the USA to Azerbaijan" %}</h1>
+        <p class="text-center hero-sub-text fs-sm-6">{% trans "Choose from over 181,745 used Cars, Trucks, and SUVs" %}
+        </p>
+        <!-- <img class="img-fluid hero-vector-left" src='{% static "/images/assets/vector.png" %}' alt="">
+        <img class="img-fluid hero-vector-right" src='{% static "/images/assets/Ellipse 1.png" %}' alt=""> -->
+
+
+
+        <!-- Cars Row -->
+
+        <div class="row align-items-center justify-content-center pt-5 p-sm-0" style="position: absolute; ">
+            <!-- Left Car -->
+            <div class="col-6">
+                <img class="car-image" src='{% static "/images/assets/car-silver 1 1.png" %}' alt="Car 1">
+            </div>
+            <!-- Right Car -->
+            <div class="col-6">
+                <img class="car-image" src='{% static "images/assets/pngegg 2 1.png" %}' alt="Car 2">
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="navigation-btn navigation-btn-left">
+            <span>&larr;</span>
+        </button>
+        <button class="navigation-btn navigation-btn-right">
+            <span>&rarr;</span>
+        </button>
+    </div>
+</section>
+
+<section class="align-items-center justify-content-center mt-1">
+    <div class="container py-5 bg-light align-items-center justify-content-center">
+        <div class="align-items-center justify-content-center row g-3 mb-3" >
+            <!-- Dropdown 1 -->
+            <div class="col-md-3 col-lg-2">
+                <select class="form-select text-secondary">
+                    <option selected>All Makes</option>
+                    <option value="1">Make 1</option>
+                    <option value="2">Make 2</option>
+                    <option value="3">Make 3</option>
+                </select>
+            </div>
+
+            <!-- Dropdown 2 -->
+            <div class="col-md-3 col-lg-2">
+                <select class="form-select text-secondary">
+                    <option selected>All Models</option>
+                    <option value="1">Model 1</option>
+                    <option value="2">Model 2</option>
+                    <option value="3">Model 3</option>
+                </select>
+            </div>
+            <!-- Dropdown 3 -->
+            <div class="col-md-3 col-lg-2">
+                <select class="form-select text-secondary">
+                    <option selected>USA</option>
+                    <option value="1">Country 1</option>
+                    <option value="2">Country 2</option>
+                    <option value="3">Country 3</option>
+                </select>
+            </div>
+        </div>
+        <div class="align-items-center justify-content-center row g-3">
+
+            <!-- Dropdown 4 -->
+            <div class="col-md-4 col-lg-2">
+                <select class="form-select text-secondary">
+                    <option selected>From Year</option>
+                    <option value="1">2022</option>
+                    <option value="2">2021</option>
+                    <option value="3">2020</option>
+                </select>
+            </div>
+
+            <!-- Dropdown 5 -->
+            <div class="col-md-4 col-lg-2">
+                <select class="form-select text-secondary">
+                    <option selected>To Year</option>
+                    <option value="1">2023</option>
+                    <option value="2">2022</option>
+                    <option value="3">2021</option>
+                </select>
+            </div>
+
+            <!-- Button -->
+            <div class="col-md-4 col-lg-2">
+                <button class="btn btn-danger w-100 d-flex align-items-center justify-content-center">
+                    <i class="fas fa-search me-2"></i> {% trans "Find Your Car" %}
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<section>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="logo-slider">
+                    <div class="logos">
+                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class="img-fluid">
+
+                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class="img-fluid">
+                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class="img-fluid">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add custom CSS to animate the logos -->
+    <style>
+        .logo-slider {
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .logos {
+            display: flex;
+            animation: slide 20s linear infinite;
+        }
+    
+        .logos img {
+            margin: 0 20px; /* Spacing between logos */
+            max-width: 100px;
+        }
+    
+        /* Animation for scrolling the logos */
+        @keyframes slide {
+            0% {
+                transform: translateX(50);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+            
+        }
+    
+        /* Optional: Adjust for smaller screens */
+        @media (max-width: 768px) {
+            .logos img {
+                max-width: 80px; /* Smaller logos on smaller screens */
+            }
+        }
+    </style>
+    
+
+
+
+
+
+</section>
+
+<!-- CARS SECTION 1 -->
+<section class="container mt-5">
+    <div class="custom-seperator-line mb-1"></div>
+
+    <h2 class="text-start text-heading mb-4"> Electric <span class="text-danger"> Vehicles </span></h2>
+    <p class="text-start">{% trans "Browse vehicles in Azerbaijan, ready for you to drive home today." %} </p>
+    <div class="row g-0">
+      <!-- Vehicle 1 -->
+      {% for i in '111' %}
+      {% include 'partials/components/car-card.html' %}
+      {% endfor %}      
+    </div>
+    <button class="btn btn-danger w-25"> {% trans "View Full Inventory" %}</button>
+
+    <hr>
+
+  </section>
+
+  <!-- CARS SECTION 2 -->
+<section class="container mt-5">
+    <div class="custom-seperator-line mb-1"></div>
+
+    <h2 class="text-start text-heading mb-4">Vehicles <span class="text-danger">in Azerbaijan </span></h2>
+    <p class="text-start">{% trans "Browse vehicles in Azerbaijan, ready for you to drive home today." %} </p>
+    <div class="row g-0">
+      <!-- Vehicle 1 -->
+      {% for i in '111' %}
+      {% include 'partials/components/car-card.html' %}
+        {% endfor %}      
+    </div>
+    <button class="btn btn-danger w-25"> View Full Inventory</button>
+
+    <hr>
+
+  </section>
+
+
+  <!-- CARS SECTION 3 -->
+<section class="container mt-5">
+    <div class="custom-seperator-line mb-1"></div>
+
+    <h2 class="text-start text-heading mb-4">Cars on <span class="text-danger"> auction </span></h2>
+    <p class="text-start">{% trans "Browse vehicles in Azerbaijan, ready for you to drive home today." %}</p>
+    <div class="row g-0">
+      <!-- Vehicle 1 -->
+      {% for i in '111' %}
+      {% include 'partials/components/car-card.html' %}
+        {% endfor %}      
+    </div>
+    <button class="btn btn-danger w-25 d-sm-block"> View Full Inventory</button>
+
+    <hr>
+
+  </section>
+
+
+<section class="container mt-5">
+
+    
+        <div class="text-center light-red-container rounded p-md-5 p-sm-5" style="background-color: #FAE9EB; padding: 3rem;">
+          <h2 class="mb-3 text-start text-heading pt-sm-2">{% trans "Get Expert Help for Your Vehicle Purchase" %}</h2>
+          <p class="mb-4 text-start hero-sub-text text-muted">{% trans "Enter your phone number, and our team will contact you" %}</p>
+          
+          <div class="row">
+            <div class="col-md-8 col-sm-12">
+              <form>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Your name"
+                    required
+                  >
+                </div>
+                <div class="mb-3 d-flex">
+                  <select class="form-select w-auto me-2" aria-label="Country code">
+                    <option value="+994" selected>+994</option>
+                    <option value="+1">+1</option>
+                    <option value="+44">+44</option>
+                  </select>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="40 123 45 67"
+                    required
+                  >
+                </div>
+                <div class="mb-3">
+                  <div class="form-check d-inline-block align-items-start justify-content-start">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="captcha"
+                      required
+                    >
+                    <label class="form-check-label" for="captcha">
+                      <img
+                        src="https://www.gstatic.com/recaptcha/api2/logo_48.png"
+                        alt="reCAPTCHA"
+                        style="height: 20px;"
+                      >
+                      Click to Verify
+                    </label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-danger w-100 justify-content-center">Request Callback</button>
+              </form>
+            </div>
+            <div class="col-4">
+              <img src="https://s3-alpha-sig.figma.com/img/1be8/e185/72404ddc782a281aa28b7b8e0120b4af?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ejd6B7N3THWSybj9377pGe5sWInmNuCi0CWP7vLwo2U6olpyuRtHjtKYCcSZVGhKkk8ebQm9tlRWVK59dLEVFVNjCkAoIdmRFhti-lhzvjuMtShxbl2F2URBV2TyMZwkfl2hVr4u2C4sEsxXyZMioQvQznHF8bKd7aavD3d6G9~~VD9vbP6TDopTvQs7w9~JJIYrmEzEqGdQPJcFQC8lv-uITAXC3oAeohexeqNNg1acG2CtV718jmbnVGNFCWnI~o1-01X-zyKhyb-6DczkbXaZBHQxp1kWYIfFQthSX73mV1VJlwOkf34bggbQu-lwxNVNuLZqgMfoYa9LFqaH5w__" 
+              class="img-fluid"
+              alt="">
+            </div>
+          </div>
+                  
+        </div>
+      
+
+
+</section>
+
+
+
+
+
+
+
+<section class="popular-makes py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+
+        <div class="custom-seperator-line mb-1"></div>
+
+        <h2 class="text-start text-heading">View Full Salvage <span class="text-danger">Auto Auction Inventory</span></h2>
+      </div>
+      <div class="row align-items-start">
+        <div class="col-12 col-md-4 col-lg-3 mb-4">
+          <ul class="list-unstyled text-start">
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark" ><span class="text-danger text-heading ">ACURA</span> (370)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">ACURA</span> (370)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">ALFA ROMEO</span> (49)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">AUDI</span> (740)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">BENTLEY</span> (540)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">CADILLAC</span> (420)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">CHEVROLET</span> (4870)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">CHRYSLER</span> (597)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">DODGE</span> (1560)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">FERRARI</span> (3)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">FIAT</span> (65)</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-4 col-lg-3 mb-4">
+          <ul class="list-unstyled text-start">
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">FORD</span> (5059)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">GENESIS</span> (71)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">GMC</span> (1029)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">HONDA</span> (2561)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">HYUNDAI</span> (2791)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">INFINITI</span> (584)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">JEEP</span> (2101)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">KIA</span> (2680)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">LAMBORGHINI</span> (10)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">LAND ROVER</span> (461)</a></li>
+            
+          </ul>
+        </div>
+        <div class="col-12 col-md-4 col-lg-3 mb-4">
+          <ul class="list-unstyled text-start">
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">LINCOLN</span> (257)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">MASERATI</span> (79)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">MAZDA</span> (796)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">MCLAREN AUTOMOTIVE</span> (4)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">MERCEDES-BENZ</span> (1327)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">MINI</span> (119)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">MITSUBISHI</span> (505)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">NISSAN</span> (4800)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">PORSCHE</span> (157)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">RAM</span> (1013)</a></li>
+            
+          </ul>
+        </div>
+        <div class="col-12 col-md-4 col-lg-3 mb-4">
+          <ul class="list-unstyled text-start">
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">ROLLS-ROYCE</span> (2)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">SUZUKI</span> (5)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">TESLA</span> (99)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">TOYOTA</span> (4744)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">VOLKSWAGEN</span> (1017)</a></li>
+            <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">VOLVO</span> (201)</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

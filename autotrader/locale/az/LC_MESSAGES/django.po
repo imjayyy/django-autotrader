@@ -1,0 +1,189 @@
+#: autotrader/templates/about-us.html:4
+#: autotrader/templates/customs-calculator.html:4
+#: autotrader/templates/search-filter.html:4
+#: autotrader/templates/search-results.html:4
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-18 20:44+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid "Search results"
+msgstr "Axtarış nəticələri"
+
+#: autotrader/templates/base.html:17
+msgid "My Multilingual Site"
+msgstr "Mənim Çoxdilli Saytım"
+
+#: autotrader/templates/car-details.html:4
+msgid "Car Details"
+msgstr "Maşın Məlumatları"
+
+#: autotrader/templates/home.html:4
+#: autotrader/templates/partials/footer.html:63
+#: autotrader/templates/partials/header.html:65
+msgid "Home"
+msgstr "Ana səhifə"
+
+#: autotrader/templates/home.html:12
+msgid "Order your car from the USA to Azerbaijan"
+msgstr "Maşını ABŞ-dan Azərbaycana sifariş edin"
+
+#: autotrader/templates/home.html:13
+msgid "Choose from over 181,745 used Cars, Trucks, and SUVs"
+msgstr "181,745-dən çox ikinci əl maşın, yük maşını və SUV-lərdən seçin"
+
+#: autotrader/templates/home.html:100
+msgid "Find Your Car"
+msgstr "Maşını Tapın"
+
+#: autotrader/templates/home.html:193 autotrader/templates/home.html:211
+#: autotrader/templates/home.html:230
+msgid "Browse vehicles in Azerbaijan, ready for you to drive home today."
+msgstr "Azərbaycanda sizə bu gün sürməyə hazır olan nəqliyyat vasitələrini araşdırın."
+
+#: autotrader/templates/home.html:200
+msgid "View Full Inventory"
+msgstr "Bütün Inventarı Görüntüləyin"
+
+#: autotrader/templates/home.html:248
+msgid "Get Expert Help for Your Vehicle Purchase"
+msgstr "Nəqliyyat Vasitəsi Alışınız üçün Ekspert Köməyi Alın"
+
+#: autotrader/templates/home.html:249
+msgid "Enter your phone number, and our team will contact you"
+msgstr "Telefon nömrənizi daxil edin, komandamız sizinlə əlaqə saxlayacaq"
+
+#: autotrader/templates/partials/footer.html:49
+msgid "Auto Trader LLC imports quality vehicles from the USA, Europe, and Asia, handling every step from purchase to shipping and customs. Enjoy a seamless experience with key pickup right here in Azerbaijan – we take care of all the processes for you."
+msgstr "Auto Trader MMC ABŞ-dan, Avropadan və Asiyadan keyfiyyətli nəqliyyat vasitələri idxal edir, alışdan göndərişə və gömrükdən hər bir addımı idarə edir. Azərbaycanda ümumilikdə açar təhvil götürmə ilə problemsiz təcrübə yaşayın – bütün prosesləri sizin üçün biz idarə edirik."
+
+#: autotrader/templates/partials/footer.html:61
+msgid "Useful Links"
+msgstr "Faydalı Keçidlər"
+
+#: autotrader/templates/partials/footer.html:64
+#: autotrader/templates/partials/header.html:67
+msgid "Auction"
+msgstr "Auktsion"
+
+#: autotrader/templates/partials/footer.html:65
+#: autotrader/templates/partials/header.html:75
+msgid "Shipping"
+msgstr "Göndərmə"
+
+#: autotrader/templates/partials/footer.html:66
+#: autotrader/templates/partials/header.html:81
+msgid "Electric Vehicles"
+msgstr "Elektrik Nəqliyyat Vasitələri"
+
+#: autotrader/templates/partials/footer.html:67
+#: autotrader/templates/partials/header.html:83
+msgid "Import Auto"
+msgstr "Maşın İdxalı"
+
+#: autotrader/templates/partials/footer.html:73
+msgid "Contact Us"
+msgstr "Bizimlə Əlaqə"
+
+#: autotrader/templates/partials/footer.html:74
+msgid "Heydar Aliyev Ave 115, Sport Plaza Hotel & Apartments 187B"
+msgstr "Heydər Əliyev Prospekti 115, Sport Plaza Hotel & Apartments 187B"
+
+#: autotrader/templates/partials/footer.html:75
+msgid "Monday-Friday, 09:00-18:00"
+msgstr "Bazar ertəsi - Cümə, 09:00-18:00"
+
+#: autotrader/templates/partials/footer.html:76
+msgid "+994 (50) 555 34 85"
+msgstr "+994 (50) 555 34 85"
+
+#: autotrader/templates/partials/footer.html:77
+msgid "info@autotrader.az"
+msgstr "info@autotrader.az"
+
+#: autotrader/templates/partials/footer.html:91
+msgid "HOME"
+msgstr "ANA SƏHİFƏ"
+
+#: autotrader/templates/partials/footer.html:95
+msgid "CALCULATOR"
+msgstr "HESABLAMA"
+
+#: autotrader/templates/partials/footer.html:102
+msgid "NOTIFICATION"
+msgstr "BİLDİRİŞ"
+
+#: autotrader/templates/partials/footer.html:106
+msgid "PROFILE"
+msgstr "PROFİL"
+
+#: autotrader/templates/partials/header.html:69
+msgid "Active Lots"
+msgstr "Aktiv Lotlar"
+
+#: autotrader/templates/partials/header.html:70
+msgid "Auction History"
+msgstr "Auktsion Tarixi"
+
+#: autotrader/templates/partials/header.html:71
+msgid "Auction Calculator"
+msgstr "Auktsion Hesablama"
+
+#: autotrader/templates/partials/header.html:77
+msgid "Shipping Calculator"
+msgstr "Göndərmə Hesablama"
+
+#: autotrader/templates/partials/header.html:78
+msgid "Tracking"
+msgstr "İzləmə"
+
+#: autotrader/templates/partials/header.html:85
+msgid "My Account"
+msgstr "Mənim Hesabım"
+
+#: autotrader/templates/partials/header.html:86
+msgid "My Orders"
+msgstr "Mənim Sifarişlərim"
+
+#: autotrader/templates/partials/header.html:87
+msgid "Log Out"
+msgstr "Çıxış"
+
+#: autotrader/templates/partials/header.html:91
+msgid "More"
+msgstr "Daha çox"
+
+#: autotrader/templates/partials/header.html:93
+msgid "About Us"
+msgstr "Haqqımızda"
+
+#: autotrader/templates/partials/header.html:94
+msgid "Contact"
+msgstr "Əlaqə"
+
+#: autotrader/templates/partials/header.html:95
+msgid "Information"
+msgstr "Məlumat"
+
+#: autotrader/templates/partials/header.html:115
+msgid "Select Language"
+msgstr "Dil Seçin"
+
+#: autotrader/templates/partials/header.html:116
+msgid "EN"
+msgstr "İNGİLİS"
+
+#: autotrader/templates/partials/header.html:117
+msgid "AZ"
+msgstr "AZƏRBAYCAN"
+
