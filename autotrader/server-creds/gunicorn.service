@@ -6,9 +6,9 @@ After=network.target
 [Service]
 User=root
 Group=www-data
-WorkingDirectory=/home/django-autotrader/
+WorkingDirectory=/home/django-autotrader/autotrader/
 ExecStart=/home/django-autotrader/venv/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
-          autotrader.autotrader.wsgi:application
+          autotrader.wsgi:application
