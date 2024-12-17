@@ -5,6 +5,9 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="{% static '/owlcarousel/dist/assets/owl.carousel.min.css' %}">
+<link rel="stylesheet" href='{% static "/owlcarousel/dist/assets/owl.theme.default.min.css" %}'>
+<script src="{% static '/owlcarousel/dist/owl.carousel.min.js' %}"></script>
 
 
 <section class="hero-section">
@@ -19,7 +22,7 @@
 
         <!-- Cars Row -->
 
-        <div class="row align-items-center justify-content-center pt-5 p-sm-0" style="position: absolute; ">
+        <div class="carimage-container row align-items-center justify-content-center p-0" >
             <!-- Left Car -->
             <div class="col-6">
                 <img class="car-image" src='{% static "/images/assets/car-silver 1 1.png" %}' alt="Car 1">
@@ -40,11 +43,14 @@
     </div>
 </section>
 
-<section class="align-items-center justify-content-center mt-1">
-    <div class="container py-5 bg-light align-items-center justify-content-center">
-        <div class="align-items-center justify-content-center row g-3 mb-3" >
+<section class="align-items-center justify-content-center mt-5">
+    <div class=" container py-5 bg-light align-items-center justify-content-center">
+
+      <div class="card container w-auto" >
+      <div class="card-body">
+      <div class="align-items-center justify-content-center row g-3 mt-3 mb-3" >
             <!-- Dropdown 1 -->
-            <div class="col-md-3 col-lg-2">
+            <div class="col-md-4 col-sm-12">
                 <select class="form-select text-secondary">
                     <option selected>All Makes</option>
                     <option value="1">Make 1</option>
@@ -54,7 +60,7 @@
             </div>
 
             <!-- Dropdown 2 -->
-            <div class="col-md-3 col-lg-2">
+            <div class="col-md-4 col-sm-12">
                 <select class="form-select text-secondary">
                     <option selected>All Models</option>
                     <option value="1">Model 1</option>
@@ -63,7 +69,7 @@
                 </select>
             </div>
             <!-- Dropdown 3 -->
-            <div class="col-md-3 col-lg-2">
+            <div class="col-md-4 col-sm-12">
                 <select class="form-select text-secondary">
                     <option selected>USA</option>
                     <option value="1">Country 1</option>
@@ -72,10 +78,10 @@
                 </select>
             </div>
         </div>
-        <div class="align-items-center justify-content-center row g-3">
+        <div class="align-items-center justify-content-center row g-3 pb-3">
 
             <!-- Dropdown 4 -->
-            <div class="col-md-4 col-lg-2">
+            <div class="col-md-4 col-sm-12">
                 <select class="form-select text-secondary">
                     <option selected>From Year</option>
                     <option value="1">2022</option>
@@ -85,7 +91,7 @@
             </div>
 
             <!-- Dropdown 5 -->
-            <div class="col-md-4 col-lg-2">
+            <div class="col-md-4 col-sm-12">
                 <select class="form-select text-secondary">
                     <option selected>To Year</option>
                     <option value="1">2023</option>
@@ -95,13 +101,14 @@
             </div>
 
             <!-- Button -->
-            <div class="col-md-4 col-lg-2">
+            <div class="col-md-4 col-sm-12">
                 <button class="btn btn-danger w-100 d-flex align-items-center justify-content-center">
                     <i class="fas fa-search me-2"></i> {% trans "Find Your Car" %}
                 </button>
             </div>
         </div>
-
+      </div>
+      </div>
     </div>
 </section>
 
@@ -111,30 +118,29 @@
         <div class="row">
             <div class="col-12">
                 <div class="logo-slider">
-                    <div class="logos">
-                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class="img-fluid">
-
-                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class="img-fluid">
-                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class="img-fluid">
+                    <div class="owl-carousel owl-theme">
+                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class="card p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class="card p-2 m-2 item">
                     </div>
                     
                 </div>
@@ -144,38 +150,19 @@
     
     <!-- Add custom CSS to animate the logos -->
     <style>
-        .logo-slider {
-            position: relative;
-            overflow: hidden;
+        .owl-carousel .active span {
+          color: red;
+          background: red !important;
         }
     
-        .logos {
-            display: flex;
-            animation: slide 20s linear infinite;
+    
+        .item {
+            width: 100px;
+            max-width: 150px;
+            background-color: white;
         }
     
-        .logos img {
-            margin: 0 20px; /* Spacing between logos */
-            max-width: 100px;
-        }
-    
-        /* Animation for scrolling the logos */
-        @keyframes slide {
-            0% {
-                transform: translateX(50);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-            
-        }
-    
-        /* Optional: Adjust for smaller screens */
-        @media (max-width: 768px) {
-            .logos img {
-                max-width: 80px; /* Smaller logos on smaller screens */
-            }
-        }
+        
     </style>
     
 
@@ -190,7 +177,7 @@
     <div class="custom-seperator-line mb-1"></div>
 
     <h2 class="text-start text-heading mb-4"> Electric <span class="text-danger"> Vehicles </span></h2>
-    <p class="text-start">{% trans "Browse vehicles in Azerbaijan, ready for you to drive home today." %} </p>
+    <p class="text-start">{% trans "Discover the Future of Driving – Clean, Quiet, Powerful." %} </p>
     <div class="row g-0">
       <!-- Vehicle 1 -->
       {% for i in '111' %}
@@ -227,7 +214,7 @@
     <div class="custom-seperator-line mb-1"></div>
 
     <h2 class="text-start text-heading mb-4">Cars on <span class="text-danger"> auction </span></h2>
-    <p class="text-start">{% trans "Browse vehicles in Azerbaijan, ready for you to drive home today." %}</p>
+    <p class="text-start">{% trans "View cars in auction ready for immediate purchase with 'Buy It Now' options" %}</p>
     <div class="row g-0">
       <!-- Vehicle 1 -->
       {% for i in '111' %}
@@ -245,11 +232,18 @@
 
     
         <div class="text-center light-red-container rounded p-md-5 p-sm-5" style="background-color: #FAE9EB; padding: 3rem;">
-          <h2 class="mb-3 text-start text-heading pt-sm-2">{% trans "Get Expert Help for Your Vehicle Purchase" %}</h2>
-          <p class="mb-4 text-start hero-sub-text text-muted">{% trans "Enter your phone number, and our team will contact you" %}</p>
-          
+
           <div class="row">
-            <div class="col-md-8 col-sm-12">
+            <div class="col-sm-12 d-block d-md-none mb-3">
+              <img src="{% static '/images/assets/home-car3.png' %}" 
+              class="img-fluid pt-3"
+              alt="">
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+              <h2 class="mb-3 text-start text-heading pt-sm-2">{% trans "Get Expert Help for Your Vehicle Purchase" %}</h2>
+              <p class="mb-4 text-start hero-sub-text text-muted">{% trans "Enter your phone number, and our team will contact you" %}</p>
+              
               <form>
                 <div class="mb-3">
                   <input
@@ -293,9 +287,9 @@
                 <button type="submit" class="btn btn-danger w-100 justify-content-center">Request Callback</button>
               </form>
             </div>
-            <div class="col-4">
-              <img src="https://s3-alpha-sig.figma.com/img/1be8/e185/72404ddc782a281aa28b7b8e0120b4af?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ejd6B7N3THWSybj9377pGe5sWInmNuCi0CWP7vLwo2U6olpyuRtHjtKYCcSZVGhKkk8ebQm9tlRWVK59dLEVFVNjCkAoIdmRFhti-lhzvjuMtShxbl2F2URBV2TyMZwkfl2hVr4u2C4sEsxXyZMioQvQznHF8bKd7aavD3d6G9~~VD9vbP6TDopTvQs7w9~JJIYrmEzEqGdQPJcFQC8lv-uITAXC3oAeohexeqNNg1acG2CtV718jmbnVGNFCWnI~o1-01X-zyKhyb-6DczkbXaZBHQxp1kWYIfFQthSX73mV1VJlwOkf34bggbQu-lwxNVNuLZqgMfoYa9LFqaH5w__" 
-              class="img-fluid"
+            <div class="col-md-6 d-none d-md-block">
+              <img src="{% static '/images/assets/home-car3.png' %}" 
+              class="img-fluid pt-3"
               alt="">
             </div>
           </div>
@@ -380,5 +374,25 @@
       </div>
     </div>
   </section>
+
+
+<script>
+  $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:3
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+</script>
 
 {% endblock %}

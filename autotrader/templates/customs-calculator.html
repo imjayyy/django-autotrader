@@ -35,9 +35,9 @@
     </div>
 </section>
 <section>
-    <div class="container mt-4">
+    <div class="card container my-4">
 
-        <div class="container mt-4" style="min-height: 50vh;">
+        <div class="container my-4" style="min-height: 50vh;">
             <!-- Nav tabs for different search types -->
             <ul class="nav nav-underline nav-justified justify-content-center align-items-center" id="myTabs"
                 role="tablist">
@@ -216,38 +216,39 @@
                 </div>
 
                 <div class="tab-pane fade" id="searchByVinLot" role="tabpanel" aria-labelledby="searchByVinLot-tab">
-                    <div class="d-flex justify-content-center d-block " >
+                    <div class="container my-5" >
                             
-                        <div class="steps">
-                            <progress id="progress" value=0 max=100 ></progress>
-                            <div class="step-item m-2">
-                                <button class="step-button text-center" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    1
-                                </button>
-                                <div class="step-title">
-                                    Auction Calculator
+                          <!-- steps container -->
+                        <div class="">
+                            <div class="d-flex justify-content-center d-block">
+                            <div class="container mt-5 w-75 ">
+                                <!-- Stepper -->
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                <!-- Step 1 -->
+                                <div class="text-center">
+                                    <div class="rounded-circle bg-danger text-white py-2 px-3">1</div>
+                                    <small>Step 1</small>
                                 </div>
+                                <!-- Line -->
+                                <div class="flex-grow-1 border-top border-2 border-danger mx-2"></div>
+                                <!-- Step 2 -->
+                                <div class="text-center">
+                                    <div class="rounded-circle bg-secondary text-white py-2 px-3">2</div>
+                                    <small>Step 2</small>
+                                </div>
+                                <!-- Line -->
+                                <div class="flex-grow-1 border-top border-2 border-secondary mx-2"></div>
+                                <!-- Step 3 -->
+                                <div class="text-center">
+                                    <div class="rounded-circle bg-secondary text-white py-2 px-3">3</div>
+                                    <small>Step 3</small>
+                                </div>
+                                </div>
+
                             </div>
-                            <div class="step-item m-2">
-                                <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    2
-                                </button>
-                                <div class="step-title">
-                                    Contact Info
-                                </div>
-                            </div>
-                            <div class="step-item m-2">
-                                <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    3
-                                </button>
-                                <div class="step-title">
-                                    Confirm Order
-                                </div>
                             </div>
                         </div>
+
                     </div>
                     <div class="d-flex justify-content-center d-block">
                         <!-- Center the entire content vertically and horizontally -->

@@ -37,9 +37,9 @@
   }
 </style>
 
-<section class="bg-light text-dark py-4 mt-5" style="background-color: white !important;">
-  <div class="container" style="padding-bottom: 80px;">
-      <div class="row text-center text-md-start">
+<section class="bg-light text-dark py-4 mt-5 " style="background-color: white !important;">
+  <div class="container  d-none d-md-block" style="padding-bottom: 80px;">
+      <div class="row text-center text-md-start ">
           <!-- Auto Trader Info -->
           <div class="col-md-4 mb-3">
               <h5 class="fw-bold">
@@ -77,34 +77,30 @@
               <p><i class="fas fa-envelope"></i> {% trans "info@autotrader.az" %}</p>
           </div>
       </div>
-      <!-- Bottom Bar -->
-      <div class="row">
-          <div class="col-12 text-center">
-              <!-- <p class="mb-0">Copyright © 2023 Autotrader. All Rights Reserved</p> -->
-          </div>
-      </div>
+
   
-      <!-- Sticky Footer -->
-      <div class="sticky-footer d-md-none">
-          <a href="#home" class="text-center">
-              <i class="bi bi-house"></i>
-              <div>{% trans "HOME" %}</div>
-          </a>
-          <a href="#calculator" class="text-center">
-              <i class="bi bi-calculator"></i>
-              <div>{% trans "CALCULATOR" %}</div>
-          </a>
-          <a href="#search" class="active rounded-circle">
-              <i class="bi bi-search text-white"></i>
-          </a>
-          <a href="#notification" class="text-center">
-              <i class="bi bi-bell"></i>
-              <div>{% trans "NOTIFICATION" %}</div>
-          </a>
-          <a href="#profile" class="text-center">
-              <i class="bi bi-person"></i>
-              <div>{% trans "PROFILE" %}</div>
-          </a>
-      </div>
+   
   </div>
+     <!-- Sticky Footer -->
+     <div class="sticky-footer d-md-none ">
+        <a href="#home" class="text-center">
+            <i class="bi bi-house"></i>
+            <div>{% trans "HOME" %}</div>
+        </a>
+        <a href="#calculator" class="text-center">
+            <i class="bi bi-calculator"></i>
+            <div>{% trans "CALCULATOR" %}</div>
+        </a>
+        <a href="#search" class="active rounded-circle">
+            <i class="bi bi-search text-white"></i>
+        </a>
+        <a href="#notification" class="text-center">
+            <i class="bi bi-bell"></i>
+            <div>{% trans "NOTIFICATION" %}</div>
+        </a>
+        <a href="#profile" class="text-center">
+            <i class="bi bi-person"></i>
+            <div>{% trans "PROFILE" %}</div>
+        </a>
+    </div>
 </section>

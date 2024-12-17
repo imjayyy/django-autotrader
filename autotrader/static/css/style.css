@@ -51,7 +51,7 @@
     color: white;
     background-size: cover;
     background-position: center;
-    height: 70vh;
+    height: 50vh;
 
 }
 
@@ -68,6 +68,10 @@
         height: 100%; /* Further adjust width */
         left: -40%;  /* Adjust left positioning */
         top: -5%;   /* Adjust top positioning */
+    }
+    .hero-section{
+      height: 40vh;
+
     }
 }
 
@@ -178,10 +182,24 @@ body{
     font-size: 1.2rem;
   }
 
+  .car-image-container {
+    position: absolute; 
+    top: 40%;   
+  
+  }
+  @media (max-width: 400px) {
+    .car-image-container{
+      position: absolute; 
+      margin-top: 10%;
+      top: 100%;
+      display: none;
+    }
+}
+
   .car-image {
     max-width: 100%;
     height: auto;
-    z-index: 5;
+    /* z-index: 5; */
   }
  
   .custom-seperator-line {
