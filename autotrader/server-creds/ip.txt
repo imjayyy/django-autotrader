@@ -1,3 +1,8 @@
 server ip : 161.35.102.138
 
 ssh -i autotrader/server-creds/serverkey.pem root@161.35.102.138
+
+
+cd /home/django-autotrader/
+git pull origin master
+sudo systemctl restart gunicorn.service 
