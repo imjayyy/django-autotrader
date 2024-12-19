@@ -30,7 +30,6 @@ urlpatterns = [
     path('order-shipping', views.order_shipping, name='order-shipping'),
     path('normal-car-details', views.normal_car_details, name='normal-car-details'),
     path('admin/', admin.site.urls)
-
 ]
 
 urlpatterns += [

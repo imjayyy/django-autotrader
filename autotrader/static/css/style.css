@@ -455,6 +455,34 @@ p {
 .btn-primary{
  background-color: var(--primary-blue);
 }
+
+
+.car-sale-card .swiper {
+  width: 100%;
+  height: 300px;
+}
+
+.car-sale-card .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  height: 300px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.car-sale-card .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+
+
+    
 /* .text-muted {
   color: #666666 !important;
 } */

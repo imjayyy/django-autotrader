@@ -5,10 +5,24 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static '/owlcarousel/dist/assets/owl.carousel.min.css' %}">
-<link rel="stylesheet" href='{% static "/owlcarousel/dist/assets/owl.theme.default.min.css" %}'>
-<script src="{% static '/owlcarousel/dist/owl.carousel.min.js' %}"></script>
 
+
+<style>
+
+.owl-carousel .active span {
+  color: red;
+  background: red !important;
+}
+
+
+.item {
+width: 100px;
+max-width: 150px;
+background-color: white;
+}
+
+
+</style>
 
 <section class="hero-section">
     <div class="container pt-5" >
@@ -150,19 +164,7 @@
     
     <!-- Add custom CSS to animate the logos -->
     <style>
-        .owl-carousel .active span {
-          color: red;
-          background: red !important;
-        }
-    
-    
-        .item {
-            width: 100px;
-            max-width: 150px;
-            background-color: white;
-        }
-    
-        
+
     </style>
     
 
@@ -218,7 +220,7 @@
     <div class="row g-0 py-5">
       <!-- Vehicle 1 -->
       {% for i in '111' %}
-      {% include 'partials/components/car-card.html' %}
+      {% include 'partials/components/car-auction-card.html' %}
         {% endfor %}      
     </div>
     <button class="btn btn-danger d-sm-block"> View Full Inventory</button>
@@ -301,11 +303,6 @@
 </section>
 
 
-
-
-
-
-
 <section class="popular-makes py-5">
     <div class="container">
       <div class="text-center mb-5">
@@ -376,23 +373,6 @@
   </section>
 
 
-<script>
-  $('.owl-carousel').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    responsive:{
-        0:{
-            items:3
-        },
-        600:{
-            items:3
-        },
-        1000:{
-            items:5
-        }
-    }
-})
-</script>
+
 
 {% endblock %}

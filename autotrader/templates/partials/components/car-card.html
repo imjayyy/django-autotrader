@@ -1,54 +1,68 @@
 {% load static %}
-{% load i18n %}  <!-- Load the i18n library -->
+{% load i18n %} <!-- Load the i18n library -->
 
 
 <div class="container col-md-4 col-lg-4 col-sm-12 d-flex justify-content-center align-items-center py-2">
-    <div class="card shadow-lg rounded-4">
-      <!-- Image Section -->
-      <div class="position-relative">
-        <img src="https://s3-alpha-sig.figma.com/img/7a4b/ff8b/52c9bfcecd87ca7e457a439ea07c18c8?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lgZYqfqFFVALqV5nsV0ev7WtJptbhG4b4zaEbFrpwErXK-69jHR7btwSztYxQTkcWRjXD9-s4sd1MavZG10RRUekSqKGmuO7aBv6iKa3tVz4O3oNZJaRxDYqe5Zl~DAox4nZqZ5xCC6va5amYqB9m~lRui1bZJm5A8AI4TLsQ6UCS~nJoYs1GkLTksHHLw37lhIleadPnFnox4p6dSfZNBEwOUAta~QSqMFPJHc1hH~5SKUHVUzpdKmnXzKfgYUHPm03WC6mLp3ssUrvBDgnxuiDjVLW9SEfxijKzgOxZJ4pNwPhF5QH6JCilJV1-OLN5O3c8MUYUHMDV3KeLwclyQ__" 
-        class="card-img-top rounded-top-4 rounded-bottom-4 p-2" alt="Car Image">
-        <!-- New Tag -->
-        <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1">NEW</span>
-        <!-- Heart Icon -->
-        <button class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle">
-          <i class="fas fa-heart text-danger"></i>
-        </button>
-      </div>
-  
-      <!-- Card Body -->
-      <div class="card-body">
-        <!-- Car Info -->
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="text-danger">Sedan</span>
-          <span class="border border-dashed border-danger  text-danger px-2 py-1 rounded">2024</span>
+  <div class="card shadow-lg rounded-4">
+    <!-- Image Section -->
+
+    <div class="car-sale-card">
+
+    <div class="position-relative swiper">
+      <div class="swiper-wrapper rounded">
+        <div class="swiper-slide rounded">
+          <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2">
         </div>
-        <h5 class="card-title text-start hero-sub-text">BYD Song Plus EV</h5>
-        <p class="text-danger fs-5 fw-bolder mb-1 text-start">30.000$ <span class="text-muted text-decoration-line-through fw-normal">38.000$</span></p>
-  
-        <!-- Features -->
-        <div class="d-flex justify-content-between text-center border-top pt-3 mt-3">
-          <div>
-            <i class="fas fa-battery-half text-danger"></i>
-            <p class="mb-0 text-muted small">Battery range</p>
-            <p class="fw-bold">300km</p>
-          </div>
-          <div>
-            <i class="fas fa-tachometer-alt text-danger"></i>
-            <p class="mb-0 text-muted small">0-100 km/h</p>
-            <p class="fw-bold">5.3s</p>
-          </div>
-          <div>
-            <i class="fas fa-cogs text-danger"></i>
-            <p class="mb-0 text-muted small">Motor Power</p>
-            <p class="fw-bold">100 kwh</p>
-          </div>
+        <div class="swiper-slide rounded">
+          <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2">
         </div>
-        <hr>
-        <!-- View Details -->
-        <a href="#" class="text-danger fw-normal d-flex align-items-center mt-3">
-          View Details <i class="fas fa-arrow-right ms-2"></i>
-        </a>
+        <div class="swiper-slide rounded">
+          <img src="{% static '/images/assets/car-card-assets/car-pic-3.jpeg' %}" class="rounded-4 p-2">
+        </div>
+
       </div>
+      <!-- New Tag -->
+      <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1">NEW</span>
+      <!-- Heart Icon -->
+      <button class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle z-3">
+        <i class="fas fa-heart text-danger"></i>
+      </button>
     </div>
   </div>
+    <!-- Card Body -->
+    <div class="card-body">
+      <!-- Car Info -->
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <span class="text-danger">Sedan</span>
+        <span class="border border-dashed border-danger  text-danger px-2 py-1 rounded">2024</span>
+      </div>
+      <h5 class="card-title text-start hero-sub-text">BYD Song Plus EV</h5>
+      <p class="text-danger fs-5 fw-bolder mb-1 text-start">30.000$ <span
+          class="text-muted text-decoration-line-through fw-normal">38.000$</span></p>
+
+      <!-- Features -->
+      <div class="d-flex justify-content-between text-center border-top pt-3 mt-3">
+        <div>
+          <i class="fas fa-battery-half text-danger"></i>
+          <p class="mb-0 text-muted small">Battery range</p>
+          <p class="fw-bold">300km</p>
+        </div>
+        <div>
+          <i class="fas fa-tachometer-alt text-danger"></i>
+          <p class="mb-0 text-muted small">0-100 km/h</p>
+          <p class="fw-bold">5.3s</p>
+        </div>
+        <div>
+          <i class="fas fa-cogs text-danger"></i>
+          <p class="mb-0 text-muted small">Motor Power</p>
+          <p class="fw-bold">100 kwh</p>
+        </div>
+      </div>
+      <hr>
+      <!-- View Details -->
+      <a href="#" class="text-danger fw-normal d-flex align-items-center mt-3">
+        View Details <i class="fas fa-arrow-right ms-2"></i>
+      </a>
+    </div>
+  </div>
+</div>

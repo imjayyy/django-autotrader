@@ -1,0 +1,67 @@
+{% load static %}
+{% load i18n %} <!-- Load the i18n library -->
+
+
+<div class="container col-md-4 col-lg-4 col-sm-12 d-flex justify-content-center align-items-center py-2">
+  <div class="card shadow-lg rounded-4 car-sale-card">
+    <!-- Image Section -->
+    <div class="swiper rounded-top-4">
+      <div class="swiper-wrapper rounded">
+          <div class="swiper-slide rounded">
+            <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2">
+          </div>
+          <div class="swiper-slide rounded">
+            <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2">
+          </div>
+          <div class="swiper-slide rounded">
+            <img src="{% static '/images/assets/car-card-assets/car-pic-3.jpeg' %}" class="rounded-4 p-2">
+          </div>
+
+      </div>
+      <!-- New Tag -->
+      <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1 z-3" >NEW</span>
+      <!-- Heart Icon -->
+      <button class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle z-3">
+        <i class="fas fa-heart text-danger"></i>
+      </button>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body">
+      <!-- Car Info -->
+
+      <h5 class="card-title text-start">2020 NISSAN MURANO | 3.5L 6</h5>
+      <!-- Features -->
+      <div class="border-top pt-3 mt-3">
+        <div class="row my-2">
+          <div class="col-6 text-start"><i class="fa-solid fa-gauge-high"></i> Odometer: </div>
+          <div class="col-6 text-end"> <strong> 59738 </strong> </div>
+        </div>
+        <div class="row my-2">
+          <div class="col-6 text-start"><i class="fas fa-car-crash"></i>
+            Primary Damage: </div>
+          <div class="col-6 text-end"> <strong> MECHANICAL </strong> </div>
+        </div>
+        <div class="row my-2">
+          <div class="col-6 text-start"> <i class="fas fa-car"></i>
+            Secondary Damage: </div>
+          <div class="col-6 text-end"> <strong> None</strong> </div>
+        </div>
+        <div class="row my-2">
+          <div class="col-4 text-start"><i class="fas fa-gavel"></i>
+            Sale Date: </div>
+          <div class="col-8 text-end"> <strong> March 22, 2024, 11:07 p.m. </strong> </div>
+        </div>
+      </div>
+      <hr>
+      <!-- View Details -->
+      <div class="row my-2">
+        <div class="col-6 text-start"> Buy Now: <strong class="text-danger"> $30,000 </strong> </div>
+        <div class="col-6 text-end"> <a href="#" class="text-danger">
+            View Details <i class="fas fa-arrow-right ms-2"></i>
+          </a> </div>
+      </div>
+
+    </div>
+  </div>
+</div>
