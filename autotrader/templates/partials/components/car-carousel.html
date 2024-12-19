@@ -1,40 +1,6 @@
 
 {% load static %}
 
-<!-- <div class="carousel">
-    <div class="swiper mySwiper2"  style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"  >
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
-            </div>
-            <div class="swiper-slide">
-                <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2" alt="2">
-            </div>
-            <div class="swiper-slide">
-                <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2"  alt="3">
-            </div>
-            
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-    </div>
-
-
-    <div thumbsSlider="" class="swiper mySwiper">
-        <div class="swiper-wrapper">
-
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2" alt="2">
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2"  alt="3">
-        </div>
-        </div>
-    </div>
-</div> -->
 
   <!-- Demo styles -->
   <style>
@@ -103,7 +69,7 @@
     }
 
     .mySwiper .swiper-slide {
-      width: 25%;
+      width: 25% !important;
       height: 100%;
       opacity: 0.4;
     }
@@ -120,84 +86,88 @@
     }
   </style>
 
-
   <!-- Swiper -->
-<div class="carousel">
-  <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2" >
+
+  <div class="carousel">
+  <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2" alt="2">
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2"  alt="3">
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2" alt="2">
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2"  alt="3">
-        </div>
+      <div class="swiper-slide">
+        <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
+      </div>
+      <div class="swiper-slide">
+        <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2" alt="2">
+      </div>
+      <div class="swiper-slide">
+        <img src="{% static '/images/assets/car-card-assets/car-pic-3.jpeg' %}" class="rounded-4 p-2"  alt="3">
+      </div>
+      <div class="swiper-slide">
+        <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
+      </div>
+
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
-  <div thumbsSlider="" class="swiper mySwiper" id="mySwiper" >
+  <div thumbsSlider="" class="swiper mySwiper">
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2" alt="2">
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2"  alt="3">            
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2" alt="2">
-        </div>
-        <div class="swiper-slide">
-            <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2"  alt="3">
-        </div>
-    <div class="swiper-pagination"></div>
+      <div class="swiper-slide">
+        <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
+      </div>
+      <div class="swiper-slide">
+        <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2" alt="2">
+      </div>
+      <div class="swiper-slide">
+        <img src="{% static '/images/assets/car-card-assets/car-pic-3.jpeg' %}" class="rounded-4 p-2"  alt="3">
+      </div>
+      <div class="swiper-slide">
+        <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
+      </div>
 
     </div>
-
   </div>
 </div>
-  <!-- Initialize Swiper -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Swiper JS -->
 
+  <!-- Initialize Swiper -->
   <script>
-    var swiper1 = new Swiper(".mySwiper", {
+    var swiper_thumb = new Swiper(".mySwiper", {
       loop: true,
       spaceBetween: 10,
-      slidesPerView: 6,
+      slidesPerView: 4,
       freeMode: true,
       watchSlidesProgress: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
     });
     var swiper2 = new Swiper(".mySwiper2", {
       loop: true,
       spaceBetween: 10,
-      
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
       thumbs: {
-        swiper: swiper,
+        swiper: swiper_thumb,
       },
     });
   </script>
+
+<!-- 
+
+<div class="swiper-slide">
+  <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
+</div>
+<div class="swiper-slide">
+  <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2" alt="2">
+</div>
+<div class="swiper-slide">
+  <img src="{% static '/images/assets/car-card-assets/car-pic-3.jpeg' %}" class="rounded-4 p-2"  alt="3">
+</div>
+<div class="swiper-slide">
+  <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 p-2" alt="1">
+</div>
+<div class="swiper-slide">
+  <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 p-2" alt="2">
+</div>
+<div class="swiper-slide">
+  <img src="{% static '/images/assets/car-card-assets/car-pic-3.jpeg' %}" class="rounded-4 p-2"  alt="3">
+</div>
+ -->

@@ -5,186 +5,108 @@
 
 {% block content %}
 
-<style>
-
-    .accordion-button:not(.collapsed) {
-        color: red;
-        background-color: white;
-
-    }
-    .active {
-        border-color: #dc3545;
-    }
-    .carousel-main img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-    }
-
-    .thumbnail-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 15px;
-    }
-
-    .thumbnail img {
-        width: 80px;
-        height: 60px;
-        object-fit: cover;
-        border-radius: 5px;
-        cursor: pointer;
-        border: 2px solid transparent;
-    }
-
-    .owl-carousel.item.active {
-        border-color: #dc3545;
-    }
-
-
-    th {
-        font-size: 12px;
-        font-weight: 400;
-        margin: 10px;
-
-    }
-
-    .main-carousel img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        .thumbnail-carousel .item img {
-            width: 100px;
-            height: 80px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        .thumbnail-carousel .item img.active {
-            border: 2px solid #007bff;
-        }
-        .thumbnail-carousel .owl-nav {
-            display: none;
-        }
-        /* .owl-prev {
-    position: fixed;
-    top: 30%;
-    left: -50px;
-    z-index: 5;
-}
-.owl-next {
-    position: fixed;
-    right: -50px;
-    top: 30%;
-    z-index: 5;
-
-} */
-
-</style>
 <link rel="stylesheet" href="{% static '/owlcarousel/dist/assets/owl.carousel.min.css' %}">
 <link rel="stylesheet" href='{% static "/owlcarousel/dist/assets/owl.theme.default.min.css" %}'>
 <script src="{% static '/owlcarousel/dist/owl.carousel.min.js' %}"></script>
 
 
 <section>
-<div class="container pt-5">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Car Details</li>
-        </ol>
-    </nav>
+    <div class="container pt-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Car Details</li>
+            </ol>
+        </nav>
 
-    <div>
-       <h4 class="text-start hero-sub-text">2020 CHEVROLET TAHOE C1500 LS</h4>
-       <p class="text-start fs-6">Lot <strong># 46296444</strong>  |  Sale Location:<span class="text-danger"> OH - DAYTON  </span> OH - DAYTON  |  Sale Date: <strong>March 22, 2024, 2 p.m.</strong></p>
+        <div>
+            <h4 class="text-start hero-sub-text">2020 CHEVROLET TAHOE C1500 LS</h4>
+            <p class="text-start fs-6">Lot <strong># 46296444</strong> | Sale Location:<span class="text-danger"> OH -
+                    DAYTON </span> OH - DAYTON | Sale Date: <strong>March 22, 2024, 2 p.m.</strong></p>
+        </div>
     </div>
-</div>
 </section>
 <section>
-<div class="container">
+    <div class="container">
 
-    <div class="row">
-        <!-- car carousel -->
-        <div class="col-md-8 col-sm-12 mt-4 mb-3 p-3">
-          {% include 'partials/components/car-carousel.html' %}
+        <div class="row">
+            <!-- car carousel -->
+            <div class="col-md-8 col-sm-12 mt-4 mb-3 p-3">
+                {% include 'partials/components/car-carousel.html' %}
 
 
-          
-            <div class="">
-                <div class="card shadow" >
-                  <div class="card-header bg-light border-bottom text-center ">
-                    
-                    <h5 class="mb-0 text-start"><i class="bi bi-calculator-fill text-danger m-2"></i>Description</h5>
-                  </div>
-                  <div class="card-body" >
-                    <div class="text-start">
 
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum,
-                    </div>
-                    
-                    
-                    
-                  </div>
-                  <!-- <div class="card-footer bg-light">
+                <div class="container">
+                    <div class="card shadow">
+                        <div class="card-header bg-light border-bottom text-center ">
+
+                            <h5 class="mb-0 text-start"><i class="bi bi-calculator-fill text-danger m-2"></i>Description
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-start">
+
+                                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
+                                piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard
+                                McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of
+                                the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through
+                                the cites of the word in classical literature, discovered the undoubtable source. Lorem
+                                Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The
+                                Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the
+                                theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum,
+                            </div>
+
+
+
+                        </div>
+                        <!-- <div class="card-footer bg-light">
                     
                   </div> -->
+                    </div>
                 </div>
-              </div>
-        
-        </div>
+
+            </div>
 
 
-        <!-- car details card  -->
-        <div class="col-md-4 col-sm-12 mb-2">
-            <div class="container mt-5">
-                <div class="card custom-card">
-                    <div class="card-header text-start">
-                        <i class="bi bi-card-text text-danger pe-2"></i>
-                        Sales Details
-                    </div>
-                    <div class="text-start m-3" >
-
-                        <div class="row">
-                        <div class="col">
-                        <div class="text-muted text-decoration-line-through">
-                            <small>40,768 $</small>
+            <!-- car details card  -->
+            <div class="col-md-4 col-sm-12 mb-2">
+                <div class="container mt-5">
+                    <div class="card custom-card">
+                        <div class="card-header text-start">
+                            <i class="bi bi-card-text text-danger pe-2"></i>
+                            Sales Details
                         </div>
-                        <h3 class="fw-bold mb-0">38,765$ <span class="text-muted fs-6 mb-3">(65,900 Azn)</span></h3>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex align-items-end justify-content-end mb-3 text-end">
-                                <span class="me-2">Country</span>
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg"
-                                    alt="Germany Flag"
-                                    style="width: 25px; height: auto;"
-                                    class="me-1"
-                                />
-                                <strong>Germany</strong>
+                        <div class="text-start m-3">
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="text-muted text-decoration-line-through">
+                                        <small>40,768 $</small>
+                                    </div>
+                                    <h3 class="fw-bold mb-0">38,765$ <span class="text-muted fs-6 mb-3">(65,900
+                                            Azn)</span></h3>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex align-items-end justify-content-end mb-3 text-end">
+                                        <span class="me-2">Country</span>
+                                        <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg"
+                                            alt="Germany Flag" style="width: 25px; height: auto;" class="me-1" />
+                                        <strong>Germany</strong>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="d-flex gap-2 mb-3">
+                                <a href="https://wa.me/994505553485" class="btn btn-success flex-fill" target="_blank">
+                                    Write to us
+                                </a>
+                                <a href="tel:+994505553485" class="btn btn-outline-secondary flex-fill">
+                                    <i class="bi bi-telephone"></i> +994 (50) 555 34 85
+                                </a>
+                            </div>
+
+                            <a href="#" class="btn btn-danger w-100">Order now</a>
                         </div>
-                    </div>
-                        <div class="d-flex gap-2 mb-3">
-                            <a
-                                href="https://wa.me/994505553485"
-                                class="btn btn-success flex-fill"
-                                target="_blank"
-                            >
-                                Write to us
-                            </a>
-                            <a
-                                href="tel:+994505553485"
-                                class="btn btn-outline-secondary flex-fill"
-                            >
-                                <i class="bi bi-telephone"></i> +994 (50) 555 34 85
-                            </a>
-                        </div>
-                
-                        <a href="#" class="btn btn-danger w-100">Order now</a>
-                    </div>
-                    <!-- <div class="custom-card-body">
+                        <!-- <div class="custom-card-body">
                         <div class="row py-2 px-4">
                             <div class="col-6 border-bottom text-start">VIN:</div>
                             <div class="col-6 border-bottom text-end fw-bolder">JN1BV7AR2EM686867</div>
@@ -242,91 +164,91 @@
                             <div class="col-6  border-bottom text-end fw-bolder">N/A</div>
                         </div>
                     </div> -->
+                    </div>
+                </div>
+
+                <div class="container mt-5">
+                    <div class="card custom-card">
+                        <div class="card-header text-start">
+                            <i class="bi bi-card-text text-danger pe-2"></i>
+                            Overview
+                        </div>
+
+                        <div class="custom-card-body">
+                            <div class="row py-2 px-4">
+                                <div class="col-6 border-bottom text-start">VIN:</div>
+                                <div class="col-6 border-bottom text-end fw-bolder">JN1BV7AR2EM686867</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Odometer:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">142417</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Title Code:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">none</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Primary Damage:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">MECHANICAL</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Secondary Damage:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">None</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Body Style:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">SEDAN 4D</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Color:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">GRAY</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Engine:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">3.7L 6</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Cylinders:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">6</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Transmission:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">AUTOMATIC</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Drive:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">All wheel drive</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Fuel:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">GAS</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Keys:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">yes</div>
+                            </div>
+                            <div class="row py-2 px-4">
+                                <div class="col-6  border-bottom text-start">Highlights:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">N/A</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="container mt-5">
-                <div class="card custom-card">
-                    <div class="card-header text-start">
-                        <i class="bi bi-card-text text-danger pe-2"></i>
-                        Overview
-                    </div>
-                    
-                     <div class="custom-card-body">
-                        <div class="row py-2 px-4">
-                            <div class="col-6 border-bottom text-start">VIN:</div>
-                            <div class="col-6 border-bottom text-end fw-bolder">JN1BV7AR2EM686867</div>
-                        </div> 
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Odometer:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">142417</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Title Code:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">none</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Primary Damage:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">MECHANICAL</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Secondary Damage:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">None</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Body Style:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">SEDAN 4D</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Color:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">GRAY</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Engine:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">3.7L 6</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Cylinders:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">6</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Transmission:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">AUTOMATIC</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Drive:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">All wheel drive</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Fuel:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">GAS</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Keys:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">yes</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Highlights:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">N/A</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+
+
         </div>
 
+        <div class="row">
 
-        
 
 
-    </div>
-
-    <div class="row">
-        
-    
+        </div>
 
     </div>
-
-</div>
 </section>
 
 
@@ -337,76 +259,19 @@
     <h2 class="text-start text-heading mb-4">Vehicles <span class="text-danger">in Azerbaijan </span></h2>
     <p class="text-start">Browse vehicles in Azerbaijan, ready for you to drive home today.</p>
     <div class="row">
-      <!-- Vehicle 1 -->
-      {% for i in '111' %}
-      {% include 'partials/components/car-card.html' %}
-        {% endfor %}      
+        <!-- Vehicle 1 -->
+        {% for i in '111' %}
+        {% include 'partials/components/car-card.html' %}
+        {% endfor %}
     </div>
     <button class="btn btn-danger w-25"> View Full Inventory</button>
 
     <hr>
 
-  </section>
+</section>
 
 
 
-
-<script>
-$(document).ready(function () {
-    var mainCarousel = $(".main-carousel");
-    var thumbnailCarousel = $(".thumbnail-carousel");
-
-    // Initialize Main Carousel
-    mainCarousel.owlCarousel({
-        items: 1,
-        loop: true,
-        nav: false,
-        dots: false,
-        autoplay: false,
-        margin: 10,
-        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"]
-    }).on("changed.owl.carousel", syncThumbnails);
-
-    // Initialize Thumbnail Carousel
-    thumbnailCarousel.owlCarousel({
-        items: 5,
-        margin: 10,
-        dots: true,
-        nav: false,
-        autoplay: false,
-        center: false
-    });
-
-    // Sync Main Carousel when Thumbnail is Clicked
-    thumbnailCarousel.on("click", ".item", function () {
-        var altText = $(this).find("img").attr("alt"); // Get the alt text of the clicked thumbnail
-        var targetIndex = mainCarousel.find(".item img[alt='" + altText + "']").parent().index(); // Find the corresponding index in the main carousel
-        mainCarousel.trigger("to.owl.carousel", [targetIndex, 300]); // Slide to the corresponding main image
-        setActiveThumbnail(targetIndex); // Highlight clicked thumbnail
-    });
-
-    // Sync Thumbnails with Main Carousel
-    function syncThumbnails(event) {
-        var currentIndex = event.item.index - event.relatedTarget._clones.length / 2;
-        var totalItems = event.item.count;
-
-        // Correct the index within bounds
-        currentIndex = (currentIndex % totalItems + totalItems) % totalItems;
-
-        setActiveThumbnail(currentIndex); // Sync thumbnails
-    }
-
-    // Highlight the Active Thumbnail and Scroll Thumbnail Carousel
-    function setActiveThumbnail(index) {
-        thumbnailCarousel.find(".item img").removeClass("active"); // Remove 'active' class from all thumbnails
-        thumbnailCarousel.find(".item").eq(index).find("img").addClass("active"); // Add 'active' to the current thumbnail
-
-        // Slide thumbnail carousel to ensure active thumbnail is visible
-        thumbnailCarousel.trigger("to.owl.carousel", [index - Math.floor(5 / 2), 300, true]);
-    }
-});
-
-</script>
 
 <!-- 
  <script>
