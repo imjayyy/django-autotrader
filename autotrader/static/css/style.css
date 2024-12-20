@@ -55,6 +55,14 @@
 
 }
 
+.red-line {
+  width: 50px; /* Adjust width as needed */
+  height: 2px; /* Adjust height as needed */
+  background-color: red;
+  margin-bottom: 8px; /* Spacing below the line */
+  /* border: 1 px; */
+}
+
 .hero-vector-left{
     /* position: fixed; */
     /* /* width: 50%; */
