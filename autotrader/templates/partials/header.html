@@ -26,91 +26,249 @@
     {% load static %}
     {% load i18n %}  <!-- Load the i18n library -->
 
-    <div class="topnav bg-light py-2 border-bottom d-none d-sm-block">
+
+    <style>
+        .search-modal .modal-dialog {
+          max-width: 1200px; /* Adjust width as needed */
+          margin: 1.75rem auto;
+        }
+        .search-modal .modal-content {
+          border-radius: 20px;
+          padding: 15px 30px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .search-modal .form-control {
+          border-radius: 30px;
+        }
+        .search-modal .btn-close {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+        }
+        .search-button {
+            background-color: #dc3545;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 20px;
+        }
+        .search-button:hover {
+            background-color: #c82333;
+        }
+        .search-modal {
+          background-color: #49494968;
+          /* padding: 5px 20px; */
+        }
+        .search-modal .checkbox-label {
+          margin-left: 10px;
+        }
+
+        .navbar-toggler-icon.open {
+      background-image: url('data:image/svg+xml,%3Csvg width=%2221%22 height=%2220%22 viewBox=%220 0 21 20%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath d=%22M1.83337 18.3333L18.8039 1.36269%22 stroke=%22%232B3339%22 stroke-width=%222.66667%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M1.83337 1.33325L18.8039 18.3038%22 stroke=%22%232B3339%22 stroke-width=%222.66667%22 stroke-linecap=%22round%22/%3E%3C/svg%3E');
+        }
+
+
+        @media (max-width: 576px) {
+        .custom-navbar {
+            background-color: #343a40; /* Dark background */
+            color: white;
+            margin: 0% !important;
+        }
+
+        .custom-navbar .nav-link {
+            color: white;
+        }
+
+        #navbarNav{
+            top: 0;
+            left: 0;
+            width: 100vw; /* Full width of the viewport */
+            margin-top: 10px;
+            margin-bottom: 0px !important;
+
+            
+        }
+        }
+
+      </style>
+
+
+
+    <div class="topnav bg-light py-2 border-bottom d-none d-sm-block " >
         <div class="container d-flex justify-content-between align-items-center contact-info">
             <div>
-                <i class="bi bi-telephone-fill me-1"></i> +994 (50) 555 34 85
-                <span class="ms-3"><i class="bi bi-envelope-fill me-1"></i> info@autotrader.az</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.3084 15.275C18.3084 15.575 18.2417 15.8833 18.1 16.1833C17.9584 16.4833 17.775 16.7667 17.5334 17.0333C17.125 17.4833 16.675 17.8083 16.1667 18.0167C15.6667 18.225 15.125 18.3333 14.5417 18.3333C13.6917 18.3333 12.7834 18.1333 11.825 17.725C10.8667 17.3167 9.90835 16.7667 8.95835 16.075C8.00002 15.375 7.09169 14.6 6.22502 13.7417C5.36669 12.875 4.59169 11.9667 3.90002 11.0167C3.21669 10.0667 2.66669 9.11666 2.26669 8.17499C1.86669 7.22499 1.66669 6.31666 1.66669 5.44999C1.66669 4.88332 1.76669 4.34166 1.96669 3.84166C2.16669 3.33332 2.48335 2.86666 2.92502 2.44999C3.45835 1.92499 4.04169 1.66666 4.65835 1.66666C4.89169 1.66666 5.12502 1.71666 5.33335 1.81666C5.55002 1.91666 5.74169 2.06666 5.89169 2.28332L7.82502 5.00832C7.97502 5.21666 8.08335 5.40832 8.15835 5.59166C8.23335 5.76666 8.27502 5.94166 8.27502 6.09999C8.27502 6.29999 8.21669 6.49999 8.10002 6.69166C7.99169 6.88332 7.83335 7.08332 7.63335 7.28332L7.00002 7.94166C6.90835 8.03332 6.86669 8.14166 6.86669 8.27499C6.86669 8.34166 6.87502 8.39999 6.89169 8.46666C6.91669 8.53332 6.94169 8.58332 6.95835 8.63332C7.10835 8.90832 7.36669 9.26666 7.73335 9.69999C8.10835 10.1333 8.50835 10.575 8.94169 11.0167C9.39169 11.4583 9.82502 11.8667 10.2667 12.2417C10.7 12.6083 11.0584 12.8583 11.3417 13.0083C11.3834 13.025 11.4334 13.05 11.4917 13.075C11.5584 13.1 11.625 13.1083 11.7 13.1083C11.8417 13.1083 11.95 13.0583 12.0417 12.9667L12.675 12.3417C12.8834 12.1333 13.0834 11.975 13.275 11.875C13.4667 11.7583 13.6584 11.7 13.8667 11.7C14.025 11.7 14.1917 11.7333 14.375 11.8083C14.5584 11.8833 14.75 11.9917 14.9584 12.1333L17.7167 14.0917C17.9334 14.2417 18.0834 14.4167 18.175 14.625C18.2584 14.8333 18.3084 15.0417 18.3084 15.275Z" stroke="#2B3339" stroke-width="1.5" stroke-miterlimit="10"/>
+                    <path d="M15.4167 7.49998C15.4167 6.99998 15.025 6.23331 14.4417 5.60831C13.9083 5.03331 13.2 4.58331 12.5 4.58331" stroke="#2B3339" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18.3333 7.49999C18.3333 4.27499 15.725 1.66666 12.5 1.66666" stroke="#2B3339" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    +994 (50) 555 34 85
+                <span class="ms-3"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.66666 7.08332C1.66666 4.16666 3.33332 2.91666 5.83332 2.91666H14.1667C16.6667 2.91666 18.3333 4.16666 18.3333 7.08332V12.9167C18.3333 15.8333 16.6667 17.0833 14.1667 17.0833H5.83332" stroke="#2B3339" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14.1667 7.5L11.5583 9.58333C10.7 10.2667 9.29167 10.2667 8.43334 9.58333L5.83334 7.5" stroke="#2B3339" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.66666 13.75H6.66666" stroke="#2B3339" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.66666 10.4167H4.16666" stroke="#2B3339" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    info@autotrader.az</span>
             </div>
             <div class="d-flex align-items-center">
                 <i class="bi bi-heart me-1"></i>
                 <a href="#" class="text-dark me-3 text-decoration-none">Favourite</a>
-                <i class="bi bi-person-circle me-1"></i>
-                <a href="#" class="text-dark text-decoration-none me-3">Sign in</a>
-                <i class="bi bi-facebook me-1 text-white rounded p-1" style="width: 40px;background-color: grey;"></i>
-                <i class="bi bi-instagram me-1 text-white rounded p-1" style="width: 40px;background-color: grey;"></i>
-                <i class="bi bi-youtube me-1 text-white rounded p-1" style="width: 40px;background-color: grey;"></i>
-                <i class="bi bi-whatsapp me-1 text-white rounded p-1" style="width: 40px;background-color: grey;"></i>
-
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.14 21.62C17.26 21.88 16.22 22 15 22H8.99998C7.77998 22 6.73999 21.88 5.85999 21.62C6.07999 19.02 8.74998 16.97 12 16.97C15.25 16.97 17.92 19.02 18.14 21.62Z" stroke="#2B3339" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 2H9C4 2 2 4 2 9V15C2 18.78 3.14 20.85 5.86 21.62C6.08 19.02 8.75 16.97 12 16.97C15.25 16.97 17.92 19.02 18.14 21.62C20.86 20.85 22 18.78 22 15V9C22 4 20 2 15 2ZM12 14.17C10.02 14.17 8.42 12.56 8.42 10.58C8.42 8.60002 10.02 7 12 7C13.98 7 15.58 8.60002 15.58 10.58C15.58 12.56 13.98 14.17 12 14.17Z" stroke="#2B3339" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.58 10.58C15.58 12.56 13.98 14.17 12 14.17C10.02 14.17 8.41998 12.56 8.41998 10.58C8.41998 8.60002 10.02 7 12 7C13.98 7 15.58 8.60002 15.58 10.58Z" stroke="#2B3339" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    
+                <a href="#" class="text-dark text-decoration-none ms-1 me-2">Sign in</a>
+                <svg width="156" height="40" viewBox="0 0 156 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="3.5" width="33" height="33" rx="5" fill="#8D94AD"/>
+                    <g clip-path="url(#clip0_1632_17673)">
+                    <path d="M13.6111 13.501C11.6171 13.501 10 15.118 10 17.1121V22.8899C10 24.8839 11.6171 26.501 13.6111 26.501H19.3889C21.383 26.501 23 24.8839 23 22.8899V17.1121C23 15.118 21.383 13.501 19.3889 13.501H13.6111ZM20.8334 14.9454C21.232 14.9454 21.5555 15.269 21.5555 15.6676C21.5555 16.0663 21.232 16.3899 20.8334 16.3899C20.4346 16.3899 20.1111 16.0663 20.1111 15.6676C20.1111 15.269 20.4346 14.9454 20.8334 14.9454ZM16.5 16.3899C18.4941 16.3899 20.1111 18.0069 20.1111 20.001C20.1111 21.995 18.4941 23.6121 16.5 23.6121C14.5059 23.6121 12.8889 21.995 12.8889 20.001C12.8889 18.0069 14.5059 16.3899 16.5 16.3899ZM16.5 17.8343C15.9254 17.8343 15.3743 18.0626 14.9679 18.4689C14.5616 18.8752 14.3333 19.4263 14.3333 20.001C14.3333 20.5756 14.5616 21.1267 14.9679 21.533C15.3743 21.9394 15.9254 22.1676 16.5 22.1676C17.0746 22.1676 17.6257 21.9394 18.0321 21.533C18.4384 21.1267 18.6667 20.5756 18.6667 20.001C18.6667 19.4263 18.4384 18.8752 18.0321 18.4689C17.6257 18.0626 17.0746 17.8343 16.5 17.8343Z" fill="white"/>
+                    </g>
+                    <rect x="41" y="3.5" width="33" height="33" rx="5" fill="#8D94AD"/>
+                    <path d="M59.375 17.6562V15.7812C59.375 15.2637 59.767 14.8437 60.25 14.8437H61.125V12.5H59.375C57.9251 12.5 56.75 13.7591 56.75 15.3125V17.6562H55V20H56.75V27.5H59.375V20H61.125L62 17.6562H59.375Z" fill="white"/>
+                    <rect x="82" y="3.5" width="33" height="33" rx="5" fill="#8D94AD"/>
+                    <g clip-path="url(#clip1_1632_17673)">
+                    <path d="M105.758 16.9959C105.587 16.2868 104.978 15.7637 104.245 15.6857C102.508 15.5011 100.751 15.5001 99.0022 15.5011C97.2529 15.5001 95.4954 15.5011 93.7593 15.6857C93.0266 15.7637 92.4181 16.2868 92.2467 16.9959C92.0027 18.0058 92 19.1081 92 20.1478C92 21.1875 92 22.2896 92.2439 23.2993C92.4151 24.0082 93.0237 24.5314 93.7569 24.6096C95.4928 24.7943 97.2501 24.7952 98.9995 24.7943C100.749 24.7952 102.506 24.7943 104.242 24.6096C104.974 24.5316 105.584 24.0084 105.755 23.2993C105.999 22.2895 106 21.1873 106 20.1478C106 19.1081 106.002 18.0058 105.758 16.9959ZM97.1933 22.2172C97.1933 20.7423 97.1933 19.2829 97.1933 17.8078C98.6771 18.5452 100.151 19.2775 101.644 20.0194C100.156 20.7546 98.681 21.4825 97.1933 22.2172Z" fill="white"/>
+                    </g>
+                    <rect x="123" y="3.5" width="33" height="33" rx="5" fill="#8D94AD"/>
+                    <path d="M140.025 13.6935C136.732 13.6935 134.051 16.2751 134.05 19.4477C134.05 20.4623 134.325 21.4525 134.848 22.3246L134 25.3064L137.168 24.5063C138.049 24.9672 139.028 25.2076 140.023 25.207H140.025C143.319 25.207 145.999 22.625 146 19.4524C146.001 17.9156 145.38 16.469 144.251 15.3817C143.123 14.2939 141.623 13.6939 140.025 13.6935ZM140.025 24.235H140.023C139.132 24.235 138.258 24.0043 137.495 23.5684L137.314 23.4646L135.435 23.9392L135.936 22.1741L135.818 21.9933C135.322 21.237 135.058 20.3521 135.059 19.4477C135.06 16.8104 137.288 14.6655 140.027 14.6655C141.353 14.6659 142.6 15.1641 143.538 16.068C144.476 16.9719 144.992 18.1738 144.991 19.452C144.99 22.0893 142.762 24.235 140.025 24.235H140.025ZM142.749 20.6524C142.6 20.5808 141.866 20.2328 141.729 20.1844C141.592 20.1368 141.493 20.112 141.393 20.256C141.294 20.4 141.008 20.724 140.921 20.8196C140.833 20.9156 140.746 20.9272 140.597 20.8556C140.447 20.7836 139.966 20.6319 139.397 20.1418C138.953 19.7609 138.653 19.2902 138.566 19.1458C138.479 19.0022 138.557 18.9244 138.631 18.8528C138.698 18.7889 138.781 18.6852 138.855 18.6012C138.929 18.5172 138.954 18.4572 139.004 18.3612C139.054 18.2655 139.029 18.1812 138.992 18.1095C138.954 18.0372 138.656 17.3295 138.531 17.0419C138.41 16.7617 138.287 16.7992 138.195 16.7946C138.108 16.7907 138.009 16.7895 137.909 16.7895C137.81 16.7895 137.648 16.8255 137.511 16.9695C137.374 17.1135 136.988 17.4612 136.988 18.1688C136.988 18.8768 137.523 19.5604 137.598 19.6564C137.673 19.752 138.651 21.2048 140.149 21.828C140.505 21.9755 140.783 22.0641 141 22.1307C141.358 22.2403 141.683 22.2244 141.94 22.1876C142.227 22.1462 142.823 21.84 142.947 21.5044C143.072 21.1688 143.072 20.8808 143.035 20.8208C142.998 20.7608 142.899 20.7248 142.749 20.6524Z" fill="white"/>
+                    <defs>
+                    <clipPath id="clip0_1632_17673">
+                    <rect width="13" height="13" fill="white" transform="translate(10 13.5)"/>
+                    </clipPath>
+                    <clipPath id="clip1_1632_17673">
+                    <rect width="14" height="10" fill="white" transform="translate(92 15.5)"/>
+                    </clipPath>
+                    </defs>
+                    </svg>
+                    
             </div>
         </div>
+
+
+        
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm "  >
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
                 <img src='{% static "images/logo.png" %}' alt="Autotrader Logo" height="30">
             </a>
-            
+    
             <!-- Toggler for Mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+    
             <!-- Navigation Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item text-start"><a class="nav-link active" href="/">{% trans "Home" %}</a></li>
-                    <li class="nav-item dropdown d-flex justify-content-start">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Auction" %}</a>
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex text-start custom-navbar ps-2">
+                    <li class="nav-item text-start"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Auction</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/search-filter">{% trans "Active Lots" %}</a></li>
-                            <li><a class="dropdown-item" href="/search-filter">{% trans "Auction History" %}</a></li>
-                            <li><a class="dropdown-item" href="/customs-calculator">{% trans "Auction Calculator" %}</a></li>
+                            <li><a class="dropdown-item" href="/search-filter">Active Lots</a></li>
+                            <li><a class="dropdown-item" href="/search-filter">Auction History</a></li>
+                            <li><a class="dropdown-item" href="/customs-calculator">Auction Calculator</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown d-flex justify-content-start">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "Shipping" %}</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Shipping</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/order-shipping">{% trans "Shipping Calculator" %}</a></li>
-                            <li><a class="dropdown-item" href="/customs-calculator">{% trans "Tracking" %}</a></li>
+                            <li><a class="dropdown-item" href="/order-shipping">Shipping Calculator</a></li>
+                            <li><a class="dropdown-item" href="/customs-calculator">Tracking</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item text-start"><a class="nav-link" href="/car-details">{% trans "Electric Vehicles" %}</a></li>
-                    <li class="nav-item dropdown d-flex justify-content-start">
-                        <a class="nav-link dropdown-toggle" href="/normal-car-details" data-bs-toggle="dropdown- kharab krdo">{% trans "Import Auto" %}</a>
+                    <li class="nav-item text-start"><a class="nav-link" href="/car-details">Electric Vehicles</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/normal-car-details" data-bs-toggle="dropdown">Import Auto</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">{% trans "My Account" %}</a></li>
-                            <li><a class="dropdown-item" href="#">{% trans "My Orders" %}</a></li>
-                            <li><a class="dropdown-item" href="#">{% trans "Log Out" %}</a></li>
+                            <li><a class="dropdown-item" href="#">USA</a></li>
+                            <li><a class="dropdown-item" href="#">China</a></li>
+                            <li><a class="dropdown-item" href="#">Azerbaijan</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown d-flex justify-content-start">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{% trans "More" %}</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">More</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/about-us">{% trans "About Us" %}</a></li>
-                            <li><a class="dropdown-item" href="/contact">{% trans "Contact" %}</a></li>
-                            <li><a class="dropdown-item" href="/information">{% trans "Information" %}</a></li>
+                            <li><a class="dropdown-item" href="/about-us">About Us</a></li>
+                            <li><a class="dropdown-item" href="/contact">Contact</a></li>
+                            <li><a class="dropdown-item" href="/information">Information</a></li>
                         </ul>
                     </li>
                 </ul>
-                <div class="d-flex align-items-center">
+    
+                <!-- Right-side Controls -->
+                <div class="d-none d-md-flex align-items-center">
                     <!-- Search -->
-                    <a href="/search-results" class="me-3"><i class="bi bi-search"></i></a>
+                    <a  data-bs-toggle="modal" data-bs-target="#searchModal" class="me-3"><i class="bi bi-search text-dark fw-bold"></i></a>
                     <!-- Notifications -->
-                    <div class="me-2">
-                        <a href="#" class="me-3 position-relative">
-                            <i class="bi bi-bell"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">2</span>
+
+                    <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                        <div class="modal-dialog ">
+                          <div class="modal-content container">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="modal-body">
+                              <form>
+                                <div class="row align-items-center">
+                                  <!-- Search Input -->
+                                  <div class="col-lg-8 col-md-7 col-sm-12 mb-3">
+                                    <div class="input-group">
+                                      <span class="input-group-text bg-white border-0"><i class="bi bi-search"></i></span>
+                                      <input type="text" class="form-control" placeholder="Search Vehicles by Make, Model, Lot number" aria-label="Search">
+                                    </div>
+                                  </div>
+                      
+                                  <!-- Checkboxes -->
+                                  <div class="col-lg-2 col-md-3 col-sm-6 mb-3">
+                                    <div class="row g-5">
+                                        <div class="col-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="auctionCheckbox">
+                                                <label class="form-check-label checkbox-label" for="auctionCheckbox">Auction</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="otherCheckbox">
+                                                <label class="form-check-label checkbox-label" for="otherCheckbox">Other</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                      
+                                  <!-- Search Button -->
+                                  <div class="col-lg-2 col-md-2 col-sm-6 mb-3">
+                                    <button type="button" class="btn search-button">Search</button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="me-3 position-relative" data-bs-toggle="dropdown">
+                            <i class="bi bi-bell text-dark fw-bold"></i>
+                            <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger">2</span>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Notification 1</a></li>
+                            <li><a class="dropdown-item" href="#">Notification 2</a></li>
+                            <li><a class="dropdown-item" href="#">Notification 3</a></li>
+                        </ul>
                     </div>
                     <!-- Language Selector -->
                     <div class="dropdown ps-2 border-start">
                         <form method="post" action="{% url 'set_language' %}">
                             {% csrf_token %}
-                            <a class="text-dark dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="bi bi-translate fs-4"></i></a>
+                            <a class="text-dark dropdown-toggle" href="#" data-bs-toggle="dropdown" style="text-decoration: none;">
+                                <i class="bi bi-globe"></i> EN
+                            </a>
                             <select class="dropdown-menu" name="language" onchange="this.form.submit()">
                                 <option value="">{% trans "Select Language" %}</option>
                                 <option value="en">{% trans "EN" %}</option>
@@ -121,10 +279,14 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </nav>
-
-
+    
+    <script>
+        document.querySelector('.navbar-toggler').addEventListener('click', function() {
+          const icon = this.querySelector('.navbar-toggler-icon');
+          icon.classList.toggle('open'); // Toggle the 'open' class
+        });
+      </script>
 <!-- </body>
 </html> -->

@@ -252,81 +252,38 @@
 </section>
 
 
-
 <section class="container mt-5">
-    <div class="custom-seperator-line mb-1"></div>
+    <div class="red-line"></div>
 
     <h2 class="text-start text-heading mb-4">Vehicles <span class="text-danger">in Azerbaijan </span></h2>
     <p class="text-start">Browse vehicles in Azerbaijan, ready for you to drive home today.</p>
-    <div class="row">
-        <!-- Vehicle 1 -->
-        {% for i in '111' %}
-        {% include 'partials/components/car-card.html' %}
-        {% endfor %}
+    <div class="row g-0 py-5 d-none d-md-flex">
+
+      {% include 'partials/components/car-auction-card.html' %}
+      {% include 'partials/components/car-card.html' %}
+      {% include 'partials/components/car-auction-card.html' %}
+
     </div>
-    <button class="btn btn-danger w-25"> View Full Inventory</button>
+
+
+    <div class="row g-0 py-5 d-block d-md-none">
+      <div id="cardCarousel" class="carousel slide d-block d-md-none" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+              {% include 'partials/components/car-auction-card.html' %}
+            </div>
+            <div class="carousel-item">
+              {% include 'partials/components/car-card.html' %}
+            </div>
+            <div class="carousel-item">
+              {% include 'partials/components/car-auction-card.html' %}
+            </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> View Inventory</button>
 
     <hr>
 
-</section>
-
-
-
-
-<!-- 
- <script>
-$(document).ready(function () {
-    var mainCarousel = $(".main-carousel");
-    var thumbnailCarousel = $(".thumbnail-carousel");
-
-    // Initialize Main Carousel
-    mainCarousel.owlCarousel({
-        items: 1,
-        loop: true,
-        nav: false,
-        dots: false,
-        autoplay: false,
-        margin: 10,
-        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"]
-    }).on("changed.owl.carousel", syncThumbnails);
-
-    // Initialize Thumbnail Carousel
-    thumbnailCarousel.owlCarousel({
-        items: 5,
-        margin: 10,
-        dots: false,
-        nav: false,
-        autoplay: false,
-        center: false
-    });
-
-    // Sync Main Carousel when Thumbnail is Clicked
-    thumbnailCarousel.on("click", ".item", function () {
-        var clickedIndex = $(this).index();
-        mainCarousel.trigger("to.owl.carousel", [clickedIndex, 300]);
-        setActiveThumbnail(clickedIndex);
-    });
-
-    // Sync Thumbnails with Main Carousel
-    function syncThumbnails(event) {
-        var currentIndex = event.item.index - event.relatedTarget._clones.length / 2;
-        var totalItems = event.item.count;
-
-        // Ensure currentIndex is within range
-        currentIndex = (currentIndex % totalItems + totalItems) % totalItems;
-
-        setActiveThumbnail(currentIndex);
-    }
-
-    // Update Active Thumbnail and Slide to Keep it Visible
-    function setActiveThumbnail(index) {
-        thumbnailCarousel.find(".item img").removeClass("active");
-        thumbnailCarousel.find(".item").eq(index).find("img").addClass("active");
-
-        // Ensure the active thumbnail is visible
-        thumbnailCarousel.trigger("to.owl.carousel", [index - Math.floor(5 / 2), 300, true]);
-    }
-});
-
- </script>  -->
+  </section>
 {% endblock %}

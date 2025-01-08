@@ -1,7 +1,7 @@
-$('.owl-carousel').owlCarousel({
+var owl = $('.owl-carousel').owlCarousel({
     loop:true,
     margin:10,
-    nav:true,
+    // nav:true,
     responsive:{
         0:{
             items:3
@@ -10,11 +10,19 @@ $('.owl-carousel').owlCarousel({
             items:3
         },
         1000:{
-            items:5
+            items:6
         }
     }
+    
 })
+      // Custom Navigation
+      $(".custom-prev").click(function () {
+        owl.trigger("prev.owl.carousel");
+      });
 
+      $(".custom-next").click(function () {
+        owl.trigger("next.owl.carousel");
+      });
 
 var swiper_card = new Swiper('.swiper', {
   // Optional parameters

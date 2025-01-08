@@ -23,17 +23,30 @@
 </head>
 <body>
 
-    <header>
+    <div id="loader" >
+        <img src="{% static 'images/loader.gif' %}" alt="Loading..." />
+    </div>
+    <header class="sticky-top">
         {% include 'partials/header.html' %}
     </header>
     <main>
+
         {% block content %}{% endblock %}
+
     </main>
 
     <footer>
         {% include 'partials/footer.html' %}
     </footer>
 </body>
+<script>
+    window.addEventListener('load', function(){
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 500);
+    }); 
+</script>
 
 <!-- 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

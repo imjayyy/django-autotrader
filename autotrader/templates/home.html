@@ -9,33 +9,59 @@
 
 <style>
 
-.owl-carousel .active span {
-  color: red;
-  background: red !important;
-}
+    .owl-carousel .active span {
+      color: red;
+      background: red !important;
+    }
 
 
-.item {
-width: 100px;
-max-width: 150px;
-background-color: white;
-}
+    .item {
+    width: 100px;
+    max-width: 150px;
+    background-color: white;
+    }
 
+    .custom-nav {
+          position: relative;
+          margin-top: 20px;
+        }
+    .custom-prev, .custom-next {
+      position: absolute;
+      /* top: 100%; */
+      transform: translateY(-200%);
+      /* background-color: #333; */
+      color: grey;
+      border: none;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      /* Next */
+
+    }
+    .custom-prev {
+      left: -50px; /* Adjust as needed */
+    }
+    .custom-next {
+      right: -50px; /* Adjust as needed */
+    }
+    /* .custom-prev:hover, .custom-next:hover {
+      background-color: #444;
+    } */
 
 </style>
 
 <section class="hero-section">
-    <div class="container pt-5" >
-        <h1 class="text-center hero-main-text fs-sm-4">{% trans "Order your car from the USA to Azerbaijan" %}</h1>
-        <p class="text-center hero-sub-text fs-sm-6">{% trans "Choose from over 181,745 used Cars, Trucks, and SUVs" %}
+    <!-- <div class="container pt-5"> -->
+      <div id="carCarousel" class="carousel slide pt-2 pt-md-5 container" data-bs-ride="carousel" >
+        <div class="carousel-item active" >
+        <h1 class="text-center hero-main-text ">{% trans "Order your car from the USA to Azerbaijan" %}</h1>
+        <p class="text-center hero-sub-text ">{% trans "Choose from over 181,745 used Cars, Trucks, and SUVs" %}
         </p>
-        <!-- <img class="img-fluid hero-vector-left" src='{% static "/images/assets/vector.png" %}' alt="">
-        <img class="img-fluid hero-vector-right" src='{% static "/images/assets/Ellipse 1.png" %}' alt=""> -->
-
-
-
         <!-- Cars Row -->
-
         <div class="carimage-container row align-items-center justify-content-center p-0" >
             <!-- Left Car -->
             <div class="col-6">
@@ -46,21 +72,49 @@ background-color: white;
                 <img class="car-image" src='{% static "images/assets/pngegg 2 1.png" %}' alt="Car 2">
             </div>
         </div>
-
+      </div>
+      <div class="carousel-item">
+        <h1 class="text-center hero-main-text ">{% trans "Order your car from the USA to Azerbaijan 1" %}</h1>
+        <p class="text-center  hero-sub-text ">{% trans "Choose from over 181,745 used Cars, Trucks, and SUVs" %}
+        </p>
+        <!-- Cars Row -->
+        <div class="carimage-container row align-items-center justify-content-center p-0" >
+            <!-- Left Car -->
+            <div class="col-6">
+                <img class="car-image" src='{% static "/images/assets/car-silver 1 1.png" %}' alt="Car 1">
+            </div>
+            <!-- Right Car -->
+            <div class="col-6">
+                <img class="car-image" src='{% static "images/assets/pngegg 2 1.png" %}' alt="Car 2">
+            </div>
+        </div>
+      </div>
         <!-- Navigation Buttons -->
-        <button class="navigation-btn navigation-btn-left">
-            <span>&larr;</span>
+        <button class="navigation-btn navigation-btn-left carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
+            <span>
+              <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M0.321655 7.5L7.57665 0.243334L8.75665 1.42167L3.51165 6.66667L22.3333 6.66667L22.3333 8.33333L3.51166 8.33333L8.75665 13.5767L7.57665 14.7567L0.321655 7.5Z" fill="white"/>
+              </svg>
+              </span>
         </button>
-        <button class="navigation-btn navigation-btn-right">
-            <span>&rarr;</span>
+        <button class="navigation-btn navigation-btn-right carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
+            <span>
+              <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M22.6783 7.5L15.4233 14.7567L14.2433 13.5783L19.4883 8.33333L0.666679 8.33333L0.666679 6.66666L19.4883 6.66666L14.2433 1.42333L15.4233 0.243332L22.6783 7.5Z" fill="white"/>
+              </svg>
+              </span>
         </button>
-    </div>
+      </div>
+    <!-- </div> -->
 </section>
 
+
+
 <section class="align-items-center justify-content-center mt-5">
+
     <div class=" container py-5 bg-light align-items-center justify-content-center">
 
-      <div class="card container w-auto" >
+      <div class="card container w-auto" id="search" >
       <div class="card-body">
       <div class="align-items-center justify-content-center row g-3 mt-3 mb-3" >
             <!-- Dropdown 1 -->
@@ -132,31 +186,34 @@ background-color: white;
         <div class="row">
             <div class="col-12">
                 <div class="logo-slider">
-                    <div class="owl-carousel owl-theme">
-                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class="card p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class="card p-2 m-2 item">
+                    <div class="owl-carousel owl-theme container">
+                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class=" p-2 m-2 item">
                     </div>
-                    
+                    <div class="custom-nav">
+                      <button class="custom-prev fs-1">&lt;</button>
+                      <button class="custom-next fs-1">&gt;</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,17 +237,36 @@ background-color: white;
 
     <h2 class="text-start text-heading mb-4"> Electric <span class="text-danger"> Vehicles </span></h2>
     <p class="text-start">{% trans "Discover the Future of Driving – Clean, Quiet, Powerful." %} </p>
-    <div class="row g-0 py-5">
+    <div class="row g-0 py-5 d-none d-md-flex">
       <!-- Vehicle 1 -->
       {% for i in '111' %}
       {% include 'partials/components/car-card.html' %}
       {% endfor %}      
     </div>
+
+
+    <div class="row g-0 py-5 d-block d-md-none">
+      <div id="cardCarousel" class="carousel slide d-block d-md-none" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+              {% include 'partials/components/car-card.html' %}
+            </div>
+            <div class="carousel-item">
+              {% include 'partials/components/car-card.html' %}
+            </div>
+            <div class="carousel-item">
+              {% include 'partials/components/car-card.html' %}
+            </div>
+        </div>
+      </div>
+    </div>
+
+
     <button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> {% trans "View Full Inventory" %}</button>
 
     <hr>
 
-  </section>
+</section>
 
   <!-- CARS SECTION 2 -->
 <section class="container mt-5">
@@ -198,11 +274,28 @@ background-color: white;
 
     <h2 class="text-start text-heading mb-4">Vehicles <span class="text-danger">in Azerbaijan </span></h2>
     <p class="text-start">{% trans "Browse vehicles in Azerbaijan, ready for you to drive home today." %} </p>
-    <div class="row g-0 py-5">
+    <div class="row g-0 py-5 d-none d-md-flex">
       <!-- Vehicle 1 -->
       {% for i in '111' %}
       {% include 'partials/components/car-card.html' %}
         {% endfor %}      
+    </div>
+
+
+    <div class="row g-0 py-5 d-block d-md-none">
+      <div id="cardCarousel" class="carousel slide d-block d-md-none" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+              {% include 'partials/components/car-card.html' %}
+            </div>
+            <div class="carousel-item">
+              {% include 'partials/components/car-card.html' %}
+            </div>
+            <div class="carousel-item">
+              {% include 'partials/components/car-card.html' %}
+            </div>
+        </div>
+      </div>
     </div>
     <button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> View Full Inventory</button>
 
@@ -217,11 +310,29 @@ background-color: white;
 
     <h2 class="text-start text-heading mb-4">Cars on <span class="text-danger"> auction </span></h2>
     <p class="text-start">{% trans "View cars in auction ready for immediate purchase with 'Buy It Now' options" %}</p>
-    <div class="row g-0 py-5">
-      <!-- Vehicle 1 -->
-      {% for i in '111' %}
+    <div class="row g-0 py-5 d-none d-md-flex">
+
       {% include 'partials/components/car-auction-card.html' %}
-        {% endfor %}      
+      {% include 'partials/components/car-card.html' %}
+      {% include 'partials/components/car-auction-card.html' %}
+
+    </div>
+
+
+    <div class="row g-0 py-5 d-block d-md-none">
+      <div id="cardCarousel" class="carousel slide d-block d-md-none" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+              {% include 'partials/components/car-auction-card.html' %}
+            </div>
+            <div class="carousel-item">
+              {% include 'partials/components/car-card.html' %}
+            </div>
+            <div class="carousel-item">
+              {% include 'partials/components/car-auction-card.html' %}
+            </div>
+        </div>
+      </div>
     </div>
     <button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> View Inventory</button>
 
