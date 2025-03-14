@@ -29,7 +29,9 @@ urlpatterns = [
     path('about-us', views.about_us, name='about-us'),
     path('order-shipping', views.order_shipping, name='order-shipping'),
     path('normal-car-details', views.normal_car_details, name='normal-car-details'),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
+
 ]
 
 urlpatterns += [
