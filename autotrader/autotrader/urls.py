@@ -19,6 +19,7 @@ from django.urls import path, include
 from . import views
 from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import set_language
+from car_details.views import get_models
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -28,7 +29,7 @@ urlpatterns = [
     path('customs-calculator', views.customs_calculator, name='customs-calculator'),
     path('about-us', views.about_us, name='about-us'),
     path('order-shipping', views.order_shipping, name='order-shipping'),
-    path('normal-car-details', views.normal_car_details, name='normal-car-details'),
+    path('normal-car-details/<id>', views.normal_car_details, name='normal-car-details'),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
 
@@ -36,6 +37,15 @@ urlpatterns = [
 
 urlpatterns += [
     path('i18n/', include('django.conf.urls.i18n')),  # Language switcher
+]
+
+urlpatterns += [
+    path('api/', include('api.urls')),
+]
+
+
+urlpatterns += [
+    path("admin-api/get-models/", get_models, name="get-models"),
 ]
 
 # urlpatterns += i18n_patterns(

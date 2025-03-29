@@ -9,7 +9,6 @@
 <link rel="stylesheet" href='{% static "/owlcarousel/dist/assets/owl.theme.default.min.css" %}'>
 <script src="{% static '/owlcarousel/dist/owl.carousel.min.js' %}"></script>
 
-
 <section>
     <div class="container pt-5">
         <nav aria-label="breadcrumb">
@@ -18,9 +17,8 @@
                 <li class="breadcrumb-item active" aria-current="page">Car Details</li>
             </ol>
         </nav>
-
         <div>
-            <h4 class="text-start hero-sub-text">2020 CHEVROLET TAHOE C1500 LS</h4>
+            <h4 class="text-start hero-sub-text">{{car.year}} {{car.make.name}} {{car.model.name}}</h4>
             <p class="text-start fs-6">Lot <strong># 46296444</strong> | Sale Location:<span class="text-danger"> OH -
                     DAYTON </span> OH - DAYTON | Sale Date: <strong>March 22, 2024, 2 p.m.</strong></p>
         </div>
@@ -32,11 +30,11 @@
         <div class="row">
             <!-- car carousel -->
             <div class="col-md-8 col-sm-12 mt-4 mb-3 p-3">
-                {% include 'partials/components/car-carousel.html' %}
+                {% include 'partials/components/car-carousel.html' with media=car.all_media  %}
 
 
 
-                <div class="container">
+                <div class="container mt-2">
                     <div class="card shadow">
                         <div class="card-header bg-light border-bottom text-center ">
 
@@ -46,14 +44,14 @@
                         <div class="card-body">
                             <div class="text-start">
 
-                                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                                piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard
-                                McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of
-                                the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through
-                                the cites of the word in classical literature, discovered the undoubtable source. Lorem
-                                Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The
-                                Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the
-                                theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum,
+                                <span class="fw-bold"> Feature List</span>
+                                {{car.feature_list}}
+
+                                <span class="fw-bold"> Label list</span>
+                                {{car.label_list}}
+
+                                <span class="fw-bold"> Documents</span>
+                                {{car.documents}}
                             </div>
 
 
@@ -66,7 +64,6 @@
                 </div>
 
             </div>
-
 
             <!-- car details card  -->
             <div class="col-md-4 col-sm-12 mb-2">
@@ -83,8 +80,7 @@
                                     <div class="text-muted text-decoration-line-through">
                                         <small>40,768 $</small>
                                     </div>
-                                    <h3 class="fw-bold mb-0">38,765$ <span class="text-muted fs-6 mb-3">(65,900
-                                            Azn)</span></h3>
+                                    <h3 class="fw-bold mb-0"> {{car.currency}}{{car.price}} <span class="text-muted fs-6 mb-3"></span></h3>
                                 </div>
                                 <div class="col">
                                     <div class="d-flex align-items-end justify-content-end mb-3 text-end">
@@ -177,11 +173,11 @@
                         <div class="custom-card-body">
                             <div class="row py-2 px-4">
                                 <div class="col-6 border-bottom text-start">VIN:</div>
-                                <div class="col-6 border-bottom text-end fw-bolder">JN1BV7AR2EM686867</div>
+                                <div class="col-6 border-bottom text-end fw-bolder">{{car.VIN}}</div>
                             </div>
                             <div class="row py-2 px-4">
                                 <div class="col-6  border-bottom text-start">Odometer:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">142417</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">{{car.odometer}}</div>
                             </div>
                             <div class="row py-2 px-4">
                                 <div class="col-6  border-bottom text-start">Title Code:</div>
@@ -189,7 +185,7 @@
                             </div>
                             <div class="row py-2 px-4">
                                 <div class="col-6  border-bottom text-start">Primary Damage:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">MECHANICAL</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">None</div>
                             </div>
                             <div class="row py-2 px-4">
                                 <div class="col-6  border-bottom text-start">Secondary Damage:</div>
@@ -197,31 +193,31 @@
                             </div>
                             <div class="row py-2 px-4">
                                 <div class="col-6  border-bottom text-start">Body Style:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">SEDAN 4D</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">{{car.body_style.name_en}}</div>
                             </div>
                             <div class="row py-2 px-4">
                                 <div class="col-6  border-bottom text-start">Color:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">GRAY</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">{{car.color.name_en}}</div>
                             </div>
                             <div class="row py-2 px-4">
                                 <div class="col-6  border-bottom text-start">Engine:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">3.7L 6</div>
+                                <div class="col-6  border-bottom text-end fw-bolder"> {{car.engine_power}}{{car.engine_power_unit}} </div>
                             </div>
                             <div class="row py-2 px-4">
-                                <div class="col-6  border-bottom text-start">Cylinders:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">6</div>
+                                <div class="col-6  border-bottom text-start">Number of seats:</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">{{car.number_of_seats}}</div>
                             </div>
                             <div class="row py-2 px-4">
                                 <div class="col-6  border-bottom text-start">Transmission:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">AUTOMATIC</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">{{car.transmission.name_en}}</div>
                             </div>
                             <div class="row py-2 px-4">
                                 <div class="col-6  border-bottom text-start">Drive:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">All wheel drive</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">{{ car.drive.name_en }}</div>
                             </div>
                             <div class="row py-2 px-4">
                                 <div class="col-6  border-bottom text-start">Fuel:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">GAS</div>
+                                <div class="col-6  border-bottom text-end fw-bolder">{{car.fuel.name_en}}</div>
                             </div>
                             <div class="row py-2 px-4">
                                 <div class="col-6  border-bottom text-start">Keys:</div>

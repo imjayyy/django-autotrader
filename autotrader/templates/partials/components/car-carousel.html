@@ -47,18 +47,24 @@
       </style>
   <div class="container mt-4">
     <div class="main-image text-center">
-      <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}"  id="main-image" alt="Main Image" class="rounded-4">
+      <img src="{{ media.0.img_url_from_api}}"  id="main-image" alt="Main Image" class="rounded-4">
     </div>
 
     <div class="thumb-gallery d-flex justify-content-center mt-3">
-      <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 me-2 active" alt="Thumbnail 1" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}`)">
+      {% for m in media %}
+      
+      <img src="{{m.img_url_from_api}}" class="rounded-4 me-2 {% if forloop.first %}active{% endif %}" 
+      alt="Thumbnail {{ forloop.counter }}" style="max-width: 100px; max-height: 100px;"  onclick="changeImage(this, `{{m.img_url_from_api}}`)">
+
+      {% endfor %}
+      <!-- <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 me-2 active" alt="Thumbnail 1" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}`)">
       <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 me-2" alt="Thumbnail 2" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}`)">
       <img src="{% static '/images/assets/car-card-assets/car-pic-3.jpeg' %}" class="rounded-4 me-2" alt="Thumbnail 3" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-3.jpeg' %}`)">
       <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 me-2" alt="Thumbnail 1" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}`)">
       <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 me-2" alt="Thumbnail 2" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}`)">
       <img src="{% static '/images/assets/car-card-assets/car-pic-3.jpeg' %}" class="rounded-4 me-2" alt="Thumbnail 3" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-3.jpeg' %}`)">
       <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 me-2" alt="Thumbnail 1" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}`)">
-      <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 me-2" alt="Thumbnail 2" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}`)">
+      <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 me-2" alt="Thumbnail 2" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}`)"> -->
     </div>
 
     <div class="d-flex justify-content-center mt-4">

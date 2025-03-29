@@ -119,30 +119,29 @@
       <div class="align-items-center justify-content-center row g-3 mt-3 mb-3" >
             <!-- Dropdown 1 -->
             <div class="col-md-4 col-sm-12">
-                <select class="form-select text-secondary">
-                    <option selected>All Makes</option>
-                    <option value="1">Make 1</option>
-                    <option value="2">Make 2</option>
-                    <option value="3">Make 3</option>
+                <select class="form-select text-secondary" name= "make" id="make" onchange="update_models()">
+                  <option value="any">Select Make</option>
+                  {% for i in form_fields.makes %}
+                  <option value="{{ i.id }}">{{ i }}</option>
+                {% endfor %}
                 </select>
             </div>
 
             <!-- Dropdown 2 -->
             <div class="col-md-4 col-sm-12">
-                <select class="form-select text-secondary">
-                    <option selected>All Models</option>
-                    <option value="1">Model 1</option>
-                    <option value="2">Model 2</option>
-                    <option value="3">Model 3</option>
+                <select class="form-select text-secondary" name="model" id="model">
+                  <option value="any">Select Model</option>
+                  
+                 
                 </select>
             </div>
             <!-- Dropdown 3 -->
             <div class="col-md-4 col-sm-12">
-                <select class="form-select text-secondary">
-                    <option selected>USA</option>
-                    <option value="1">Country 1</option>
-                    <option value="2">Country 2</option>
-                    <option value="3">Country 3</option>
+                <select class="form-select text-secondary" name="country" id="country">
+                  <option value="any">Select Country</option>
+                  {% for i in form_fields.country %}
+                  <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
                 </select>
             </div>
         </div>
@@ -150,27 +149,28 @@
 
             <!-- Dropdown 4 -->
             <div class="col-md-4 col-sm-12">
-                <select class="form-select text-secondary">
+                <select class="form-select text-secondary" name="year-from" id="year-from">
                     <option selected>From Year</option>
-                    <option value="1">2022</option>
-                    <option value="2">2021</option>
-                    <option value="3">2020</option>
+                    {% for i in form_fields.year_range %}
+                    <option value="{{ i }}">{{ i }}</option>
+                  {% endfor %}
                 </select>
             </div>
 
             <!-- Dropdown 5 -->
             <div class="col-md-4 col-sm-12">
-                <select class="form-select text-secondary">
-                    <option selected>To Year</option>
-                    <option value="1">2023</option>
-                    <option value="2">2022</option>
-                    <option value="3">2021</option>
+                <select class="form-select text-secondary" name="year-to" id="year-to">
+                  <option selected>To Year</option>
+                  {% for i in form_fields.year_range %}
+                    <option value="{{ i }}">{{ i }}</option>
+                  {% endfor %}
+
                 </select>
             </div>
 
             <!-- Button -->
             <div class="col-md-4 col-sm-12">
-                <button class="btn btn-danger w-100 d-flex align-items-center justify-content-center">
+                <button class="btn btn-danger w-100 d-flex align-items-center justify-content-center" onclick="search()"> 
                     <i class="fas fa-search me-2"></i> {% trans "Find Your Car" %}
                 </button>
             </div>
@@ -276,9 +276,13 @@
     <p class="text-start">{% trans "Browse vehicles in Azerbaijan, ready for you to drive home today." %} </p>
     <div class="row g-0 py-5 d-none d-md-flex">
       <!-- Vehicle 1 -->
-      {% for i in '111' %}
-      {% include 'partials/components/car-card.html' %}
-        {% endfor %}      
+       {% for car in car_data_1 %}  
+      
+        {% include 'partials/components/car-auction-card.html' with car=car %}
+
+      {% endfor %}
+      
+
     </div>
 
 
@@ -286,13 +290,13 @@
       <div id="cardCarousel" class="carousel slide d-block d-md-none" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-              {% include 'partials/components/car-card.html' %}
+              {% include 'partials/components/car-auction-card.html' %}
             </div>
             <div class="carousel-item">
-              {% include 'partials/components/car-card.html' %}
+              {% include 'partials/components/car-auction-card.html' %}
             </div>
             <div class="carousel-item">
-              {% include 'partials/components/car-card.html' %}
+              {% include 'partials/components/car-auction-card.html' %}
             </div>
         </div>
       </div>
@@ -312,9 +316,9 @@
     <p class="text-start">{% trans "View cars in auction ready for immediate purchase with 'Buy It Now' options" %}</p>
     <div class="row g-0 py-5 d-none d-md-flex">
 
-      {% include 'partials/components/car-auction-card.html' %}
       {% include 'partials/components/car-card.html' %}
-      {% include 'partials/components/car-auction-card.html' %}
+      {% include 'partials/components/car-card.html' %}
+      {% include 'partials/components/car-card.html' %}
 
     </div>
 
@@ -485,5 +489,49 @@
 
 
 
+  <script>
+    document.getElementById("year-from").max = new Date().getFullYear();
+    document.getElementById("year-to").max = new Date().getFullYear();
 
+    function update_models(){
+                  
+      document.getElementById("model").innerHTML = `<option value="any">Select Model</option>`;
+      var make = document.getElementById("make").value;
+      axios.get('/api/models/'+make)
+      .then(function (response) {
+        console.log(response.data);
+        response.data.forEach(element => {
+          var option = document.createElement("option");
+          option.text = element.name;
+          option.value = element.id;
+          document.getElementById("model").add(option);
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
+
+    function search(){
+      var make = document.getElementById("make").value;
+      var model = document.getElementById("model").value;
+      var country = document.getElementById("country").value;
+      var year_from = document.getElementById("year-from").value;
+      var year_to = document.getElementById("year-to").value;
+
+      if (year_from > year_to){
+        alert("Year from should be less than year to");
+        return;
+      }
+      if (make == "any" && model == "any" && country == "any" && year_from == "From Year" && year_to == "To Year"){
+        alert("Please select at least one filter");
+        return;
+      }
+      querry = `make=${make}&model=${model}&country=${country}&year_min=${year_from}&year_max=${year_to}`;
+      window.location.href = `/search-results?${querry}`;
+      console.log(make, model, country, year_from, year_to);
+    }
+
+</script>
 {% endblock %}
