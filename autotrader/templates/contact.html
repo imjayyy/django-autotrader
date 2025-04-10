@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %} Autotrader - {% trans "Search results" %}{% endblock %}
+
+{% block content %}
+
+<style>
+    .accordion-button:not(.collapsed) {
+        color: red;
+        background-color: white;
+
+    }
+    .custom-card-service{
+        /* background-ov: red; */
+        position: relative;
+        background-image: url("{% static '/images/assets/a59a63a0e8908652e6828d4c58629d3b.png' %}");
+        background-size: cover;  /* Make the background image cover the container */
+        background-position: center;  /* Center the image */      
+        color: white;
+        min-height: 300px;
+    }
+
+   
+</style>
+<style>
+    .info-card {
+      background-color: #fff;
+      border-radius: 1rem;
+      padding: 2rem 1rem 1rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      position: relative;
+      text-align: center;
+    }
+    .icon-wrapper {
+      background-color: #b73136;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-wrapper svg {
+      width: 24px;
+      height: 24px;
+      color: white;
+    }
+    .section-title {
+      font-weight: 700;
+      font-size: 2rem;
+    }
+    .badge-custom {
+      background-color: #fbe9ea;
+      color: #b73136;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+    }
+  </style>
+<section>
+    <div class="container pt-5">
+        <h3 class="text-start">Contact Us</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+            </ol>
+        </nav>
+    </div>
+    </section>
+
+
+<section class=" pt-5">
+
+    <div class="container text-center  pt-5">
+        <div class="mb-3">
+          <span class="badge-custom">CONTACT DETAILS</span>
+        </div>
+        <h2 class="section-title mb-5  pt-5">Contact Informations</h2>
+      
+        <div class="row g-4 justify-content-center pt-5">
+          <!-- Location Card -->
+          <div class="col-md-4 position-relative">
+            <div class="info-card">
+              <div class="icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                  <path d="M8 16s6-5.686 6-10A6 6 0 1 0 2 6c0 4.314 6 10 6 10z"/>
+                  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+                </svg>
+              </div>
+              <h5 class="mt-4">Our Location</h5>
+              <p class="text-muted">Heydar Aliyev Ave 115, Sport Plaza Hotel & Apartments 187B</p>
+            </div>
+          </div>
+      
+          <!-- Email Card -->
+          <div class="col-md-4 position-relative">
+            <div class="info-card">
+              <div class="icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" class="bi bi-envelope" viewBox="0 0 16 16">
+                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v.217l-8 4.8-8-4.8V4z"/>
+                  <path d="M0 4.697v7.104l5.803-3.48L0 4.697zm6.761 3.712l-6.761 4.063A2 2 0 0 0 2 14h12a2 2 0 0 0 1.999-1.528l-6.76-4.063L8 9.583l-1.239-.741zM16 4.697l-5.803 3.624L16 11.801V4.697z"/>
+                </svg>
+              </div>
+              <h5 class="mt-4">Email Address</h5>
+              <p class="text-muted">info@autotrader.az</p>
+            </div>
+          </div>
+      
+          <!-- Phone Card -->
+          <div class="col-md-4 position-relative">
+            <div class="info-card">
+              <div class="icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" class="bi bi-telephone" viewBox="0 0 16 16">
+                  <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h1A1.5 1.5 0 0 1 5 2.5V4a1.5 1.5 0 0 1-1.5 1h-1A1.5 1.5 0 0 1 1 4V2.5zM11 2.5A1.5 1.5 0 0 1 12.5 1h1A1.5 1.5 0 0 1 15 2.5V4a1.5 1.5 0 0 1-1.5 1h-1A1.5 1.5 0 0 1 11 4V2.5z"/>
+                  <path d="M3.654 1.328a.678.678 0 0 1 .746.068l2.29 1.528a.678.678 0 0 1 .207.207l1.528 2.29a.678.678 0 0 1-.068.746L6.46 7.463a11.746 11.746 0 0 0 5.293 5.293l1.296-1.896a.678.678 0 0 1 .746-.068l2.29 1.528a.678.678 0 0 1 .207.207l1.528 2.29a.678.678 0 0 1-.068.746l-1.528 2.29a.678.678 0 0 1-.746.068L7.463 6.46a11.746 11.746 0 0 0-5.293-5.293l1.484-2.13z"/>
+                </svg>
+              </div>
+              <h5 class="mt-4">Phone Number</h5>
+              <p class="text-muted">+994 (50) 555 34 85</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</section>
+
+
+<section class="py-5 text-center">
+    <div class="container">
+      <span class="badge bg-light text-danger fw-semibold mb-2">Location</span>
+      <h2 class="fw-bold">How to reach our location</h2>
+      <p class="text-muted mx-auto" style="max-width: 600px;">
+        Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+      </p>
+  
+      <div class="mt-5">
+        <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm">
+          <iframe 
+            src="https://www.google.com/maps?q=Baku+service+center+5&output=embed" 
+            width="100%" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+
+
+<section>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <img src="{% static '/images/assets/autozone-img12 1.png' %}" alt="" class="img-fluid" >
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-body rounded custom-card-service" style="background-color: #2B3339;  " >
+                        <div class="mt-5">
+                            <h3 class="py-3">How You Can Find a Car with Autotrader?</h3>
+                            Dolore soluta ducimus odio omnis, proident orci quaerat, per autem? Dui omnis, parturient arcu viverra.
+                        </div>
+                        <button class="btn btn-danger my-3"> Search Car</button>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-body rounded custom-card-service" style="background-color: #C91F3B;" >
+                        <div class="mt-5">
+                            <h3 class="py-2">Contact Autotrader: Auto Auction Marketplace   </h3>
+                            Dolore soluta ducimus odio omnis, proident orci quaerat, per autem? Dui omnis, parturient arcu viverra.
+                        </div>
+                        <button class="btn btn-dark my-3"> Contact Us</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+{% endblock %}

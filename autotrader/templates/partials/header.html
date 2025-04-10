@@ -194,9 +194,12 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/normal-car-details" data-bs-toggle="dropdown">Import Auto</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">USA</a></li>
+                            {% for country in countries %}
+                                <li><a class="dropdown-item" href="/search-results?country={{country.id}}" >{{ country.name }}</a></li>
+                            {% endfor %}
+                            <!-- <li><a class="dropdown-item" href="#">USA</a></li>
                             <li><a class="dropdown-item" href="#">China</a></li>
-                            <li><a class="dropdown-item" href="#">Azerbaijan</a></li>
+                            <li><a class="dropdown-item" href="#">Azerbaijan</a></li> -->
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

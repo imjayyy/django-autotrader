@@ -61,7 +61,7 @@ function getQueryParams() {
 }
 
 
-function update_cars_data(){
+function update_cars_data(page=1){
 
     let selectedMakes = [];
     let selectedMakesNames = [] 
@@ -131,6 +131,7 @@ function update_cars_data(){
     let year_max = document.querySelector('input[name="year_max"]').value;
 
     let filterParams = {
+        page: page,
         make: selectedMakes,
         model: selectedModels,
         transmission: selectedTransmissions,
@@ -150,10 +151,10 @@ function update_cars_data(){
     let filterTags = {
         "make": selectedMakesNames,
         "model": selectedModelsNames,
-        "transmission": selectedTransmissionsNames,
-        "drives": selectedDrivesNames,
-        "fuels": selectedFuelsNames,
-        "body_style": selectedBodyStylesNames,
+        "Transmission": selectedTransmissionsNames,
+        "Drive": selectedDrivesNames,
+        "fuel": selectedFuelsNames,
+        "BodyStyle": selectedBodyStylesNames,
         "country": selectedCountriesNames,
         "color": selectedColors,
         "odometer_min": odometerMin,
@@ -169,7 +170,8 @@ function update_cars_data(){
         params: filterParams
     })
     .then(function (response) {
-        update_results(response.data);
+        console.log("resp:", response.data);
+        update_results(response.data.results, response.data.current_page, response.data.num_pages);
         show_filters(filterTags);
     }).catch(function (error) {
         console.log(error);})
@@ -181,6 +183,13 @@ function update_cars_data(){
 
 function clear_tag(key, value) {
     // let tag = document.querySelector(`.filter-tag:contains('${key} : ${value}')`);
+    const url = new URL(window.location.href); // Get the current URL
+    url.search = ''; // Remove the search (query parameters)
+    window.history.replaceState({}, document.title, url.toString()); 
+
+    console.log(key, value);
+
+
     let tag = document.querySelector(`.filter-tag[key="${key}"][value="${value}"]`);
     if (tag) {
         tag.remove();
@@ -264,7 +273,7 @@ function update_models() {
 
 }
 
-function update_results(data){
+function update_results(data, current_page, total_pages) {
     document.getElementById("table_results").innerHTML = "";
     let canvas = "";
 
@@ -325,6 +334,20 @@ function update_results(data){
                         
                         `});
     document.getElementById("table_results").innerHTML = canvas;
+    
+    document.getElementById("total-page-view").innerHTML = `Showing page ${current_page} out of ${total_pages} total pages`;
 
+    let pagination_buttons = "";
+    document.getElementById("search-pagination").innerHTML = pagination_buttons;
+
+    for (let i = 1; i <= total_pages; i++) {
+        if (i === current_page) {
+            pagination_buttons += `<a class="page-link text-white rounded" style="background: red"><li class="page-item ">${i}</li></a>`;
+        } else {
+            pagination_buttons += `<a class="page-link text-danger rounded" onclick="update_cars_data( ${i} )"><li class="page-item">${i}</li></a>`;
+        }        
+    }
+
+    document.getElementById("search-pagination").innerHTML = pagination_buttons;
 
 }

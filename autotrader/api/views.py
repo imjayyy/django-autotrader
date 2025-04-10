@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage
 from car_details.models import Make, Model
 from django.http import JsonResponse
 from car_details.models import Vehicle, Country, Make, Model, VehicleMedia, Fuel, BodyStyle, Transmission, Drive, Color, Status, Feature, Label
@@ -30,6 +31,7 @@ def search_api(request):
 
     print(request.GET)
     # Get filter parameters from request
+    page= request.GET.get("page")
     make = request.GET.getlist("make[]")
     model = request.GET.getlist("model[]")
     countrys = request.GET.getlist("country[]")
@@ -124,10 +126,28 @@ def search_api(request):
     if year_max and year_max != "any":
         filters["year__lte"] = int(year_max)
     # Query database with optimized field selection
-    vehicles = Vehicle.objects.filter(**filters)
-    vehicles_serializer = VehicleListSerializer(vehicles, many=True)
+    # vehicles = Vehicle.objects.filter(**filters)
+    # vehicles_serializer = VehicleListSerializer(vehicles, many=True)
+   
+    vehicles_qs = Vehicle.objects.filter(**filters)
 
-    # print(vehicles_serializer.data)
+    page = int(request.GET.get('page', 1))
+    paginator = Paginator(vehicles_qs, 10)  # 10 per page
 
-    return JsonResponse(list(vehicles_serializer.data), safe=False)
+    try:
+        page_obj = paginator.page(page)
+    except EmptyPage:
+        return JsonResponse({'detail': 'Page not found'}, status=404)
+
+    serializer = VehicleListSerializer(page_obj.object_list, many=True)
+
+    return JsonResponse({
+        'count': paginator.count,
+        'num_pages': paginator.num_pages,
+        'current_page': page,
+        'results': serializer.data,
+        'has_next': page_obj.has_next(),
+        'has_previous': page_obj.has_previous(),
+    }, safe=False)
+    # return JsonResponse(list(vehicles_serializer.data), safe=False)
 

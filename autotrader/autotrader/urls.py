@@ -26,6 +26,7 @@ urlpatterns = [
     path('search-results', views.search_results, name='search-results'),
     path('search-filter', views.search_filter, name='search-filter'),
     path('car-details', views.car_details, name='car-details'),
+    path('contact', views.contact, name='contact'),
     path('customs-calculator', views.customs_calculator, name='customs-calculator'),
     path('about-us', views.about_us, name='about-us'),
     path('order-shipping', views.order_shipping, name='order-shipping'),
