@@ -95,10 +95,11 @@ class VehicleListSerializer(serializers.ModelSerializer):
     # status = StatusSerializer()
     # features = FeatureSerializer(many=True)
     # labels = LabelSerializer(many=True)
+
     country = CountrySerializer()
     class Meta:
         model = Vehicle
-        fields = ["id", "make", "model", "fuel", "year", "price", "transmission", "drive", "odometer", "body_style", "country", "all_media", "color"]
+        fields = ["id", "make", "model", "fuel", "year", "price", "transmission", "drive", "odometer", "body_style", "country", "all_media", "color", "engine_power", "engine_power_unit" ]
 
 
 class VehicleDetailsSerializer(serializers.ModelSerializer):

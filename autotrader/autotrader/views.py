@@ -4,13 +4,19 @@ from car_details.models import Vehicle
 from datetime import datetime
 from car_details.models import Make, Model, Transmission, Drive, Fuel, BodyStyle, Color
 from car_details.models import Country
-from car_details.serializers import VehicleSerializer, MakeSerializer,VehicleDetailsSerializer
+from car_details.serializers import VehicleSerializer, MakeSerializer,VehicleDetailsSerializer, VehicleListSerializer
 from django.shortcuts import render, get_object_or_404
 
 
 def home(request):
-    random_vehicles_1 = Vehicle.objects.order_by("?")[:3]  # Fetch 3 random vehicles
-    random_vehicles_1_serializer = VehicleSerializer(random_vehicles_1, many=True)
+    vehicles_in_az = Vehicle.objects.order_by("?")[:3]  # Fetch 3 random vehicles
+    vehicles_in_az_serializer = VehicleListSerializer(vehicles_in_az, many=True)
+
+    electric_vehicles = Vehicle.objects.filter(fuel = 3 ).order_by("?")[:3]  # Fetch 3 random vehicles
+    electric_vehicles_serializer = VehicleListSerializer(electric_vehicles, many=True)
+
+    # cars_on_auction = Vehicle.objects.order_by("?")[:3]  # Fetch 3 random vehicles
+    # cars_on_auction_serializer = VehicleListSerializer(cars_on_auction, many=True)
     country = Country.objects.all()
 
     current_year = datetime.now().year 
@@ -21,7 +27,15 @@ def home(request):
     'country' : country,
     }
 
-    return render(request, 'home.html', {"car_data_1": random_vehicles_1_serializer.data, "form_fields": form_fields})
+
+
+
+
+
+    return render(request, 'home.html', {"vehicles_in_az": vehicles_in_az_serializer.data, 
+                                        "electric_vehicles": electric_vehicles_serializer.data,  
+                                        # "cars_on_auction": cars_on_auction_serializer.data,
+                                         "form_fields": form_fields})
 
 
 def search_results(request):
