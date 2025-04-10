@@ -255,26 +255,20 @@
     <p class="text-start">Browse vehicles in Azerbaijan, ready for you to drive home today.</p>
     <div class="row g-0 py-5 d-none d-md-flex">
 
-      {% include 'partials/components/car-auction-card.html' %}
-      {% include 'partials/components/car-card.html' %}
-      {% include 'partials/components/car-auction-card.html' %}
+        {% for vehicle in vehicles_in_az %}
+        {% include 'partials/components/car-card.html' with vehicle=vehicle %}
+        {% endfor %}     
 
     </div>
 
 
     <div class="row g-0 py-5 d-block d-md-none">
       <div id="cardCarousel" class="carousel slide d-block d-md-none" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-              {% include 'partials/components/car-auction-card.html' %}
+        {% for vehicle in vehicles_in_az %}
+          <div class="carousel-item {{ forloop.first|yesno:'active,' }}">
+            {% include 'partials/components/car-card.html' with vehicle=vehicle %}
             </div>
-            <div class="carousel-item">
-              {% include 'partials/components/car-card.html' %}
-            </div>
-            <div class="carousel-item">
-              {% include 'partials/components/car-auction-card.html' %}
-            </div>
-        </div>
+          {% endfor %}   
       </div>
     </div>
     <button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> View Inventory</button>

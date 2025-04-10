@@ -80,4 +80,8 @@ def contact(request):
 def normal_car_details(request, id):
     car = get_object_or_404(Vehicle, id=id)  # Fetch car details or return 404
     car_serializer = VehicleDetailsSerializer(car)
-    return render(request, 'normal-car-details.html', {"car": car_serializer.data})
+    vehicles_in_az = Vehicle.objects.order_by("?")[:3]  # Fetch 3 random vehicles
+    vehicles_in_az_serializer = VehicleListSerializer(vehicles_in_az, many=True)
+    return render(request, 'normal-car-details.html', {"car": car_serializer.data,
+                                                       "vehicles_in_az": vehicles_in_az_serializer.data, 
+                                                       })
