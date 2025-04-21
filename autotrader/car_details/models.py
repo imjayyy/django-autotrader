@@ -102,6 +102,7 @@ class Vehicle(models.Model):
     documents = models.TextField(null=True)
     is_popular = models.BooleanField()
     supplier_id = models.BigIntegerField(null=True)
+    date_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.model} ({self.year})"

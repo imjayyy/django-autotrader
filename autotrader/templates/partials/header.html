@@ -162,7 +162,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm "  >
         <div class="container">
             <!-- Logo -->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src='{% static "images/logo.png" %}' alt="Autotrader Logo" height="30">
             </a>
     
@@ -229,22 +229,23 @@
                                   <div class="col-lg-8 col-md-7 col-sm-12 mb-3">
                                     <div class="input-group">
                                       <span class="input-group-text bg-white border-0"><i class="bi bi-search"></i></span>
-                                      <input type="text" class="form-control" placeholder="Search Vehicles by Make, Model, Lot number" aria-label="Search">
+                                      <input type="text" id="text-search" class="form-control" placeholder="Search Vehicles by Make, Model, Lot number" aria-label="Search">
                                     </div>
                                   </div>
                       
                                   <!-- Checkboxes -->
                                   <div class="col-lg-2 col-md-3 col-sm-6 mb-3">
                                     <div class="row g-5">
+                                        
                                         <div class="col-6">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="auctionCheckbox">
+                                                <input class="form-check-input" type="radio" value="auction" name="search_type" id="auctionCheckbox">
                                                 <label class="form-check-label checkbox-label" for="auctionCheckbox">Auction</label>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="otherCheckbox">
+                                                <input class="form-check-input" type="radio" value="normal" name="search_type" id="otherCheckbox">
                                                 <label class="form-check-label checkbox-label" for="otherCheckbox">Other</label>
                                             </div>
                                         </div>
@@ -253,7 +254,7 @@
                       
                                   <!-- Search Button -->
                                   <div class="col-lg-2 col-md-2 col-sm-6 mb-3">
-                                    <button type="button" class="btn search-button">Search</button>
+                                    <button type="button" class="btn search-button" id="searchByText" >Search</button>
                                   </div>
                                 </div>
                               </form>
@@ -295,10 +296,19 @@
     </nav>
     
     <script>
+        document.querySelector('#searchByText').addEventListener('click', function()  {
+            const searchText = document.getElementById('text-search').value;
+            const selectedType = document.querySelector('input[name="search_type"]:checked').value;
+            const url = '/text-search?searchByText=' ;
+            window.location.href = url + searchText;
+        });
         document.querySelector('.navbar-toggler').addEventListener('click', function() {
           const icon = this.querySelector('.navbar-toggler-icon');
           icon.classList.toggle('open'); // Toggle the 'open' class
         });
+
+
+
       </script>
 <!-- </body>
 </html> -->

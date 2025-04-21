@@ -1,7 +1,12 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     let params = getQueryParams();
-    console.log(params);
+    console.log(params);    
+    if ("searchByText" in params) {
+        console.log("Search value:", params.searchByText);
+        return
+    }
+
     let selectMake = document.querySelectorAll(`input[name="make"]`);
     selectMake.forEach((element) => {
         if (element.value === params.make) {
@@ -18,9 +23,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 input_form_element.checked = true;}
             }
             else {
-                if(input_form_element.value === value){
                 input_form_element.value = value;}
-            }
+            
         }});    
     });
         
@@ -62,6 +66,7 @@ function getQueryParams() {
 
 
 function update_cars_data(page=1){
+
 
     let selectedMakes = [];
     let selectedMakesNames = [] 
@@ -130,6 +135,9 @@ function update_cars_data(page=1){
     let year_min = document.querySelector('input[name="year_min"]').value;
     let year_max = document.querySelector('input[name="year_max"]').value;
 
+    let sorting_by = document.getElementById('sortBy').value;
+    let sorting_order = document.getElementById('sortBtn').getAttribute('data-order');
+
     let filterParams = {
         page: page,
         make: selectedMakes,
@@ -146,6 +154,9 @@ function update_cars_data(page=1){
         color: selectedColors,
         year_min: year_min,
         year_max: year_max, 
+
+        sorting_by: sorting_by,
+        sorting_order: sorting_order
     };
 
     let filterTags = {

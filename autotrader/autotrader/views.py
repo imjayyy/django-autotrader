@@ -6,7 +6,12 @@ from car_details.models import Make, Model, Transmission, Drive, Fuel, BodyStyle
 from car_details.models import Country
 from car_details.serializers import VehicleSerializer, MakeSerializer,VehicleDetailsSerializer, VehicleListSerializer
 from django.shortcuts import render, get_object_or_404
-
+from django.db.models import Q
+from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from urllib.parse import urlencode
+import re
 
 def home(request):
     vehicles_in_az = Vehicle.objects.order_by("?")[:3]  # Fetch 3 random vehicles
@@ -85,3 +90,95 @@ def normal_car_details(request, id):
     return render(request, 'normal-car-details.html', {"car": car_serializer.data,
                                                        "vehicles_in_az": vehicles_in_az_serializer.data, 
                                                        })
+
+# def text_search(request):
+    # Get the search query from the request
+    # search_query = request.GET.get('searchByText', '')
+    # print(search_query)
+    # params = ''
+    # # Filter vehicles based on the search query
+    # vehicles = Vehicle.objects.filter(
+    #     Q(make__name__icontains=search_query) | 
+    #     Q(model__name__icontains=search_query) |
+    #     Q(year__icontains=search_query) 
+    # ).first()
+    
+    # # Serialize the filtered vehicles
+    # # if vehicles:
+    #     # serializer = VehicleSerializer(vehicles, many=True)
+    # data = {"make" : vehicles.get('make'),
+    #         "model" : vehicles.get('model'),
+    #         "year_min" : vehicles.get('year')}
+    # params = urlencode(data)
+    # url = reverse('search-results') + '?' + params
+
+
+    # search_query = request.GET.get('searchByText', '').split(" ")
+    # filters = Q()
+
+    # if len(search_query) > 0:
+
+    # query = request.GET.get('searchByText', '').strip()
+    # regex_pattern = '|'.join(re.escape(word) for word in query.split())
+
+    # vehicles = Vehicle.objects.filter(
+    #     Q(make__name__iregex=regex_pattern) |
+    #     Q(model__name__iregex=regex_pattern) |
+    #     Q(year__iregex=regex_pattern)
+    #     )
+    # vehicle = vehicles.first()
+    # if vehicle:
+    #     data = {
+    #         "make": vehicle.make.id,
+    #         "model": vehicle.model.id,
+    #         "year_min": vehicle.year
+    #     }
+    #     params = urlencode(data)
+    #     url = reverse('search-results') + '?' + params
+    #     # return redirect(url)
+    #     return HttpResponseRedirect(url)
+
+
+def text_search(request):
+    search_query = request.GET.get('searchByText', '').strip()
+    params = ''
+    if not search_query:
+        return redirect('search-results')
+
+    # Split into words, e.g., "honda city 2024" -> ['honda', 'city', '2024']
+    keywords = re.split(r'\s+', search_query.lower())
+
+    # Identify year from keywords
+    year_pattern = re.compile(r'^(19|20)\d{2}$')
+    year = next((word for word in keywords if year_pattern.match(word)), None)
+
+    # Remove year from keywords if found
+    remaining_keywords = [word for word in keywords if word != year]
+
+    # Try to find a matching vehicle based on keywords
+    vehicles = Vehicle.objects.select_related('make', 'model')
+
+    # Create initial query
+    query = Q()
+    for word in remaining_keywords:
+        query |= Q(make__name__icontains=word)
+        query |= Q(model__name__icontains=word)
+
+    if year:
+        query |= Q(year=year)
+
+    vehicle = vehicles.filter(query).first()
+
+    if vehicle:
+        data = {
+            "make": vehicle.make.id,
+            "model": vehicle.model.id,
+        }
+        if year:
+            data["year_min"] = year
+
+        params = '?' + '&'.join([f"{key}={value}" for key, value in data.items()])
+    url = reverse('search-results') + '?' + params
+    return HttpResponseRedirect(url)
+
+    return redirect('no-results')  # Fallback if nothing matched

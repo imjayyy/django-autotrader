@@ -64,8 +64,8 @@
     <div>
         <div class="quick-filters py-2 px-3">
             <span class="fw-bold pe-5">Quick filters:</span>
-            <button class="btn btn-outline-secondary">Buy Now</button>
-            <button class="btn btn-outline-secondary">Run & Drive</button>
+            <a id="qf-latest-year" ><button class="btn btn-outline-secondary" >Latest Vehicles</button></a>
+            <a href="search-results?odometer_max=5000"> <button class="btn btn-outline-secondary"> Low Milage </button> </a>
             <button class="btn btn-outline-secondary">Clean Title</button>
             <button class="btn btn-outline-secondary">Auction Today</button>
             <button class="btn btn-outline-secondary">Auction Tomorrow</button>
@@ -154,6 +154,58 @@
                
 
                   <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Odometer
+                      </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <label class="form-label text-start"  style="display: block;">Min</label>
+                                <input class="form-control" type="text" name="odometer_min" id="">
+                            </div>
+                            <div class="col-2"> - </div>
+                            <div class="col-5">
+                                <label class="form-label text-start" style="display: block;">Max</label>
+                                <input class="form-control" type="text" name="odometer_max" id="">
+                            </div>
+                            <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
+
+                        </div>  
+                            
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingEight">
+                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        Price
+                      </button>
+                    </h2>
+                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <label class="form-label text-start"  style="display: block;">Min</label>
+                                <input class="form-control" type="text" name="price_min" id="">
+                            </div>
+                            <div class="col-2"> - </div>
+                            <div class="col-5">
+                                <label class="form-label text-start" style="display: block;">Max</label>
+                                <input class="form-control" type="text" name="price_max" id="">
+                            </div>
+                            <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
+
+                        </div>  
+                            
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
                     <h2 class="accordion-header" id="headingThree">
                       <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         Transmission
@@ -198,39 +250,7 @@
                       </div>
                     </div>
                   </div>
-
-          
-                
-                
-                
-
-                
-
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFive">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        Odometer
-                      </button>
-                    </h2>
-                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        <div class="row">
-                            <div class="col-5">
-                                <label class="form-label text-start"  style="display: block;">Min</label>
-                                <input class="form-control" type="text" name="odometer_min" id="">
-                            </div>
-                            <div class="col-2"> - </div>
-                            <div class="col-5">
-                                <label class="form-label text-start" style="display: block;">Max</label>
-                                <input class="form-control" type="text" name="odometer_max" id="">
-                            </div>
-                            <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
-
-                        </div>  
-                            
-                      </div>
-                    </div>
-                  </div>
+                                
 
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingSix">
@@ -255,79 +275,6 @@
                   </div>
 
 
-
-
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingSeven">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                        Body Style 
-                      </button>
-                    </h2>
-                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        {% for bs in form_fields.BodyStyle %}
-
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="bs_{{bs.id}}" name="BodyStyle" value="{{bs.id}}"  name-attr="{{bs.name_en}}"  onclick="update_cars_data()">
-                          <label class="form-check-label text-start" style="display: block;" for="checkbox1">
-                            {{bs.name_en}}
-                          </label>
-                        </div>
-                        {% endfor %}
-                      
-                      </div>
-                    </div>
-                  </div>
-                  
-
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingEight">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                        Price
-                      </button>
-                    </h2>
-                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        <div class="row">
-                            <div class="col-5">
-                                <label class="form-label text-start"  style="display: block;">Min</label>
-                                <input class="form-control" type="text" name="price_min" id="">
-                            </div>
-                            <div class="col-2"> - </div>
-                            <div class="col-5">
-                                <label class="form-label text-start" style="display: block;">Max</label>
-                                <input class="form-control" type="text" name="price_max" id="">
-                            </div>
-                            <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
-
-                        </div>  
-                            
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingNine">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                        Country
-                      </button>
-                    </h2>
-                    <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        {% for country in form_fields.country %}
-
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="country_{{country.id}}" name="country" value="{{country.id}}"  name-attr="{{country.name}}"  onclick="update_cars_data()">
-                          <label class="form-check-label text-start" style="display: block;" for="checkbox1">
-                            {{country.name}}
-                          </label>
-                        </div>
-                        {% endfor %}
-                            
-                      </div>
-                    </div>
-                  </div>
-                  
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTen">
                       <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
@@ -353,6 +300,52 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSeven">
+                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Body Style 
+                      </button>
+                    </h2>
+                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        {% for bs in form_fields.BodyStyle %}
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="bs_{{bs.id}}" name="BodyStyle" value="{{bs.id}}"  name-attr="{{bs.name_en}}"  onclick="update_cars_data()">
+                          <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                            {{bs.name_en}}
+                          </label>
+                        </div>
+                        {% endfor %}
+                      
+                      </div>
+                    </div>
+                  </div>                  
+                
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingNine">
+                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        Country
+                      </button>
+                    </h2>
+                    <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        {% for country in form_fields.country %}
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="country_{{country.id}}" name="country" value="{{country.id}}"  name-attr="{{country.name}}"  onclick="update_cars_data()">
+                          <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                            {{country.name}}
+                          </label>
+                        </div>
+                        {% endfor %}
+                            
+                      </div>
+                    </div>
+                  </div>
+                  
+                 
               </div>
         </div>
 
@@ -363,11 +356,13 @@
                 <div class="d-flex align-items-center">
                     <label for="sortBy" class="me-2">Sort by:</label>
                     <select class="form-select w-auto" id="sortBy">
-                        <option selected>Sale Date</option>
-                        <option>Price</option>
-                        <option>Mileage</option>
+                        <option value="date_updated">Date</option>
+                        <option value="year">Year</option>
+                        <option value="price">Price</option>
+                        <option value="odometer">Mileage</option>
                     </select>
-                    <button class="btn btn-outline-danger ms-2"><i class="bi bi-arrow-down-up"></i></button>
+                    <button id="sortBtn" class="btn btn-outline-danger ms-2" data-order="asc" data-bs-toggle="tooltip" data-bs-placement="top" title="Sort Ascending" onclick="update_cars_data()"><i class="bi bi-arrow-down-up"></i></button>
+                    <button class="btn btn-outline-danger ms-2" id="sort-search"><i class="bi bi-search" onclick="update_cars_data()"></i></button>
                 </div>
             </div>
 
@@ -534,6 +529,43 @@
 </div>
 </section>
 
+<script>
+  const qf_latest_year = document.getElementById('qf-latest-year');
+
+  const currentYear = new Date().getFullYear();
+  const lastYear = new Date().getFullYear() - 1;
+
+  const qf_latest_year_url = `/search-results?year_min=${lastYear}&year_max=${currentYear}`;
+  qf_latest_year.setAttribute('href', qf_latest_year_url);
+  
+
+
+
+  const sortBtn = document.getElementById('sortBtn');
+
+  sortBtn.addEventListener('click', function () {
+    const currentOrder = sortBtn.getAttribute('data-order');
+    const tooltip = new bootstrap.Tooltip(sortBtn);
+
+    if (currentOrder === 'asc') {
+      sortBtn.setAttribute('data-order', 'desc');
+      sortBtn.classList.remove('btn-outline-danger');
+      sortBtn.classList.add('btn-danger');
+      sortBtn.setAttribute('title', 'Sort Descending');
+
+    } else {
+      sortBtn.setAttribute('data-order', 'asc');
+      sortBtn.classList.remove('btn-danger');
+      sortBtn.classList.add('btn-outline-danger');
+      sortBtn.setAttribute('title', 'Sort Ascending');
+
+    }
+    tooltip.setContent({ '.tooltip-inner': sortBtn.getAttribute('title') });
+
+    // Optional: Use the value somewhere
+    console.log('Sort Order:', sortBtn.getAttribute('data-order'));
+  });
+</script>
 
 <script src="{% static '/js/search-results.js' %}"></script>
 

@@ -128,11 +128,22 @@ def search_api(request):
     # Query database with optimized field selection
     # vehicles = Vehicle.objects.filter(**filters)
     # vehicles_serializer = VehicleListSerializer(vehicles, many=True)
-   
+
+
     vehicles_qs = Vehicle.objects.filter(**filters)
+    sorting_order = request.GET.get("sorting_order")
+    sorting_by = request.GET.get("sorting_by")
+    if sorting_by != "None":
+       if sorting_order == "asc":
+            vehicles_qs = vehicles_qs.order_by(sorting_by)
+       else:
+            vehicles_qs = vehicles_qs.order_by("-" + sorting_by)
+            
 
     page = int(request.GET.get('page', 1))
     paginator = Paginator(vehicles_qs, 10)  # 10 per page
+
+
 
     try:
         page_obj = paginator.page(page)
