@@ -133,7 +133,7 @@ def search_api(request):
     vehicles_qs = Vehicle.objects.filter(**filters)
     sorting_order = request.GET.get("sorting_order")
     sorting_by = request.GET.get("sorting_by")
-    if sorting_by != "None":
+    if sorting_by != "None" and sorting_by != None:       
        if sorting_order == "asc":
             vehicles_qs = vehicles_qs.order_by(sorting_by)
        else:
