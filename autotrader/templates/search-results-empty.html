@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %} Autotrader - {% trans "Search results" %}{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .accordion-button:not(.collapsed) {
+        color: red;
+        background-color: white;
+
+    }
+
+
+    .accordion-header-table, .acc-table  {
+      background-color: #fdecea; }
+      
+    .accordion-button-table {
+            background-color: #fdecea; /* Light pink background */
+            color: #d32f2f; /* Red color */
+            font-weight: bold;
+            font-size: 16px;
+            padding: 5px 10px; /* Reduce button padding */
+            border: none;
+            outline: none;
+            display: inline-block;
+            max-width: 200px; /* Prevents it from stretching */
+            text-align: center;
+        }
+        .accordion-button-table:not(.collapsed) {
+            color: #d32f2f;
+            background-color: #fdecea;
+            box-shadow: none;
+        }
+        .accordion-body-table {
+            background-color: #fdecea;
+            color: #333;
+            font-size: 16px;
+        }
+        .detail-item {
+            font-weight: bold;
+            color: #000;
+        }
+
+
+
+
+
+</style>
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script> -->
+
+<section>
+<div class="container pt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Search Results</li>
+        </ol>
+    </nav>
+
+    <div>
+        Your search querry did not return any results. Please try again with different search criteria. or use our advanced search options.
+        <br>
+
+        <a href="/search-results" class="btn btn-danger mt-3">Advanced Search</a>
+
+    </div>
+</div>
+</section>
+
+
+<script src="{% static '/js/search-results.js' %}"></script>
+
+
+
+{% endblock %}

@@ -56,7 +56,6 @@ def search_results(request):
     }
     query_params = request.GET.dict()
     # query_params= {key: value for key, value in query_params.items() if value}
-    print(query_params)
     return render(request, 'search-results.html', {"form_fields": form_fields, 'query_params': query_params})
 
 
@@ -90,53 +89,6 @@ def normal_car_details(request, id):
     return render(request, 'normal-car-details.html', {"car": car_serializer.data,
                                                        "vehicles_in_az": vehicles_in_az_serializer.data, 
                                                        })
-
-# def text_search(request):
-    # Get the search query from the request
-    # search_query = request.GET.get('searchByText', '')
-    # print(search_query)
-    # params = ''
-    # # Filter vehicles based on the search query
-    # vehicles = Vehicle.objects.filter(
-    #     Q(make__name__icontains=search_query) | 
-    #     Q(model__name__icontains=search_query) |
-    #     Q(year__icontains=search_query) 
-    # ).first()
-    
-    # # Serialize the filtered vehicles
-    # # if vehicles:
-    #     # serializer = VehicleSerializer(vehicles, many=True)
-    # data = {"make" : vehicles.get('make'),
-    #         "model" : vehicles.get('model'),
-    #         "year_min" : vehicles.get('year')}
-    # params = urlencode(data)
-    # url = reverse('search-results') + '?' + params
-
-
-    # search_query = request.GET.get('searchByText', '').split(" ")
-    # filters = Q()
-
-    # if len(search_query) > 0:
-
-    # query = request.GET.get('searchByText', '').strip()
-    # regex_pattern = '|'.join(re.escape(word) for word in query.split())
-
-    # vehicles = Vehicle.objects.filter(
-    #     Q(make__name__iregex=regex_pattern) |
-    #     Q(model__name__iregex=regex_pattern) |
-    #     Q(year__iregex=regex_pattern)
-    #     )
-    # vehicle = vehicles.first()
-    # if vehicle:
-    #     data = {
-    #         "make": vehicle.make.id,
-    #         "model": vehicle.model.id,
-    #         "year_min": vehicle.year
-    #     }
-    #     params = urlencode(data)
-    #     url = reverse('search-results') + '?' + params
-    #     # return redirect(url)
-    #     return HttpResponseRedirect(url)
 
 
 def text_search(request):
@@ -175,6 +127,10 @@ def text_search(request):
 
     params = '?' + '&'.join([f"{key}={value}" for key, value in data.items()])
     url = reverse('search-results') + params
+
+    if data == {}:
+        # If no make, model, or year found, redirect to search-results empty page.
+        return render(request, 'search-results-empty.html')
     return HttpResponseRedirect(url)
 
     return redirect('no-results')  # Fallback if nothing matched
