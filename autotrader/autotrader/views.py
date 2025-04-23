@@ -140,45 +140,41 @@ def normal_car_details(request, id):
 
 
 def text_search(request):
-    search_query = request.GET.get('searchByText', '').strip()
+    search_query_string = request.GET.get('searchByText', '').strip()
     params = ''
-    if not search_query:
+    if not search_query_string:
         return redirect('search-results')
 
+    search_query = search_query_string.split(" ")
+
+    for q in search_query:
+        make_id = Make.objects.filter(name__icontains=q).values('id').first()
+        if make_id:
+            break
+    for q in search_query:
+        model_id = Model.objects.filter(name__icontains=q).values('id').first()
+        if model_id:
+            break
+
     # Split into words, e.g., "honda city 2024" -> ['honda', 'city', '2024']
-    keywords = re.split(r'\s+', search_query.lower())
+    keywords = re.split(r'\s+', search_query_string.lower())
 
     # Identify year from keywords
     year_pattern = re.compile(r'^(19|20)\d{2}$')
     year = next((word for word in keywords if year_pattern.match(word)), None)
 
-    # Remove year from keywords if found
-    remaining_keywords = [word for word in keywords if word != year]
-
-    # Try to find a matching vehicle based on keywords
-    vehicles = Vehicle.objects.select_related('make', 'model')
-
-    # Create initial query
-    query = Q()
-    for word in remaining_keywords:
-        query |= Q(make__name__icontains=word)
-        query |= Q(model__name__icontains=word)
-
+    data = {
+        
+    }
+    if make_id:
+        data["make"] = make_id['id']
+    if model_id:    
+        data["model"] = model_id['id']
     if year:
-        query |= Q(year=year)
+        data["year_min"] = year
 
-    vehicle = vehicles.filter(query).first()
-
-    if vehicle:
-        data = {
-            "make": vehicle.make.id,
-            "model": vehicle.model.id,
-        }
-        if year:
-            data["year_min"] = year
-
-        params = '?' + '&'.join([f"{key}={value}" for key, value in data.items()])
-    url = reverse('search-results') + '?' + params
+    params = '?' + '&'.join([f"{key}={value}" for key, value in data.items()])
+    url = reverse('search-results') + params
     return HttpResponseRedirect(url)
 
     return redirect('no-results')  # Fallback if nothing matched

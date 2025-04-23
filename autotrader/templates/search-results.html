@@ -97,14 +97,9 @@
                     <div class="d-flex flex-wrap" id="filter-tags">
                         {% for key, value in query_params.items %}
                         <span class="badge bg-dark filter-tag">{{ key }} : {{ value }} <button
-                                class="btn-close btn-close-white btn-sm ms-2"></button></span>
+                                class="btn-close btn-close-white btn-sm ms-2"  onclick="clear_tag('{{key}}', '{{value}}')"></button></span>
                         {% endfor %}
-                        <span class="badge bg-dark filter-tag">audi <button
-                                class="btn-close btn-close-white btn-sm ms-2"></button></span>
-                        <span class="badge bg-dark filter-tag">Automobiles <button
-                                class="btn-close btn-close-white btn-sm ms-2"></button></span>
-                        <span class="badge bg-dark filter-tag">Electric <button
-                                class="btn-close btn-close-white btn-sm ms-2"></button></span>
+                        
                     </div>
                     <a href="/search-results" class="d-block mt-2 text-danger">Clear All Filters</a>
                 </div>
@@ -383,10 +378,10 @@
                             <strong>Condition</strong>
                         </div>
                         <div class="col-12 col-md-2 bg-dark text-white p-2 border-end">
-                            <strong>Sale Info</strong>
+                            <strong>Country</strong>
                         </div>
                         <div class="col-12 col-md-2 bg-dark text-white p-2 border-end">
-                            <strong>Bids</strong>
+                            <strong>Price</strong>
                         </div>
                     </div>
                 </div>

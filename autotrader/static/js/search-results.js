@@ -48,6 +48,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+function change_accordion_text(accordion_id) {
+    const button = document.getElementById(accordion_id);
+    const toggleText = button.querySelector(".toggle-text");    
+    if (toggleText.textContent === "More Details") {
+        toggleText.textContent = "Less Details";
+    } 
+    else {
+        toggleText.textContent = "More Details"
+    }
+}
+
+
+
 function getQueryParams() {
     const params = new URLSearchParams(window.location.search);
     let queryObject = {};
@@ -176,12 +189,19 @@ function update_cars_data(page=1){
         "year_max": year_max,
     }
 
+    console.log("filterTags:", filterTags);
 
     axios.get('/api/search-api/', {
         params: filterParams
     })
     .then(function (response) {
         console.log("resp:", response.data);
+        if (response.data.count === 0 ){
+            document.getElementById("table_results").innerHTML = `<div class="alert alert-danger" role="alert">
+            No results found for your search. Please try again with different filters.
+            </div>`;
+            return;
+        }
         update_results(response.data.results, response.data.current_page, response.data.num_pages);
         show_filters(filterTags);
     }).catch(function (error) {
@@ -263,8 +283,8 @@ function update_models() {
         response.data.forEach(element => {
             var option = `
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="model_${element.id}" name="model" value="${element.id}" onclick="update_cars_data()">
-                    <label class="form-check-label text-start"  style="display: block;" for="model_${element.id}">
+                    <input class="form-check-input" type="checkbox" id="model_${element.id}" name-attr=${element.name} name="model" value="${element.id}" onclick="update_cars_data()">
+                    <label class="form-check-label text-start"  style="display: block;" name-attr=${element.name} for="model_${element.id}">
                         ${element.name}
                     </label>
                 </div>
@@ -306,12 +326,12 @@ function update_results(data, current_page, total_pages) {
                                 ${element.transmission.name_en} ${element.drive.name_en}
                             </div>
                             <div class="col-12 col-md-2">
-                                Clean Title<br>
+                                
                                 Odometer: ${element.odometer} mi
                             </div>
                             <div class="col-12 col-md-2 d-none d-sm-block">
                                ${element.country.name}<br>
-                                Auction in 4D 9H 1M
+                                
                             </div>
                             <div class="col-12 col-md-2 d-none d-sm-block">
                                 Buy now: $${element.price}<br>
@@ -322,9 +342,9 @@ function update_results(data, current_page, total_pages) {
                         
                         <div class="accordion acc-table my-2" id="carDetailsAccordion_${element.id}">
                             <div class="accordion-item-table">
-                                <h2 class="accordion-header-table" id="heading${element.id}">
-                                    <button class="accordion-button-table" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${element.id}" aria-expanded="true" aria-controls="collapse${element.id}">
-                                        More Details  <span>+</span>
+                                <h2 class="accordion-header-table" id="heading${element.id}">                                    
+                                    <button class="accordion-button-table" onclick="change_accordion_text('accordian_btn_${element.id}')" id="accordian_btn_${element.id}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${element.id}" aria-expanded="false" aria-controls="collapse${element.id}">
+                                        <span class="toggle-text">More Details</span>
                                     </button>
                                 </h2>
                                 <div id="collapse${element.id}" class="accordion-collapse collapse" aria-labelledby="heading${element.id}" data-bs-parent="#carDetailsAccordion_${element.id}">
