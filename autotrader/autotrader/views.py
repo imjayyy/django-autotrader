@@ -80,6 +80,8 @@ def order_shipping(request):
 def contact(request):
     return render(request, 'contact.html')
 
+def information(request):
+    return render(request, 'information.html')
 
 def normal_car_details(request, id):
     car = get_object_or_404(Vehicle, id=id)  # Fetch car details or return 404

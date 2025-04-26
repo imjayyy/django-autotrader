@@ -75,6 +75,38 @@ crossorigin="anonymous"></script> -->
 <script src="{% static '/js/customjs.js' %}"></script>
 
 <script>
+function addToFavorites(vehicleId) {
+    fetch(`/add-to-favorites/${vehicleId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCSRFToken(),  // Important for Django POST requests
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Vehicle added to favorites!');
+        } else {
+            console.error('Failed to add to favorites.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+// Helper to get CSRF token from cookie
+function getCSRFToken() {
+    let name = 'csrftoken';
+    let cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(name + '=')) {
+            return cookie.substring(name.length + 1);
+        }
+    }
+    return '';
+}
 
     
 </script>

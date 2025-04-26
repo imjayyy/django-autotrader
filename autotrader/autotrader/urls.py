@@ -34,6 +34,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('text-search/', views.text_search, name='text-search'),
+    path('information', views.information, name='information'),
 
 ]
 
