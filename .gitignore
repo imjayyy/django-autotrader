@@ -1,2 +1,3 @@
 venv/
 autotrader/server-creds/
+.env
