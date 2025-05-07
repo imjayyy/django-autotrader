@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %} Autotrader - {% trans "Search results" %}{% endblock %}
+
+{% block content %}
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .bg-car {
+    background: url('https://images.unsplash.com/photo-1603722817231-0f7b66f49503?auto=format&fit=crop&w=1600&q=80') no-repeat center center;
+    background-size: cover;
+    height: 100%; 
+    position: relative;
+  }
+
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+  }
+
+  .btn-danger {
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-weight: 600;
+  }
+</style>
+
+<section>
+  <div class="container pt-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"> Thank You </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+<section>
+  <div class="carimage-container row align-items-center justify-content-center p-0" >
+    <!-- Left Car -->
+    <div class="col-6">
+        <img class="car-image" src='{% static "/images/assets/car-silver 1 1.png" %}' alt="Car 1">
+    </div>
+    <!-- Right Car -->
+    <div class="col-6">
+        <img class="car-image" src='{% static "images/assets/pngegg 2 1.png" %}' alt="Car 2">
+    </div>
+</div>  
+  <div class="bg-car d-flex align-items-center justify-content-center text-center">
+    <div class=""></div>
+    <div class="content px-3 my-3">
+      <h1 class="display-4 fw-bold text-dark">Thank You!</h1>
+      <p class="lead mb-4 text-dark">Your request has been received. We will get back to you shortly.</p>
+      <a href="/" class="btn btn-danger">Back to Home</a>
+      <a href="/search-results" class="btn btn-danger">View Inventory</a>
+    </div>
+  </div>
+
+
+
+</section>
+
+
+
+
+
+
+{% endblock %}

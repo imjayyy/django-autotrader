@@ -11,13 +11,43 @@ from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from urllib.parse import urlencode
+from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail
 import re
 
 def home(request):
-    vehicles_in_az = Vehicle.objects.order_by("?")[:3]  # Fetch 3 random vehicles
+    if request.method == "POST" and "Callback" in request.POST:
+        name = request.POST.get("name")
+        country_code = request.POST.get("country_code")
+        phone = request.POST.get("phone")
+
+        # Optionally, add server-side validation
+        if name and country_code and phone:
+            # Here you can save it to DB, send an email, or trigger any logic
+            # For now, we'll just print it (or you can save it)
+
+            print(f"Callback Request: {name}, {country_code} {phone}")
+            ADMIN_USER_EMAIL= settings.ADMIN_USER_EMAIL
+            EMAIL_HOST_USER = settings.EMAIL_HOST_USER
+
+            send_mail(
+                "Call back request from AutoTrader django website",
+                f"Callback Request: {name}, {country_code} {phone}",
+                EMAIL_HOST_USER,
+                [ADMIN_USER_EMAIL],
+                fail_silently=False,
+            )
+                        # Show a success message
+            # messages.success(request, "Your callback request has been submitted!")
+            return render(request, 'thank-you.html')  # Redirect to avoid form resubmission
+        else:
+            messages.error(request, "Please fill in all fields.")
+
+    vehicles_in_az = Vehicle.objects.filter(country = 3, is_popular = True, is_published = True).order_by("?")[:3]  # Fetch 3 random vehicles
     vehicles_in_az_serializer = VehicleListSerializer(vehicles_in_az, many=True)
 
-    electric_vehicles = Vehicle.objects.filter(fuel = 3 ).order_by("?")[:3]  # Fetch 3 random vehicles
+    electric_vehicles = Vehicle.objects.filter(fuel = 3, is_popular = True, is_published = True ).order_by("?")[:3]  # Fetch 3 random vehicles
     electric_vehicles_serializer = VehicleListSerializer(electric_vehicles, many=True)
 
     # cars_on_auction = Vehicle.objects.order_by("?")[:3]  # Fetch 3 random vehicles
@@ -78,6 +108,32 @@ def order_shipping(request):
     return render(request, 'order-shipping.html')
 
 def contact(request):
+    if request.method == "POST" and "Callback" in request.POST:
+        name = request.POST.get("name")
+        country_code = request.POST.get("country_code")
+        phone = request.POST.get("phone")
+
+        # Optionally, add server-side validation
+        if name and country_code and phone:
+            # Here you can save it to DB, send an email, or trigger any logic
+            # For now, we'll just print it (or you can save it)
+
+            print(f"Callback Request: {name}, {country_code} {phone}")
+            ADMIN_USER_EMAIL= settings.ADMIN_USER_EMAIL
+            EMAIL_HOST_USER = settings.EMAIL_HOST_USER
+
+            send_mail(
+                "Call back request from AutoTrader django website",
+                f"Callback Request: {name}, {country_code} {phone}",
+                EMAIL_HOST_USER,
+                [ADMIN_USER_EMAIL],
+                fail_silently=False,
+            )
+                        # Show a success message
+            # messages.success(request, "Your callback request has been submitted!")
+            return render(request, 'thank-you.html')  # Redirect to avoid form resubmission
+        else:
+            messages.error(request, "Please fill in all fields.")
     return render(request, 'contact.html')
 
 def information(request):
@@ -85,10 +141,20 @@ def information(request):
 
 def normal_car_details(request, id):
     car = get_object_or_404(Vehicle, id=id)  # Fetch car details or return 404
+
     car_serializer = VehicleDetailsSerializer(car)
-    vehicles_in_az = Vehicle.objects.order_by("?")[:3]  # Fetch 3 random vehicles
+    vehicles_in_az = Vehicle.objects.filter(is_published = True, model__id = car.model.id ).order_by("?")[:3]  # Fetch 3 random vehicles
     vehicles_in_az_serializer = VehicleListSerializer(vehicles_in_az, many=True)
-    return render(request, 'normal-car-details.html', {"car": car_serializer.data,
+
+    car_serializer_data = car_serializer.data
+
+    car_serializer_data['price_azn'] = str(float(car.price) * 1.7) + " AZN"
+    if car.price_discount :
+        car_serializer_data['price'] = float(car.price) - float(car.price_discount)
+        car_serializer_data['before_discount_price'] = car.currency + str(float(car.price))
+        car_serializer_data['price_azn'] = str(float(car_serializer_data['price']) * 1.7) + " AZN"
+
+    return render(request, 'normal-car-details.html', {"car": car_serializer_data,
                                                        "vehicles_in_az": vehicles_in_az_serializer.data, 
                                                        })
 

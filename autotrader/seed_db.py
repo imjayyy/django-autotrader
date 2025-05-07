@@ -2,6 +2,7 @@ import os
 import django
 from datetime import date
 from random import randint, choice
+import random
 
 # Set up Django environment
 import sys
@@ -53,7 +54,7 @@ def insert_sample_data():
     transmissions = ["Automatic", "Manual"]
     fuels = ["Petrol", "Diesel", "Electric", "Hybrid"]
     statuses = ["New", "Used", "Certified"]
-    countries = ["USA", "Canada", "Germany"]
+    countries = ["USA", "Canada", "Azerbaijan"]
     drive = ["Front Wheel Drive", "Rear Wheel Drive", "All Wheel Drive", "Four Wheel Drive"]
     colors = ["Red", "Blue", "Green", "Black", "White", "Silver", "Gray", "Yellow", "Orange", "Purple", "Brown", "Beige", "Gold", "Bronze", "Copper", "Pink", "Turquoise", "Lime", "Teal", "Magenta", "Violet", "Maroon", "Aquamarine", "Coral", "Salmon", "Khaki", "Indigo", "Azure", "Lavender", "Periwinkle", "Tan", "Thistle", "Plum", "Mauve", "Lilac", "Amber", "Ivory", "Crimson", "Fuchsia", "Wheat", "Lemon", "Peach", "Cream", "Lavender", "Cyan", "Mint", "Olive", "Apricot", "Navy", "Burgundy", "Emerald", "Sapphire", "Aqua", "Lemon", "Peach", "Lavender", "Cyan", "Mint", "Olive", "Apricot", "Navy", "Burgundy", "Emerald", "Sapphire", "Aqua"]
     
@@ -88,7 +89,41 @@ def insert_sample_data():
             model = Model.objects.filter(make_id=make).order_by('?').first()  # Get a valid Model for that Make
             
             if model:  # Ensure a model exists for the selected make
-                Vehicle.objects.create(
+                fuel_ = Fuel.objects.order_by('?').first()
+
+                if fuel_.id == 3:
+                    Vehicle.objects.create(
+                    make=make,
+                    model=model,  # Select a Model that belongs to the Make
+                    transmission=Transmission.objects.order_by('?').first(),
+                    fuel=Fuel.objects.order_by('?').first(),
+                    body_style=BodyStyle.objects.order_by('?').first(),
+                    # country=Country.objects.order_by('?').first(),
+                    VIN=f'VIN{randint(100000, 999999)}',
+                    currency='USD',
+                    feature_list="GPS, Sunroof, Leather Seats",
+                    number_of_seats=choice([2, 4, 5, 7]),
+                    price=randint(5000, 50000),
+                    # price_currency='USD',
+                    is_popular=choice([True, False]),
+                    supplier_id=1,
+                    year=randint(2000, 2022),
+                    odometer=randint(0, 200000),
+                    zero_to_hundred = round(random.uniform(0.0, 10.0), 1),
+                    motor_power = randint(0, 300),
+                    motor_power_unit = "Kw/h",
+                    battery_range = randint(0, 400),
+
+                    is_published=True,
+                    status=Status.objects.order_by('?').first(),
+                    color_id=Color.objects.order_by('?').first().id,
+                    country=Country.objects.order_by('?').first(),
+                    drive_id=Drive.objects.order_by('?').first().id,
+                )
+
+
+                else:
+                    Vehicle.objects.create(
                     make=make,
                     model=model,  # Select a Model that belongs to the Make
                     transmission=Transmission.objects.order_by('?').first(),
@@ -184,7 +219,7 @@ def insert_sample_vehicle_images():
     print("Sample vehicle images inserted successfully!")
 
 # insert_models_make()
-# insert_sample_data()
+insert_sample_data()
 insert_sample_vehicle_images()
 
 

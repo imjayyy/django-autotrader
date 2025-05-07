@@ -292,7 +292,7 @@
         </div>
       </div>
     </div>
-    <a href="/search-results"><button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> View Full Inventory</button></a>
+    <a href="/search-results?country=3"><button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> View Full Inventory</button></a>
 
     <hr>
 
@@ -352,17 +352,19 @@
               <h2 class="mb-3 text-start text-heading pt-sm-2">{% trans "Get Expert Help for Your Vehicle Purchase" %}</h2>
               <p class="mb-4 text-start hero-sub-text text-muted">{% trans "Enter your phone number, and our team will contact you" %}</p>
               
-              <form>
+              <form method="POST" >
+                {% csrf_token %}
                 <div class="mb-3">
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Your name"
+                    name = "name"
                     required
                   >
                 </div>
                 <div class="mb-3 d-flex">
-                  <select class="form-select w-auto me-2" aria-label="Country code">
+                  <select class="form-select w-auto me-2" aria-label="Country code" name="country_code">
                     <option value="+994" selected>+994</option>
                     <option value="+1">+1</option>
                     <option value="+44">+44</option>
@@ -371,6 +373,7 @@
                     type="text"
                     class="form-control"
                     placeholder="40 123 45 67"
+                    name="phone"
                     required
                   >
                 </div>
@@ -380,7 +383,7 @@
                       type="checkbox"
                       class="form-check-input"
                       id="captcha"
-                      required
+                      
                     >
                     <label class="form-check-label" for="captcha">
                       <img
@@ -392,8 +395,16 @@
                     </label>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-danger w-100 justify-content-center">Request Callback</button>
+                <button type="submit" name="Callback" class="btn btn-danger w-100 justify-content-center">Request Callback</button>
               </form>
+
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }} mt-2">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
             </div>
             <div class="col-md-6 d-none d-md-block">
               <img src="{% static '/images/assets/home-car3.png' %}" 

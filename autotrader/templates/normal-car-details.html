@@ -43,7 +43,7 @@
                         </div>
                         <div class="card-body">
                             <div class="text-start">
-
+                                {{car.comment}}
                                 <span class="fw-bold"> Feature List</span>
                                 {{car.feature_list}}
 
@@ -78,16 +78,16 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="text-muted text-decoration-line-through">
-                                        <small>40,768 $</small>
+                                        <small>{{car.before_discount_price}}</small>
                                     </div>
-                                    <h3 class="fw-bold mb-0"> {{car.currency}}{{car.price}} <span class="text-muted fs-6 mb-3"></span></h3>
+                                    <h3 class="fw-bold mb-0"> {{car.currency}}{{car.price}} <span class="text-muted fs-6 mb-3">({{car.price_azn}})</span></h3>
                                 </div>
                                 <div class="col">
                                     <div class="d-flex align-items-end justify-content-end mb-3 text-end">
                                         <span class="me-2">Country</span>
                                         <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg"
                                             alt="Germany Flag" style="width: 25px; height: auto;" class="me-1" />
-                                        <strong>Germany</strong>
+                                        <strong>{{car.country.name}}</strong>
                                     </div>
                                 </div>
                             </div>

@@ -125,6 +125,8 @@ def search_api(request):
         filters["year__gte"] = int(year_min)
     if year_max and year_max != "any":
         filters["year__lte"] = int(year_max)
+    
+    filters["is_published"] = True
     # Query database with optimized field selection
     # vehicles = Vehicle.objects.filter(**filters)
     # vehicles_serializer = VehicleListSerializer(vehicles, many=True)

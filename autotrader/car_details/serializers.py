@@ -99,7 +99,11 @@ class VehicleListSerializer(serializers.ModelSerializer):
     country = CountrySerializer()
     class Meta:
         model = Vehicle
-        fields = ["id", "make", "model", "fuel", "year", "price", "transmission", "drive", "odometer", "body_style", "country", "all_media", "color", "engine_power", "engine_power_unit" ]
+        fields = ["id", "make", "model", "fuel", "year", "price", 
+                "transmission", "drive", "odometer", "body_style", 
+                "country", "all_media", "color", "engine_power", "engine_power_unit",
+                 "zero_to_hundred", "motor_power", "motor_power_unit", "battery_range",
+                  ]
 
 
 class VehicleDetailsSerializer(serializers.ModelSerializer):

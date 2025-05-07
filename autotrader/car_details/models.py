@@ -2,6 +2,7 @@
 from django.db import models
 from shipping.models import Country
 from rest_framework import serializers
+from ckeditor.fields import RichTextField
 
 
 class Fuel(models.Model):
@@ -86,22 +87,26 @@ class Vehicle(models.Model):
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
-    feature_list = models.TextField( null=True)
-    label_list = models.TextField(null=True)
+    feature_list = models.TextField(blank=True, null=True)
+    label_list = models.TextField(blank=True, null=True)
     odometer = models.IntegerField()
+    zero_to_hundred = models.IntegerField(blank=True, null=True)
+    motor_power = models.IntegerField(blank=True, null=True)
+    motor_power_unit = models.CharField(max_length=50, blank=True, null=True)
+    battery_range = models.IntegerField(blank=True, null=True)
     year = models.IntegerField()
-    engine_power_unit = models.CharField(max_length=50)
-    engine_power = models.IntegerField()
-    comment = models.TextField(null=True)
+    engine_power_unit = models.CharField(max_length=50,blank=True, null=True)
+    engine_power = models.IntegerField(blank=True, null=True)
+    comment = RichTextField(blank=True, null=True)
     VIN = models.TextField()
     currency = models.TextField()
-    price_discount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    price_discount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     price = models.FloatField()
     number_of_seats = models.IntegerField()
     is_published = models.BooleanField()
-    documents = models.TextField(null=True)
+    documents = models.TextField(blank=True, null=True)
     is_popular = models.BooleanField()
-    supplier_id = models.BigIntegerField(null=True)
+    supplier_id = models.BigIntegerField(blank=True, null=True)
     date_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
