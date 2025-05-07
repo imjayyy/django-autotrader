@@ -47,10 +47,20 @@
       </style>
   <div class="container mt-4">
     <div class="main-image text-center">
+      <span class="badge rounded-pill d-inline-flex align-items-center bg-primary">
+        {{ car.status.name_en }}
+      </span>
+    {% for label in label_list %}
+
+      <span class="badge rounded-pill d-inline-flex align-items-center" style="background-color: {{label.color_hex}}; color: white; padding: 0.5em 0.75em; font-size: 0.9em; margin: 0.2em;">
+        <i class="{{label.font_awesome_icon}} mx-1"></i>{{ label.name_en }}
+      </span>
+    {% endfor %}
       <img src="{{ media.0.img_url_from_api}}"  id="main-image" alt="Main Image" class="rounded-4">
     </div>
-
+    
     <div class="thumb-gallery d-flex justify-content-center mt-3">
+     
       {% for m in media %}
       
       <img src="{{m.img_url_from_api}}" class="rounded-4 me-2 {% if forloop.first %}active{% endif %}" 

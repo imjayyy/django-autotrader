@@ -154,6 +154,8 @@ def normal_car_details(request, id):
         car_serializer_data['before_discount_price'] = car.currency + str(float(car.price))
         car_serializer_data['price_azn'] = str(float(car_serializer_data['price']) * 1.7) + " AZN"
 
+    print(car_serializer_data)
+
     return render(request, 'normal-car-details.html', {"car": car_serializer_data,
                                                        "vehicles_in_az": vehicles_in_az_serializer.data, 
                                                        })

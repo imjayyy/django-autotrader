@@ -30,7 +30,8 @@
         <div class="row">
             <!-- car carousel -->
             <div class="col-md-8 col-sm-12 mt-4 mb-3 p-3">
-                {% include 'partials/components/car-carousel.html' with media=car.all_media  %}
+               
+                {% include 'partials/components/car-carousel.html' with media=car.all_media status=car.status label_list=car.label_list  %}
 
 
 
@@ -44,12 +45,20 @@
                         <div class="card-body">
                             <div class="text-start">
                                 {{car.comment}}
+                                <br>
                                 <span class="fw-bold"> Feature List</span>
-                                {{car.feature_list}}
+                                <br>
+                                
+                                {% for feature in car.feature_list %}
+                                <span class="badge rounded-pill d-inline-flex align-items-center" style="background-color: {{feature.color_hex}}; color: white; padding: 0.5em 0.75em; font-size: 0.9em; margin: 0.2em;">
+                                    <i class="{{feature.font_awesome_icon}} mx-1"></i>{{ feature.name_en }}
+                                  </span>
 
+                                {% endfor %}
+                                <br>
                                 <span class="fw-bold"> Label list</span>
-                                {{car.label_list}}
-
+                                
+                                <br>
                                 <span class="fw-bold"> Documents</span>
                                 {{car.documents}}
                             </div>

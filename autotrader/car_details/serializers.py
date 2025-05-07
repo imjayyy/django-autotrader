@@ -33,10 +33,6 @@ class StatusSerializer(serializers.ModelSerializer):
         model = Status
         fields = '__all__'
 
-class FeatureSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Feature
-        fields = '__all__'
 
 class LabelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -122,11 +118,8 @@ class VehicleDetailsSerializer(serializers.ModelSerializer):
     color = ColorSerializer()
     status = StatusSerializer()
     country = CountrySerializer()
-    features = FeatureSerializer(many=True, read_only=True)
-    # Write by IDs
-    feature_ids = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Feature.objects.all(), write_only=True, source='features'
-    )
+    feature_list = FeatureSerializer(many=True, read_only=True)    
+    label_list = LabelSerializer(many=True, read_only=True)
     class Meta:
         model = Vehicle
         fields = '__all__'

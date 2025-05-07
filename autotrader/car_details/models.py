@@ -92,7 +92,7 @@ class Vehicle(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     feature_list =  models.ManyToManyField(Feature, related_name='vehicles')
-    label_list = models.TextField(blank=True, null=True)
+    label_list = models.ManyToManyField(Label, related_name='vehicles')
     odometer = models.IntegerField()
     zero_to_hundred = models.IntegerField(blank=True, null=True)
     motor_power = models.IntegerField(blank=True, null=True)
