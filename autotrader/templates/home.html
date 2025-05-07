@@ -27,6 +27,7 @@
         }
     .custom-prev, .custom-next {
       position: absolute;
+        background: transparent !important;
       /* top: 100%; */
       transform: translateY(-200%);
       /* background-color: #333; */
@@ -119,25 +120,23 @@
       <div class="align-items-center justify-content-center row g-3 mt-3 mb-3" >
             <!-- Dropdown 1 -->
             <div class="col-md-4 col-sm-12">
-                <select class="form-select text-secondary" name= "make" id="make" onchange="update_models()">
-                  <option value="any">Select Make</option>
-                  {% for i in form_fields.makes %}
-                  <option value="{{ i.id }}">{{ i }}</option>
-                {% endfor %}
+                <select aria-label="make" class="form-select text-secondary-color form-element" name= "make" id="make" onchange="update_models()">
+                    <option value="any">All Makes</option>
+                    {% for i in form_fields.makes %}
+                        <option value="{{ i.id }}">{{ i }}</option>
+                    {% endfor %}
                 </select>
             </div>
 
             <!-- Dropdown 2 -->
             <div class="col-md-4 col-sm-12">
-                <select class="form-select text-secondary" name="model" id="model">
-                  <option value="any">Select Model</option>
-                  
-                 
+                <select aria-label="model" class="form-select text-secondary-color form-element" name="model" id="model">
+                  <option value="any">All Models</option>
                 </select>
             </div>
             <!-- Dropdown 3 -->
             <div class="col-md-4 col-sm-12">
-                <select class="form-select text-secondary" name="country" id="country">
+                <select aria-label="country"  class="form-select text-secondary-color form-element" name="country" id="country">
                   <option value="any">Select Country</option>
                   {% for i in form_fields.country %}
                   <option value="{{ i.id }}">{{ i.name }}</option>
@@ -149,7 +148,7 @@
 
             <!-- Dropdown 4 -->
             <div class="col-md-4 col-sm-12">
-                <select class="form-select text-secondary" name="year-from" id="year-from">
+                <select aria-label="year-from" class="form-select text-secondary-color form-element" name="year-from" id="year-from">
                     <option selected>From Year</option>
                     {% for i in form_fields.year_range %}
                     <option value="{{ i }}">{{ i }}</option>
@@ -159,7 +158,7 @@
 
             <!-- Dropdown 5 -->
             <div class="col-md-4 col-sm-12">
-                <select class="form-select text-secondary" name="year-to" id="year-to">
+                <select aria-label="year-to" class="form-select text-secondary-color form-element" name="year-to" id="year-to">
                   <option selected>To Year</option>
                   {% for i in form_fields.year_range %}
                     <option value="{{ i }}">{{ i }}</option>
@@ -170,7 +169,7 @@
 
             <!-- Button -->
             <div class="col-md-4 col-sm-12">
-                <button class="btn btn-danger w-100 d-flex align-items-center justify-content-center" onclick="search()"> 
+                <button class="btn btn-danger w-100 d-flex align-items-center justify-content-center" style="padding:11px" onclick="search()">
                     <i class="fas fa-search me-2"></i> {% trans "Find Your Car" %}
                 </button>
             </div>
@@ -235,9 +234,9 @@
 <section class="container mt-5">
     <div class="red-line"></div>
 
-    <h2 class="text-start text-heading mb-4"> Electric <span class="text-danger"> Vehicles </span></h2>
-    <p class="text-start">{% trans "Discover the Future of Driving – Clean, Quiet, Powerful." %} </p>
-    <div class="row g-0 py-5 d-none d-md-flex">
+    <h2 class="text-start text-heading mb-1"> Electric <span class="text-danger"> Vehicles </span></h2>
+    <p class="text-start m-0">{% trans "Discover the Future of Driving – Clean, Quiet, Powerful." %} </p>
+    <div class="row g-0 py-10 d-none d-md-flex gap-1.5 justify-content-between">
       <!-- Vehicle 1 -->
       {% for vehicle in electric_vehicles %}
       {% include 'partials/components/car-card.html' with vehicle=vehicle %}
@@ -261,17 +260,15 @@
 
     <a href="/search-results?fuel=3"><button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> {% trans "View Full Inventory" %}</button></a>
 
-    <hr>
-
 </section>
 
   <!-- CARS SECTION 2 -->
 <section class="container mt-5">
     <div class="red-line"></div>
 
-    <h2 class="text-start text-heading mb-4">Vehicles <span class="text-danger">in Azerbaijan </span></h2>
-    <p class="text-start">{% trans "Browse vehicles in Azerbaijan, ready for you to drive home today." %} </p>
-    <div class="row g-0 py-5 d-none d-md-flex">
+    <h2 class="text-start text-heading mb-1">Vehicles <span class="text-danger">in Azerbaijan </span></h2>
+    <p class="text-start mb-0">{% trans "Browse vehicles in Azerbaijan, ready for you to drive home today." %} </p>
+    <div class="row g-0 py-5 d-none d-md-flex gap-1.5 justify-content-between">
       <!-- Vehicle 1 -->
       {% for vehicle in vehicles_in_az %}
       {% include 'partials/components/car-card.html' with vehicle=vehicle %}
@@ -294,7 +291,6 @@
     </div>
     <a href="/search-results?country=3"><button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> View Full Inventory</button></a>
 
-    <hr>
 
   </section>
 
@@ -303,9 +299,9 @@
 <section class="container mt-5">
     <div class="red-line"></div>
 
-    <h2 class="text-start text-heading mb-4">Cars on <span class="text-danger"> auction </span></h2>
-    <p class="text-start">{% trans "View cars in auction ready for immediate purchase with 'Buy It Now' options" %}</p>
-    <div class="row g-0 py-5 d-none d-md-flex">
+    <h2 class="text-start text-heading mb-1">Cars on <span class="text-danger"> auction </span></h2>
+    <p class="text-start m-0">{% trans "View cars in auction ready for immediate purchase with 'Buy It Now' options" %}</p>
+    <div class="row g-0 py-5 d-none d-md-flex gap-1.5 justify-content-between">
 
       {% include 'partials/components/car-auction-card.html' %}
       {% include 'partials/components/car-auction-card.html' %}
@@ -331,7 +327,6 @@
     </div>
     <button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> View Inventory</button>
 
-    <hr>
 
   </section>
 
