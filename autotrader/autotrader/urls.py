@@ -20,6 +20,8 @@ from . import views
 from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import set_language
 from car_details.views import get_models
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -50,6 +52,8 @@ urlpatterns += [
 urlpatterns += [
     path("admin-api/get-models/", get_models, name="get-models"),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # urlpatterns += i18n_patterns(
 #     path('admin/', admin.site.urls)

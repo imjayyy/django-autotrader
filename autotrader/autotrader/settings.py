@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+from django.utils.translation import gettext_lazy as _
 
 # default backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -49,9 +50,9 @@ USE_L10N = True
 # Enable timezone support (optional)
 USE_TZ = True
 
-from django.utils.translation import gettext_lazy as _
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Set default language
 LANGUAGE_CODE = 'en-us'

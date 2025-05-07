@@ -50,6 +50,9 @@ class Status(models.Model):
 class Feature(models.Model):
     name_az = models.TextField()
     name_en = models.TextField()
+    color_hex = models.CharField(max_length=7,  null=True, blank=True)
+    font_awesome_icon = models.TextField( null=True, blank=True)
+
 
     def __str__(self):
         return self.name_en
@@ -57,8 +60,9 @@ class Feature(models.Model):
 class Label(models.Model):
     name_az = models.TextField()
     name_en = models.TextField()
-    label_color_hex = models.CharField(max_length=7)
-
+    color_hex = models.CharField(max_length=7, null=True, blank=True)
+    font_awesome_icon = models.TextField( null=True, blank=True)
+    
     def __str__(self):
         return self.name_en
 
@@ -87,7 +91,7 @@ class Vehicle(models.Model):
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
-    feature_list = models.TextField(blank=True, null=True)
+    feature_list =  models.ManyToManyField(Feature, related_name='vehicles')
     label_list = models.TextField(blank=True, null=True)
     odometer = models.IntegerField()
     zero_to_hundred = models.IntegerField(blank=True, null=True)
@@ -97,7 +101,7 @@ class Vehicle(models.Model):
     year = models.IntegerField()
     engine_power_unit = models.CharField(max_length=50,blank=True, null=True)
     engine_power = models.IntegerField(blank=True, null=True)
-    comment = RichTextField(blank=True, null=True)
+    comment = models.TextField(blank=True, null=True)
     VIN = models.TextField()
     currency = models.TextField()
     price_discount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
@@ -114,13 +118,14 @@ class Vehicle(models.Model):
 
 class VehicleMedia(models.Model):
     vehicle_image_id = models.AutoField(primary_key=True)
-    api_id = models.IntegerField(null=True)
-    all_lots_id = models.BigIntegerField(null=True)
-    vin = models.TextField(null=True)
-    img_url_from_api = models.TextField(null=True)
+    image = models.ImageField(upload_to='vehicles/', null=True, blank=True) 
+    api_id = models.IntegerField(null=True, blank=True)
+    all_lots_id = models.BigIntegerField(null=True, blank=True)
+    vin = models.TextField(null=True, blank=True)
+    img_url_from_api = models.TextField(null=True, blank=True)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-    image_path = models.CharField(null=True, max_length=255)
-    video_path = models.CharField(null=True, max_length=255)
+    image_path = models.CharField(null=True, blank=True, max_length=255)
+    video_path = models.CharField(null=True, blank=True, max_length=255)
 
     def __str__(self):
         return f"VehicleMedia {self.vehicle_image_id} - VIN: {self.vin}"

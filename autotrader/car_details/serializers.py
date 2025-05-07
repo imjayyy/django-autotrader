@@ -63,7 +63,7 @@ class CountrySerializer(serializers.ModelSerializer):
 class VehicleMediaSerializer(serializers.ModelSerializer):
     class Meta:
         model = VehicleMedia
-        fields = ["vehicle_image_id", "img_url_from_api", "image_path", "video_path"]
+        fields = ["vehicle_image_id", "img_url_from_api", "image_path", "video_path", "image"]
 
 class MakeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -106,6 +106,11 @@ class VehicleListSerializer(serializers.ModelSerializer):
                   ]
 
 
+class FeatureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feature
+        fields = ['id', 'name_az', 'name_en', 'color_hex', 'font_awesome_icon']
+
 class VehicleDetailsSerializer(serializers.ModelSerializer):
     all_media = VehicleMediaSerializer(source="vehiclemedia_set", many=True, read_only=True)
     model = ModelSerializer()
@@ -117,7 +122,11 @@ class VehicleDetailsSerializer(serializers.ModelSerializer):
     color = ColorSerializer()
     status = StatusSerializer()
     country = CountrySerializer()
-    
+    features = FeatureSerializer(many=True, read_only=True)
+    # Write by IDs
+    feature_ids = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=Feature.objects.all(), write_only=True, source='features'
+    )
     class Meta:
         model = Vehicle
         fields = '__all__'
