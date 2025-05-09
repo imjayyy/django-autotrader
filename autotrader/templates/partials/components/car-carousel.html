@@ -62,10 +62,13 @@
     <div class="thumb-gallery d-flex justify-content-center mt-3">
      
       {% for m in media %}
-      
+      {% if m.image %}
+      <img src="{{m.image}}" class="rounded-4 me-2 {% if forloop.first %}active{% endif %}" 
+      alt="Thumbnail {{ forloop.counter }}" style="max-width: 100px; max-height: 100px;"  onclick="changeImage(this, `{{m.image}}`)">
+      {% else %}
       <img src="{{m.img_url_from_api}}" class="rounded-4 me-2 {% if forloop.first %}active{% endif %}" 
       alt="Thumbnail {{ forloop.counter }}" style="max-width: 100px; max-height: 100px;"  onclick="changeImage(this, `{{m.img_url_from_api}}`)">
-
+      {% endif %}
       {% endfor %}
       <!-- <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 me-2 active" alt="Thumbnail 1" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}`)">
       <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 me-2" alt="Thumbnail 2" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}`)">

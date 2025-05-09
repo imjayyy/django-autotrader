@@ -2,8 +2,8 @@
 from django.db import models
 from shipping.models import Country
 from rest_framework import serializers
-from ckeditor.fields import RichTextField
-
+from djrichtextfield.models import RichTextField
+import os
 
 class Fuel(models.Model):
     name_az = models.TextField()
@@ -101,7 +101,7 @@ class Vehicle(models.Model):
     year = models.IntegerField()
     engine_power_unit = models.CharField(max_length=50,blank=True, null=True)
     engine_power = models.IntegerField(blank=True, null=True)
-    comment = models.TextField(blank=True, null=True)
+    comment = RichTextField(blank=True, null=True)
     VIN = models.TextField()
     currency = models.TextField()
     price_discount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
@@ -116,6 +116,13 @@ class Vehicle(models.Model):
     def __str__(self):
         return f"{self.model} ({self.year})"
 
+
+
+def vehicle_image_upload_to(instance, filename):
+    ext = filename.split('.')[-1]
+    # Use a temp name until we get the ID
+    return f"vehicles/temp.{ext}"
+
 class VehicleMedia(models.Model):
     vehicle_image_id = models.AutoField(primary_key=True)
     image = models.ImageField(upload_to='vehicles/', null=True, blank=True) 
@@ -126,6 +133,20 @@ class VehicleMedia(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     image_path = models.CharField(null=True, blank=True, max_length=255)
     video_path = models.CharField(null=True, blank=True, max_length=255)
+
+    def save(self, *args, **kwargs):
+        is_new = self._state.adding
+        super().save(*args, **kwargs)
+
+        if is_new and self.image:
+            # Now rename the image to vehicle_image_id
+            ext = os.path.splitext(self.image.name)[1]
+            new_name = f"vehicles/{self.vehicle_image_id}{ext}"
+            from django.core.files.storage import default_storage
+            old_image = self.image
+            new_image = default_storage.save(new_name, old_image)
+            self.image.name = new_name
+            super().save(update_fields=['image'])
 
     def __str__(self):
         return f"VehicleMedia {self.vehicle_image_id} - VIN: {self.vin}"

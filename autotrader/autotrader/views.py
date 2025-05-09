@@ -5,6 +5,8 @@ from datetime import datetime
 from car_details.models import Make, Model, Transmission, Drive, Fuel, BodyStyle, Color
 from car_details.models import Country
 from car_details.serializers import VehicleSerializer, MakeSerializer,VehicleDetailsSerializer, VehicleListSerializer
+from general.models import Order, Callback, Information, InformationSerializer
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.shortcuts import redirect
@@ -15,6 +17,10 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 import re
+
+
+ADMIN_USER_EMAIL= settings.ADMIN_USER_EMAIL
+EMAIL_HOST_USER = settings.EMAIL_HOST_USER
 
 def home(request):
     if request.method == "POST" and "Callback" in request.POST:
@@ -28,8 +34,7 @@ def home(request):
             # For now, we'll just print it (or you can save it)
 
             print(f"Callback Request: {name}, {country_code} {phone}")
-            ADMIN_USER_EMAIL= settings.ADMIN_USER_EMAIL
-            EMAIL_HOST_USER = settings.EMAIL_HOST_USER
+
 
             send_mail(
                 "Call back request from AutoTrader django website",
@@ -37,6 +42,11 @@ def home(request):
                 EMAIL_HOST_USER,
                 [ADMIN_USER_EMAIL],
                 fail_silently=False,
+            )
+            Callback.objects.create(
+                name=name,
+                country_code=country_code,
+                phone=phone
             )
                         # Show a success message
             # messages.success(request, "Your callback request has been submitted!")
@@ -129,6 +139,11 @@ def contact(request):
                 [ADMIN_USER_EMAIL],
                 fail_silently=False,
             )
+            Callback.objects.create(
+                name=name,
+                country_code=country_code,
+                phone=phone
+            )
                         # Show a success message
             # messages.success(request, "Your callback request has been submitted!")
             return render(request, 'thank-you.html')  # Redirect to avoid form resubmission
@@ -137,7 +152,9 @@ def contact(request):
     return render(request, 'contact.html')
 
 def information(request):
-    return render(request, 'information.html')
+    information = Information.objects.all().order_by("-created_at")
+    information_serializer = InformationSerializer(information, many=True)
+    return render(request, 'information.html', {"information_data": information_serializer.data})
 
 def normal_car_details(request, id):
     car = get_object_or_404(Vehicle, id=id)  # Fetch car details or return 404
@@ -160,6 +177,23 @@ def normal_car_details(request, id):
                                                        "vehicles_in_az": vehicles_in_az_serializer.data, 
                                                        })
 
+@login_required
+def create_order(request, id):
+    car = get_object_or_404(Vehicle, id=id)
+    order = Order.objects.create(
+        customer=request.user,
+        vehicle=car,
+        status='Pending'
+    )
+    send_mail(
+                "Order request from AutoTrader django website",
+                f"Order Request: {order.customer.first_name} {order.customer.last_login}, for {order.customer.phone} {order.vehicle.make.name} {order.vehicle.model.name} {order.vehicle.year}", 
+                EMAIL_HOST_USER,
+                [ADMIN_USER_EMAIL],
+                fail_silently=False,
+            )
+    # Redirect to a success page or render a template
+    return render(request, 'thank-you.html')
 
 def text_search(request):
     search_query_string = request.GET.get('searchByText', '').strip()
@@ -176,6 +210,8 @@ def text_search(request):
     for q in search_query:
         model_id = Model.objects.filter(name__icontains=q).values('id').first()
         if model_id:
+            make_id = Model.objects.filter(name__icontains=q).values('make').first()
+            make_id = Make.objects.filter(id=make_id['make']).values('id').first()
             break
 
     # Split into words, e.g., "honda city 2024" -> ['honda', 'city', '2024']
@@ -185,9 +221,7 @@ def text_search(request):
     year_pattern = re.compile(r'^(19|20)\d{2}$')
     year = next((word for word in keywords if year_pattern.match(word)), None)
 
-    data = {
-        
-    }
+    data = {}
     if make_id:
         data["make"] = make_id['id']
     if model_id:    
@@ -198,9 +232,9 @@ def text_search(request):
     params = '?' + '&'.join([f"{key}={value}" for key, value in data.items()])
     url = reverse('search-results') + params
 
+    print("Data: " , data )
+
     if data == {}:
         # If no make, model, or year found, redirect to search-results empty page.
         return render(request, 'search-results-empty.html')
     return HttpResponseRedirect(url)
-
-    return redirect('no-results')  # Fallback if nothing matched

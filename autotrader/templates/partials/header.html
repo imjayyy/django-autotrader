@@ -317,12 +317,16 @@
     </nav>
     
     <script>
-        document.querySelector('#searchByText').addEventListener('click', function()  {
+        document.querySelector('#searchByText').addEventListener('click', function(e)  {
+            e.preventDefault();
             const searchText = document.getElementById('text-search').value;
             const selectedType = document.querySelector('input[name="search_type"]:checked').value;
             const url = '/text-search?searchByText=' ;
+
             window.location.href = url + searchText;
         });
+
+        
         document.querySelector('.navbar-toggler').addEventListener('click', function() {
           const icon = this.querySelector('.navbar-toggler-icon');
           icon.classList.toggle('open'); // Toggle the 'open' class

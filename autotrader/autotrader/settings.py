@@ -101,13 +101,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'taggit',
-    'ckeditor',
+    'djrichtextfield',
 
     'accounts',
     'car_details',
     'shipping',
     'auction',
     'api',
+    'general'
 ]
 
 MIDDLEWARE = [
@@ -188,7 +189,16 @@ AUTH_PASSWORD_VALIDATORS = [
 # USE_TZ = True
 
 
-
+DJRICHTEXTFIELD_CONFIG = {
+    'js': ['/static/tinymce/js/tinymce/tinymce.min.js'],
+    'init_template': 'djrichtextfield/init/tinymce.js',
+    'settings': {
+        'menubar': False,
+        'plugins': 'link image',
+        'toolbar': 'bold italic | link image | removeformat',
+        'width': 700
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

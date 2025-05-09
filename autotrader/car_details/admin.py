@@ -29,7 +29,9 @@ class VehicleAdminForm(forms.ModelForm):
 
 class VehicleAdmin(admin.ModelAdmin):
     form = VehicleAdminForm
-    search_fields = ["make__name", "model__name"]
+    search_fields = ["make__name", "model__name", "year", "id"]
+    list_filter = ('model', 'year')  # Fields to filter (will appear on right sidebar)
+    list_display = ("id", "make", "model", "year", "price", "is_published")  # Fields to display in the list view
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "model" and "make" in request.GET:
@@ -54,14 +56,17 @@ class MakeAdmin(admin.ModelAdmin):
     search_fields = ['name']
     ordering = ['name']
 
+class VehicleMediaAdmin(admin.ModelAdmin):
+    autocomplete_fields = ['vehicle']
 
 # Register models in the Django admin panel
+
 
 admin.site.register(Model, ModelAdmin)
 admin.site.register(Make, MakeAdmin)
 admin.site.register(Vehicle, VehicleAdmin)
 
-admin.site.register(VehicleMedia)
+admin.site.register(VehicleMedia, VehicleMediaAdmin)
 admin.site.register(Fuel)
 admin.site.register(BodyStyle)
 admin.site.register(Transmission)

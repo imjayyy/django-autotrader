@@ -37,7 +37,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('text-search/', views.text_search, name='text-search'),
     path('information', views.information, name='information'),
-
+    path('create-order/<int:id>/', views.create_order, name='create-order'),
 ]
 
 urlpatterns += [
@@ -51,6 +51,10 @@ urlpatterns += [
 
 urlpatterns += [
     path("admin-api/get-models/", get_models, name="get-models"),
+]
+
+urlpatterns += [
+path('djrichtextfield/', include('djrichtextfield.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
