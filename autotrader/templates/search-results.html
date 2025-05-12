@@ -64,8 +64,38 @@
         }
 
 
+        .filters-button{
+            gap: 4px;
+            border-radius: 100px;
+            width: fit-content;
+            text-decoration: none;
+            max-height: 44px;
+            height: 44px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #fff;
+            margin-bottom: 8px;
+        }
 
+        .mobileFilterWrapper{
+            .mobileFilterDialog{
+                margin: 0 !important;
 
+                .modal-content{
+                    border-radius: 0 !important;
+                    min-height: 100vh;
+                    .close-modal{
+                        border: none;
+                        width: fit-content;
+                        background: transparent;
+                        font-size: 24px;
+                    }
+                    .modal-body{
+                      padding: 0 !important;
+                    }
+                }
+            }
+        }
 
 </style>
 <!-- <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
@@ -82,7 +112,7 @@
 
     <div>
         <div class="quick-filters py-2 px-3">
-            <span class="fw-bold pe-5">Quick filters:</span>
+            <span class="font-medium text-primary-color" style="padding-right: 20px;font-size: 18px;">Quick filters:</span>
             <a id="qf-latest-year" ><button class="btn btn-outline-secondary" >Latest Vehicles</button></a>
             <a href="search-results?odometer_max=5000"> <button class="btn btn-outline-secondary"> Low Milage </button> </a>
             <button class="btn btn-outline-secondary">Clean Title</button>
@@ -99,7 +129,7 @@
 <div class="container mt-4">
     <div class="row">
         <!-- Filters Sidebar -->
-        <div class="col-md-3">
+        <div class="d-none d-md-block col-md-3">
             <div class="filters-box mb-3">
                 <button
                     class="btn btn-dark mb-2"
@@ -124,12 +154,11 @@
                 </div>
             </div>
 
-
             <div class="accordion accordion-flush my-2 py-2" id="accordionExample">
                 
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="accordion-button text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                       Vehicle Make
                     </button>
                   </h2>
@@ -150,7 +179,7 @@
                
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         Model
                       </button>
                     </h2>
@@ -169,7 +198,7 @@
 
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingFive">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                         Odometer
                       </button>
                     </h2>
@@ -195,7 +224,7 @@
 
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingEight">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                      <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                         Price
                       </button>
                     </h2>
@@ -221,7 +250,7 @@
 
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingThree">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         Transmission
                       </button>
                     </h2>
@@ -244,7 +273,7 @@
 
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingSix">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                      <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                           Fuel Type
                       </button>
                     </h2>
@@ -267,7 +296,7 @@
 
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingSeven">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                      <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                         Body Style 
                       </button>
                     </h2>
@@ -289,7 +318,7 @@
                 
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingNine">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                      <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
                         Country
                       </button>
                     </h2>
@@ -312,7 +341,7 @@
 
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingFour">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                         Drive
                       </button>
                     </h2>
@@ -339,7 +368,7 @@
 
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTen">
-                      <button class="accordion-button collapsed text-heading" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                      <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
                         Year
                       </button>
                     </h2>
@@ -367,6 +396,282 @@
                   
                  
               </div>
+        </div>
+
+        <div class="d-block d-md-none">
+            <a data-bs-toggle="modal" data-bs-target="#mobileFilter" type="button" class="filters-button d-flex justify-content-center align-items-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 5H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 5H14" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 12H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 12H6" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18 19H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 19H14" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.4142 3.58579C18.1953 4.36684 18.1953 5.63317 17.4142 6.41422C16.6332 7.19527 15.3668 7.19527 14.5858 6.41422C13.8047 5.63317 13.8047 4.36684 14.5858 3.58579C15.3668 2.80474 16.6332 2.80474 17.4142 3.58579" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9.41422 10.5858C10.1953 11.3668 10.1953 12.6332 9.41422 13.4142C8.63317 14.1953 7.36684 14.1953 6.58579 13.4142C5.80474 12.6332 5.80474 11.3668 6.58579 10.5858C7.36684 9.80474 8.63317 9.80474 9.41422 10.5858" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.4142 17.5858C18.1953 18.3668 18.1953 19.6332 17.4142 20.4142C16.6332 21.1953 15.3668 21.1953 14.5858 20.4142C13.8047 19.6332 13.8047 18.3668 14.5858 17.5858C15.3668 16.8047 16.6332 16.8047 17.4142 17.5858" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="m-0 text-primary-color fs-6 font-medium">Filters</span>
+            </a>
+
+            <div class="modal fade search-modal mobileFilterWrapper" id="mobileFilter" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color fs-6 font-medium">Filters</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body">
+                            <div class="accordion accordion-flush my-2 py-2" id="accordionExample">
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Vehicle Make
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+
+                                            {% for make in form_fields.make %}
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="make_{{make.id}}" name="make" value="{{make.id}}" name-attr="{{make.name}}" onclick="update_models()">
+                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                                    {{make.name}}
+                                                </label>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Model
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <div id="models_form">
+
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFive">
+                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                            Odometer
+                                        </button>
+                                    </h2>
+                                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <label class="form-label text-start"  style="display: block;">Min</label>
+                                                    <input class="form-control" type="text" name="odometer_min" id="">
+                                                </div>
+                                                <div class="col-2"> - </div>
+                                                <div class="col-5">
+                                                    <label class="form-label text-start" style="display: block;">Max</label>
+                                                    <input class="form-control" type="text" name="odometer_max" id="">
+                                                </div>
+                                                <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingEight">
+                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                            Price
+                                        </button>
+                                    </h2>
+                                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <label class="form-label text-start"  style="display: block;">Min</label>
+                                                    <input class="form-control" type="text" name="price_min" id="">
+                                                </div>
+                                                <div class="col-2"> - </div>
+                                                <div class="col-5">
+                                                    <label class="form-label text-start" style="display: block;">Max</label>
+                                                    <input class="form-control" type="text" name="price_max" id="">
+                                                </div>
+                                                <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Transmission
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+
+
+                                            {% for trans in  form_fields.Transmission %}
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="trans_{{trans.id}}" name="Transmission"  name-attr="{{trans.name_en}}"  value="{{trans.id}}" onclick="update_cars_data()">
+                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                                    {{trans.name_en}}
+                                                </label>
+                                            </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingSix">
+                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                            Fuel Type
+                                        </button>
+                                    </h2>
+                                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            {% for fuel in form_fields.Fuel %}
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="fuel_{{fuel.id}}" name="fuel" value="{{fuel.id}}"  name-attr="{{fuel.name_en}}"  onclick="update_cars_data()">
+                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                                    {{fuel.name_en}}
+                                                </label>
+                                            </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingSeven">
+                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                            Body Style
+                                        </button>
+                                    </h2>
+                                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            {% for bs in form_fields.BodyStyle %}
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="bs_{{bs.id}}" name="BodyStyle" value="{{bs.id}}"  name-attr="{{bs.name_en}}"  onclick="update_cars_data()">
+                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                                    {{bs.name_en}}
+                                                </label>
+                                            </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingNine">
+                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                            Country
+                                        </button>
+                                    </h2>
+                                    <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            {% for country in form_fields.country %}
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="country_{{country.id}}" name="country" value="{{country.id}}"  name-attr="{{country.name}}"  onclick="update_cars_data()">
+                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                                    {{country.name}}
+                                                </label>
+                                            </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFour">
+                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            Drive
+                                        </button>
+                                    </h2>
+                                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            {% for drive in form_fields.Drive %}
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="drive_{{drive.id}}" name="Drive" value="{{drive.id}}"  name-attr="{{drive.name_en}}"  onclick="update_cars_data()">
+                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                                    {{drive.name_en}}
+                                                </label>
+                                            </div>
+                                            {% endfor %}
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTen">
+                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                                            Year
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <label class="form-label text-start"  style="display: block;">Min</label>
+                                                    <input class="form-control" type="number" min="1900" max="2050" name="year_min" id="">
+                                                </div>
+                                                <div class="col-2"> - </div>
+                                                <div class="col-5">
+                                                    <label class="form-label text-start" style="display: block;">Max</label>
+                                                    <input class="form-control" type="number" min="1900" max="2050" name="year_max" id="">
+                                                </div>
+                                                <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Results Section -->
