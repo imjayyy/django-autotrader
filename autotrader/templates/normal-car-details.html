@@ -35,40 +35,37 @@
 
 
 
-                <div class="container mt-2">
-                    <div class="card shadow">
+                <div class="container" style="margin-top: 32px;">
+                    <div class="card shadow mb-5">
                         <div class="card-header bg-light border-bottom text-center ">
-
-                            <h5 class="mb-0 text-start"><i class="bi bi-calculator-fill text-danger m-2"></i>Description
+                            <h5 class="mb-0 text-start">
+                                <i class="bi bi-calculator-fill text-danger m-2"></i>
+                                Description
                             </h5>
                         </div>
                         <div class="card-body">
                             <div class="text-start">
                                 {{car.comment}}
-                                <br>
-                                <span class="fw-bold"> Feature List</span>
-                                <br>
-                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-header bg-light border-bottom text-center ">
+                            <h5 class="mb-0 text-start">
+                                <i class="bi bi-calculator-fill text-danger m-2"></i>
+                                Feature List
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-start">
                                 {% for feature in car.feature_list %}
                                 <span class="badge rounded-pill d-inline-flex align-items-center" style="background-color: {{feature.color_hex}}; color: white; padding: 0.5em 0.75em; font-size: 0.9em; margin: 0.2em;">
                                     <i class="{{feature.font_awesome_icon}} mx-1"></i>{{ feature.name_en }}
                                   </span>
 
                                 {% endfor %}
-                                <br>
-                                <span class="fw-bold"> Label list</span>
-                                
-                                <br>
-                                <span class="fw-bold"> Documents</span>
-                                {{car.documents}}
                             </div>
-
-
-
                         </div>
-                        <!-- <div class="card-footer bg-light">
-                    
-                  </div> -->
                     </div>
                 </div>
 
@@ -185,49 +182,49 @@
                         </div>
 
                         <div class="custom-card-body">
-                            <div class="row py-2 px-4">
-                                <div class="col-6 border-bottom text-start">VIN:</div>
-                                <div class="col-6 border-bottom text-end fw-bolder">{{car.VIN}}</div>
+                            <div class="row pt-2 px-4">
+                                <div class="col-6 border-bottom text-start text-sm text-primary-color" style="padding-bottom: 8px;">VIN:</div>
+                                <div class="col-6 border-bottom text-end fw-bold text-sm text-primary-color" style="padding-bottom: 8px;">{{car.VIN}}</div>
                             </div>
-                            <div class="row py-2 px-4">
-                                <div class="col-6  border-bottom text-start">Odometer:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">{{car.odometer}}</div>
+                            <div class="row pt-2 px-4">
+                                <div class="col-6  border-bottom text-start text-sm text-primary-color" style="padding-bottom: 8px;">Odometer:</div>
+                                <div class="col-6  border-bottom text-end fw-bold text-sm text-primary-color" style="padding-bottom: 8px;">{{car.odometer}}</div>
                             </div>                            
-                            <div class="row py-2 px-4">
-                                <div class="col-6  border-bottom text-start">Body Style:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">{{car.body_style.name_en}}</div>
+                            <div class="row pt-2 px-4">
+                                <div class="col-6  border-bottom text-start text-sm text-primary-color" style="padding-bottom: 8px;">Body Style:</div>
+                                <div class="col-6  border-bottom text-end fw-bold text-sm text-primary-color" style="padding-bottom: 8px;">{{car.body_style.name_en}}</div>
                             </div>
-                            <div class="row py-2 px-4">
-                                <div class="col-6  border-bottom text-start">Color:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">{{car.color.name_en}}</div>
+                            <div class="row pt-2 px-4">
+                                <div class="col-6  border-bottom text-start text-sm text-primary-color" style="padding-bottom: 8px;">Color:</div>
+                                <div class="col-6  border-bottom text-end fw-bold text-sm text-primary-color" style="padding-bottom: 8px;">{{car.color.name_en}}</div>
                             </div>
-                            <div class="row py-2 px-4">
-                                <div class="col-6  border-bottom text-start">Engine:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder"> {{car.engine_power}}{{car.engine_power_unit}} </div>
+                            <div class="row pt-2 px-4">
+                                <div class="col-6  border-bottom text-start text-sm text-primary-color" style="padding-bottom: 8px;">Engine:</div>
+                                <div class="col-6  border-bottom text-end fw-bold text-sm text-primary-color" style="padding-bottom: 8px;"> {{car.engine_power}}{{car.engine_power_unit}} </div>
                             </div>
-                            <div class="row py-2 px-4">
-                                <div class="col-6  border-bottom text-start">Number of seats:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">{{car.number_of_seats}}</div>
+                            <div class="row pt-2 px-4">
+                                <div class="col-6  border-bottom text-start text-sm text-primary-color" style="padding-bottom: 8px;">Number of seats:</div>
+                                <div class="col-6  border-bottom text-end fw-bold text-sm text-primary-color" style="padding-bottom: 8px;">{{car.number_of_seats}}</div>
                             </div>
-                            <div class="row py-2 px-4">
-                                <div class="col-6  border-bottom text-start">Transmission:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">{{car.transmission.name_en}}</div>
+                            <div class="row pt-2 px-4">
+                                <div class="col-6  border-bottom text-start text-sm text-primary-color" style="padding-bottom: 8px;">Transmission:</div>
+                                <div class="col-6  border-bottom text-end fw-bold text-sm text-primary-color" style="padding-bottom: 8px;">{{car.transmission.name_en}}</div>
                             </div>
-                            <div class="row py-2 px-4">
-                                <div class="col-6  border-bottom text-start">Drive:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">{{ car.drive.name_en }}</div>
+                            <div class="row pt-2 px-4">
+                                <div class="col-6  border-bottom text-start text-sm text-primary-color" style="padding-bottom: 8px;">Drive:</div>
+                                <div class="col-6  border-bottom text-end fw-bold text-sm text-primary-color" style="padding-bottom: 8px;">{{ car.drive.name_en }}</div>
                             </div>
-                            <div class="row py-2 px-4">
-                                <div class="col-6  border-bottom text-start">Fuel:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">{{car.fuel.name_en}}</div>
+                            <div class="row pt-2 px-4">
+                                <div class="col-6  border-bottom text-start text-sm text-primary-color" style="padding-bottom: 8px;">Fuel:</div>
+                                <div class="col-6  border-bottom text-end fw-bold text-sm text-primary-color" style="padding-bottom: 8px;">{{car.fuel.name_en}}</div>
                             </div>
-                            <div class="row py-2 px-4">
-                                <div class="col-6  border-bottom text-start">Keys:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">yes</div>
+                            <div class="row pt-2 px-4">
+                                <div class="col-6  border-bottom text-start text-sm text-primary-color" style="padding-bottom: 8px;">Keys:</div>
+                                <div class="col-6  border-bottom text-end fw-bold text-sm text-primary-color" style="padding-bottom: 8px;">yes</div>
                             </div>
-                            <div class="row py-2 px-4">
-                                <div class="col-6  border-bottom text-start">Highlights:</div>
-                                <div class="col-6  border-bottom text-end fw-bolder">N/A</div>
+                            <div class="row pt-2 px-4">
+                                <div class="col-6  border-bottom text-start text-sm text-primary-color" style="padding-bottom: 8px;">Highlights:</div>
+                                <div class="col-6  border-bottom text-end fw-bold text-sm text-primary-color" style="padding-bottom: 8px;">N/A</div>
                             </div>
                         </div>
                     </div>
@@ -274,8 +271,6 @@
       </div>
     </div>
     <button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> View Inventory</button>
-
-    <hr>
 
   </section>
 {% endblock %}
