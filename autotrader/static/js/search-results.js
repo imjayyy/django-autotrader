@@ -313,48 +313,57 @@ function update_results(data, current_page, total_pages) {
     if (element.all_media.length > 0 && element.all_media[0].img_url_from_api) { display_picture = element.all_media[0].img_url_from_api;}
 
     canvas += `<div class="row g-4">
-                            <div class="col-12 col-md-2">
+                           <div class="row g-4">
+                            <div class="col-12 col-md-2 ">
                                 <img src="${display_picture}"
-                                    class="img-fluid" alt="Car 1" style="width: 100px;">
+                                    class="img-fluid" alt="Car 1" style="width: 100%;">
                             </div>
-                            <div class="col-12 col-md-2">
-                                <strong class="fs-6 text-start">${element.make.name} ${element.model.name} ${element.year}</strong><br>
-                                <small class=" text-start">Lot #69400444</small>
+                            <div class="col-12 col-md-2 text-left">
+                                <p class="fs-6 text-start fw-bold m-0 text-primary-color " style="padding-bottom: 10px;">${element.make.name} ${element.model.name} ${element.year}</p>
+                                <p class=" text-start text-primary-red m-0" style="width:fit-content;background: rgba(255, 234, 235, 0.6);border-radius: 5px;padding: 4px;font-size: 12px;">Lot #69400444</p>
                             </div>
-                            <div class="col-12 col-md-2">                                
-                                Fuel Type: ${element.fuel.name_en} <br>
+                            <div class="col-12 col-md-2 text-left text-sm">                                
+                                <span class="fw-bold">Fuel Type:</span> ${element.fuel.name_en} <br>
                                 ${element.transmission.name_en} ${element.drive.name_en}
                             </div>
-                            <div class="col-12 col-md-2">
+                            <div class="col-12 col-md-2 text-left text-sm">
                                 
-                                Odometer: ${element.odometer} mi
+                                <span class="fw-bold">Odometer:</span> ${element.odometer} mi
                             </div>
-                            <div class="col-12 col-md-2 d-none d-sm-block">
+                            <div class="col-12 col-md-2 d-none d-sm-block text-left text-sm">
                                ${element.country.name}<br>
                                 
                             </div>
-                            <div class="col-12 col-md-2 d-none d-sm-block">
-                                Buy now: $${element.price}<br>
+                            <div class="col-12 col-md-2 d-none d-sm-block text-left text-sm">
+                                <span class="fw-bold">Buy now:</span> $${element.price}<br>
                                 <a href="/normal-car-details/${element.id}">
                                 <button class="btn btn-danger details-button mt-2">Details</button>
                                 </a>
                             </div>
+                        </div>
                         
-                        <div class="accordion acc-table my-2" id="carDetailsAccordion_${element.id}">
+                        <div class="accordion acc-table" id="carDetailsAccordion_${element.id}">
                             <div class="accordion-item-table">
                                 <h2 class="accordion-header-table" id="heading${element.id}">                                    
                                     <button class="accordion-button-table" onclick="change_accordion_text('accordian_btn_${element.id}')" id="accordian_btn_${element.id}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${element.id}" aria-expanded="false" aria-controls="collapse${element.id}">
                                         <span class="toggle-text">More Details</span>
                                     </button>
                                 </h2>
-                                <div id="collapse${element.id}" class="accordion-collapse collapse" aria-labelledby="heading${element.id}" data-bs-parent="#carDetailsAccordion_${element.id}">
+                                <div id="collapse${element.id}" class="accordion-collapse collapse detail-accordion-collapse" aria-labelledby="heading${element.id}" data-bs-parent="#carDetailsAccordion_${element.id}">
                                     <div class="accordion-body-table">
-                                        <div class="row text-center">
-                                            <div class="col-md-2"><span class="text-muted">Body Style:</span> <span class="detail-item">${element.body_style.name_en}</span></div>
-                                            <div class="col-md-2"><span class="text-muted">Fuel Type:</span> <span class="detail-item">${element.fuel.name_en} </span></div>
-                                            <div class="col-md-2"><span class="text-muted">Transmission:</span> <span class="detail-item"> ${element.transmission.name_en} </span></div>
-                                            <div class="col-md-2"><span class="text-muted">Drive:</span> <span class="detail-item">${element.drive.name_en}</span></div>
-                                            <div class="col-md-2"><span class="text-muted">Color:</span> <span class="detail-item"> ${element.color.name_en} </span></div>
+                                        <div class="row text-center justify-content-between">
+                                            <div class="col-md-2 d-flex flex-column gap-0.5 text-left">
+                                                <span class="text-color text-sm">
+                                                    Body Style:
+                                                </span> 
+                                                <span class="detail-item text-primary-color">
+                                                    ${element.body_style.name_en}
+                                                </span>
+                                            </div>
+                                            <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Fuel Type:</span> <span class="detail-item text-primary-color">${element.fuel.name_en} </span></div>
+                                            <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Transmission:</span> <span class="detail-item text-primary-color"> ${element.transmission.name_en} </span></div>
+                                            <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Drive:</span> <span class="detail-item text-primary-color">${element.drive.name_en}</span></div>
+                                            <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Color:</span> <span class="detail-item text-primary-color"> ${element.color.name_en} </span></div>
                                         </div>
                                     </div>
                                 </div>

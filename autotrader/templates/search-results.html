@@ -15,22 +15,41 @@
 
 
     .accordion-header-table, .acc-table  {
-      background-color: #fdecea; }
+      background-color: #fdecea;
+        margin-bottom: 0 !important;
+    }
+    .acc-table{
+        margin: 8px 0 0 0 !important;
+    }
+    .accordion-header-table{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 0;
+    }
+    .detail-accordion-collapse{
+        padding: 20px 8px !important;
+        .detail-item{
+            font-weight: 500;
+            font-size: 14px;
+        }
+    }
       
     .accordion-button-table {
             background-color: #fdecea; /* Light pink background */
-            color: #d32f2f; /* Red color */
-            font-weight: bold;
-            font-size: 16px;
+            color: #C91F3B; /* Red color */
+            font-weight: 400;
+            font-size: 14px;
             padding: 5px 10px; /* Reduce button padding */
             border: none;
             outline: none;
             display: inline-block;
             max-width: 200px; /* Prevents it from stretching */
             text-align: center;
+            padding: 0 !important;
         }
         .accordion-button-table:not(.collapsed) {
-            color: #d32f2f;
+            color: #C91F3B;
             background-color: #fdecea;
             box-shadow: none;
         }
@@ -369,28 +388,28 @@
             <!-- Results Section -->
             <div class="results-table">
                 <div class=" d-none d-sm-block">                    
-                    <div class="row g-4 rounded-top p-2">
-                        <div class="col-12 col-md-2 bg-dark text-white p-2 border-end">
-                            <strong>Image</strong>
+                    <div class="row g-4 rounded-top p-0" style="margin: 12px 12px 0 12px;">
+                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end m-0" style="border-top-left-radius: 5px;height: fit-content;">
+                            <span class="m-0 text-sm font-medium">Image</span>
                         </div>
-                        <div class="col-12 col-md-2 bg-dark text-white p-2 border-end">
-                            <strong>Make/Model</strong>
+                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end text-left m-0" style="height: fit-content;">
+                            <span class="m-0 text-sm font-medium">Make/Model</span>
                         </div>
-                        <div class="col-12 col-md-2 bg-dark text-white p-2 border-end">
-                            <strong>Vehicle Info</strong>
+                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end text-left m-0" style="height: fit-content;">
+                            <span class="m-0 text-sm font-medium">Vehicle Info</span>
                         </div>
-                        <div class="col-12 col-md-2 bg-dark text-white p-2 border-end">
-                            <strong>Mileage</strong>
+                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end text-left m-0" style="height: fit-content;">
+                            <span class="m-0 text-sm font-medium">Mileage</span>
                         </div>
-                        <div class="col-12 col-md-2 bg-dark text-white p-2 border-end">
-                            <strong>Country</strong>
+                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end text-left m-0" style="height: fit-content;">
+                            <span class="m-0 text-sm font-medium">Country</span>
                         </div>
-                        <div class="col-12 col-md-2 bg-dark text-white p-2 border-end">
-                            <strong>Sale Info</strong>
+                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end text-left m-0" style="border-top-right-radius: 5px;height: fit-content;">
+                            <span class="m-0 text-sm font-medium">Sale Info</span>
                         </div>
                     </div>
                 </div>
-                    <div class="container py-5" id="table_results">
+                    <div class="container" id="table_results">
                         <!-- First Row -->
                         <div class="row g-4">
                             <div class="col-12 col-md-2">
@@ -420,7 +439,7 @@
                                 <button class="btn btn-danger details-button mt-2">Details</button>
                             </div>
                         </div>
-                        <div class="more-details btn-danger text-danger w-100 my-2"> More Details + </div>                                    
+                        <div class="more-details btn-danger text-danger w-100 my-2"> More Details + </div>
                     
                         <!-- Second Row -->
                          <div class="row g-4">

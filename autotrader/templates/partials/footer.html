@@ -129,10 +129,55 @@
                 
             <div>{% trans "CALCULATOR" %}</div>
         </a>
-        <a href="/#search" class="active rounded-circle">
+        <a data-bs-toggle="modal" data-bs-target="#searchModal2" class="active rounded-circle">
             <i class="bi bi-search text-white"></i>
         </a>
-        <a href="#notification" class="text-center">
+         <div class="modal fade search-modal" id="searchModal2" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+             <div class="modal-dialog ">
+                 <div class="modal-content container">
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                     <div class="modal-body">
+                         <form>
+                             <div class="row align-items-center">
+                                 <!-- Search Input -->
+                                 <div class="col-lg-8 col-md-7 col-sm-12 mb-3">
+                                     <div class="input-group">
+                                         <span class="input-group-text bg-white border-0"><i class="bi bi-search"></i></span>
+                                         <input type="text" id="text-search" class="form-control" placeholder="Search Vehicles by Make, Model, Lot number" aria-label="Search">
+                                     </div>
+                                 </div>
+
+                                 <!-- Checkboxes -->
+                                 <div class="col-lg-2 col-md-3 col-sm-6 mb-3">
+                                     <div class="row g-5">
+
+                                         <div class="col-6">
+                                             <div class="form-check">
+                                                 <input class="form-check-input" type="radio" value="auction" name="search_type" id="auctionCheckbox">
+                                                 <label class="form-check-label checkbox-label" for="auctionCheckbox">Auction</label>
+                                             </div>
+                                         </div>
+                                         <div class="col-6">
+                                             <div class="form-check">
+                                                 <input class="form-check-input" type="radio" value="normal" name="search_type" id="otherCheckbox" checked>
+                                                 <label class="form-check-label checkbox-label" for="otherCheckbox">Other</label>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <!-- Search Button -->
+                                 <div class="col-lg-2 col-md-2 col-sm-6 mb-3">
+                                     <button type="button" class="btn search-button" id="searchByText" >Search</button>
+                                 </div>
+                             </div>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+         <a href="#notification" class="text-center">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.98 2.90991C15.29 2.90991 17.98 5.59991 17.98 8.90991V11.7999C17.98 12.4099 18.24 13.3399 18.55 13.8599L19.7 15.7699C20.41 16.9499 19.92 18.2599 18.62 18.6999C14.31 20.1399 9.66003 20.1399 5.35003 18.6999C4.14003 18.2999 3.61003 16.8699 4.27003 15.7699L5.42003 13.8599C5.72003 13.3399 5.98003 12.4099 5.98003 11.7999V8.90991C5.98003 5.60991 8.68003 2.90991 11.98 2.90991Z" stroke="#8D94AD" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
                 <path d="M10.13 3.19994C10.44 3.10994 10.76 3.03994 11.09 2.99994C12.05 2.87994 12.97 2.94994 13.83 3.19994C13.54 2.45994 12.82 1.93994 11.98 1.93994C11.14 1.93994 10.42 2.45994 10.13 3.19994Z" stroke="#8D94AD" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>

@@ -175,8 +175,17 @@ body{
 .text-primary-color{
     color: #2B3339;
 }
+.bg-primary-color{
+    background-color: #2B3339;
+}
+.text-primary-red{
+    color: #C91F3B;
+}
 .text-secondary-color{
     color: #8D94AD;
+}
+.text-color{
+    color: rgba(102, 102, 102, 1);
 }
 .form-element{
     width: 100%;
@@ -184,6 +193,58 @@ body{
     border-radius: 5px;
     padding: 11px 20px;
     font-weight: 700;
+}
+.new-card{
+    min-height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px !important;
+}
+.card-slider-image{
+    max-height: 250px !important;
+    &>img{
+        max-height: 250px !important;
+    }
+}
+.card-image-main-wrapper{
+    max-height: 250px;
+
+}
+.card-image-pagination{
+    top: auto !important;
+    height: fit-content;
+    /*background: white;*/
+    bottom: 60px !important;
+    display: flex;
+    justify-content: center;
+
+    .swiper-pagination-bullet-active{
+        background-color: rgba(255, 255, 255, 1) !important;
+        width: 16px !important;
+        max-width: 16px !important;
+        height: 4px !important;
+        border-radius: 999px !important;
+    }
+    .swiper-pagination-bullet:not(.swiper-pagination-bullet-active){
+        background-color: rgba(255, 255, 255, 0.6) !important;
+        width: 10px !important;
+        max-width: 10px !important;
+        height: 4px !important;
+        border-radius: 999px !important;
+    }
+}
+.card-fav-icon-wrapper{
+    max-height: 32px;
+    height: 32px;
+    width: 32px;
+    max-width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text-left{
+    text-align: left;
 }
 .notification-number{
     width: 15px;
@@ -225,6 +286,36 @@ body{
 .py-10{
     padding-top: 40px !important; /*40 px*/
     padding-bottom: 40px !important; /*40 px*/
+}
+.py-2\.5{
+    padding-top: 0.75rem !important; /*12 px*/
+    padding-bottom: 0.75rem !important; /*12 px*/
+}
+.mt-2\.75{
+    margin-top: 0.75rem !important; /*12 px*/
+}
+.px-2\.75{
+    padding-left: 0.875rem !important; /*14 px*/
+    padding-right: 0.875rem !important; /*14 px*/
+}
+
+.text-sm{
+    font-size: 14px !important;
+}
+.text-lg{
+    font-size: 18px !important;
+}
+.text-3xl{
+    font-size: 32px !important;
+}
+.text-2xl{
+    font-size: 24px !important;
+}
+.font-medium{
+    font-weight: 500 !important;
+}
+.font-semibold{
+    font-weight: 600 !important;
 }
 .vertical-divider{
     background-color: #868FA0;

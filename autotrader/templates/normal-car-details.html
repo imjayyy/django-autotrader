@@ -19,7 +19,7 @@
         </nav>
         <div>
             <h4 class="text-start hero-sub-text">{{car.year}} {{car.make.name}} {{car.model.name}}</h4>
-            <p class="text-start fs-6">Lot <strong># 46296444</strong> | Sale Location:<span class="text-danger"> OH -
+            <p class="text-start fs-6 mb-0">Lot <strong># 46296444</strong> | Sale Location:<span class="text-danger"> OH -
                     DAYTON </span> OH - DAYTON | Sale Date: <strong>March 22, 2024, 2 p.m.</strong></p>
         </div>
     </div>
@@ -29,7 +29,7 @@
 
         <div class="row">
             <!-- car carousel -->
-            <div class="col-md-8 col-sm-12 mt-4 mb-3 p-3">
+            <div class="col-md-8 col-sm-12 mt-5 mb-3 p-3 pt-0">
                
                 {% include 'partials/components/car-carousel.html' with media=car.all_media status=car.status label_list=car.label_list  %}
 
@@ -85,18 +85,23 @@
                         <div class="text-start m-3">
 
                             <div class="row">
-                                <div class="col">
-                                    <div class="text-muted text-decoration-line-through">
+                                <div class="col" style="margin-bottom: 20px;">
+                                    <div class="text-secondary-color text-lg text-decoration-line-through">
                                         <small>{{car.before_discount_price}}</small>
                                     </div>
-                                    <h3 class="fw-bold mb-0"> {{car.currency}}{{car.price}} <span class="text-muted fs-6 mb-3">({{car.price_azn}})</span></h3>
+                                    <div class="d-flex align-items-center gap-1.5">
+                                        <h3 class="fw-bold mb-0 text-2xl text-primary-color">
+                                            {{car.currency}}{{car.price}}
+                                        </h3>
+                                        <span class="text-primary-color text-lg font-medium">
+                                            ({{car.price_azn}})
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="col">
-                                    <div class="d-flex align-items-end justify-content-end mb-3 text-end">
-                                        <span class="me-2">Country</span>
-                                        <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg"
-                                            alt="Germany Flag" style="width: 25px; height: auto;" class="me-1" />
-                                        <strong>{{car.country.name}}</strong>
+                                    <div class="d-flex flex-column align-items-start justify-content-end" style="width: fit-content;margin-left: auto;">
+                                        <span class="text-secondary-color text-sm">Country</span>
+                                        <span class="fs-6 font-medium m-0 text-primary-color">{{car.country.name}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -248,9 +253,9 @@
 <section class="container mt-5">
     <div class="red-line"></div>
 
-    <h2 class="text-start text-heading mb-4"> Similar <span class="text-danger">Vehicles</span></h2>
-    <p class="text-start">Browse vehicles in Azerbaijan, ready for you to drive home today.</p>
-    <div class="row g-0 py-5 d-none d-md-flex">
+    <h2 class="text-start text-heading mb-1"> Similar <span class="text-danger">Vehicles</span></h2>
+    <p class="text-start m-0">Browse vehicles in Azerbaijan, ready for you to drive home today.</p>
+    <div class="row g-0 py-10 d-none d-md-flex gap-1.5 justify-content-between">
 
         {% for vehicle in vehicles_in_az %}
         {% include 'partials/components/car-card.html' with vehicle=vehicle %}
@@ -264,7 +269,7 @@
         {% for vehicle in vehicles_in_az %}
           <div class="carousel-item {{ forloop.first|yesno:'active,' }}">
             {% include 'partials/components/car-card.html' with vehicle=vehicle %}
-            </div>
+          </div>
           {% endfor %}   
       </div>
     </div>
