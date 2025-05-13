@@ -43,6 +43,8 @@ class Color(models.Model):
 class Status(models.Model):
     name_az = models.TextField()
     name_en = models.TextField()
+    color_hex = models.CharField(max_length=7,  null=True, blank=True)
+    font_awesome_icon = models.TextField( null=True, blank=True)
 
     def __str__(self):
         return self.name_en
@@ -101,6 +103,7 @@ class Vehicle(models.Model):
     year = models.IntegerField()
     engine_power_unit = models.CharField(max_length=50,blank=True, null=True)
     engine_power = models.IntegerField(blank=True, null=True)
+    engine_type = models.CharField(max_length=50,blank=True, null=True)
     comment = RichTextField(blank=True, null=True)
     VIN = models.TextField()
     currency = models.TextField()

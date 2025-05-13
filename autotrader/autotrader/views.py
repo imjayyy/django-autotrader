@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.shortcuts import redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.contrib import messages
@@ -22,38 +22,16 @@ import re
 ADMIN_USER_EMAIL= settings.ADMIN_USER_EMAIL
 EMAIL_HOST_USER = settings.EMAIL_HOST_USER
 
+
+def is_valid_phone_number(phone_number):
+    # pattern = r'^[\d\s\-/]+$'    
+    # return bool(re.match(pattern, phone_number))
+    return not re.search(r'[^\d\s\-/]', phone_number)
+
+
 def home(request):
     if request.method == "POST" and "Callback" in request.POST:
-        name = request.POST.get("name")
-        country_code = request.POST.get("country_code")
-        phone = request.POST.get("phone")
-
-        # Optionally, add server-side validation
-        if name and country_code and phone:
-            # Here you can save it to DB, send an email, or trigger any logic
-            # For now, we'll just print it (or you can save it)
-
-            print(f"Callback Request: {name}, {country_code} {phone}")
-
-
-            send_mail(
-                "Call back request from AutoTrader django website",
-                f"Callback Request: {name}, {country_code} {phone}",
-                EMAIL_HOST_USER,
-                [ADMIN_USER_EMAIL],
-                fail_silently=False,
-            )
-            Callback.objects.create(
-                name=name,
-                country_code=country_code,
-                phone=phone
-            )
-                        # Show a success message
-            # messages.success(request, "Your callback request has been submitted!")
-            return render(request, 'thank-you.html')  # Redirect to avoid form resubmission
-        else:
-            messages.error(request, "Please fill in all fields.")
-
+        pass
     vehicles_in_az = Vehicle.objects.filter(country = 3, is_popular = True, is_published = True).order_by("?")[:3]  # Fetch 3 random vehicles
     vehicles_in_az_serializer = VehicleListSerializer(vehicles_in_az, many=True)
 
@@ -83,6 +61,39 @@ def home(request):
                                          "form_fields": form_fields})
 
 
+def form_submission(request):
+    name = request.POST.get("name")
+    country_code = request.POST.get("country_code")
+    phone = request.POST.get("phone")
+
+
+    # Optionally, add server-side validation
+    if name and country_code and phone and is_valid_phone_number(phone):
+        # Here you can save it to DB, send an email, or trigger any logic
+        # For now, we'll just print it (or you can save it)
+
+        print(f"Callback Request: {name}, {country_code} {phone}")
+
+
+        send_mail(
+            "Call back request from AutoTrader django website",
+            f"Callback Request: {name}, {country_code} {phone}",
+            EMAIL_HOST_USER,
+            [ADMIN_USER_EMAIL],
+            fail_silently=False,
+        )
+        Callback.objects.create(
+            name=name,
+            country_code=country_code,
+            phone=phone
+        )
+        return JsonResponse({"status": "success", "message": "Your callback request has been submitted!"})    
+    elif not is_valid_phone_number(phone):
+        return JsonResponse({"status": "error", "message": "Invalid phone number format."})
+    else:
+        return JsonResponse({"status": "error", "message": "Please fill in all fields."})
+
+
 def search_results(request):
 
     form_fields = {
@@ -92,7 +103,8 @@ def search_results(request):
         'Fuel': list(Fuel.objects.values("id", "name_en", "name_az")),
         'BodyStyle': list(BodyStyle.objects.values("id", "name_en", "name_az")),
         'Color': list(Color.objects.values("id", "name_en", "name_az")),        
-        'country': list(Country.objects.values("id", "name")),        
+        'country': list(Country.objects.values("id", "name")),
+        'engine_type': list(Vehicle.objects.values_list("engine_type", flat=True).distinct()) ,       
     }
     query_params = request.GET.dict()
     # query_params= {key: value for key, value in query_params.items() if value}

@@ -138,6 +138,15 @@ function update_cars_data(page=1){
     }
     );
 
+    let selectedEngineTypes = [];
+    let selectedEngineTypesNames = []
+    document.querySelectorAll('input[name="engine_type"]:checked').forEach((checkbox) => {
+        selectedEngineTypes.push(checkbox.value);
+        selectedEngineTypesNames.push({"id": checkbox.value,  "name": checkbox.getAttribute('name-attr')});
+    }
+    );
+
+
     let odometerMin = document.querySelector('input[name="odometer_min"]').value;
     let odometerMax = document.querySelector('input[name="odometer_max"]').value;
 
@@ -148,8 +157,13 @@ function update_cars_data(page=1){
     let year_min = document.querySelector('input[name="year_min"]').value;
     let year_max = document.querySelector('input[name="year_max"]').value;
 
+
+
     let sorting_by = document.getElementById('sortBy').value;
     let sorting_order = document.getElementById('sortBtn').getAttribute('data-order');
+
+    console.log("selectedEngineTypes:", selectedEngineTypes);
+
 
     let filterParams = {
         page: page,
@@ -169,7 +183,9 @@ function update_cars_data(page=1){
         year_max: year_max, 
 
         sorting_by: sorting_by,
-        sorting_order: sorting_order
+        sorting_order: sorting_order,
+        engine_type: selectedEngineTypes,
+
     };
 
     let filterTags = {
@@ -187,6 +203,7 @@ function update_cars_data(page=1){
         "price_max": priceMax,
         "year_min": year_min,
         "year_max": year_max,
+        "engine_type": selectedEngineTypesNames,
     }
 
     console.log("filterTags:", filterTags);

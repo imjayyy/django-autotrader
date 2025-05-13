@@ -1,6 +1,5 @@
 {% load static %}
-{% load custom_tags %}
-
+{% load custom_tags %} <!-- Load the humanize library -->
 {% load i18n %} <!-- Load the i18n library -->
 
 
@@ -48,7 +47,7 @@
         <div class="d-flex flex-column justify-content-start align-items-start">
           <span class="text-danger text-sm font-medium">Sedan</span>
           <h5 class="text-primary-color m-0 font-medium text-lg text-start hero-sub-text">{{ vehicle.make.name}} {{ vehicle.model.name }} ({{ vehicle.year }}) </h5>
-          <p class="text-danger fs-5 fw-bolder font-semibold text-start m-0">{{ vehicle.price }} {{"$"}} <span
+          <p class="text-danger fs-5 fw-bolder font-semibold text-start m-0">{{ vehicle.price|format_big_number }} {{"$"}} <span
                   class="text-secondary-color text-decoration-line-through fw-normal text-sm ">{{ vehicle.price|add_thousand }}$</span></p>
 
         </div>

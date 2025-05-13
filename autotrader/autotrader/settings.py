@@ -142,6 +142,15 @@ TEMPLATES = [
             ],
         },
     },
+
+    #     {
+    #     'BACKEND': 'django.template.backends.jinja2.Jinja2',
+    #     'DIRS': [BASE_DIR / 'templates'],  # Your Jinja2 templates
+    #     'APP_DIRS': True,
+    #     'OPTIONS': {
+    #         'environment': 'autotrader.jinja2_env.environment',
+    #     },
+    # },
 ]
 
 WSGI_APPLICATION = 'autotrader.wsgi.application'

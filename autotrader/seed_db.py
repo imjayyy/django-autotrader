@@ -219,8 +219,20 @@ def insert_sample_vehicle_images():
     print("Sample vehicle images inserted successfully!")
 
 # insert_models_make()
-insert_sample_data()
-insert_sample_vehicle_images()
+# insert_sample_data()
+# insert_sample_vehicle_images()
 
 
+def add_engine_type():
+    vehicles = Vehicle.objects.all()
+    for vehicle in vehicles:
+        if vehicle.fuel.id == 3:
+            types_ = ["BLDC", "AC Induction", "Switched Reluctance", "Permanent Magnet"]
+            vehicle.engine_type = random.choice(types_)
+        else:
+            types_ = ["Inline", "V", "Flat", "W", "Rotary"]
+            vehicle.engine_type = random.choice(types_)
+        vehicle.save()
+    print("Engine type added successfully!")
 
+add_engine_type()

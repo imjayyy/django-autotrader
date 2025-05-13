@@ -38,6 +38,7 @@ urlpatterns = [
     path('text-search/', views.text_search, name='text-search'),
     path('information', views.information, name='information'),
     path('create-order/<int:id>/', views.create_order, name='create-order'),
+    path('form-submission/', views.form_submission, name='form-submission'),
 ]
 
 urlpatterns += [

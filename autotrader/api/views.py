@@ -29,7 +29,7 @@ def get_car_models_from_id(request):
 def search_api(request):
     filters = {}
 
-    print(request.GET)
+    print('request: ', request.GET)
     # Get filter parameters from request
     page= request.GET.get("page")
     make = request.GET.getlist("make[]")
@@ -48,8 +48,10 @@ def search_api(request):
     odometerMin = request.GET.get("odometerMin")
     year_min = request.GET.get("year_min")
     year_max = request.GET.get("year_max")
+    engine_type = request.GET.getlist("engine_type[]")
     # is_published = request.GET.get("is_published")
 
+    print( "Engine Tupe", engine_type )
     # Convert lists of IDs to integers
     make = [int(m) for m in make if m.isdigit()]
     model = [int(m) for m in model if m.isdigit()]
@@ -59,6 +61,7 @@ def search_api(request):
     color = [int(c) for c in color if c.isdigit()]
     body_style = [int(b) for b in body_style if b.isdigit()]
     country = [int(c) for c in countrys if c.isdigit()]
+    # engine_type = [e for e in engine_type]
 
 
     # Apply filters
@@ -125,7 +128,9 @@ def search_api(request):
         filters["year__gte"] = int(year_min)
     if year_max and year_max != "any":
         filters["year__lte"] = int(year_max)
-    
+    if engine_type:
+        filters["engine_type__in"] = engine_type
+
     filters["is_published"] = True
     # Query database with optimized field selection
     # vehicles = Vehicle.objects.filter(**filters)
