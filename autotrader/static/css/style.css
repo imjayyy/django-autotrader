@@ -535,12 +535,19 @@ p {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
+    @media (max-width: 767px) {
+        /*flex-direction: column;*/
+        /*gap: 10px;*/
+        /*align-items: flex-start;*/
+    }
 }
-
-.results-table {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
+#total-page-view{
+    font-size: 18px;
+}
+@media (max-width: 767px) {
+    #total-page-view{
+        font-size: 14px;
+    }
 }
 
 .table th {
@@ -557,6 +564,13 @@ p {
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 20px;
+}
+.search-result-mobile-wrapper{
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding: 10px;
 }
 
 .table th {

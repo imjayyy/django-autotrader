@@ -77,21 +77,95 @@
             margin-bottom: 8px;
         }
 
-        .mobileFilterWrapper{
+        .mobileFilterWrapperOdometer,.mobileFilterWrapperPrice,.mobileFilterWrapperYear{
+            .mobileFilterDialog{
+                height: fit-content;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                .modal-body{
+                    input{
+                        border-radius: 5px !important;
+                    }
+                    button{
+                        width: 100%;
+                        height: 55px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 24px;
+                    }
+                }
+            }
+            .modal-content{
+                min-height:max-content !important;
+            }
+        }
+        .mobileFilterWrapper,.mobileFilterWrapperMake,.mobileFilterWrapperOdometer,.mobileFilterWrapperPrice,.mobileFilterWrapperTransmission,.mobileFilterWrapperFuelType,.mobileFilterWrapperBodyStyle,.mobileFilterWrapperCountry,.mobileFilterWrapperDrive,.mobileFilterWrapperYear{
             .mobileFilterDialog{
                 margin: 0 !important;
 
                 .modal-content{
                     border-radius: 0 !important;
                     min-height: 100vh;
+                    padding: 12px 0 !important;
                     .close-modal{
                         border: none;
                         width: fit-content;
                         background: transparent;
                         font-size: 24px;
                     }
+                    .text-heading{
+                        font-size: 18px !important;
+                        font-weight: 400 !important;
+                        background: transparent;
+                        border: none !important;
+                        width: 100%;
+                        padding: 15px 20px  !important;
+                        text-decoration: none;
+                        &:focus{
+                            outline: none;
+                        }
+                        i{
+                            -webkit-text-stroke-width: 1px;
+                        }
+                    }
+
+                    .form-wrapper{
+                        padding: 20px 16px  !important;
+                        text-decoration: none;
+
+                        .form-check{
+                            padding: 15px 20px  !important;
+                            border-bottom: 1px solid rgba(125, 143, 171, 0.1);
+                            margin: 0 !important;
+
+                            display: flex;
+                            flex-direction: row-reverse;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            color: rgba(43, 51, 57, 1);
+                            font-size: 18px;
+                            &:first-child{
+                                border-top: 1px solid rgba(125, 143, 171, 0.1);
+                            }
+                        }
+                    }
                     .modal-body{
-                      padding: 0 !important;
+                        padding: 0;
+
+
+                        .accordion-flush>.accordion-item:first-child{
+                            border-top: 1px solid rgba(141, 148, 173, 0.1);
+                        }
+                        .accordion-flush>.accordion-item:last-child{
+                            border-bottom: 1px solid rgba(141, 148, 173, 0.1);
+                        }
+                        .accordion-flush>.accordion-item{
+                            border-color: rgba(141, 148, 173, 0.1);
+                        }
                     }
                 }
             }
@@ -128,7 +202,7 @@
 <section>
 <div class="container mt-4">
     <div class="row">
-        <!-- Filters Sidebar -->
+        <!-- Filters Sidebar For Desktop -->
         <div class="d-none d-md-block col-md-3">
             <div class="filters-box mb-3">
                 <button
@@ -458,7 +532,9 @@
               </div>
         </div>
 
+        <!-- Filters Modal For Mobile -->
         <div class="d-block d-md-none">
+            <!--            Trigger Button For Main Filter Modal-->
             <a data-bs-toggle="modal" data-bs-target="#mobileFilter" type="button" class="filters-button d-flex justify-content-center align-items-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M18 5H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -474,14 +550,252 @@
                 <span class="m-0 text-primary-color fs-6 font-medium">Filters</span>
             </a>
 
-            <div class="modal fade search-modal mobileFilterWrapper" id="mobileFilter" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+            <!--            Modal For Vehicle Make-->
+            <div class="modal fade search-modal mobileFilterWrapperMake" id="mobileFilterMake" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
                 <div class="modal-dialog mobileFilterDialog">
                     <div class="modal-content container">
-                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Vehicle Make</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body form-wrapper">
+                            {% for make in form_fields.make %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="make_{{make.id}}" name="make" value="{{make.id}}" name-attr="{{make.name}}" onclick="update_models()">
+                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                    {{make.name}}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            Modal For Odometer-->
+            <div class="modal fade search-modal mobileFilterWrapperOdometer" id="mobileFilterOdometer" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Odometer</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body form-wrapper">
+                            <div class="d-flex align-items-center" style="gap:12px;">
+                                <div>
+                                    <label class="form-label text-start"  style="display: block;">Min</label>
+                                    <input aria-label="Min" class="form-control" type="text" name="odometer_min">
+                                </div>
+                                <div>
+                                    <label class="form-label text-start" style="display: block;">Max</label>
+                                    <input aria-label="Max" class="form-control" type="text" name="odometer_max">
+                                </div>
+
+                            </div>
+                            <button class="btn btn-danger" onclick="update_cars_data()"> Confirm </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            Modal For Price-->
+            <div class="modal fade search-modal mobileFilterWrapperPrice" id="mobileFilterPrice" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Price</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body form-wrapper">
+                            <div class="d-flex align-items-center" style="gap:12px;">
+                                <div>
+                                    <label class="form-label text-start"  style="display: block;">Min</label>
+                                    <input aria-label="Min" class="form-control" type="text" name="price_min">
+                                </div>
+                                <div>
+                                    <label class="form-label text-start" style="display: block;">Max</label>
+                                    <input aria-label="Max" class="form-control" type="text" name="price_max">
+                                </div>
+
+                            </div>
+                            <button class="btn btn-danger" onclick="update_cars_data()"> Confirm </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            Modal For Transmission-->
+            <div class="modal fade search-modal mobileFilterWrapperTransmission" id="mobileFilterTransmission" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Transmission</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body form-wrapper">
+                            {% for trans in  form_fields.Transmission %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="trans_{{trans.id}}" name="Transmission"  name-attr="{{trans.name_en}}"  value="{{trans.id}}" onclick="update_cars_data()">
+                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                    {{trans.name_en}}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            Modal For Fuel Type-->
+            <div class="modal fade search-modal mobileFilterWrapperFuelType" id="mobileFilterFuelType" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Fuel Type</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body form-wrapper">
+                            {% for fuel in form_fields.Fuel %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="fuel_{{fuel.id}}" name="fuel" value="{{fuel.id}}"  name-attr="{{fuel.name_en}}"  onclick="update_cars_data()">
+                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                    {{fuel.name_en}}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            Modal For Body Style-->
+            <div class="modal fade search-modal mobileFilterWrapperBodyStyle" id="mobileFilterBodyStyle" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Body Style</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body form-wrapper">
+                            {% for bs in form_fields.BodyStyle %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="bs_{{bs.id}}" name="BodyStyle" value="{{bs.id}}"  name-attr="{{bs.name_en}}"  onclick="update_cars_data()">
+                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                    {{bs.name_en}}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            Modal For Country-->
+            <div class="modal fade search-modal mobileFilterWrapperCountry" id="mobileFilterCountry" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Country</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body form-wrapper">
+                            {% for country in form_fields.country %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="country_{{country.id}}" name="country" value="{{country.id}}"  name-attr="{{country.name}}"  onclick="update_cars_data()">
+                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                    {{country.name}}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            Modal For Drive-->
+            <div class="modal fade search-modal mobileFilterWrapperDrive" id="mobileFilterDrive" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Drive</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body form-wrapper">
+                            {% for drive in form_fields.Drive %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="drive_{{drive.id}}" name="Drive" value="{{drive.id}}"  name-attr="{{drive.name_en}}"  onclick="update_cars_data()">
+                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                    {{drive.name_en}}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            Modal For Year-->
+            <div class="modal fade search-modal mobileFilterWrapperYear" id="mobileFilterYear" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Year</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body form-wrapper">
+                            <div class="d-flex align-items-center" style="gap:12px;">
+                                <div style="width: 100%;">
+                                    <label class="form-label text-start" style="display: block;">Min</label>
+                                    <input aria-label="Min" class="form-control" type="number" min="1900" max="2050" name="year_min">
+                                </div>
+                                <div  style="width: 100%;">
+                                    <label class="form-label text-start" style="display: block;">Max</label>
+                                    <input aria-label="Max" class="form-control" type="number" min="1900" max="2050" name="year_max">
+                                </div>
+
+                            </div>
+                            <button class="btn btn-danger" onclick="update_cars_data()"> Confirm </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade search-modal mobileFilterWrapper" id="mobileFilter" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
                             <button type="button" class="close-modal" data-bs-dismiss="modal" aria-label="Close">
                                 <i class="bi bi-arrow-left"></i>
                             </button>
-                            <p class="m-0 text-primary-color fs-6 font-medium">Filters</p>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Filters</p>
                             <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
                         </div>
                         <div class="modal-body">
@@ -489,208 +803,155 @@
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Vehicle Make
-                                        </button>
+                                        <a
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterMake"
+                                        >
+                                            <span>Vehicle Make</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+                                        </a>
                                     </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-
-                                            {% for make in form_fields.make %}
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="make_{{make.id}}" name="make" value="{{make.id}}" name-attr="{{make.name}}" onclick="update_models()">
-                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
-                                                    {{make.name}}
-                                                </label>
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
                                 </div>
 
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Model
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <div id="models_form">
+<!--                                <div class="accordion-item">-->
+<!--                                    <h2 class="accordion-header" id="headingTwo">-->
+<!--                                        <button-->
+<!--                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"-->
+<!--                                                type="button"-->
+<!--                                        >-->
+
+<!--                                            <span>Model</span>-->
+<!--                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>-->
+
+<!--                                        </button>-->
+<!--                                    </h2>-->
+<!--                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">-->
+<!--                                        <div class="accordion-body">-->
+<!--                                            <div id="models_form">-->
 
 
 
-                                            </div>
+<!--                                            </div>-->
 
-                                        </div>
-                                    </div>
-                                </div>
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFive">
-                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                            Odometer
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterOdometer"
+                                        >
+
+                                            <span>Odometer</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+
                                         </button>
                                     </h2>
-                                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <label class="form-label text-start"  style="display: block;">Min</label>
-                                                    <input class="form-control" type="text" name="odometer_min" id="">
-                                                </div>
-                                                <div class="col-2"> - </div>
-                                                <div class="col-5">
-                                                    <label class="form-label text-start" style="display: block;">Max</label>
-                                                    <input class="form-control" type="text" name="odometer_max" id="">
-                                                </div>
-                                                <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingEight">
-                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                                            Price
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterPrice"
+                                        >
+
+                                            <span>Price</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+
                                         </button>
                                     </h2>
-                                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <label class="form-label text-start"  style="display: block;">Min</label>
-                                                    <input class="form-control" type="text" name="price_min" id="">
-                                                </div>
-                                                <div class="col-2"> - </div>
-                                                <div class="col-5">
-                                                    <label class="form-label text-start" style="display: block;">Max</label>
-                                                    <input class="form-control" type="text" name="price_max" id="">
-                                                </div>
-                                                <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingThree">
-                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            Transmission
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterTransmission"
+                                        >
+
+                                            <span>Transmission</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+
                                         </button>
                                     </h2>
-                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-
-
-                                            {% for trans in  form_fields.Transmission %}
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="trans_{{trans.id}}" name="Transmission"  name-attr="{{trans.name_en}}"  value="{{trans.id}}" onclick="update_cars_data()">
-                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
-                                                    {{trans.name_en}}
-                                                </label>
-                                            </div>
-                                            {% endfor %}
-
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingSix">
-                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                            Fuel Type
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterFuelType"
+                                        >
+
+                                            <span>Fuel Type</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+
                                         </button>
                                     </h2>
-                                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            {% for fuel in form_fields.Fuel %}
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="fuel_{{fuel.id}}" name="fuel" value="{{fuel.id}}"  name-attr="{{fuel.name_en}}"  onclick="update_cars_data()">
-                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
-                                                    {{fuel.name_en}}
-                                                </label>
-                                            </div>
-                                            {% endfor %}
-
-                                        </div>
-                                    </div>
                                 </div>
 
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingSeven">
-                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                            Body Style
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterBodyStyle"
+                                        >
+
+                                            <span>Body Style</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+
                                         </button>
                                     </h2>
-                                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            {% for bs in form_fields.BodyStyle %}
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="bs_{{bs.id}}" name="BodyStyle" value="{{bs.id}}"  name-attr="{{bs.name_en}}"  onclick="update_cars_data()">
-                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
-                                                    {{bs.name_en}}
-                                                </label>
-                                            </div>
-                                            {% endfor %}
-
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingNine">
-                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                                            Country
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterCountry"
+                                        >
+
+                                            <span>Country</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+
                                         </button>
                                     </h2>
-                                    <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            {% for country in form_fields.country %}
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="country_{{country.id}}" name="country" value="{{country.id}}"  name-attr="{{country.name}}"  onclick="update_cars_data()">
-                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
-                                                    {{country.name}}
-                                                </label>
-                                            </div>
-                                            {% endfor %}
-
-                                        </div>
-                                    </div>
                                 </div>
 
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFour">
-                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                            Drive
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterDrive"
+                                        >
+
+                                            <span>Drive</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+
                                         </button>
                                     </h2>
-                                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            {% for drive in form_fields.Drive %}
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="drive_{{drive.id}}" name="Drive" value="{{drive.id}}"  name-attr="{{drive.name_en}}"  onclick="update_cars_data()">
-                                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
-                                                    {{drive.name_en}}
-                                                </label>
-                                            </div>
-                                            {% endfor %}
-
-
-                                        </div>
-                                    </div>
                                 </div>
 
 
@@ -699,28 +960,18 @@
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTen">
-                                        <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                                            Year
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterYear"
+                                        >
+
+                                            <span>Year</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+
                                         </button>
                                     </h2>
-                                    <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <label class="form-label text-start"  style="display: block;">Min</label>
-                                                    <input class="form-control" type="number" min="1900" max="2050" name="year_min" id="">
-                                                </div>
-                                                <div class="col-2"> - </div>
-                                                <div class="col-5">
-                                                    <label class="form-label text-start" style="display: block;">Max</label>
-                                                    <input class="form-control" type="number" min="1900" max="2050" name="year_max" id="">
-                                                </div>
-                                                <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
                                 </div>
 
 
@@ -737,7 +988,7 @@
         <!-- Results Section -->
         <div class="col-md-9">
             <div class="results-header">
-                <span id="total-page-view" class="text-primary-color text-sm"></span>
+                <span id="total-page-view" class="text-primary-color"></span>
                 <div class="d-flex align-items-center text-primary-color text-sm">
                     <label for="sortBy" class="me-2">Sort by:</label>
                     <select class="form-select w-auto" id="sortBy">
@@ -751,8 +1002,8 @@
             </div>
 
             <!-- Results Section -->
-            <div class="results-table">
-                <div class=" d-none d-sm-block">                    
+            <div class="results-table  d-none d-sm-block">
+                    <div class=" d-none d-sm-block">
                     <div class="row g-4 rounded-top p-0" style="margin: 12px 12px 0 12px;">
                         <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end m-0" style="border-top-left-radius: 5px;height: fit-content;">
                             <span class="m-0 text-sm font-medium">Image</span>
@@ -775,125 +1026,17 @@
                     </div>
                 </div>
                     <div class="container" id="table_results">
-                        <!-- First Row -->
-                        <div class="row g-4">
-                            <div class="col-12 col-md-2">
-                                <img src="https://s3-alpha-sig.figma.com/img/8792/81d4/8157becaac2628571fdca219226bf494?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jusirnD3TWOynFjVHivywL7XSTs5Q-vs7C3h-AfdtkcDPGkBRXz8Xb0F-lcghhLmVaXsgtsr7wvEsGFyZMHeB4272fmPj6TMzjz7wT~pngygnbOMwOKGg8w4lg4Yarjcgiky4SQ8wbM4gJbQEj4GEnTaTsp35JjvanaocciXMLiSzb6EFVtOpMEebmI6~GkcXW~jjYYs81JO6wt8VLeTCO1S9dgJNX3ATj0uOASZSINFe6ucSlTrS7PsOLub8LVePouL2KlBDcW4mT7h6PgvUgLomRL44Okb82QOoB-HSQk9shkeNbu5-oz00xM681VIQS7HVV-~C2iPzKW9DNf9GA__"
-                                    class="img-fluid" alt="Car 1" style="width: 100px;">
-                            </div>
-                            <div class="col-12 col-md-2">
-                                <strong class="fs-6 text-start">Audi 2024A4 Avant 35 Tfsi Advanced</strong><br>
-                                <small class=" text-start">Lot #69400444</small>
-                            </div>
-                            <div class="col-12 col-md-2">                                
-                                <p>Odometer: 23,895 mi<br>
-                                    Est. Retail Value: $13,081 USD</p>
-                            </div>
-                            <div class="col-12 col-md-2">
-                                Clean Title<br>
-                                Normal Wear<br>
-                                Keys Available
-                            </div>
-                            <div class="col-12 col-md-2 d-none d-sm-block">
-                                AL - BIRMINGHAM<br>
-                                Auction in 4D 9H 1M
-                            </div>
-                            <div class="col-12 col-md-2 d-none d-sm-block">
-                                Current Bid: $275<br>
-                                Buy now: $3500<br>
-                                <button class="btn btn-danger details-button mt-2">Details</button>
-                            </div>
-                        </div>
-                        <div class="more-details btn-danger text-danger w-100 my-2"> More Details + </div>
-                    
-                        <!-- Second Row -->
-                         <div class="row g-4">
-                            <div class="col-12 col-md-2">
-                                <img src="https://s3-alpha-sig.figma.com/img/8792/81d4/8157becaac2628571fdca219226bf494?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jusirnD3TWOynFjVHivywL7XSTs5Q-vs7C3h-AfdtkcDPGkBRXz8Xb0F-lcghhLmVaXsgtsr7wvEsGFyZMHeB4272fmPj6TMzjz7wT~pngygnbOMwOKGg8w4lg4Yarjcgiky4SQ8wbM4gJbQEj4GEnTaTsp35JjvanaocciXMLiSzb6EFVtOpMEebmI6~GkcXW~jjYYs81JO6wt8VLeTCO1S9dgJNX3ATj0uOASZSINFe6ucSlTrS7PsOLub8LVePouL2KlBDcW4mT7h6PgvUgLomRL44Okb82QOoB-HSQk9shkeNbu5-oz00xM681VIQS7HVV-~C2iPzKW9DNf9GA__"
-                                    class="img-fluid" alt="Car 1" style="width: 100px;">
-                            </div>
-                            <div class="col-12 col-md-2">
-                                <strong class="fs-6">Audi 2024A4 Avant 35 Tfsi Advanced</strong><br>
-                                <small class="">Lot #69400444</small>
-                            </div>
-                            <div class="col-12 col-md-2">                                
-                                <p>Odometer: 23,895 mi<br>
-                                    Est. Retail Value: $13,081 USD</p>
-                            </div>
-                            <div class="col-12 col-md-2">
-                                Clean Title<br>
-                                Normal Wear<br>
-                                Keys Available
-                            </div>
-
-                            <div class="col-12 col-md-2 d-none d-sm-block">
-                                AL - BIRMINGHAM<br>
-                                Auction in 4D 9H 1M
-                            </div>
-                            <div class="col-12 col-md-2 d-none d-sm-block">
-                                Current Bid: $275<br>
-                                Buy now: $3500<br>
-                                <button class="btn btn-danger details-button mt-2">Details</button>
-                            </div>
-
-                        </div>
-                        <!-- <div class="more-details btn-danger text-danger w-100 my-2"> More Details + </div> -->
-                        <div class="more-details">
-                            <div class="container text-center">
-                                <p class="text-danger">Less Details -</p>
-                                <div class="row">
-                                    <div class="col-3">
-                                        <div class="text-start">
-                                            <p class="text-muted m-0">Secondary Damage:<br />
-                                                <span class="text-dark">Kleinere Dellen / Kratzer</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="text-start">
-                                            <p class="text-muted m-0">Sale Status:<br />
-                                                <span class="text-dark">No Reserve</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="text-start">
-                                            <p class="text-muted m-0">Transmission:<br />
-                                                <span class="text-dark">Electric</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="text-start">
-                                            <p class="text-muted m-0">Drive:<br />
-                                                <span class="text-dark">All Wheel Drive</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="text-start">
-                                            <p class="text-muted m-0">Fuel:<br />
-                                                <span class="text-dark">Electric</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="text-start">
-                                            <p class="text-muted m-0">Color:<br />
-                                                <span class="text-dark">Black</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                       Inserting data here from search-result.js-->
                     </div>
-                 
             </div>
+            <div class="d-block d-sm-none" id="table_results_mobile">
+                <!--                       Inserting mobile data here from search-result.js-->
+            </div>
+
 
             <!-- Pagination -->
             <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center" id="search-pagination">
+                <ul class="pagination justify-content-center" id="search-pagination" style="gap: 10px;">
                     <!-- <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                     </li> -->

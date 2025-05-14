@@ -217,9 +217,12 @@ function update_cars_data(page=1){
             document.getElementById("table_results").innerHTML = `<div class="alert alert-danger" role="alert">
             No results found for your search. Please try again with different filters.
             </div>`;
+            document.getElementById("table_results_mobile").innerHTML = `<div class="alert alert-danger" role="alert">
+            No results found for your search. Please try again with different filters.
+            </div>`;
             return;
         }
-        update_results(response.data.results, response.data.current_page, response.data.num_pages);
+        update_results(response.data.results, response.data.current_page, response.data.num_pages, response.data.count);
         show_filters(filterTags);
     }).catch(function (error) {
         console.log(error);})
@@ -321,79 +324,182 @@ function update_models() {
 
 }
 
-function update_results(data, current_page, total_pages) {
+function update_results(data, current_page, total_pages, count) {
     document.getElementById("table_results").innerHTML = "";
+    document.getElementById("table_results_mobile").innerHTML = "";
+    const windowWidth = window.innerWidth
+
     let canvas = "";
 
     data.forEach(element => {
     let display_picture = '';
     if (element.all_media.length > 0 && element.all_media[0].img_url_from_api) { display_picture = element.all_media[0].img_url_from_api;}
 
-    canvas += `<div class="row g-4">
-                           <div class="row g-4">
-                            <div class="col-12 col-md-2 ">
-                                <img src="${display_picture}"
-                                    class="img-fluid" alt="Car 1" style="width: 100%;">
-                            </div>
-                            <div class="col-12 col-md-2 text-left">
-                                <p class="fs-6 text-start fw-bold m-0 text-primary-color " style="padding-bottom: 10px;">${element.make.name} ${element.model.name} ${element.year}</p>
-                                <p class=" text-start text-primary-red m-0" style="width:fit-content;background: rgba(255, 234, 235, 0.6);border-radius: 5px;padding: 4px;font-size: 12px;">Lot #69400444</p>
-                            </div>
-                            <div class="col-12 col-md-2 text-left text-sm">                                
-                                <span class="fw-bold">Fuel Type:</span> ${element.fuel.name_en} <br>
-                                ${element.transmission.name_en} ${element.drive.name_en}
-                            </div>
-                            <div class="col-12 col-md-2 text-left text-sm">
-                                
-                                <span class="fw-bold">Odometer:</span> ${element.odometer} mi
-                            </div>
-                            <div class="col-12 col-md-2 d-none d-sm-block text-left text-sm">
-                               ${element.country.name}<br>
-                                
-                            </div>
-                            <div class="col-12 col-md-2 d-none d-sm-block text-left text-sm">
-                                <span class="fw-bold">Before:</span> $${element.price.toLocaleString()}<br>
-                                <span class="fw-bold">Buy now:</span> $${(element.price - element.price_discount).toLocaleString()}<br>
-                                <a href="/normal-car-details/${element.id}">
-                                <button class="btn btn-danger details-button mt-2">Details</button>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="accordion acc-table" id="carDetailsAccordion_${element.id}">
-                            <div class="accordion-item-table">
-                                <h2 class="accordion-header-table" id="heading${element.id}">                                    
-                                    <button class="accordion-button-table" onclick="change_accordion_text('accordian_btn_${element.id}')" id="accordian_btn_${element.id}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${element.id}" aria-expanded="false" aria-controls="collapse${element.id}">
-                                        <span class="toggle-text">More Details</span>
-                                    </button>
-                                </h2>
-                                <div id="collapse${element.id}" class="accordion-collapse collapse detail-accordion-collapse" aria-labelledby="heading${element.id}" data-bs-parent="#carDetailsAccordion_${element.id}">
-                                    <div class="accordion-body-table">
-                                        <div class="row text-center justify-content-between">
-                                            <div class="col-md-2 d-flex flex-column gap-0.5 text-left">
-                                                <span class="text-color text-sm">
-                                                    Body Style:
-                                                </span> 
-                                                <span class="detail-item text-primary-color">
-                                                    ${element.body_style.name_en}
-                                                </span>
+        if (windowWidth <= 767){
+            canvas += `
+    <!--                    For Mobile:-->
+                   <div class="d-flex d-md-none flex-column search-result-mobile-wrapper" style="gap:5px;">
+                        <div class="d-flex align-items-start" style="gap:10px;">
+                                <div class="" style="max-width: 120px;width: 100%;height: 100%;max-height: 90px;">
+                                        <img 
+                                            src="${display_picture}"
+                                            class="img-fluid" 
+                                            alt="Car 1" 
+                                            style="width: 100%;height: inherit;max-height: inherit;object-position: bottom;border-radius: 5px;"
+                                        >
+                                </div>
+                                <div>
+                                    <p class="fs-6 text-start fw-bold m-0 text-primary-color " style="padding-bottom: 6px;">${element.make.name} ${element.model.name} ${element.year}</p>
+                                    <div class="d-flex align-items-center " style="gap:2px;">
+                                       <p class="text-start text-color m-0" style="width:fit-content;font-size: 12px;">
+                                            Lot:
+                                       </p>
+                                        <p class="text-start text-primary-red m-0" style="width:fit-content;font-size: 12px;">
+                                            69400444
+                                       </p>
+                                    </div>
+                                    <div class="d-flex align-items-center " style="gap:2px;">
+                                       <p class="text-start text-color m-0" style="width:fit-content;font-size: 12px;">
+                                            Fuel Type:
+                                       </p>
+                                        <p class="text-start text-primary-red m-0" style="width:fit-content;font-size: 12px;">
+                                           ${element.fuel.name_en}
+                                       </p>
+                                    </div>
+                                    <div class="d-flex align-items-center " style="gap:2px;">
+                                       <p class="text-start text-color m-0" style="width:fit-content;font-size: 12px;">
+                                            Odometer:
+                                       </p>
+                                        <p class="text-start text-primary-red m-0" style="width:fit-content;font-size: 12px;">
+                                          ${element.odometer} mi
+                                       </p>
+                                    </div>
+                                  
+                                 
+                                </div>
+                        </div> 
+                    <div class="accordion acc-table" id="carDetailsAccordion_${element.id}">
+                                <div class="accordion-item-table">
+                                    <h2 class="accordion-header-table" id="heading${element.id}">                                    
+                                        <button class="accordion-button-table" onclick="change_accordion_text('accordian_btn_${element.id}')" id="accordian_btn_${element.id}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${element.id}" aria-expanded="false" aria-controls="collapse${element.id}">
+                                            <span class="toggle-text">More Details</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapse${element.id}" class="accordion-collapse collapse detail-accordion-collapse" aria-labelledby="heading${element.id}" data-bs-parent="#carDetailsAccordion_${element.id}">
+                                        <div class="accordion-body-table">
+                                            <div class="text-center d-flex flex-wrap" style="gap:12px;">
+                                                <div class="d-flex flex-column gap-0.5 text-left">
+                                                    <span class="text-color text-sm">
+                                                        Body Style:
+                                                    </span> 
+                                                    <span class="detail-item text-primary-color">
+                                                        ${element.body_style.name_en}
+                                                    </span>
+                                                </div>
+                                                <div class="d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Fuel Type:</span> <span class="detail-item text-primary-color">${element.fuel.name_en} </span></div>
+                                                <div class="d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Transmission:</span> <span class="detail-item text-primary-color"> ${element.transmission.name_en} </span></div>
+                                                <div class="d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Drive:</span> <span class="detail-item text-primary-color">${element.drive.name_en}</span></div>
+                                                <div class="d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Color:</span> <span class="detail-item text-primary-color"> ${element.color.name_en} </span></div>
                                             </div>
-                                            <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Fuel Type:</span> <span class="detail-item text-primary-color">${element.fuel.name_en} </span></div>
-                                            <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Transmission:</span> <span class="detail-item text-primary-color"> ${element.transmission.name_en} </span></div>
-                                            <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Drive:</span> <span class="detail-item text-primary-color">${element.drive.name_en}</span></div>
-                                            <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Color:</span> <span class="detail-item text-primary-color"> ${element.color.name_en} </span></div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>                                  
+                  </div>           
+                        `
+        }else{
+            canvas += `
+    <!--                    For Desktop-->
+                   <div class="row g-4 d-none d-md-block">
+                               <div class="row g-4">
+                                <div class="col-12 col-md-2 " style="margin-top: 20px !important;">
+                                    <div class="" style="max-width: 100%;width: 100%;height: 100%;max-height: 110px;">
+                                        <img src="${display_picture}"
+                                        class="img-fluid" alt="Car 1" style="width: 100%;height: inherit;object-fit: cover;object-position: bottom;">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-2 text-left" style="margin-top: 20px !important;">
+                                    <p class="fs-6 text-start fw-bold m-0 text-primary-color " style="padding-bottom: 10px;">${element.make.name} ${element.model.name} ${element.year}</p>
+                                    <p class=" text-start text-primary-red m-0" style="width:fit-content;background: rgba(255, 234, 235, 0.6);border-radius: 5px;padding: 4px;font-size: 12px;">Lot #69400444</p>
+                                </div>
+                                <div class="col-12 col-md-2 text-left text-sm d-flex flex-column align-items-start" style="gap:4px;margin-top: 20px !important;">                                
+                                    <div class="d-flex flex-column align-items-start">
+                                       <span>Fuel Type:</span>  
+                                        <span class="fw-bold">${element.fuel.name_en}</span>
+                                    </div>
+                                    <div class="d-flex flex-column align-items-start">
+                                       <span>Transmission:</span>  
+                                         <span class="fw-bold">${element.transmission.name_en} </span>
+                                    </div>
+                                    <div class="d-flex flex-column align-items-start">
+                                       <span>Drive:</span>  
+                                        <span class="fw-bold"> ${element.drive.name_en}</span>
+                                    </div>
+                                   
+                               
+                                </div>
+                                <div class="col-12 col-md-2 text-left text-sm d-flex flex-column align-items-start" style="margin-top: 20px !important;">      
+                                    <span>Odometer:</span> 
+                                    <span class="fw-bold">${element.odometer} mi</span>
+                                </div>
+                                <div class="col-12 col-md-2 d-none d-sm-block text-left text-sm" style="margin-top: 20px !important;">
+                                   ${element.country.name}<br>                
+                                </div>
+                                <div class="col-12 col-md-2 d-none d-sm-flex flex-column text-left text-sm" style="gap: 4px;margin-top: 20px !important;">
+                                     <div class="d-flex flex-column align-items-start">
+                                        <span>Before:</span>
+                                        <span class="fw-bold">$${element.price.toLocaleString()}</span>
+                                     </div>
+                                    <div class="d-flex flex-column align-items-start">
+                                        <span class="fw-normal">Buy now:</span> 
+                                        <span class="fw-bold">$${(element.price - element.price_discount).toLocaleString()}</span>
+                                    </div>
+                                    <a href="/normal-car-details/${element.id}" style="text-decoration: none;">
+                                        <button class="btn btn-danger details-button font-medium text-sm d-flex align-items-center justify-content-center" style="width: 100%;max-height: 28px;">Details</button>
+                                    </a>
+                                </div>
                             </div>
-                        </div>                                  
-                    </div>
-                        
-                        
-                        `});
+                            
+                            <div class="accordion acc-table" id="carDetailsAccordion_${element.id}">
+                                <div class="accordion-item-table">
+                                    <h2 class="accordion-header-table" id="heading${element.id}">                                    
+                                        <button class="accordion-button-table" onclick="change_accordion_text('accordian_btn_${element.id}')" id="accordian_btn_${element.id}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${element.id}" aria-expanded="false" aria-controls="collapse${element.id}">
+                                            <span class="toggle-text">More Details</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapse${element.id}" class="accordion-collapse collapse detail-accordion-collapse" aria-labelledby="heading${element.id}" data-bs-parent="#carDetailsAccordion_${element.id}">
+                                        <div class="accordion-body-table">
+                                            <div class="row text-center justify-content-between">
+                                                <div class="col-md-2 d-flex flex-column gap-0.5 text-left">
+                                                    <span class="text-color text-sm">
+                                                        Body Style:
+                                                    </span> 
+                                                    <span class="detail-item text-primary-color">
+                                                        ${element.body_style.name_en}
+                                                    </span>
+                                                </div>
+                                                <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Fuel Type:</span> <span class="detail-item text-primary-color">${element.fuel.name_en} </span></div>
+                                                <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Transmission:</span> <span class="detail-item text-primary-color"> ${element.transmission.name_en} </span></div>
+                                                <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Drive:</span> <span class="detail-item text-primary-color">${element.drive.name_en}</span></div>
+                                                <div class="col-md-2 d-flex flex-column gap-0.5 text-left"><span class="text-color text-sm">Color:</span> <span class="detail-item text-primary-color"> ${element.color.name_en} </span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                                  
+                        </div>
+                        `
+        }
+    });
     document.getElementById("table_results").innerHTML = canvas;
-    
-    document.getElementById("total-page-view").innerHTML = `Showing page ${current_page} out of ${total_pages} total pages`;
+    document.getElementById("table_results_mobile").innerHTML = canvas;
+
+
+    if (windowWidth <= 767){
+        document.getElementById("total-page-view").innerHTML = `${count} Listings`;
+    }else{
+        document.getElementById("total-page-view").innerHTML = `Showing page ${current_page} out of ${total_pages} total pages`;
+    }
 
     let pagination_buttons = "";
     document.getElementById("search-pagination").innerHTML = pagination_buttons;
