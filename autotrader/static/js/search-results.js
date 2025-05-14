@@ -352,7 +352,8 @@ function update_results(data, current_page, total_pages) {
                                 
                             </div>
                             <div class="col-12 col-md-2 d-none d-sm-block text-left text-sm">
-                                <span class="fw-bold">Buy now:</span> $${element.price}<br>
+                                <span class="fw-bold">Before:</span> $${element.price.toLocaleString()}<br>
+                                <span class="fw-bold">Buy now:</span> $${(element.price - element.price_discount).toLocaleString()}<br>
                                 <a href="/normal-car-details/${element.id}">
                                 <button class="btn btn-danger details-button mt-2">Details</button>
                                 </a>

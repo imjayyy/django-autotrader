@@ -79,6 +79,12 @@ class VehicleSerializer(serializers.ModelSerializer):
         model = Vehicle
         fields = ["id", "model", "year", "all_media"]
 
+class FeatureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feature
+        fields = ['id', 'name_az', 'name_en', 'color_hex', 'font_awesome_icon']
+
+
 class VehicleListSerializer(serializers.ModelSerializer):
     all_media = VehicleMediaSerializer(source="vehiclemedia_set", many=True, read_only=True)
     model = ModelSerializer()
@@ -88,24 +94,20 @@ class VehicleListSerializer(serializers.ModelSerializer):
     transmission = TransmissionSerializer()
     drive = DriveSerializer()
     color = ColorSerializer()
-    # status = StatusSerializer()
-    # features = FeatureSerializer(many=True)
-    # labels = LabelSerializer(many=True)
+    status = StatusSerializer()
+    feature_list = FeatureSerializer(many=True)
+    label_list = LabelSerializer(many=True)
 
     country = CountrySerializer()
     class Meta:
         model = Vehicle
-        fields = ["id", "make", "model", "fuel", "year", "price", 
+        fields = ["id", "make", "model", "fuel", "year", "price", 'price_discount', "status", "feature_list", "label_list",
                 "transmission", "drive", "odometer", "body_style", 
                 "country", "all_media", "color", "engine_power", "engine_power_unit",
-                 "zero_to_hundred", "motor_power", "motor_power_unit", "battery_range",
+                 "zero_to_hundred", "motor_power", "motor_power_unit", "battery_range",     
                   ]
 
 
-class FeatureSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Feature
-        fields = ['id', 'name_az', 'name_en', 'color_hex', 'font_awesome_icon']
 
 class VehicleDetailsSerializer(serializers.ModelSerializer):
     all_media = VehicleMediaSerializer(source="vehiclemedia_set", many=True, read_only=True)

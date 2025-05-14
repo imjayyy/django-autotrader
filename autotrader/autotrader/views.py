@@ -177,11 +177,11 @@ def normal_car_details(request, id):
 
     car_serializer_data = car_serializer.data
 
-    car_serializer_data['price_azn'] = str(float(car.price) * 1.7) + " AZN"
+    car_serializer_data['price_azn'] = (float(car.price) * 1.7) 
     if car.price_discount :
         car_serializer_data['price'] = float(car.price) - float(car.price_discount)
-        car_serializer_data['before_discount_price'] = car.currency + str(float(car.price))
-        car_serializer_data['price_azn'] = str(float(car_serializer_data['price']) * 1.7) + " AZN"
+        car_serializer_data['before_discount_price'] = (float(car.price))
+        car_serializer_data['price_azn'] = (float(car_serializer_data['price']) * 1.7) 
 
     print(car_serializer_data)
 

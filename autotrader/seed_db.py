@@ -218,11 +218,6 @@ def insert_sample_vehicle_images():
 
     print("Sample vehicle images inserted successfully!")
 
-# insert_models_make()
-# insert_sample_data()
-# insert_sample_vehicle_images()
-
-
 def add_engine_type():
     vehicles = Vehicle.objects.all()
     for vehicle in vehicles:
@@ -235,4 +230,18 @@ def add_engine_type():
         vehicle.save()
     print("Engine type added successfully!")
 
-add_engine_type()
+
+def add_discount():
+    vehicles = Vehicle.objects.all()
+    for vehicle in vehicles:
+        array = [1000, 2000, 2500, 1500]
+        vehicle.price_discount = random.choice(array)
+        vehicle.save()
+    print("Discount added successfully!")
+
+
+add_discount()
+# add_engine_type()
+# insert_models_make()
+# insert_sample_data()
+# insert_sample_vehicle_images()
