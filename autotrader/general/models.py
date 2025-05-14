@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import MyUser
 from rest_framework import serializers
+from django.utils.dateformat import format as date_format
 
 # Create your models here.
 
@@ -39,8 +40,14 @@ class Information(models.Model):
         return self.title
     
 
+
 class InformationSerializer(serializers.ModelSerializer):
+    updated_at = serializers.SerializerMethodField()
+
     class Meta:
         model = Information
         fields = '__all__'
         read_only_fields = ['created_at', 'updated_at']
+
+    def get_updated_at(self, obj):
+        return date_format(obj.updated_at, 'F j, Y')  # e.g., "May 13, 2025"
