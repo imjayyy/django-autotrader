@@ -433,7 +433,7 @@ function update_results(data, current_page, total_pages, count) {
                                         <span >${element.fuel.id === 3 ?`${element.motor_power} ${element.motor_power_unit || ""}` : `${element.engine_power} ${element.engine_power_unit || ""}`}</span>
                                     </div>
                                     <div class="d-flex align-items-center"  style="gap:2px;">
-                                       <span class="fw-bold">${element.fuel.id === 3 ? "Batteryp:" : "Engine:"}</span>  
+                                       <span class="fw-bold">${element.fuel.id === 3 ? "Battery:" : "Engine:"}</span>  
                                          <span >${element.fuel.id === 3 ? `${element.battery_range}` : `${element.engine_type}`}</span>
                                     </div>
                                    
