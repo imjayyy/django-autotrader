@@ -423,7 +423,6 @@ function update_results(data, current_page, total_pages, count) {
                                 </div>
                                 <div class="col-12 col-md-2 text-left" style="margin-top: 20px !important;">
                                     <p class="fs-6 text-start fw-bold m-0 text-primary-color " style="padding-bottom: 10px;">${element.make.name} ${element.model.name} ${element.year}</p>
-                                    <p class=" text-start text-primary-red m-0" style="width:fit-content;background: rgba(255, 234, 235, 0.6);border-radius: 5px;padding: 4px;font-size: 12px;">Lot #69400444</p>
                                 </div>
                                 <div class="col-12 col-md-2 text-left text-sm d-flex flex-column align-items-start" style="gap:4px;margin-top: 20px !important;">                                
                                     <div class="d-flex flex-column align-items-start">

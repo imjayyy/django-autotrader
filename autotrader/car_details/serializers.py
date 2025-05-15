@@ -102,7 +102,7 @@ class VehicleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehicle
         fields = ["id", "make", "model", "fuel", "year", "price", 'price_discount', "status", "feature_list", "label_list",
-                "transmission", "drive", "odometer", "body_style", 
+                "transmission", "drive", "odometer", "body_style", "engine_type"
                 "country", "all_media", "color", "engine_power", "engine_power_unit",
                  "zero_to_hundred", "motor_power", "motor_power_unit", "battery_range",     
                   ]
