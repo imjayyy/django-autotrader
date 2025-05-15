@@ -168,6 +168,12 @@ def information(request):
     information_serializer = InformationSerializer(information, many=True)
     return render(request, 'information.html', {"information_data": information_serializer.data})
 
+def information_view(request, id):
+    information = get_object_or_404(Information, id=id)  # Fetch car details or return 404    
+    information_serializer = InformationSerializer(information)
+
+    return render(request, 'information-view.html', {"information_data": information_serializer.data})
+
 def normal_car_details(request, id):
     car = get_object_or_404(Vehicle, id=id)  # Fetch car details or return 404
 

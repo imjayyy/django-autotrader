@@ -2,6 +2,7 @@ from django.db import models
 from accounts.models import MyUser
 from rest_framework import serializers
 from django.utils.dateformat import format as date_format
+from tinymce.models import HTMLField
 
 # Create your models here.
 
@@ -32,7 +33,7 @@ class Callback(models.Model):
 
 class Information(models.Model):
     title = models.CharField(max_length=255)
-    content = models.TextField()
+    content = HTMLField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

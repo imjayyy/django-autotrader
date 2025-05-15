@@ -102,6 +102,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'taggit',
     'djrichtextfield',
+    'tinymce',
 
     'accounts',
     'car_details',

@@ -61,7 +61,7 @@
           <!-- Timeline Start -->
           <div class="timeline-item d-flex align-items-center">
             <span class="timeline-date me-2"> {{inf.updated_at}} -</span>
-            <span class="timeline-text"> {{ inf.title}}</span>
+            <a href="/information-view/{{inf.id}}" ><span class="timeline-text"> {{ inf.title}}</span></a>
           </div>
           {% endfor %}
           <div class="timeline-item d-flex align-items-center">

@@ -37,6 +37,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('text-search/', views.text_search, name='text-search'),
     path('information', views.information, name='information'),
+    path('information-view/<int:id>/', views.information_view, name='information-view'),
     path('create-order/<int:id>/', views.create_order, name='create-order'),
     path('form-submission/', views.form_submission, name='form-submission'),
 ]
