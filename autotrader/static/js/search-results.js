@@ -421,44 +421,41 @@ function update_results(data, current_page, total_pages, count) {
                                         class="img-fluid" alt="Car 1" style="width: 100%;height: inherit;object-fit: cover;object-position: bottom;">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-2 text-left" style="margin-top: 20px !important;">
-                                    <p class="fs-6 text-start fw-bold m-0 text-primary-color " style="padding-bottom: 10px;">${element.make.name} ${element.model.name} ${element.year}</p>
-                                    <p class=" text-start text-primary-red m-0" style="width:fit-content;background: rgba(255, 234, 235, 0.6);border-radius: 5px;padding: 4px;font-size: 12px;">Lot #69400444</p>
+                                <div class="col-12 col-md-3 text-left" style="margin-top: 20px !important;">
+                                    <p class="fs-6 text-start fw-bold m-0 text-primary-color ">
+                                        ${element.make.name} ${element.model.name} ${element.year}
+                                    </p>
                                 </div>
                                 <div class="col-12 col-md-2 text-left text-sm d-flex flex-column align-items-start" style="gap:4px;margin-top: 20px !important;">                                
-                                    <div class="d-flex flex-column align-items-start">
-                                       <span>Fuel Type:</span>  
-                                        <span class="fw-bold">${element.fuel.name_en}</span>
+                                  
+                                    <div class="d-flex align-items-center"  style="gap:2px;padding-bottom: 5px;">
+                                       <span class="fw-bold">Power:</span>  
+                                        <span >${element.fuel.id === 3 ?`${element.motor_power} ${element.motor_power_unit || ""}` : `${element.engine_power} ${element.engine_power_unit || ""}`}</span>
                                     </div>
-                                    <div class="d-flex flex-column align-items-start">
-                                       <span>Transmission:</span>  
-                                         <span class="fw-bold">${element.transmission.name_en} </span>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-start">
-                                       <span>Drive:</span>  
-                                        <span class="fw-bold"> ${element.drive.name_en}</span>
+                                    <div class="d-flex align-items-center"  style="gap:2px;">
+                                       <span class="fw-bold">${element.fuel.id === 3 ? "Batteryp:" : "Engine:"}</span>  
+                                         <span >${element.fuel.id === 3 ? `${element.battery_range}` : `${element.engine_type}`}</span>
                                     </div>
                                    
+                                 </div>
+                                <div class="col-12 col-md-2 text-left text-sm" style="margin-top: 20px !important;">      
+                                    <span>${element.odometer} mi</span> 
+                                </div>
                                
-                                </div>
-                                <div class="col-12 col-md-2 text-left text-sm d-flex flex-column align-items-start" style="margin-top: 20px !important;">      
-                                    <span>Odometer:</span> 
-                                    <span class="fw-bold">${element.odometer} mi</span>
-                                </div>
-                                <div class="col-12 col-md-2 d-none d-sm-block text-left text-sm" style="margin-top: 20px !important;">
-                                   ${element.country.name}<br>                
-                                </div>
-                                <div class="col-12 col-md-2 d-none d-sm-flex flex-column text-left text-sm" style="gap: 4px;margin-top: 20px !important;">
-                                     <div class="d-flex flex-column align-items-start">
-                                        <span>Before:</span>
-                                        <span class="fw-bold">$${element.price.toLocaleString()}</span>
-                                     </div>
-                                    <div class="d-flex flex-column align-items-start">
-                                        <span class="fw-normal">Buy now:</span> 
-                                        <span class="fw-bold">$${(element.price - element.price_discount).toLocaleString()}</span>
+                                <div class="col-12 col-md-3 d-none d-sm-flex flex-column text-left text-sm" style="gap: 4px;margin-top: 20px !important;">
+                                    
+                                    <div class="d-flex align-items-center" style="gap:2px;padding-bottom: 5px;">
+                                        <span class="fw-bold">Price:</span> 
+                                        <span>$${(element.price - element.price_discount).toLocaleString()}</span>
                                     </div>
+                                    <div class="d-flex align-items-center"  style="gap:2px;">
+                                        <span class="fw-bold">Location:</span>
+                                        <span>${element.country.name}</span>
+                                     </div>
                                     <a href="/normal-car-details/${element.id}" style="text-decoration: none;">
-                                        <button class="btn btn-danger details-button font-medium text-sm d-flex align-items-center justify-content-center" style="width: 100%;max-height: 28px;">Details</button>
+                                        <button class="btn btn-danger details-button font-medium text-sm d-flex align-items-center justify-content-center" style="width: 100%;max-width:95px;max-height: 28px;margin-top: 20px;margin-left: auto;">
+                                            Details
+                                        </button>
                                     </a>
                                 </div>
                             </div>

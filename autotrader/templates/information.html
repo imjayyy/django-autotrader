@@ -26,7 +26,7 @@
 
 <style>
   .timeline-item {
-    border-bottom: 1px solid #e0e0e0; /* light gray line */
+    /*border-bottom: 1px solid #e0e0e0; !* light gray line *!*/
     padding: 12px 0;
   }
   .timeline-date {
@@ -39,20 +39,35 @@
     color: #000;
     font-size: 0.95rem;
   }
+  .information-breadcrumb-wrapper{
+    padding: 20px 0;
+      background-color: rgba(255, 234, 235, 0.5);
+    .breadcrumb{
+      margin: 0 !important;
+    }
+    .title{
+      font-size: 36px;
+      font-weight: 500;
+      padding-bottom: 8px;
+      margin: 0 !important;
+      text-align: left;
+    }
+  }
 </style>
 
-<section>
-    <div class="container pt-5">
+<section class="information-breadcrumb-wrapper">
+    <div class="container">
         <nav aria-label="breadcrumb">
+            <h5 class="title text-primary-color">Information</h5>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Information</li>
+                <li class="breadcrumb-item font-medium"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active font-medium" aria-current="page">Information</li>
             </ol>
         </nav>
     </div>
 </section>
 <section>
-    <div class="container mt-4" style="min-height: 60vh;">
+    <div class="container pt-4" style="min-height: 60vh;">
 
       <div class="row mt-3">
         <div class="col-12">
