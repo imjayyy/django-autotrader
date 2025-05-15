@@ -288,6 +288,7 @@ function create_tag(key, value, name) {
 function update_models() {
     // Clear the existing models
     document.getElementById("models_form").innerHTML = "";
+    document.getElementById("models_form_mobile").innerHTML = "";
 
     let selectedMakes = [];
     document.querySelectorAll('input[name="make"]:checked').forEach((checkbox) => {
@@ -311,6 +312,8 @@ function update_models() {
             `;
 
             document.getElementById("models_form").insertAdjacentHTML("beforeend", option);
+            document.getElementById("models_form_mobile").insertAdjacentHTML("beforeend", option);
+
         });
 
         update_cars_data();
@@ -340,30 +343,30 @@ function update_results(data, current_page, total_pages, count) {
     <!--                    For Mobile:-->
                    <div class="d-flex d-md-none flex-column search-result-mobile-wrapper" style="gap:5px;">
                         <div class="d-flex align-items-start" style="gap:10px;">
-                                <div class="" style="max-width: 120px;width: 100%;height: 100%;max-height: 90px;">
+                                <div class="" style="max-width: 120px;width: 100%;height: 100%;max-height: 98px;min-height: 98px;">
                                         <img 
                                             src="${display_picture}"
                                             class="img-fluid" 
                                             alt="Car 1" 
-                                            style="width: 100%;height: inherit;max-height: inherit;object-position: bottom;border-radius: 5px;"
+                                            style="width: 100%;height: inherit;max-height: inherit;object-position: bottom;border-radius: 5px;min-height: inherit;object-fit: cover;"
                                         >
                                 </div>
                                 <div>
                                     <p class="fs-6 text-start fw-bold m-0 text-primary-color " style="padding-bottom: 6px;">${element.make.name} ${element.model.name} ${element.year}</p>
                                     <div class="d-flex align-items-center " style="gap:2px;">
                                        <p class="text-start text-color m-0" style="width:fit-content;font-size: 12px;">
-                                            Lot:
+                                            Price:
                                        </p>
                                         <p class="text-start text-primary-red m-0" style="width:fit-content;font-size: 12px;">
-                                            69400444
+                                            $${(element.price - element.price_discount).toLocaleString()}
                                        </p>
                                     </div>
                                     <div class="d-flex align-items-center " style="gap:2px;">
                                        <p class="text-start text-color m-0" style="width:fit-content;font-size: 12px;">
-                                            Fuel Type:
+                                            Engine:
                                        </p>
                                         <p class="text-start text-primary-red m-0" style="width:fit-content;font-size: 12px;">
-                                           ${element.fuel.name_en}
+                                            3.7L
                                        </p>
                                     </div>
                                     <div class="d-flex align-items-center " style="gap:2px;">

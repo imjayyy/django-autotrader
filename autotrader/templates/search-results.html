@@ -102,7 +102,7 @@
                 min-height:max-content !important;
             }
         }
-        .mobileFilterWrapper,.mobileFilterWrapperMake,.mobileFilterWrapperOdometer,.mobileFilterWrapperPrice,.mobileFilterWrapperTransmission,.mobileFilterWrapperFuelType,.mobileFilterWrapperBodyStyle,.mobileFilterWrapperCountry,.mobileFilterWrapperDrive,.mobileFilterWrapperYear{
+        .mobileFilterWrapper,.mobileFilterWrapperMake,.mobileFilterWrapperOdometer,.mobileFilterWrapperEngineType,.mobileFilterWrapperPrice,.mobileFilterWrapperTransmission,.mobileFilterWrapperFuelType,.mobileFilterWrapperBodyStyle,.mobileFilterWrapperCountry,.mobileFilterWrapperDrive,.mobileFilterWrapperModel,.mobileFilterWrapperYear{
             .mobileFilterDialog{
                 margin: 0 !important;
 
@@ -184,19 +184,19 @@
         </ol>
     </nav>
 
-    <div>
-        <div class="quick-filters py-2 px-3">
-            <span class="font-medium text-primary-color" style="padding-right: 20px;font-size: 18px;">Quick filters:</span>
-            <a id="qf-latest-year" ><button class="btn btn-outline-secondary" >Latest Vehicles</button></a>
-            <a href="search-results?odometer_max=5000"> <button class="btn btn-outline-secondary"> Low Milage </button> </a>
-            <button class="btn btn-outline-secondary">Clean Title</button>
-            <button class="btn btn-outline-secondary">Auction Today</button>
-            <button class="btn btn-outline-secondary">Auction Tomorrow</button>
-            <button class="btn btn-outline-secondary">Copart</button>
-            <button class="btn btn-outline-secondary">IAAI</button>
-        </div>
+<!--    <div>-->
+<!--        <div class="quick-filters py-2 px-3">-->
+<!--            <span class="font-medium text-primary-color" style="padding-right: 20px;font-size: 18px;">Quick filters:</span>-->
+<!--            <a id="qf-latest-year" ><button class="btn btn-outline-secondary" >Latest Vehicles</button></a>-->
+<!--            <a href="search-results?odometer_max=5000"> <button class="btn btn-outline-secondary"> Low Milage </button> </a>-->
+<!--            <button class="btn btn-outline-secondary">Clean Title</button>-->
+<!--            <button class="btn btn-outline-secondary">Auction Today</button>-->
+<!--            <button class="btn btn-outline-secondary">Auction Tomorrow</button>-->
+<!--            <button class="btn btn-outline-secondary">Copart</button>-->
+<!--            <button class="btn btn-outline-secondary">IAAI</button>-->
+<!--        </div>-->
 
-    </div>
+<!--    </div>-->
 </div>
 </section>
 <section>
@@ -260,11 +260,11 @@
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
                           <div id="models_form">
-                              
-  
-  
-                          </div>  
-                      
+
+
+
+                          </div>
+
                       </div>
                     </div>
                   </div>
@@ -575,6 +575,50 @@
                 </div>
             </div>
 
+            <!--            Modal For Model-->
+            <div class="modal fade search-modal mobileFilterWrapperModel" id="mobileFilterModel" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Model</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body form-wrapper" id="models_form_mobile">
+                            <!--                        Inserting from search-result.js-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            Modal For Engine Type-->
+            <div class="modal fade search-modal mobileFilterWrapperEngineType" id="mobileFilterEngineType" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+                <div class="modal-dialog mobileFilterDialog">
+                    <div class="modal-content container">
+                        <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
+                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Engine Type</p>
+                            <p class="m-0 text-primary-color fs-6 font-medium" style="opacity: 0;pointer-events: none;">Clear</p>
+                        </div>
+                        <div class="modal-body form-wrapper">
+                            {% for type in form_fields.engine_type %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="engine_{{type}}" name="engine_type" value="{{type}}"  name-attr="{{type}}"  onclick="update_cars_data()">
+                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                    {{type}}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!--            Modal For Odometer-->
             <div class="modal fade search-modal mobileFilterWrapperOdometer" id="mobileFilterOdometer" tabindex="-1" role="dialog"  aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
                 <div class="modal-dialog mobileFilterDialog">
@@ -815,18 +859,20 @@
                                     </h2>
                                 </div>
 
-<!--                                <div class="accordion-item">-->
-<!--                                    <h2 class="accordion-header" id="headingTwo">-->
-<!--                                        <button-->
-<!--                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"-->
-<!--                                                type="button"-->
-<!--                                        >-->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterModel"
+                                        >
 
-<!--                                            <span>Model</span>-->
-<!--                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>-->
+                                            <span>Model</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
 
-<!--                                        </button>-->
-<!--                                    </h2>-->
+                                        </button>
+                                    </h2>
 <!--                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">-->
 <!--                                        <div class="accordion-body">-->
 <!--                                            <div id="models_form">-->
@@ -837,8 +883,23 @@
 
 <!--                                        </div>-->
 <!--                                    </div>-->
-<!--                                </div>-->
+                                </div>
 
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTen">
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterYear"
+                                        >
+
+                                            <span>Year</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+
+                                        </button>
+                                    </h2>
+                                </div>
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFive">
@@ -866,6 +927,22 @@
                                         >
 
                                             <span>Price</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingEleven">
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterEngineType"
+                                        >
+
+                                            <span>Engine Type</span>
                                             <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
 
                                         </button>
@@ -904,6 +981,21 @@
                                     </h2>
                                 </div>
 
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFour">
+                                        <button
+                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#mobileFilterDrive"
+                                        >
+
+                                            <span>Drive</span>
+                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+
+                                        </button>
+                                    </h2>
+                                </div>
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingSeven">
@@ -936,45 +1028,6 @@
                                         </button>
                                     </h2>
                                 </div>
-
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingFour">
-                                        <button
-                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
-                                                type="button"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#mobileFilterDrive"
-                                        >
-
-                                            <span>Drive</span>
-                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
-
-                                        </button>
-                                    </h2>
-                                </div>
-
-
-
-
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTen">
-                                        <button
-                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
-                                                type="button"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#mobileFilterYear"
-                                        >
-
-                                            <span>Year</span>
-                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
-
-                                        </button>
-                                    </h2>
-                                </div>
-
-
 
 
                             </div>
