@@ -1050,7 +1050,7 @@
                         <option value="price">Price</option>
                         <option value="odometer">Mileage</option>
                     </select>
-                    <button id="sortBtn" class="btn btn-outline-danger ms-2" data-order="asc" data-bs-toggle="tooltip" data-bs-placement="top" title="Sort Ascending" onclick="update_cars_data()"><i class="bi bi-arrow-down-up"></i></button>
+                    <button id="sortBtn" class="btn btn-outline-danger ms-2" data-order="asc" data-bs-toggle="tooltip" data-bs-placement="top" title="Sort Ascending" onclick="sortBy()"><i class="bi bi-arrow-down-up"></i></button>
                 </div>
             </div>
 
@@ -1121,30 +1121,7 @@
 
 
 
-  const sortBtn = document.getElementById('sortBtn');
 
-  sortBtn.addEventListener('click', function () {
-    const currentOrder = sortBtn.getAttribute('data-order');
-    const tooltip = new bootstrap.Tooltip(sortBtn);
-
-    if (currentOrder === 'asc') {
-      sortBtn.setAttribute('data-order', 'desc');
-      sortBtn.classList.remove('btn-outline-danger');
-      sortBtn.classList.add('btn-danger');
-      sortBtn.setAttribute('title', 'Sort Descending');
-
-    } else {
-      sortBtn.setAttribute('data-order', 'asc');
-      sortBtn.classList.remove('btn-danger');
-      sortBtn.classList.add('btn-outline-danger');
-      sortBtn.setAttribute('title', 'Sort Ascending');
-
-    }
-    tooltip.setContent({ '.tooltip-inner': sortBtn.getAttribute('title') });
-
-    // Optional: Use the value somewhere
-    console.log('Sort Order:', sortBtn.getAttribute('data-order'));
-  });
 </script>
 
 <script src="{% static '/js/search-results.js' %}"></script>

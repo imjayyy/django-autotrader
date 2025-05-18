@@ -2,17 +2,27 @@
 document.addEventListener("DOMContentLoaded", function() {
     let params = getQueryParams();
     console.log(params);    
-    if ("searchByText" in params) {
-        console.log("Search value:", params.searchByText);
-        return
-    }
+    // if ("searchByText" in params) {
+    //     console.log("Search value:", params.searchByText);
+    //     return
+    // }
+    params.make = params.make ? params.make.split(",") : [];
+    params.model = params.model ? params.model.split(",") : [];
 
+    console.log("params:", params);
+    
     let selectMake = document.querySelectorAll(`input[name="make"]`);
     selectMake.forEach((element) => {
-        if (element.value === params.make) {
-            element.checked = true;
-        }
-    });
+        
+        for (let i = 0; i < params.make.length; i++) {
+            if (params.make[i] === element.value) {
+                element.checked = true;
+             }
+    }
+
+}
+
+);
 
     Object.entries(params).forEach(([key, value]) => {
         let input_form_elements = document.querySelectorAll(`input[name="${key}"]`);
@@ -34,8 +44,10 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => {
             let selectModel = document.querySelectorAll(`input[name="model"]`);
             selectModel.forEach((element) => {
-                if (params.model && element.value === params.model) {
-                    element.checked = true;
+                for (let i = 0; i < params.model.length; i++) {
+                        if (params.model[i] === element.value) {
+                            element.checked = true;
+                        }
                 }
             });
             update_cars_data();
@@ -78,6 +90,54 @@ function getQueryParams() {
 }
 
 
+
+function update_filters(){
+    let selectedMakes_for_filter = [];
+    let selectedModels_for_filter = [];
+
+    document.querySelectorAll('input[name="make"]:checked').forEach((checkbox) => {
+        selectedMakes_for_filter.push(checkbox.value);
+    });
+
+    document.querySelectorAll('input[name="model"]:checked').forEach((checkbox2) => {
+        selectedModels_for_filter.push(checkbox2.value);
+    });
+
+    window.location.href = "/search-results" + "?make=" + selectedMakes_for_filter.join(",") + "&model=" + selectedModels_for_filter.join(",");
+    return;
+}
+
+
+function sortBy() {
+      const sortBtn = document.getElementById('sortBtn');
+
+        const currentOrder = sortBtn.getAttribute('data-order');
+        const tooltip = new bootstrap.Tooltip(sortBtn);
+
+        if (currentOrder === 'asc') {
+        sortBtn.setAttribute('data-order', 'desc');
+        sortBtn.classList.remove('btn-outline-danger');
+        sortBtn.classList.add('btn-danger');
+        sortBtn.setAttribute('title', 'Sort Descending');
+
+        } else {
+        sortBtn.setAttribute('data-order', 'asc');
+        sortBtn.classList.remove('btn-danger');
+        sortBtn.classList.add('btn-outline-danger');
+        sortBtn.setAttribute('title', 'Sort Ascending');
+
+        }
+        tooltip.setContent({ '.tooltip-inner': sortBtn.getAttribute('title') });
+
+        // Optional: Use the value somewhere
+        console.log('Sort Order:', sortBtn.getAttribute('data-order'));
+
+        update_cars_data();
+  
+}
+
+
+
 function update_cars_data(page=1){
 
 
@@ -87,6 +147,7 @@ function update_cars_data(page=1){
         selectedMakes.push(checkbox.value);
         selectedMakesNames.push( {"id": checkbox.value,  "name": checkbox.getAttribute('name-attr')} ); 
     });
+    
 
 
     let selectedModels = [];
@@ -304,7 +365,7 @@ function update_models() {
         response.data.forEach(element => {
             var option = `
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="model_${element.id}" name-attr=${element.name} name="model" value="${element.id}" onclick="update_cars_data()">
+                    <input class="form-check-input" type="checkbox" id="model_${element.id}" name-attr=${element.name} name="model" value="${element.id}" onclick="">
                     <label class="form-check-label text-start"  style="display: block;" name-attr=${element.name} for="model_${element.id}">
                         ${element.name}
                     </label>
@@ -315,6 +376,9 @@ function update_models() {
             document.getElementById("models_form_mobile").insertAdjacentHTML("beforeend", option);
 
         });
+
+        document.getElementById("models_form").insertAdjacentHTML("beforeend", `<button onclick="update_filters()" class="btn btn-danger mt-2" style="width: 100%;">Apply</button>`);
+        document.getElementById("models_form_mobile").insertAdjacentHTML("beforeend", `<button onclick="update_filters()" class="btn btn-danger mt-2" style="width: 100%;">Apply</button>`);
 
         update_cars_data();
     })
@@ -417,13 +481,17 @@ function update_results(data, current_page, total_pages, count) {
                                <div class="row g-4">
                                 <div class="col-12 col-md-2 " style="margin-top: 20px !important;">
                                     <div class="" style="max-width: 100%;width: 100%;height: 100%;max-height: 110px;">
+                                    <a href="/normal-car-details/${element.id}" style="text-decoration: none;">
                                         <img src="${display_picture}"
                                         class="img-fluid" alt="Car 1" style="width: 100%;height: inherit;object-fit: cover;object-position: bottom;">
-                                    </div>
+                                    </a>
+                                        </div>
                                 </div>
                                 <div class="col-12 col-md-2 text-left" style="margin-top: 20px !important;">
+                                    <a href="/normal-car-details/${element.id}" style="text-decoration: none;">
                                     <p class="fs-6 text-start fw-bold m-0 text-primary-color " style="padding-bottom: 10px;">${element.make.name} ${element.model.name} ${element.year}</p>
-                                </div>
+                                    </a>
+                                    </div>
                                 <div class="col-12 col-md-2 text-left text-sm d-flex flex-column align-items-start" style="gap:4px;margin-top: 20px !important;">                                
                                     <div class="d-flex flex-column align-items-start">
                                        <span>Fuel Type:</span>  
