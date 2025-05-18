@@ -46,7 +46,8 @@ document.addEventListener("DOMContentLoaded", function() {
             selectModel.forEach((element) => {
                 for (let i = 0; i < params.model.length; i++) {
                         if (params.model[i] === element.value) {
-                            element.checked = true;
+                            document.getElementById(`model_${element.value}`).checked = true;
+                            // element.checked = true;
                         }
                 }
             });
@@ -90,7 +91,9 @@ function getQueryParams() {
 }
 
 
-
+function removeDuplicates(array){
+    return array.filter((item, index, array) => array.indexOf(item) === index)
+}
 function update_filters(){
     let selectedMakes_for_filter = [];
     let selectedModels_for_filter = [];
@@ -98,10 +101,13 @@ function update_filters(){
     document.querySelectorAll('input[name="make"]:checked').forEach((checkbox) => {
         selectedMakes_for_filter.push(checkbox.value);
     });
+    selectedMakes_for_filter = removeDuplicates(selectedMakes_for_filter)
 
     document.querySelectorAll('input[name="model"]:checked').forEach((checkbox2) => {
         selectedModels_for_filter.push(checkbox2.value);
     });
+    selectedModels_for_filter = removeDuplicates(selectedModels_for_filter)
+
 
     window.location.href = "/search-results" + "?make=" + selectedMakes_for_filter.join(",") + "&model=" + selectedModels_for_filter.join(",");
     return;
@@ -363,9 +369,10 @@ function update_models() {
     .then(function (response) {
 
         response.data.forEach(element => {
-            var option = `
+            var  option = `
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="model_${element.id}" name-attr=${element.name} name="model" value="${element.id}" onclick="">
+<!--                onchange="update_filters()"-->
+                    <input class="form-check-input" type="checkbox" id="model_${element.id}" name-attr=${element.name} name="model" value="${element.id}">
                     <label class="form-check-label text-start"  style="display: block;" name-attr=${element.name} for="model_${element.id}">
                         ${element.name}
                     </label>
@@ -374,6 +381,10 @@ function update_models() {
 
             document.getElementById("models_form").insertAdjacentHTML("beforeend", option);
             document.getElementById("models_form_mobile").insertAdjacentHTML("beforeend", option);
+
+            // if (queryParams?.includes?.(`${element.id}`)){
+            //     document.getElementById(`model_${element.id}`).checked = true;
+            // }
 
         });
 
