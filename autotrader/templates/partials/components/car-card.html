@@ -33,7 +33,7 @@
       <div class="swiper-button-prev"></div>
       <div class="swiper-pagination card-image-pagination"></div>
       <!-- New Tag -->
-      <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1 z-3 new-card">NEW</span>
+      <span class="badge bg-danger position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1 z-3 new-card" style="background-color: {{vehicle.status.color_hex}}!important;">{{vehicle.status.name_en}}</span>
       <!-- Heart Icon -->
       <button class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle z-3 card-fav-icon-wrapper">
         <i class="fas fa-heart text-danger"></i>
@@ -113,7 +113,7 @@
             </svg>
             
           <p class="mb-0 text-sm text-secondary-color fw-normal">Fuel Type</p>
-          <p class="fw-bold m-0 text-primary-color text-sm font-medium"">{{ vehicle.fuel.name_en}}</p>
+          <p class="fw-bold m-0 text-primary-color text-sm font-medium">{{ vehicle.fuel.name_en}}</p>
         </div>
         <div  class="px-2.75">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 5px;">
@@ -124,7 +124,7 @@
             
           <!-- <p class="mb-0 text-muted small">0-100 km/h</p> -->
           <p class="mb-0 text-sm text-secondary-color fw-normal">Odometer</p>
-          <p class="fw-bold m-0 text-primary-color text-sm font-medium"">{{vehicle.odometer }}</p>
+          <p class="fw-bold m-0 text-primary-color text-sm font-medium">{{vehicle.odometer }}</p>
         </div>
         <div  class="px-2.75">
           <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 5px;">
@@ -138,8 +138,8 @@
             </defs>
           </svg>
             
-          <p class="mb-0 text-sm text-secondary-color fw-normal">Engine</p>
-          <p class="fw-bold m-0 text-primary-color text-sm font-medium""> {{ vehicle.engine_power }}{{ vehicle.engine_power_unit }} </p>
+          <p class="mb-0 text-sm text-secondary-color fw-normal">Engine size</p>
+          <p class="fw-bold m-0 text-primary-color text-sm font-medium"> {{ vehicle.engine_power }}{{ vehicle.engine_power_unit }} </p>
         </div>
       </div>
       {% endif %}

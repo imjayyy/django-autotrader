@@ -139,6 +139,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'autotrader.context_processors.menu_items',
+                'autotrader.context_processors.get_notifications',
 
             ],
         },

@@ -288,9 +288,10 @@
                             <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger notification-number">2</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Notification 1</a></li>
-                            <li><a class="dropdown-item" href="#">Notification 2</a></li>
-                            <li><a class="dropdown-item" href="#">Notification 3</a></li>
+                            {% for notification in notifications %}
+                                <li><a class="dropdown-item" href="/information-view/{{notification.id}}/">{{notification.title }}</a></li>
+                            {% endfor %}
+
                         </ul>
                     </div>
 
