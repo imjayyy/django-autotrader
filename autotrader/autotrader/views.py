@@ -109,10 +109,15 @@ def search_results(request):
     query_params = request.GET.dict()
     if "make" in query_params:
         if query_params.get('make') != 'any' or  query_params.get('model') != 'any':
-            make_id_list = query_params.get('make').split(",")
-            
+            try:
+                make_id_list = query_params.get('make').split(",")
+            except ValueError:
+                make_id_list = []
             if 'model' in query_params:
-                model_id_list = query_params.get('model').split(",")
+                try:
+                    model_id_list = query_params.get('model').split(",")
+                except ValueError:
+                    model_id_list = []
                 vehicles = Vehicle.objects.filter(make__id__in=make_id_list, model__id__in=model_id_list, is_published=True)
                 form_fields.update({
                     'Transmission': list(Transmission.objects.filter(id__in=vehicles.values_list('transmission_id', flat=True).distinct()).values("id", "name_en", "name_az")),
