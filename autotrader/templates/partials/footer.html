@@ -152,7 +152,7 @@
                                  <!-- Search Input -->
                                  <div class="col-lg-8 col-md-7 col-sm-12 mb-3">
                                      <div class="input-group">
-                                         <input type="text" id="text-search" class="form-control text-sm" placeholder="Search Vehicles by Make, Model, Lot number" aria-label="Search" style="border-radius: 5px !important;">
+                                         <input type="text" id="text-search-mobile" class="form-control text-sm" placeholder="Search Vehicles by Make, Model, Lot number" aria-label="Search" style="border-radius: 5px !important;">
                                      </div>
                                  </div>
 
@@ -177,7 +177,7 @@
 
                                  <!-- Search Button -->
                                  <div class="col-lg-2 col-md-2 col-sm-6">
-                                     <button type="button" class="btn search-button" id="searchByText" style="width: 100%;">Search</button>
+                                     <button type="button" class="btn search-button" id="searchByTextMobile" style="width: 100%;">Search</button>
                                  </div>
                              </div>
                          </form>
@@ -205,3 +205,12 @@
         </a>
     </div>
 </section>
+<script>
+    document.querySelector('#searchByTextMobile').addEventListener('click', function(e)  {
+        e.preventDefault();
+        const searchText = document.getElementById('text-search-mobile').value;
+        const url = '/text-search?searchByText=' ;
+
+        window.location.href = url + searchText;
+    });
+</script>
