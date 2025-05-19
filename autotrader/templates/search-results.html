@@ -205,26 +205,47 @@
         <!-- Filters Sidebar For Desktop -->
         <div class="d-none d-md-block col-md-3">
             <div class="filters-box mb-3">
-                <button
-                    class="btn btn-dark mb-2"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#filtersCollapse"
-                    aria-expanded="false"
-                    aria-controls="filtersCollapse">
-                    Toggle Filters
+<!--                <button-->
+<!--                    class="btn btn-dark mb-2"-->
+<!--                    type="button"-->
+<!--                    data-bs-toggle="collapse"-->
+<!--                    data-bs-target="#filtersCollapse"-->
+<!--                    aria-expanded="false"-->
+<!--                    aria-controls="filtersCollapse">-->
+<!--                    Toggle Filters-->
+<!--                </button>-->
+                <button  type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#filtersCollapse"
+                                            aria-expanded="false"
+                                            aria-controls="filtersCollapse" class="d-flex justify-content-between align-items-center" style="border:none;background: transparent;width: 100%;">
+                    <span class="text-primary-color font-medium m-0" style="font-size: 18px;">Filters</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 5H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 5H14" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 12H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 12H6" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18 19H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 19H14" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17.4142 3.58579C18.1953 4.36684 18.1953 5.63317 17.4142 6.41422C16.6332 7.19527 15.3668 7.19527 14.5858 6.41422C13.8047 5.63317 13.8047 4.36684 14.5858 3.58579C15.3668 2.80474 16.6332 2.80474 17.4142 3.58579" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.41422 10.5858C10.1953 11.3668 10.1953 12.6332 9.41422 13.4142C8.63317 14.1953 7.36684 14.1953 6.58579 13.4142C5.80474 12.6332 5.80474 11.3668 6.58579 10.5858C7.36684 9.80474 8.63317 9.80474 9.41422 10.5858" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17.4142 17.5858C18.1953 18.3668 18.1953 19.6332 17.4142 20.4142C16.6332 21.1953 15.3668 21.1953 14.5858 20.4142C13.8047 19.6332 13.8047 18.3668 14.5858 17.5858C15.3668 16.8047 16.6332 16.8047 17.4142 17.5858" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </button>
             
-                <div class="collapse" id="filtersCollapse">
-                    <h5 class="fw-bold">Filters</h5>
-                    <div class="d-flex flex-wrap" id="filter-tags">
+                <div class="collapse" id="filtersCollapse" style="margin-top: 16px;">
+                    <div class="d-flex flex-wrap" id="filter-tags" style="gap: 8px;">
                         {% for key, value in query_params.items %}
-                        <span class="badge bg-dark filter-tag">{{ key }} : {{ value }} <button
-                                class="btn-close btn-close-white btn-sm ms-2"  onclick="clear_tag('{{key}}', '{{value}}')"></button></span>
+<!--                            <div class="filter-tag">-->
+<!--                                <span>{{ key }} : {{ value }}</span>-->
+<!--                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="cursor: pointer;" onclick="clear_tag('{{key}}', '{{value}}')">-->
+<!--                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99984 1.16666C3.774 1.16666 1.1665 3.77416 1.1665 7C1.1665 10.2258 3.774 12.8333 6.99984 12.8333C10.2257 12.8333 12.8332 10.2258 12.8332 7C12.8332 3.77416 10.2257 1.16666 6.99984 1.16666ZM9.9165 9.09416L9.094 9.91667L6.99984 7.8225L4.90567 9.91667L4.08317 9.09416L6.17734 7L4.08317 4.90583L4.90567 4.08333L6.99984 6.1775L9.094 4.08333L9.9165 4.90583L7.82234 7L9.9165 9.09416Z" fill="white"/>-->
+<!--                                </svg>-->
+<!--                            </div>-->
                         {% endfor %}
                         
                     </div>
-                    <a href="/search-results" class="d-block mt-2 text-danger">Clear All Filters</a>
+                    <a href="/search-results" class="d-block text-primary-color text-sm" style="text-decoration: none;text-align: left;margin-top: 12px;">Clear All Filters</a>
                 </div>
             </div>
 
@@ -845,7 +866,7 @@
                         <div class="modal-body">
                             <div class="accordion accordion-flush my-2 py-2" id="accordionExample">
 
-                                <div class="accordion-item">
+                                <div class="accordion-item" id="filterMobileMakeTrigger">
                                     <h2 class="accordion-header" id="headingOne">
                                         <a
                                                 class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
@@ -1061,19 +1082,16 @@
                         <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end m-0" style="border-top-left-radius: 5px;height: fit-content;">
                             <span class="m-0 text-sm font-medium">Image</span>
                         </div>
-                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end text-left m-0" style="height: fit-content;">
-                            <span class="m-0 text-sm font-medium">Make/Model</span>
-                        </div>
-                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end text-left m-0" style="height: fit-content;">
+                        <div class="col-12 col-md-3 bg-primary-color text-white p-2 border-end m-0" style="height: fit-content;">
                             <span class="m-0 text-sm font-medium">Vehicle Info</span>
                         </div>
-                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end text-left m-0" style="height: fit-content;">
+                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end m-0" style="height: fit-content;">
+                            <span class="m-0 text-sm font-medium">Engine</span>
+                        </div>
+                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end  m-0" style="height: fit-content;">
                             <span class="m-0 text-sm font-medium">Mileage</span>
                         </div>
-                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end text-left m-0" style="height: fit-content;">
-                            <span class="m-0 text-sm font-medium">Country</span>
-                        </div>
-                        <div class="col-12 col-md-2 bg-primary-color text-white p-2 border-end text-left m-0" style="border-top-right-radius: 5px;height: fit-content;">
+                        <div class="col-12 col-md-3 bg-primary-color text-white p-2 border-end m-0" style="border-top-right-radius: 5px;height: fit-content;">
                             <span class="m-0 text-sm font-medium">Sale Info</span>
                         </div>
                     </div>
