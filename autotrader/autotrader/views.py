@@ -108,7 +108,7 @@ def search_results(request):
     }
     query_params = request.GET.dict()
     if "make" in query_params:
-        if query_params.get('make') != 'any' or  query_params.get('model') != 'any':
+        if query_params.get('make') != 'any' and  query_params.get('model') != 'any':
             try:
                 make_id_list = query_params.get('make').split(",")
             except ValueError:
