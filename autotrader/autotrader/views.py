@@ -108,20 +108,21 @@ def search_results(request):
     }
     query_params = request.GET.dict()
     if "make" in query_params:
-        make_id_list = query_params.get('make').split(",")
-        
-        if 'model' in query_params:
-            model_id_list = query_params.get('model').split(",")
-            vehicles = Vehicle.objects.filter(make__id__in=make_id_list, model__id__in=model_id_list, is_published=True)
-            form_fields.update({
-                'Transmission': list(Transmission.objects.filter(id__in=vehicles.values_list('transmission_id', flat=True).distinct()).values("id", "name_en", "name_az")),
-                'Drive': list(Drive.objects.filter(id__in=vehicles.values_list('drive_id', flat=True).distinct()).values("id", "name_en", "name_az")),
-                'Fuel': list(Fuel.objects.filter(id__in=vehicles.values_list('fuel_id', flat=True).distinct()).values("id", "name_en", "name_az")),
-                'BodyStyle': list(BodyStyle.objects.filter(id__in=vehicles.values_list('body_style_id', flat=True).distinct()).values("id", "name_en", "name_az")),
-                'Color': list(Color.objects.filter(id__in=vehicles.values_list('color_id', flat=True).distinct()).values("id", "name_en", "name_az")),
-                'country': list(Country.objects.filter(id__in=vehicles.values_list('country_id', flat=True).distinct()).values("id", "name")),
-                'engine_type': list(vehicles.values_list("engine_type", flat=True).distinct())
-            })
+        if query_params.get('make') != 'any':
+            make_id_list = query_params.get('make').split(",")
+            
+            if 'model' in query_params:
+                model_id_list = query_params.get('model').split(",")
+                vehicles = Vehicle.objects.filter(make__id__in=make_id_list, model__id__in=model_id_list, is_published=True)
+                form_fields.update({
+                    'Transmission': list(Transmission.objects.filter(id__in=vehicles.values_list('transmission_id', flat=True).distinct()).values("id", "name_en", "name_az")),
+                    'Drive': list(Drive.objects.filter(id__in=vehicles.values_list('drive_id', flat=True).distinct()).values("id", "name_en", "name_az")),
+                    'Fuel': list(Fuel.objects.filter(id__in=vehicles.values_list('fuel_id', flat=True).distinct()).values("id", "name_en", "name_az")),
+                    'BodyStyle': list(BodyStyle.objects.filter(id__in=vehicles.values_list('body_style_id', flat=True).distinct()).values("id", "name_en", "name_az")),
+                    'Color': list(Color.objects.filter(id__in=vehicles.values_list('color_id', flat=True).distinct()).values("id", "name_en", "name_az")),
+                    'country': list(Country.objects.filter(id__in=vehicles.values_list('country_id', flat=True).distinct()).values("id", "name")),
+                    'engine_type': list(vehicles.values_list("engine_type", flat=True).distinct())
+                })
     return render(request, 'search-results.html', {"form_fields": form_fields, 'query_params': query_params})
 
 
