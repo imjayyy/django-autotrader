@@ -242,7 +242,7 @@
                           <div class="modal-content container">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             <div class="modal-body">
-                              <form>
+                              
                                 <div class="row align-items-center">
                                   <!-- Search Input -->
                                   <div class="col-lg-8 col-md-7 col-sm-12 mb-3">
@@ -250,8 +250,7 @@
                                       <span class="input-group-text bg-white border-0"><i class="bi bi-search"></i></span>
                                       <input type="text" id="text-search" class="form-control" placeholder="Search Vehicles by Make, Model, Lot number" aria-label="Search">
                                     </div>
-                                  </div>
-                      
+                                  </div>                      
                                   <!-- Checkboxes -->
                                   <div class="col-lg-2 col-md-3 col-sm-6 mb-3">
                                     <div class="row g-5">
@@ -276,7 +275,7 @@
                                     <button type="button" class="btn search-button" id="searchByText" >Search</button>
                                   </div>
                                 </div>
-                              </form>
+                              
                             </div>
                           </div>
                         </div>
@@ -316,10 +315,9 @@
             </div>
         </div>
     </nav>
-    
-    <script>
-        document.querySelector('#searchByText').addEventListener('click', function(e)  {
-            e.preventDefault();
+        <script>
+        document.querySelector('#searchByText').addEventListener('click', function()  {
+            console.log('Search button clicked');
             const searchText = document.getElementById('text-search').value;
             const selectedType = document.querySelector('input[name="search_type"]:checked').value;
             const url = '/text-search?searchByText=' ;
@@ -336,5 +334,6 @@
 
 
       </script>
+
 <!-- </body>
 </html> -->
