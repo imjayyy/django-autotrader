@@ -1,6 +1,26 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     let params = getQueryParams();
+    const windowWidth = window.innerWidth
+
+    if (windowWidth > 767){
+        // Remove mobile filters from desktop
+        document.getElementById("mobile-filters-modal").innerHTML = "";
+    }else{
+        document.getElementById("filterMobileMakeTrigger").innerHTML = mobileFilterTemplateEngine("Vehicle Make", [], "mobileFilterMake", "filterMobileMakeTrigger", "make")
+        document.getElementById("filterMobileModelTrigger").innerHTML = mobileFilterTemplateEngine("Model", [], "mobileFilterModel", "filterMobileModelTrigger", "model")
+        document.getElementById("filterMobileEngineTypeTrigger").innerHTML = mobileFilterTemplateEngine("Engine Type", [], "mobileFilterEngineType","filterMobileEngineTypeTrigger","engine_type")
+        document.getElementById("filterMobileTransmissionTrigger").innerHTML = mobileFilterTemplateEngine("Transmission", [], "mobileFilterTransmission", "filterMobileTransmissionTrigger", "transmission")
+        document.getElementById("filterMobileFuelTrigger").innerHTML = mobileFilterTemplateEngine("Fuel Type", [], "mobileFilterFuelType", "filterMobileFuelTrigger", "fuel")
+        document.getElementById("filterMobileDriveTrigger").innerHTML = mobileFilterTemplateEngine("Drive", [], "mobileFilterDrive", "filterMobileDriveTrigger", "Drive")
+        document.getElementById("filterMobileBodyStyleTrigger").innerHTML = mobileFilterTemplateEngine("Body Style", [], "mobileFilterBodyStyle", "filterMobileBodyStyleTrigger", "BodyStyle")
+        document.getElementById("filterMobileCountryTrigger").innerHTML = mobileFilterTemplateEngine("Country", [], "mobileFilterCountry", "filterMobileCountryTrigger", "country")
+
+        document.getElementById("filterMobileOdometerTrigger").innerHTML = mobileFilterTemplateEngine("Odometer", [], "mobileFilterOdometer", "filterMobileOdometerTrigger", "")
+        document.getElementById("filterMobilePriceTrigger").innerHTML = mobileFilterTemplateEngine("Price", [], "mobileFilterPrice", "filterMobilePriceTrigger", "")
+        document.getElementById("filterMobileYearTrigger").innerHTML = mobileFilterTemplateEngine("Year", [], "mobileFilterYear", "filterMobileYearTrigger", "")
+
+    }
     console.log(params);    
     // if ("searchByText" in params) {
     //     console.log("Search value:", params.searchByText);
@@ -12,25 +32,32 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("params:", params);
 
     //Updating initial mobile filters
-    document.getElementById("filterMobileMakeTrigger").innerHTML = `
-         <h2 class="accordion-header">
-                                        <a
-                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
-                                                type="button"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#mobileFilterMake"
-                                        >
-                                            <span>Vehicle Make</span>
-                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
-                                        </a>
-                                    </h2>
-    `;
+    //     `
+    //      <h2 class="accordion-header">
+    //                                     <a
+    //                                             class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+    //                                             type="button"
+    //                                             data-bs-toggle="modal"
+    //                                             data-bs-target="#mobileFilterMake"
+    //                                     >
+    //                                         <span>Vehicle Make</span>
+    //                                         <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+    //                                     </a>
+    //                                 </h2>
+    // `;
 
     let selectMake = document.querySelectorAll(`input[name="make"]`);
     selectMake.forEach((element) => {
         for (let i = 0; i < params.make.length; i++) {
             if (params.make[i] === element.value) {
-                element.checked = true;
+                // element.checked = true;
+                if (windowWidth > 767){
+                    document.getElementById(`make_${element.value}`).checked = true
+                }else{
+                    document.getElementById(`mobile_make_${element.value}`).checked = true
+                }
+
+
                 // console.log(element,"element")
                 // console.log(document.getElementById(element.id),"document.getElementById(element.id)")
                 // document.getElementById(element.id).checked = true;
@@ -44,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (input_form_element) {
                 if (input_form_element.type === "checkbox") {
                     if(input_form_element.value === value){
-                        console.log(input_form_element.name,"ss")
+                        // console.log(input_form_element.name,"ss")
                         // document.getElementById(input_form_element.id).checked = true;
                     input_form_element.checked = true;
                         }
@@ -61,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
     Promise.resolve(update_models()).then(() => {
         setTimeout(() => {
             let selectModel = document.querySelectorAll(`input[name="model"]`);
+
             selectModel.forEach((element) => {
                 for (let i = 0; i < params.model.length; i++) {
                         if (params.model[i] === element.value) {
@@ -71,6 +99,23 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             update_cars_data();
 
+            if (windowWidth <= 767){
+
+                // initial model list
+                let selectedModels_for_filter = [];
+                let selectedModelNames = []
+                document.querySelectorAll('input[name="model"]:checked').forEach((checkbox) => {
+                    selectedModels_for_filter.push(checkbox.value);
+                });
+                selectedModels_for_filter = removeDuplicates(selectedModels_for_filter)
+
+                selectedModels_for_filter.forEach(selectedModel => {
+                    const currentElementNames = document.getElementById(`model_${selectedModel}`).getAttribute("name-attr")
+                    selectedModelNames.push(currentElementNames)
+                })
+                document.getElementById("filterMobileModelTrigger").innerHTML = mobileFilterTemplateEngine("Model", selectedModelNames, "mobileFilterModel", "filterMobileModelTrigger", "model")
+
+            }
         }, 500); // Delay for 500ms to ensure models are loaded
     });
 
@@ -168,11 +213,12 @@ function sortBy() {
 function update_cars_data(page=1){
 
 
+    const windowWidth = window.innerWidth
     let selectedMakes = [];
-    let selectedMakesNames = [] 
+    let selectedMakesNames = []
     document.querySelectorAll('input[name="make"]:checked').forEach((checkbox) => {
         selectedMakes.push(checkbox.value);
-        selectedMakesNames.push( {"id": checkbox.value,  "name": checkbox.getAttribute('name-attr')} ); 
+        selectedMakesNames.push( {"id": checkbox.value,  "name": checkbox.getAttribute('name-attr')} );
     });
 
 
@@ -198,12 +244,14 @@ function update_cars_data(page=1){
         selectedDrivesNames.push({"id": checkbox.value,  "name": checkbox.getAttribute('name-attr')});
     });
 
+
     let selectedFuels = [];
     let selectedFuelsNames = []
     document.querySelectorAll('input[name="fuel"]:checked').forEach((checkbox) => {
         selectedFuels.push(checkbox.value);
         selectedFuelsNames.push({"id": checkbox.value,  "name": checkbox.getAttribute('name-attr')});
     });
+
 
     let selectedBodyStyles = [];
     let selectedBodyStylesNames = []
@@ -212,51 +260,84 @@ function update_cars_data(page=1){
         selectedBodyStylesNames.push({"id": checkbox.value,  "name": checkbox.getAttribute('name-attr')});
     });
 
+
     let selectedCountries = [];
     let selectedCountriesNames = []
     document.querySelectorAll('input[name="country"]:checked').forEach((checkbox) => {
         selectedCountries.push(checkbox.value);
         selectedCountriesNames.push({"id": checkbox.value,  "name": checkbox.getAttribute('name-attr')});
     });
+
     let selectedColors = [];
     let selectedColorsNames = []
     document.querySelectorAll('input[name="color"]:checked').forEach((checkbox) => {
         selectedColors.push(checkbox.value);
         selectedColorsNames.push({"id": checkbox.value,  "name": checkbox.getAttribute('name-attr')});
-    }
-    );
+    });
 
     let selectedEngineTypes = [];
     let selectedEngineTypesNames = []
     document.querySelectorAll('input[name="engine_type"]:checked').forEach((checkbox) => {
         selectedEngineTypes.push(checkbox.value);
         selectedEngineTypesNames.push({"id": checkbox.value,  "name": checkbox.getAttribute('name-attr')});
+    });
+
+
+
+    let odometerMin;
+    let odometerMax;
+
+    let priceMin;
+    let priceMax;
+
+
+    let year_min;
+    let year_max;
+
+    if (windowWidth <= 767){
+        document.getElementById("filterMobileTransmissionTrigger").innerHTML = mobileFilterTemplateEngine("Transmission", selectedTransmissionsNames.map(el => el.name), "mobileFilterTransmission", "filterMobileTransmissionTrigger", "transmission")
+        document.getElementById("filterMobileDriveTrigger").innerHTML = mobileFilterTemplateEngine("Drive", selectedDrivesNames.map(el => el.name), "mobileFilterDrive", "filterMobileDriveTrigger", "Drive")
+        document.getElementById("filterMobileFuelTrigger").innerHTML = mobileFilterTemplateEngine("Fuel Type", selectedFuelsNames.map(el => el.name), "mobileFilterFuelType", "filterMobileFuelTrigger", "fuel")
+        document.getElementById("filterMobileBodyStyleTrigger").innerHTML = mobileFilterTemplateEngine("Body Style", selectedBodyStylesNames.map(el => el.name), "mobileFilterBodyStyle", "filterMobileBodyStyleTrigger", "BodyStyle")
+        document.getElementById("filterMobileCountryTrigger").innerHTML = mobileFilterTemplateEngine("Country", selectedCountriesNames.map(el => el.name), "mobileFilterCountry", "filterMobileCountryTrigger", "country")
+        document.getElementById("filterMobileEngineTypeTrigger").innerHTML = mobileFilterTemplateEngine("Engine Type", selectedEngineTypesNames.map(el => el.name), "mobileFilterEngineType", "filterMobileEngineTypeTrigger", "engine_type")
+
+        odometerMin = document.querySelector('input[id="odometer_min_mobile"]').value;
+        odometerMax = document.querySelector('input[id="odometer_max_mobile"]').value;
+
+        priceMin = document.querySelector('input[id="price_min_mobile"]').value;
+        priceMax = document.querySelector('input[id="price_max_mobile"]').value;
+
+        year_min = document.querySelector('input[id="year_min_mobile"]').value;
+        year_max = document.querySelector('input[id="year_max_mobile"]').value;
+
+
+
+        document.getElementById("filterMobileOdometerTrigger").innerHTML = mobileFilterTemplateEngine("Odometer", odometerMin || odometerMax ? [`${odometerMin || 0}-${odometerMax || 0}`] : [], "mobileFilterOdometer", "filterMobileOdometerTrigger", "")
+        document.getElementById("filterMobilePriceTrigger").innerHTML = mobileFilterTemplateEngine("Price", priceMin || priceMax ? [`${priceMin || 0}-${priceMax || 0}`] : [], "mobileFilterPrice", "filterMobilePriceTrigger", "")
+        document.getElementById("filterMobileYearTrigger").innerHTML = mobileFilterTemplateEngine("Year", year_min || year_max ? [`${year_min || 0}-${year_max || 0}`] : [], "mobileFilterYear", "filterMobileYearTrigger", "")
+
+        // alert("Values Successfully Updated")
+    }else{
+        odometerMin = document.querySelector('input[id="odometer_min"]').value;
+        odometerMax = document.querySelector('input[id="odometer_max"]').value;
+
+        priceMin = document.querySelector('input[id="price_min"]').value;
+        priceMax = document.querySelector('input[id="price_max"]').value;
+
+        year_min = document.querySelector('input[id="year_min"]').value;
+        year_max = document.querySelector('input[id="year_max"]').value;
     }
-    );
-
-
-    let odometerMin = document.querySelector('input[name="odometer_min"]').value;
-    let odometerMax = document.querySelector('input[name="odometer_max"]').value;
-
-    let priceMin = document.querySelector('input[name="price_min"]').value;
-    let priceMax = document.querySelector('input[name="price_max"]').value;
-
-
-    let year_min = document.querySelector('input[name="year_min"]').value;
-    let year_max = document.querySelector('input[name="year_max"]').value;
-
 
 
     let sorting_by = document.getElementById('sortBy').value;
     let sorting_order = document.getElementById('sortBtn').getAttribute('data-order');
 
-    console.log("selectedEngineTypes:", selectedEngineTypes);
-
 
     let filterParams = {
         page: page,
-        make: selectedMakes,
-        model: selectedModels,
+        make: removeDuplicates(selectedMakes),
+        model: removeDuplicates(selectedModels),
         transmission: selectedTransmissions,
         drives: selectedDrives,
         fuels: selectedFuels,
@@ -268,7 +349,7 @@ function update_cars_data(page=1){
         country: selectedCountries,
         color: selectedColors,
         year_min: year_min,
-        year_max: year_max, 
+        year_max: year_max,
 
         sorting_by: sorting_by,
         sorting_order: sorting_order,
@@ -277,8 +358,8 @@ function update_cars_data(page=1){
     };
 
     let filterTags = {
-        "make": selectedMakesNames,
-        "model": selectedModelsNames,
+        "make": removeDuplicates(selectedMakesNames, "id"),
+        "model": removeDuplicates(selectedModelsNames, "id"),
         "Transmission": selectedTransmissionsNames,
         "Drive": selectedDrivesNames,
         "fuel": selectedFuelsNames,
@@ -315,8 +396,8 @@ function update_cars_data(page=1){
     }).catch(function (error) {
         console.log(error);})
 
-            
-        
+
+
 }
 
 
@@ -377,32 +458,90 @@ function create_tag(key, value, name) {
                             </div>`
 }
 
-function uncheck_all(e) {
-    e?.stopPropagation();
-    console.log(e?.stopPropagation,"e?.stopPropagation")
-    document.querySelectorAll('input[name="make"]:checked').forEach((checkbox) => {
-       checkbox.click()
+function uncheck_all(e, props) {
+    e?.stopPropagation?.();
+    const {title, toggleId, triggerId, inputName} = props;
+    document.querySelectorAll(`input[name=${inputName}]:checked`).forEach((checkbox) => {
+        checkbox.click()
     });
-    document.getElementById("filterMobileMakeTrigger").innerHTML = `
-         <h2 class="accordion-header">
-                                        <a
-                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+
+    document.getElementById(triggerId).innerHTML = mobileFilterTemplateEngine(title, [], toggleId, triggerId, inputName);
+}
+function mobileFilterTemplateEngine(title, dataList, toggleId, triggerId, inputName){
+    const toggleIdFromParams = `#${toggleId}`
+    if (dataList && dataList.length > 0) {
+        // Filled Filter State
+
+        let props = {
+            toggleId,
+            triggerId,
+            inputName,
+            title
+        }
+
+        if (!inputName){
+            return `
+             <h2 class="accordion-header">
+                 <button
+                                                class="text-heading d-flex justify-content-between align-items-center"
                                                 type="button"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#mobileFilterMake"
+                                                data-bs-target=${toggleIdFromParams}
                                         >
-                                            <span>Vehicle Make</span>
-                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
-                                        </a>
-                                    </h2>
-    `;
-    console.log("test")
+                                            <div class="d-flex flex-column align-items-start">
+                                                <span class="text-secondary-color" style="font-size: 12px;">${title}</span>
+                                                 <span class="text-primary-color font-medium" style="font-size: 18px;text-align: left;">${dataList.join(",")}</span>
+                                            </div>
+                                            <div></div>
+                                        </button>                        
+            </h2>
+            `
+        }
 
+        return `
+            <h2 class="accordion-header">
+                 <button
+                                                class="text-heading d-flex justify-content-between align-items-center"
+                                                type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target=${toggleIdFromParams}
+                                        >
+                                            <div class="d-flex flex-column align-items-start">
+                                                <span class="text-secondary-color" style="font-size: 12px;">${title}</span>
+                                                 <span class="text-primary-color font-medium" style="font-size: 18px;text-align: left;">${dataList.join(",")}</span>
+                                            </div>
+                                            <i class="bi bi-x-circle-fill text-secondary-color" style="font-size: 20px;cursor:pointer;" onclick='uncheck_all(event,${JSON.stringify(props)})'></i>
+                                        </button>                        
+            </h2>
+        `
+    }else {
+        // Empty Filter State
+        return `
+            <h2 class="accordion-header">
+                <a
+                    class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target=${toggleIdFromParams}
+                >
+                    <span>${title}</span>
+                    <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
+                </a>
+            </h2>
+        `
+    }
 }
 function update_models() {
     // Clear the existing models
-    document.getElementById("models_form").innerHTML = "";
-    document.getElementById("models_form_mobile").innerHTML = "";
+    const windowWidth = window.innerWidth
+
+    if (windowWidth > 767){
+        document.getElementById("models_form").innerHTML = "";
+    }else{
+        document.getElementById("models_form_mobile").innerHTML = "";
+    }
+
+
 
     let selectedMakes = [];
     document.querySelectorAll('input[name="make"]:checked').forEach((checkbox) => {
@@ -410,44 +549,20 @@ function update_models() {
     });
     selectedMakes = removeDuplicates(selectedMakes)
 
-    console.log(selectedMakes,"selectedMakes")
     const selectedMakeNames = []
     if (selectedMakes.length > 0){
         selectedMakes.forEach(selectedMake => {
             const currentElementNames = document.getElementById(`make_${selectedMake}`).getAttribute("name-attr")
             selectedMakeNames.push(currentElementNames)
         })
-        document.getElementById("filterMobileMakeTrigger").innerHTML = `
-         <h2 class="accordion-header">
-                                        <button
-                                                class="text-heading d-flex justify-content-between align-items-center"
-                                                type="button"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#mobileFilterMake"
-                                        >
-                                            <div class="d-flex flex-column align-items-start">
-                                                <span class="text-secondary-color" style="font-size: 12px;">Vehicle Make</span>
-                                                 <span class="text-primary-color font-medium" style="font-size: 18px;">${selectedMakeNames.join(",")}</span>
-                                            </div>
-                                            <i class="bi bi-x-circle-fill text-secondary-color" style="font-size: 20px;cursor:pointer;" onclick="uncheck_all(event);"></i>
-                                        </button>
-                                    </h2>
-    `;
+        if(windowWidth  <= 767){
+            document.getElementById("filterMobileMakeTrigger").innerHTML = mobileFilterTemplateEngine("Vehicle Make", selectedMakeNames, "mobileFilterMake", "filterMobileMakeTrigger", "make")
+        }
     }else{
         //empty make list
-        document.getElementById("filterMobileMakeTrigger").innerHTML = `
-         <h2 class="accordion-header">
-                                        <a
-                                                class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
-                                                type="button"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#mobileFilterMake"
-                                        >
-                                            <span>Vehicle Make</span>
-                                            <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
-                                        </a>
-                                    </h2>
-    `;
+        if(windowWidth  <= 767){
+            document.getElementById("filterMobileMakeTrigger").innerHTML = mobileFilterTemplateEngine("Vehicle Make", [], "mobileFilterMake", "filterMobileMakeTrigger", "make")
+        }
     }
 
     // Send request to get models
@@ -459,7 +574,6 @@ function update_models() {
         response.data.forEach(element => {
             var  option = `
                 <div class="form-check">
-<!--                onchange="update_filters()"-->
                     <input class="form-check-input" type="checkbox" id="model_${element.id}" name-attr=${element.name} name="model" value="${element.id}">
                     <label class="form-check-label text-start"  style="display: block;" name-attr=${element.name} for="model_${element.id}">
                         ${element.name}
@@ -467,20 +581,22 @@ function update_models() {
                 </div>
             `;
 
-            document.getElementById("models_form").insertAdjacentHTML("beforeend", option);
-            document.getElementById("models_form_mobile").insertAdjacentHTML("beforeend", option);
-
-            // if (queryParams?.includes?.(`${element.id}`)){
-            //     document.getElementById(`model_${element.id}`).checked = true;
-            // }
-
+            if (windowWidth > 767){
+                document.getElementById("models_form").insertAdjacentHTML("beforeend", option);
+            }else{
+                document.getElementById("models_form_mobile").insertAdjacentHTML("beforeend", option);
+            }
         });
 
         if (!document.getElementById("model_apply")){
-            document.getElementById("models_form").insertAdjacentHTML("beforeend", `<button onclick="update_filters()" class="btn btn-danger mt-2" style="width: 100%;" id="model_apply">Apply</button>`);
+            if (windowWidth > 767){
+                document.getElementById("models_form").insertAdjacentHTML("beforeend", `<button onclick="update_filters()" class="btn btn-danger mt-2" style="width: 100%;" id="model_apply">Apply</button>`);
+            }
         }
         if (!document.getElementById("model_apply_mobile")){
-            document.getElementById("models_form_mobile").insertAdjacentHTML("beforeend", `<button onclick="update_filters()" class="btn btn-danger mt-2" style="width: 100%;" id="model_apply_mobile">Apply</button>`);
+            if (windowWidth <= 767){
+                document.getElementById("models_form_mobile").insertAdjacentHTML("beforeend", `<button onclick="update_filters()" class="btn btn-danger mt-2" style="width: 100%;" id="model_apply_mobile">Apply</button>`);
+            }
         }
 
         update_cars_data();
@@ -489,9 +605,6 @@ function update_models() {
         console.log(error);
     });
     return true;
-
-
-
 }
 
 function update_results(data, current_page, total_pages, count) {
@@ -694,3 +807,22 @@ function update_results(data, current_page, total_pages, count) {
     document.getElementById("search-pagination").innerHTML = pagination_buttons;
 
 }
+
+
+document.querySelector('#open-filter-sidebar').addEventListener('click', function(e)  {
+    //Open Filter
+    document.getElementById("main-filter-sidebar").classList.remove("hide-filter-sidebar")
+    document.getElementById("collapsed-filter-sidebar").classList.add("d-md-none")
+    document.getElementById("collapsed-filter-sidebar").classList.remove("d-md-flex")
+    document.getElementById("results-section").classList.add("col-md-9")
+    document.getElementById("results-section").classList.remove("col-md-11")
+});
+
+document.querySelector('#close-filter-sidebar').addEventListener('click', function(e)  {
+    //Close Filter
+    document.getElementById("main-filter-sidebar").classList.add("hide-filter-sidebar")
+    document.getElementById("collapsed-filter-sidebar").classList.remove("d-md-none")
+    document.getElementById("collapsed-filter-sidebar").classList.add("d-md-flex")
+    document.getElementById("results-section").classList.remove("col-md-9")
+    document.getElementById("results-section").classList.add("col-md-11")
+});

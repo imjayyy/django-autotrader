@@ -171,6 +171,12 @@
             }
         }
 
+        .hide-filter-sidebar{
+            position: absolute;
+            z-index: -100000;
+            opacity: 0;
+            pointer-events: none;
+        }
 </style>
 <!-- <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
 <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script> -->
@@ -183,42 +189,43 @@
             <li class="breadcrumb-item active" aria-current="page">Search Results</li>
         </ol>
     </nav>
-
-<!--    <div>-->
-<!--        <div class="quick-filters py-2 px-3">-->
-<!--            <span class="font-medium text-primary-color" style="padding-right: 20px;font-size: 18px;">Quick filters:</span>-->
-<!--            <a id="qf-latest-year" ><button class="btn btn-outline-secondary" >Latest Vehicles</button></a>-->
-<!--            <a href="search-results?odometer_max=5000"> <button class="btn btn-outline-secondary"> Low Milage </button> </a>-->
-<!--            <button class="btn btn-outline-secondary">Clean Title</button>-->
-<!--            <button class="btn btn-outline-secondary">Auction Today</button>-->
-<!--            <button class="btn btn-outline-secondary">Auction Tomorrow</button>-->
-<!--            <button class="btn btn-outline-secondary">Copart</button>-->
-<!--            <button class="btn btn-outline-secondary">IAAI</button>-->
-<!--        </div>-->
-
-<!--    </div>-->
 </div>
 </section>
 <section>
 <div class="container mt-4">
     <div class="row">
         <!-- Filters Sidebar For Desktop -->
-        <div class="d-none d-md-block col-md-3">
+
+        <!-- Collapsed Desktop Filter Sidebar -->
+        <div class="d-none d-md-none col-md-1" style="background: white;max-width: 56px;padding: 20px 4px;border-radius: 8px;" id="collapsed-filter-sidebar">
+            <button
+                    type="button"
+                    id="open-filter-sidebar"
+                    class="d-flex justify-content-center align-items-start"
+                    style="border:none;background: transparent;width: 100%;"
+            >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 5H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 5H14" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 12H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 12H6" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18 19H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 19H14" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.4142 3.58579C18.1953 4.36684 18.1953 5.63317 17.4142 6.41422C16.6332 7.19527 15.3668 7.19527 14.5858 6.41422C13.8047 5.63317 13.8047 4.36684 14.5858 3.58579C15.3668 2.80474 16.6332 2.80474 17.4142 3.58579" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9.41422 10.5858C10.1953 11.3668 10.1953 12.6332 9.41422 13.4142C8.63317 14.1953 7.36684 14.1953 6.58579 13.4142C5.80474 12.6332 5.80474 11.3668 6.58579 10.5858C7.36684 9.80474 8.63317 9.80474 9.41422 10.5858" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.4142 17.5858C18.1953 18.3668 18.1953 19.6332 17.4142 20.4142C16.6332 21.1953 15.3668 21.1953 14.5858 20.4142C13.8047 19.6332 13.8047 18.3668 14.5858 17.5858C15.3668 16.8047 16.6332 16.8047 17.4142 17.5858" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        <!-- Opened Desktop Filter Sidebar -->
+        <div class="d-none d-md-block col-md-3" id="main-filter-sidebar">
             <div class="filters-box mb-3">
-<!--                <button-->
-<!--                    class="btn btn-dark mb-2"-->
-<!--                    type="button"-->
-<!--                    data-bs-toggle="collapse"-->
-<!--                    data-bs-target="#filtersCollapse"-->
-<!--                    aria-expanded="false"-->
-<!--                    aria-controls="filtersCollapse">-->
-<!--                    Toggle Filters-->
-<!--                </button>-->
-                <button  type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#filtersCollapse"
-                                            aria-expanded="false"
-                                            aria-controls="filtersCollapse" class="d-flex justify-content-between align-items-center" style="border:none;background: transparent;width: 100%;">
+                <button
+                        type="button"
+                        id="close-filter-sidebar"
+                        class="d-flex justify-content-between align-items-center"
+                        style="border:none;background: transparent;width: 100%;"
+                >
                     <span class="text-primary-color font-medium m-0" style="font-size: 18px;">Filters</span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 5H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -232,8 +239,8 @@
                         <path d="M17.4142 17.5858C18.1953 18.3668 18.1953 19.6332 17.4142 20.4142C16.6332 21.1953 15.3668 21.1953 14.5858 20.4142C13.8047 19.6332 13.8047 18.3668 14.5858 17.5858C15.3668 16.8047 16.6332 16.8047 17.4142 17.5858" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
-            
-                <div class="collapse" id="filtersCollapse" style="margin-top: 16px;">
+
+                <div class="" id="filtersCollapse" style="margin-top: 16px;">
                     <div class="d-flex flex-wrap" id="filter-tags" style="gap: 8px;">
                         {% for key, value in query_params.items %}
 <!--                            <div class="filter-tag">-->
@@ -243,14 +250,14 @@
 <!--                                </svg>-->
 <!--                            </div>-->
                         {% endfor %}
-                        
+
                     </div>
                     <a href="/search-results" class="d-block text-primary-color text-sm" style="text-decoration: none;text-align: left;margin-top: 12px;">Clear All Filters</a>
                 </div>
             </div>
 
             <div class="accordion accordion-flush my-2 py-2" id="accordionExample">
-                
+
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -262,16 +269,16 @@
 
                         {% for make in form_fields.make %}
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="make_{{make.id}}" name="make" value="{{make.id}}" name-attr="{{make.name}}" onclick="update_models()">
-                            <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                            <input class="form-check-input" type="checkbox" id="make_{{make.id}}" name="make" value="{{make.id}}" name-attr="{{make.name}}" onchange="update_models()">
+                            <label class="form-check-label text-start" style="display: block;" for="make_{{make.id}}">
                               {{make.name}}
                             </label>
                           </div>
-                          {% endfor %}                                                    
+                          {% endfor %}
                     </div>
                   </div>
                 </div>
-               
+
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
                       <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -289,7 +296,7 @@
                       </div>
                     </div>
                   </div>
-               
+
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTen">
                       <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
@@ -301,17 +308,17 @@
                         <div class="row">
                             <div class="col-5">
                                 <label class="form-label text-start"  style="display: block;">Min</label>
-                                <input class="form-control" type="number" min="1900" max="2050" name="year_min" id="">
+                                <input class="form-control" type="number" min="1900" max="2050" name="year_min" id="year_min">
                             </div>
                             <div class="col-2"> - </div>
                             <div class="col-5">
                                 <label class="form-label text-start" style="display: block;">Max</label>
-                                <input class="form-control" type="number" min="1900" max="2050" name="year_max" id="">
+                                <input class="form-control" type="number" min="1900" max="2050" name="year_max" id="year_max">
                             </div>
                             <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
 
-                        </div>  
-                            
+                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -328,17 +335,17 @@
                         <div class="row">
                             <div class="col-5">
                                 <label class="form-label text-start"  style="display: block;">Min</label>
-                                <input class="form-control" type="number" name="odometer_min" id="">
+                                <input class="form-control" type="number" name="odometer_min" id="odometer_min">
                             </div>
                             <div class="col-2"> - </div>
                             <div class="col-5">
                                 <label class="form-label text-start" style="display: block;">Max</label>
-                                <input class="form-control" type="number" name="odometer_max" id="">
+                                <input class="form-control" type="number" name="odometer_max" id="odometer_max">
                             </div>
                             <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
 
-                        </div>  
-                            
+                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -354,17 +361,17 @@
                         <div class="row">
                             <div class="col-5">
                                 <label class="form-label text-start"  style="display: block;">Min</label>
-                                <input class="form-control" type="number" name="price_min" id="">
+                                <input class="form-control" type="number" name="price_min" id="price_min">
                             </div>
                             <div class="col-2"> - </div>
                             <div class="col-5">
                                 <label class="form-label text-start" style="display: block;">Max</label>
-                                <input class="form-control" type="number" name="price_max" id="">
+                                <input class="form-control" type="number" name="price_max" id="price_max">
                             </div>
                             <button class="btn btn-danger mt-2" onclick="update_cars_data()"> Go </button>
 
-                        </div>  
-                            
+                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -386,8 +393,8 @@
                             </label>
                           </div>
                           {% endfor %}
-  
-                            
+
+
                       </div>
                     </div>
                   </div>
@@ -401,8 +408,8 @@
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                          
-                          
+
+
                               {% for trans in  form_fields.Transmission %}
                               <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="trans_{{trans.id}}" name="Transmission"  name-attr="{{trans.name_en}}"  value="{{trans.id}}" onclick="update_cars_data()">
@@ -411,7 +418,7 @@
                                 </label>
                               </div>
                               {% endfor %}
-  
+
                       </div>
                     </div>
                   </div>
@@ -434,7 +441,7 @@
                           </label>
                         </div>
                         {% endfor %}
-                      
+
                       </div>
                     </div>
                   </div>
@@ -443,7 +450,7 @@
                    <div class="accordion-item">
                     <h2 class="accordion-header" id="headingSeven">
                       <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                        Body Style 
+                        Body Style
                       </button>
                     </h2>
                     <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
@@ -457,10 +464,10 @@
                           </label>
                         </div>
                         {% endfor %}
-                      
+
                       </div>
                     </div>
-                  </div>      
+                  </div>
 
 
 
@@ -481,24 +488,24 @@
                             </label>
                           </div>
                           {% endfor %}
-  
-                            
+
+
                       </div>
                     </div>
                   </div>
 
-                  
 
 
 
-                  
-
-                  
 
 
-                  
 
-                  
+
+
+
+
+
+
 
                     <div class="accordion-item">
                     <h2 class="accordion-header" id="headingFour">
@@ -517,19 +524,19 @@
                             </label>
                           </div>
                           {% endfor %}
-  
-                            
+
+
                       </div>
                     </div>
                   </div>
 
-                  
-                  
-                  
 
 
-                             
-                
+
+
+
+
+
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingNine">
                       <button class="accordion-button collapsed text-heading text-secondary-color" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
@@ -547,27 +554,27 @@
                           </label>
                         </div>
                         {% endfor %}
-                            
+
                       </div>
                     </div>
                   </div>
 
 
-                 
-                                
-
-                  
 
 
-                  
-                  
-                  
-                 
+
+
+
+
+
+
+
+
               </div>
         </div>
 
         <!-- Filters Modal For Mobile -->
-        <div class="d-block d-md-none">
+        <div class="d-block d-md-none" id="mobile-filters-modal">
             <!--            Trigger Button For Main Filter Modal-->
             <a data-bs-toggle="modal" data-bs-target="#mobileFilter" type="button" class="filters-button d-flex justify-content-center align-items-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -598,8 +605,8 @@
                         <div class="modal-body form-wrapper">
                             {% for make in form_fields.make %}
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="make_{{make.id}}" name="make" value="{{make.id}}" name-attr="{{make.name}}" onclick="update_models()">
-                                <label class="form-check-label text-start" style="display: block;" for="checkbox1">
+                                <input class="form-check-input" type="checkbox" id="mobile_make_{{make.id}}" name="make" value="{{make.id}}" name-attr="{{make.name}}" onchange="update_models()">
+                                <label class="form-check-label text-start" style="display: block;" for="mobile_make_{{make.id}}">
                                     {{make.name}}
                                 </label>
                             </div>
@@ -668,11 +675,11 @@
                             <div class="d-flex align-items-center" style="gap:12px;">
                                 <div>
                                     <label class="form-label text-start"  style="display: block;">Min</label>
-                                    <input aria-label="Min" class="form-control" type="number" name="odometer_min">
+                                    <input aria-label="Min" class="form-control" type="number" name="odometer_min" id="odometer_min_mobile">
                                 </div>
                                 <div>
                                     <label class="form-label text-start" style="display: block;">Max</label>
-                                    <input aria-label="Max" class="form-control" type="number" name="odometer_max">
+                                    <input aria-label="Max" class="form-control" type="number" name="odometer_max" id="odometer_max_mobile">
                                 </div>
 
                             </div>
@@ -697,11 +704,11 @@
                             <div class="d-flex align-items-center" style="gap:12px;">
                                 <div>
                                     <label class="form-label text-start"  style="display: block;">Min</label>
-                                    <input aria-label="Min" class="form-control" type="number" name="price_min">
+                                    <input aria-label="Min" class="form-control" type="number" name="price_min" id="price_min_mobile">
                                 </div>
                                 <div>
                                     <label class="form-label text-start" style="display: block;">Max</label>
-                                    <input aria-label="Max" class="form-control" type="number" name="price_max">
+                                    <input aria-label="Max" class="form-control" type="number" name="price_max" id="price_max_mobile">
                                 </div>
 
                             </div>
@@ -851,11 +858,11 @@
                             <div class="d-flex align-items-center" style="gap:12px;">
                                 <div style="width: 100%;">
                                     <label class="form-label text-start" style="display: block;">Min</label>
-                                    <input aria-label="Min" class="form-control" type="number" min="1900" max="2050" name="year_min">
+                                    <input aria-label="Min" class="form-control" type="number" min="1900" max="2050" name="year_min" id="year_min_mobile">
                                 </div>
                                 <div  style="width: 100%;">
                                     <label class="form-label text-start" style="display: block;">Max</label>
-                                    <input aria-label="Max" class="form-control" type="number" min="1900" max="2050" name="year_max">
+                                    <input aria-label="Max" class="form-control" type="number" min="1900" max="2050" name="year_max" id="year_max_mobile">
                                 </div>
 
                             </div>
@@ -866,6 +873,7 @@
             </div>
 
 
+            <!--            Mobile Filter Modal Triggers-->
             <div class="modal fade search-modal mobileFilterWrapper" id="mobileFilter" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true" data-bs-backdrop="false" >
                 <div class="modal-dialog mobileFilterDialog">
                     <div class="modal-content container">
@@ -893,7 +901,7 @@
                                     </h2>
                                 </div>
 
-                                <div class="accordion-item">
+                                <div class="accordion-item" id="filterMobileModelTrigger">
                                     <h2 class="accordion-header" id="headingTwo">
                                         <button
                                                 class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
@@ -907,19 +915,9 @@
 
                                         </button>
                                     </h2>
-<!--                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">-->
-<!--                                        <div class="accordion-body">-->
-<!--                                            <div id="models_form">-->
-
-
-
-<!--                                            </div>-->
-
-<!--                                        </div>-->
-<!--                                    </div>-->
                                 </div>
 
-                                <div class="accordion-item">
+                                <div class="accordion-item" id="filterMobileYearTrigger">
                                     <h2 class="accordion-header" id="headingTen">
                                         <button
                                                 class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
@@ -935,7 +933,7 @@
                                     </h2>
                                 </div>
 
-                                <div class="accordion-item">
+                                <div class="accordion-item" id="filterMobileOdometerTrigger">
                                     <h2 class="accordion-header" id="headingFive">
                                         <button
                                                 class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
@@ -951,7 +949,7 @@
                                     </h2>
                                 </div>
 
-                                <div class="accordion-item">
+                                <div class="accordion-item" id="filterMobilePriceTrigger">
                                     <h2 class="accordion-header" id="headingEight">
                                         <button
                                                 class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
@@ -967,7 +965,7 @@
                                     </h2>
                                 </div>
 
-                                <div class="accordion-item">
+                                <div class="accordion-item" id="filterMobileEngineTypeTrigger">
                                     <h2 class="accordion-header" id="headingEleven">
                                         <button
                                                 class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
@@ -983,7 +981,7 @@
                                     </h2>
                                 </div>
 
-                                <div class="accordion-item">
+                                <div class="accordion-item" id="filterMobileTransmissionTrigger">
                                     <h2 class="accordion-header" id="headingThree">
                                         <button
                                                 class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
@@ -999,7 +997,7 @@
                                     </h2>
                                 </div>
 
-                                <div class="accordion-item">
+                                <div class="accordion-item" id="filterMobileFuelTrigger">
                                     <h2 class="accordion-header" id="headingSix">
                                         <button
                                                 class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
@@ -1015,7 +1013,7 @@
                                     </h2>
                                 </div>
 
-                                <div class="accordion-item">
+                                <div class="accordion-item" id="filterMobileDriveTrigger">
                                     <h2 class="accordion-header" id="headingFour">
                                         <button
                                                 class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
@@ -1031,7 +1029,7 @@
                                     </h2>
                                 </div>
 
-                                <div class="accordion-item">
+                                <div class="accordion-item" id="filterMobileBodyStyleTrigger">
                                     <h2 class="accordion-header" id="headingSeven">
                                         <button
                                                 class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
@@ -1047,7 +1045,7 @@
                                     </h2>
                                 </div>
 
-                                <div class="accordion-item">
+                                <div class="accordion-item" id="filterMobileCountryTrigger">
                                     <h2 class="accordion-header" id="headingNine">
                                         <button
                                                 class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
@@ -1073,7 +1071,7 @@
         </div>
 
         <!-- Results Section -->
-        <div class="col-md-9">
+        <div class="col-md-9" id="results-section">
             <div class="results-header">
                 <span id="total-page-view" class="text-primary-color"></span>
                 <div class="d-flex align-items-center text-primary-color text-sm">

@@ -8,7 +8,44 @@
 
 
 <style>
-
+    .popular-makes-inner-wrapper {
+        ul{
+            margin: 0 !important;
+            li {
+                a{
+                    color: #2B3339 !important;
+                    span{
+                        color: #C91F3B !important;
+                    }
+                }
+            }
+        }
+    }
+    @media (max-width: 420px){
+        .col-12-custom{
+            flex: 0 0 auto !important;
+            width: 100% !important;
+        }
+    }
+    @media (max-width: 767px) {
+        .popular-makes-inner-wrapper{
+            padding: 0 16px !important;
+            .col-12-custom{
+                flex: 0 0 auto;
+                width: 50% ;
+            }
+            li{
+                a{
+                    font-weight: 500 !important;
+                    font-size: 16px !important;
+                    span{
+                        font-weight: 500 !important;
+                        font-size: 16px !important;
+                    }
+                }
+            }
+        }
+    }
     .owl-carousel .active span {
       color: red;
       background: red !important;
@@ -53,10 +90,21 @@
       background-color: #444;
     } */
 
+
+    .brand-wrapper{
+        .brand-inner-wrapper{
+            padding: 0 60px;
+        }
+    }
     @media (max-width: 767px) {
         .brand-wrapper{
             max-width: 90%;
             margin: auto;
+            .brand-inner-wrapper{
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
         }
         .main-banner-wrapper{
             display: initial;
@@ -201,33 +249,33 @@
 
 
 <section class="brand-wrapper">
-    <div class="container py-5" style="padding-left: 25px;padding-right: 25px;">
+    <div class="py-5 brand-inner-wrapper" style="">
         <div class="row">
             <div class="col-12">
                 <div class="logo-slider">
                     <div class="owl-carousel owl-carousel-brand owl-theme container">
-                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class=" p-2 m-2 item">
-                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class=" p-2 m-2 item">
+                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class="item">
+                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class="  item">
+                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class="  item">
+                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class="  item">
+                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class="  item">
+                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class="  item">
+                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class="  item">
+                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class="  item">
+                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class="  item">
+                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class="  item">
+                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class="  item">
+                        <img src="{% static 'images/assets/logoitems/acura.png' %}" alt="Acura" class="  item">
+                        <img src="{% static 'images/assets/logoitems/aston.png' %}" alt="Aston Martin" class="  item">
+                        <img src="{% static 'images/assets/logoitems/bmw.png' %}" alt="BMW" class="  item">
+                        <img src="{% static 'images/assets/logoitems/chevrolet.png' %}" alt="Chevrolet" class="  item">
+                        <img src="{% static 'images/assets/logoitems/ferrari.png' %}" alt="Ferrari" class="  item">
+                        <img src="{% static 'images/assets/logoitems/fiat.png' %}" alt="Fiat" class="  item">
+                        <img src="{% static 'images/assets/logoitems/ford.png' %}" alt="Ford" class="  item">
+                        <img src="{% static 'images/assets/logoitems/gmc.png' %}" alt="GMC" class="  item">
+                        <img src="{% static 'images/assets/logoitems/hyundai.png' %}" alt="Hyundai" class="  item">
+                        <img src="{% static 'images/assets/logoitems/kia.png' %}" alt="Kia" class="  item">
+                        <img src="{% static 'images/assets/logoitems/lexus.png' %}" alt="Lexus" class="  item">
                     </div>
                     <div class="custom-nav d-none d-md-block">
                       <button class="custom-prev fs-1">&lt;</button>
@@ -430,7 +478,7 @@
 
 
 <section class="popular-makes py-5 mb-5">
-    <div class="container">
+    <div class="container popular-makes-inner-wrapper">
       <div class="text-center mb-5">
 
         <div class="custom-seperator-line mb-1"></div>
@@ -438,7 +486,7 @@
         <h2 class="text-start text-heading">View Full Salvage <span class="text-danger">Auto Auction Inventory</span></h2>
       </div>
       <div class="row align-items-start">
-        <div class="col-12 col-md-4 col-lg-3 mb-4">
+        <div class="col-12-custom col-md-4 col-lg-3 mb-4">
           <ul class="list-unstyled text-start">
             <li><a href="#" class="text-start text-decoration-none fw-bold text-dark" ><span class="text-danger text-heading ">ACURA</span> (370)</a></li>
             <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">ACURA</span> (370)</a></li>
@@ -453,7 +501,7 @@
             <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">FIAT</span> (65)</a></li>
           </ul>
         </div>
-        <div class="col-12 col-md-4 col-lg-3 mb-4">
+        <div class="col-12-custom col-md-4 col-lg-3 mb-4">
           <ul class="list-unstyled text-start">
             <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">FORD</span> (5059)</a></li>
             <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">GENESIS</span> (71)</a></li>
@@ -468,7 +516,7 @@
             
           </ul>
         </div>
-        <div class="col-12 col-md-4 col-lg-3 mb-4">
+        <div class="col-12-custom col-md-4 col-lg-3 mb-4">
           <ul class="list-unstyled text-start">
             <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">LINCOLN</span> (257)</a></li>
             <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">MASERATI</span> (79)</a></li>
@@ -483,7 +531,7 @@
             
           </ul>
         </div>
-        <div class="col-12 col-md-4 col-lg-3 mb-4">
+        <div class="col-12-custom col-md-4 col-lg-3">
           <ul class="list-unstyled text-start">
             <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">ROLLS-ROYCE</span> (2)</a></li>
             <li><a href="#" class="text-start text-decoration-none fw-bold text-dark"><span class="text-danger text-heading">SUZUKI</span> (5)</a></li>
