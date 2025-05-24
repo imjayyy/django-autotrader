@@ -63,7 +63,7 @@
           </svg>
             
           <p class="mb-0 text-sm text-secondary-color fw-normal">Battery Range</p>
-          <p class="fw-bold m-0 text-primary-color text-sm font-medium">{{ vehicle.battery_range}}</p>
+          <p class="fw-bold m-0 text-primary-color text-sm font-medium">{{ vehicle.battery_range}} KM</p>
         </div>
         <div class="px-2.75">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 5px;">
@@ -74,7 +74,7 @@
             
           <!-- <p class="mb-0 text-muted small">0-100 km/h</p> -->
           <p class="mb-0 text-sm text-secondary-color fw-normal"> 0-100 km/h</p>
-          <p class="fw-bold m-0 text-primary-color text-sm font-medium">{{vehicle.zero_to_hundred }}s</p>
+          <p class="fw-bold m-0 text-primary-color text-sm font-medium">{{vehicle.zero_to_hundred }} sec</p>
         </div>
         <div class="px-2.75">
           <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 5px;">
@@ -112,8 +112,8 @@
             </defs>
             </svg>
             
-          <p class="mb-0 text-sm text-secondary-color fw-normal">Engine Type</p>
-          <p class="fw-bold m-0 text-primary-color text-sm font-medium">{{ vehicle.engine_type}}</p>
+          <p class="mb-0 text-sm text-secondary-color fw-normal">Fuel Type</p>
+          <p class="fw-bold m-0 text-primary-color text-sm font-medium">{{ vehicle.fuel.name_en}}</p>
         </div>
         <div  class="px-2.75">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 5px;">
@@ -124,7 +124,7 @@
             
           <!-- <p class="mb-0 text-muted small">0-100 km/h</p> -->
           <p class="mb-0 text-sm text-secondary-color fw-normal">Odometer</p>
-          <p class="fw-bold m-0 text-primary-color text-sm font-medium">{{vehicle.odometer }}</p>
+          <p class="fw-bold m-0 text-primary-color text-sm font-medium">{{vehicle.odometer|format_big_number   }} KM </p>
         </div>
         <div  class="px-2.75">
           <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 5px;">
@@ -139,7 +139,7 @@
           </svg>
             
           <p class="mb-0 text-sm text-secondary-color fw-normal">Engine size</p>
-          <p class="fw-bold m-0 text-primary-color text-sm font-medium"> {{ vehicle.engine_power }}{{ vehicle.engine_power_unit }} </p>
+          <p class="fw-bold m-0 text-primary-color text-sm font-medium"> {{ vehicle.engine_type }}  </p>
         </div>
       </div>
       {% endif %}

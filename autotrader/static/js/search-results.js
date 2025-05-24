@@ -511,15 +511,21 @@ function update_results(data, current_page, total_pages, count) {
                    <div class="d-flex d-md-none flex-column search-result-mobile-wrapper" style="gap:5px;">
                         <div class="d-flex align-items-start" style="gap:10px;">
                                 <div class="" style="max-width: 120px;width: 100%;height: 100%;max-height: 98px;min-height: 98px;">
-                                        <img 
+                         <a href="/normal-car-details/${element.id}" style="text-decoration: none;width: 100%;height: inherit;">
+                                      
+                                <img 
                                             src="${display_picture}"
                                             class="img-fluid" 
                                             alt="Car 1" 
                                             style="width: 100%;height: inherit;max-height: inherit;object-position: bottom;border-radius: 5px;min-height: inherit;object-fit: cover;"
                                         >
+                                </a>
+
                                 </div>
                                 <div>
+                                 <a href="/normal-car-details/${element.id}" style="text-decoration: none;width: 100%;height: inherit;">
                                     <p class="fs-6 text-start fw-bold m-0 text-primary-color " style="padding-bottom: 6px;">${element.make.name} ${element.model.name} ${element.year}</p>
+                                    </a>
                                     <div class="d-flex align-items-center " style="gap:2px;">
                                        <p class="text-start text-color m-0" style="width:fit-content;font-size: 12px;">
                                             Price:

@@ -4,6 +4,7 @@ from shipping.models import Country
 from rest_framework import serializers
 from djrichtextfield.models import RichTextField
 import os
+from tinymce.models import HTMLField
 
 class Fuel(models.Model):
     name_az = models.TextField()
@@ -92,6 +93,7 @@ class Vehicle(models.Model):
     drive = models.ForeignKey(Drive, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    cylinders = models.IntegerField(blank=True, null=True)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     feature_list =  models.ManyToManyField(Feature, related_name='vehicles')
     label_list = models.ManyToManyField(Label, related_name='vehicles')
@@ -102,9 +104,9 @@ class Vehicle(models.Model):
     battery_range = models.IntegerField(blank=True, null=True)
     year = models.IntegerField()
     engine_power_unit = models.CharField(max_length=50,blank=True, null=True)
-    engine_power = models.DecimalField(blank=True, null=True, decimal_places=1, max_digits=7)
+    engine_power = models.IntegerField(blank=True, null=True)
     engine_type = models.CharField(max_length=50,blank=True, null=True)
-    comment = RichTextField(blank=True, null=True)
+    comment = HTMLField(blank=True, null=True)
     VIN = models.TextField()
     currency = models.TextField()
     price_discount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)

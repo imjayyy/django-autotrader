@@ -195,7 +195,7 @@ def information_view(request, id):
     return render(request, 'information-view.html', {"information_data": information_serializer.data})
 
 def normal_car_details(request, id):
-    car = get_object_or_404(Vehicle, id=id)  # Fetch car details or return 404
+    car = get_object_or_404(Vehicle, id=id, is_published=True)  # Fetch car details or return 404
 
     car_serializer = VehicleDetailsSerializer(car)
     vehicles_in_az = Vehicle.objects.filter(is_published = True, model__id = car.model.id ).order_by("?")[:3]  # Fetch 3 random vehicles
