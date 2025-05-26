@@ -21,30 +21,11 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("filterMobileYearTrigger").innerHTML = mobileFilterTemplateEngine("Year", [], "mobileFilterYear", "filterMobileYearTrigger", "")
 
     }
-    console.log(params);    
-    // if ("searchByText" in params) {
-    //     console.log("Search value:", params.searchByText);
-    //     return
-    // }
     params.make = params.make ? params.make.split(",") : [];
     params.model = params.model ? params.model.split(",") : [];
 
     console.log("params:", params);
 
-    //Updating initial mobile filters
-    //     `
-    //      <h2 class="accordion-header">
-    //                                     <a
-    //                                             class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
-    //                                             type="button"
-    //                                             data-bs-toggle="modal"
-    //                                             data-bs-target="#mobileFilterMake"
-    //                                     >
-    //                                         <span>Vehicle Make</span>
-    //                                         <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
-    //                                     </a>
-    //                                 </h2>
-    // `;
 
     let selectMake = document.querySelectorAll(`input[name="make"]`);
     selectMake.forEach((element) => {
@@ -210,8 +191,7 @@ function sortBy() {
 
 
 
-function update_cars_data(page=1){
-
+function update_cars_data(page=1, goBack){
 
     const windowWidth = window.innerWidth
     let selectedMakes = [];
@@ -382,6 +362,13 @@ function update_cars_data(page=1){
     })
     .then(function (response) {
         console.log("resp:", response.data);
+        console.log(goBack,"goBack")
+        if (goBack){
+            let backButton = document.querySelectorAll(".backToMainMobileFilters")
+            backButton.forEach(button => {
+                button.click()
+            })
+        }
         if (response.data.count === 0 ){
             document.getElementById("table_results").innerHTML = `<div class="alert alert-danger" role="alert">
             No results found for your search. Please try again with different filters.
@@ -479,13 +466,14 @@ function mobileFilterTemplateEngine(title, dataList, toggleId, triggerId, inputN
             title
         }
 
+        // onclick="handleModal(${toggleIdFromParams})"
         if (!inputName){
             return `
              <h2 class="accordion-header">
                  <button
                                                 class="text-heading d-flex justify-content-between align-items-center"
                                                 type="button"
-                                                data-bs-toggle="modal"
+                                                 data-bs-toggle="modal"
                                                 data-bs-target=${toggleIdFromParams}
                                         >
                                             <div class="d-flex flex-column align-items-start">
@@ -498,6 +486,7 @@ function mobileFilterTemplateEngine(title, dataList, toggleId, triggerId, inputN
             `
         }
 
+
         return `
             <h2 class="accordion-header">
                  <button
@@ -506,6 +495,7 @@ function mobileFilterTemplateEngine(title, dataList, toggleId, triggerId, inputN
                                                 data-bs-toggle="modal"
                                                 data-bs-target=${toggleIdFromParams}
                                         >
+                                          
                                             <div class="d-flex flex-column align-items-start">
                                                 <span class="text-secondary-color" style="font-size: 12px;">${title}</span>
                                                  <span class="text-primary-color font-medium" style="font-size: 18px;text-align: left;">${dataList.join(",")}</span>
@@ -521,8 +511,8 @@ function mobileFilterTemplateEngine(title, dataList, toggleId, triggerId, inputN
                 <a
                     class="text-heading text-secondary-color d-flex justify-content-between align-items-center"
                     type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target=${toggleIdFromParams}
+                   data-bs-toggle="modal"
+                                                data-bs-target=${toggleIdFromParams}
                 >
                     <span>${title}</span>
                     <i class="bi bi-chevron-right text-secondary-color" style="font-size: 20px;"></i>
@@ -624,7 +614,7 @@ function update_results(data, current_page, total_pages, count) {
                    <div class="d-flex d-md-none flex-column search-result-mobile-wrapper" style="gap:5px;">
                         <div class="d-flex align-items-start" style="gap:10px;">
                                 <div class="" style="max-width: 120px;width: 100%;height: 100%;max-height: 98px;min-height: 98px;">
-                         <a href="/normal-car-details/${element.id}" style="text-decoration: none;width: 100%;height: inherit;">
+                         <a href="/normal-car-details/${element.id}" style="text-decoration: none;width: 100%;max-height: inherit;min-height: inherit;">
                                       
                                 <img 
                                             src="${display_picture}"
@@ -636,7 +626,7 @@ function update_results(data, current_page, total_pages, count) {
 
                                 </div>
                                 <div>
-                                 <a href="/normal-car-details/${element.id}" style="text-decoration: none;width: 100%;height: inherit;">
+                                 <a href="/normal-car-details/${element.id}" style="text-decoration: none;width: 100%;max-height: inherit;min-height: inherit">
                                     <p class="fs-6 text-start fw-bold m-0 text-primary-color " style="padding-bottom: 6px;">${element.make.name} ${element.model.name} ${element.year}</p>
                                     </a>
                                     <div class="d-flex align-items-center " style="gap:2px;">
@@ -703,7 +693,7 @@ function update_results(data, current_page, total_pages, count) {
                                <div class="row g-4">
                                 <div class="col-12 col-md-2 " style="margin-top: 20px !important;">
                                     <div class="" style="max-width: 100%;width: 100%;height: 100%;max-height: 110px;">
-                                        <a href="/normal-car-details/${element.id}" style="text-decoration: none;width: 100%;height: inherit;">
+                                        <a href="/normal-car-details/${element.id}" style="text-decoration: none;width: 100%;max-height: inherit;min-height: inherit;">
                                             <img 
                                                 src="${display_picture}"
                                                 class="img-fluid" 

@@ -576,7 +576,7 @@
         <!-- Filters Modal For Mobile -->
         <div class="d-block d-md-none" id="mobile-filters-modal">
             <!--            Trigger Button For Main Filter Modal-->
-            <a data-bs-toggle="modal" data-bs-target="#mobileFilter" type="button" class="filters-button d-flex justify-content-center align-items-center">
+            <a  data-bs-toggle="modal" data-bs-target="#mobileFilter" type="button" class="filters-button d-flex justify-content-center align-items-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M18 5H21" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M3 5H14" stroke="#C91F3B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -683,7 +683,7 @@
                                 </div>
 
                             </div>
-                            <button class="btn btn-danger" onclick="update_cars_data()"> Confirm </button>
+                            <button class="btn btn-danger" onclick="update_cars_data(1, true)"> Confirm </button>
                         </div>
                     </div>
                 </div>
@@ -694,7 +694,7 @@
                 <div class="modal-dialog mobileFilterDialog">
                     <div class="modal-content container">
                         <div class="d-flex justify-content-between align-items-center" style="margin-top: 12px;padding: 0 16px;">
-                            <button type="button" class="close-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
+                            <button type="button" class="close-modal backToMainMobileFilters" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#mobileFilter" aria-label="Close">
                                 <i class="bi bi-arrow-left"></i>
                             </button>
                             <p class="m-0 text-primary-color font-medium" style="font-size: 20px;">Price</p>
@@ -712,7 +712,7 @@
                                 </div>
 
                             </div>
-                            <button class="btn btn-danger" onclick="update_cars_data()"> Confirm </button>
+                            <button class="btn btn-danger" onclick="update_cars_data(1, true)"> Confirm </button>
                         </div>
                     </div>
                 </div>
@@ -866,7 +866,7 @@
                                 </div>
 
                             </div>
-                            <button class="btn btn-danger" onclick="update_cars_data()"> Confirm </button>
+                            <button class="btn btn-danger" onclick="update_cars_data(1, true)"> Confirm </button>
                         </div>
                     </div>
                 </div>
