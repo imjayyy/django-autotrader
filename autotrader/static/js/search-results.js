@@ -692,8 +692,8 @@ function update_results(data, current_page, total_pages, count) {
                    <div class="row g-4 d-none d-md-block">
                                <div class="row g-4">
                                 <div class="col-12 col-md-2 " style="margin-top: 20px !important;">
-                                    <div class="" style="max-width: 100%;width: 100%;height: 100%;max-height: 110px;">
-                                        <a href="/normal-car-details/${element.id}" style="text-decoration: none;width: 100%;max-height: inherit;min-height: inherit;">
+                                    <div class="" style="max-width: 100%;width: 100%;height: 100%;max-height: 110px;min-height: 110px;">
+                                        <a href="/normal-car-details/${element.id}" style="text-decoration: none;width: 100%;height: inherit;min-height: inherit;">
                                             <img 
                                                 src="${display_picture}"
                                                 class="img-fluid" 
