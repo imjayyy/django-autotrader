@@ -27,6 +27,39 @@
         }
         .description-wrapper{
             margin: 0 !important;
+            padding: 0 12px !important;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .sales-details-wrapper{
+
+            .sales-details-info{
+                width: 60% !important;
+                .sales-details-info-money{
+                    flex-direction: column;
+                    gap: 0 !important;
+                    align-items: flex-start !important;
+                    h3{
+                        font-size: 24px !important;
+                    }
+                    span{
+                        font-size: 16px !important;
+                    }
+                }
+            }
+            .country-info{
+
+            }
+            a{
+                font-size: 12px !important;
+                min-height: 40px !important;
+            }
+            .sales-details-button-wrapper{
+                flex-direction: column;
+                gap: 10px !important;
+                margin-bottom: 10px !important;
+            }
         }
     }
 </style>
@@ -63,7 +96,7 @@
                 {% include 'partials/components/car-carousel.html' with media=car.all_media status=car.status label_list=car.label_list  %}
 
 
-                <div class="d-block d-md-none" style="padding: 20px 16px !important;">
+                <div class="d-block d-md-none" style="padding: 20px 12px !important;">
                     <h4 class="text-left text-primary-color fw-bold m-0" style="font-size: 18px;">{{car.year}} {{car.make.name}} {{car.model.name}}</h4>
                 </div>
                 <div class="description-wrapper" style="margin-top: 32px;">
@@ -101,11 +134,11 @@
                         <div class="text-start m-3">
 
                             <div class="row">
-                                <div class="col-9" style="margin-bottom: 20px;">
+                                <div class="col-9 sales-details-info" style="margin-bottom: 20px;">
                                     <div class="text-secondary-color text-lg text-decoration-line-through">
                                         <small>{{car.before_discount_price|format_big_number}}</small>
                                     </div>
-                                    <div class="d-flex align-items-center gap-1.5">
+                                    <div class="d-flex align-items-center gap-1.5 sales-details-info-money">
                                         <h3 class="fw-bold mb-0 text-3xl text-primary-color">
                                             {{car.price|format_big_number}}$
                                         </h3>
@@ -116,14 +149,17 @@
                                 </div>
                                 <div class="col-3">
                                     
-                                    <div class="d-flex flex-column align-items-start justify-content-end" style="width: fit-content;margin-left: auto;">
+                                    <div class="d-flex flex-column align-items-start justify-content-end country-info" style="width: fit-content;margin-left: auto;">
                                         <span class="text-secondary-color text-sm">Country</span>
                                         <img src="{{car.country.flag}}" alt="" width="30" height="20">
-                                        <span class="fs-6 font-medium m-0 text-primary-color">{{car.country.name}}</span>
+                                        <span class="fs-6 font-medium m-0 text-primary-color">
+<!--                                            {{car.country.name}}-->
+                                            Azerbaijan
+                                        </span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex gap-2 mb-3">
+                            <div class="d-flex gap-2 mb-3 sales-details-button-wrapper">
                                 <a href="https://wa.me/994505553485" class="btn btn-success flex-fill d-flex align-items-center justify-content-center" style="min-height: 44px;" target="_blank">
                                     Write to us
                                 </a>
@@ -134,64 +170,6 @@
 
                             <a href="/create-order/{{car.id}}" class="btn btn-danger w-100 d-flex align-items-center justify-content-center" style="min-height: 48px;">Order now</a>
                         </div>
-                        <!-- <div class="custom-card-body">
-                        <div class="row py-2 px-4">
-                            <div class="col-6 border-bottom text-start">VIN:</div>
-                            <div class="col-6 border-bottom text-end fw-bolder">JN1BV7AR2EM686867</div>
-                        </div> 
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Odometer:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">142417</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Title Code:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">none</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Primary Damage:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">MECHANICAL</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Secondary Damage:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">None</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Body Style:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">SEDAN 4D</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Color:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">GRAY</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Engine:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">3.7L 6</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Cylinders:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">6</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Transmission:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">AUTOMATIC</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Drive:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">All wheel drive</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Fuel:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">GAS</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Keys:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">yes</div>
-                        </div>
-                        <div class="row py-2 px-4">
-                            <div class="col-6  border-bottom text-start">Highlights:</div>
-                            <div class="col-6  border-bottom text-end fw-bolder">N/A</div>
-                        </div>
-                    </div> -->
                     </div>
                 </div>
 
