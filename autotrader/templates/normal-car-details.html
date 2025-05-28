@@ -109,7 +109,7 @@
                         </div>
                         <div class="card-body">
                             <div class="text-start">
-                                {{car.comment}}
+                                {{car.comment|safe}}
                             </div>
                         </div>
                     </div>
@@ -277,7 +277,7 @@
           {% endfor %}   
       </div>
     </div>
-    <button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> View Inventory</button>
+    <a href="http://127.0.0.1:8000/search-results?make={{car.make.id}}&model={{car.model.id}}"><button class="btn btn-danger py-2 px-2" style="min-width: 300px;"> View Inventory</button></a>
 
   </section>
 {% endblock %}
