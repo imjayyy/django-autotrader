@@ -69,22 +69,22 @@
         {% endfor %}
       </div>
       <img src="{{ media.0.img_url_from_api}}"  id="main-image" alt="Main Image" class="rounded-md-4">
-      <div class="position-absolute bg-primary-color text-white d-flex d-md-none gap-2.5 justify-content-center align-items-center" style="left: 50%; transform: translateX(-50%);bottom: 14px;border-radius: 5px;padding: 8px;padding-top: 0 !important;min-width: 60px !important;">
-        <button style="background: transparent;padding: 0;border: none;color: white;font-size: 30px;" onclick="prevImage()">&#8249;</button>
-        <button style="background: transparent;padding: 0;border: none;color: white;font-size: 30px;" onclick="nextImage()">&#8250;</button>
+      <div class="position-absolute  d-flex d-md-none gap-2.5 justify-content-between align-items-center" style="margin:0 auto;left: 50%; transform: translateX(-50%);bottom: 14px;min-width: 90% !important;">
+        <button class="bg-primary-color text-white" style="padding: 8px;padding-top:0 !important;border-radius: 5px;border: none;color: white;font-size: 30px;" onclick="prevImage()">&#8249;</button>
+        <button class="bg-primary-color text-white" style="padding: 8px;padding-top:0 !important;border-radius: 5px;border: none;color: white;font-size: 30px;" onclick="nextImage()">&#8250;</button>
       </div>
     </div>
     
     <div class="thumb-gallery d-none d-md-flex justify-content-center gap-2 mt-3">
      
       {% for m in media %}
-      {% if m.image %}
-      <img src="{{m.image}}" class="{% if forloop.first %}active{% endif %}"
-      alt="Thumbnail {{ forloop.counter }}" style="border-radius: 5px;object-fit:cover;max-width: 80px;min-width: 80px; max-height: 70px;min-height: 70px;"  onclick="changeImage(this, `{{m.image}}`)">
-      {% else %}
-      <img src="{{m.img_url_from_api}}" class="{% if forloop.first %}active{% endif %}"
-      alt="Thumbnail {{ forloop.counter }}" style="border-radius: 5px;object-fit:cover;max-width: 80px;min-width: 80px; max-height: 70px;min-height: 70px;"  onclick="changeImage(this, `{{m.img_url_from_api}}`)">
-      {% endif %}
+        {% if m.image %}
+          <img src="{{m.image}}" class="{% if forloop.first %}active{% endif %}"
+          alt="Thumbnail {{ forloop.counter }}" style="border-radius: 5px;object-fit:cover;max-width: 80px;min-width: 80px; max-height: 70px;min-height: 70px;"  onclick="changeImage(this, `{{m.image}}`)">
+        {% else %}
+          <img src="{{m.img_url_from_api}}" class="{% if forloop.first %}active{% endif %}"
+          alt="Thumbnail {{ forloop.counter }}" style="border-radius: 5px;object-fit:cover;max-width: 80px;min-width: 80px; max-height: 70px;min-height: 70px;"  onclick="changeImage(this, `{{m.img_url_from_api}}`)">
+        {% endif %}
       {% endfor %}
       <!-- <img src="{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}" class="rounded-4 me-2 active" alt="Thumbnail 1" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-1.jpeg' %}`)">
       <img src="{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}" class="rounded-4 me-2" alt="Thumbnail 2" onclick="changeImage(this, `{% static '/images/assets/car-card-assets/car-pic-2.jpeg' %}`)">
