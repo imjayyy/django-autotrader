@@ -190,7 +190,6 @@ function sortBy() {
 }
 
 
-
 function update_cars_data(page=1, goBack){
 
     const windowWidth = window.innerWidth
@@ -297,7 +296,6 @@ function update_cars_data(page=1, goBack){
         document.getElementById("filterMobilePriceTrigger").innerHTML = mobileFilterTemplateEngine("Price", priceMin || priceMax ? [`${priceMin || 0}-${priceMax || 0}`] : [], "mobileFilterPrice", "filterMobilePriceTrigger", "")
         document.getElementById("filterMobileYearTrigger").innerHTML = mobileFilterTemplateEngine("Year", year_min || year_max ? [`${year_min || 0}-${year_max || 0}`] : [], "mobileFilterYear", "filterMobileYearTrigger", "")
 
-        // alert("Values Successfully Updated")
     }else{
         odometerMin = document.querySelector('input[id="odometer_min"]').value;
         odometerMax = document.querySelector('input[id="odometer_max"]').value;
@@ -314,6 +312,11 @@ function update_cars_data(page=1, goBack){
     let sorting_order = document.getElementById('sortBtn').getAttribute('data-order');
 
 
+    // console.log(priceMin,priceMax,'priceMin')
+    // if ((priceMin && isNaN(priceMin)) || (priceMax && isNaN(priceMax)) || (year_min && isNaN(year_min)) || (year_max && isNaN(year_max)) || (odometerMin && isNaN(odometerMin)) || (odometerMax && isNaN(odometerMax))) {
+    //     alert("Only numbers allowed.")
+    //     return;
+    // }
     let filterParams = {
         page: page,
         make: removeDuplicates(selectedMakes),
@@ -362,7 +365,6 @@ function update_cars_data(page=1, goBack){
     })
     .then(function (response) {
         console.log("resp:", response.data);
-        console.log(goBack,"goBack")
         if (goBack){
             let backButton = document.querySelectorAll(".backToMainMobileFilters")
             backButton.forEach(button => {
@@ -399,11 +401,13 @@ function clear_tag(key, value) {
 
     let tag = document.querySelector(`.filter-tag[key="${key}"][value="${value}"]`);
     if (tag) {
-        tag.remove();
+        tag.remove()
     }
-    let checkbox = document.querySelector(`input[name="${key}"][value="${value}"]`);
-    if (checkbox) {
-        checkbox.checked = false;
+    let checkboxes = document.querySelectorAll(`input[name="${key}"][value="${value}"]`);
+    if (checkboxes && checkboxes.length > 0) {
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        })
     }
     else{
         let text_element = document.querySelector(`input[name="${key}"]`);
@@ -418,20 +422,28 @@ function clear_tag(key, value) {
 
 function show_filters(filter_tags) {
     document.getElementById("filter-tags").innerHTML = "";
-
+    document.getElementById("filter-tags-mobile").innerHTML = "";
+    const windowWidth = window.innerWidth
 
     Object.entries(filter_tags).forEach(([key, value]) => {
         if (Array.isArray(value) && value.length > 0) {
-            console.log(value,"value")
             removeDuplicates(value, "name").forEach(item => {
                 if (item.name) {
                     let tag = create_tag(key, item.id, item.name);
-                    document.getElementById("filter-tags").insertAdjacentHTML("beforeend", tag);
+                    if (windowWidth > 767){
+                        document.getElementById("filter-tags").insertAdjacentHTML("beforeend", tag);
+                    }else{
+                        document.getElementById("filter-tags-mobile").insertAdjacentHTML("beforeend", tag);
+                    }
                 }
             });
         } else if (typeof value === "string" && value.trim() !== "") {
             let tag = create_tag(key, value, value);
-            document.getElementById("filter-tags").insertAdjacentHTML("beforeend", tag);
+            if (windowWidth > 767){
+                document.getElementById("filter-tags").insertAdjacentHTML("beforeend", tag);
+            }else{
+                document.getElementById("filter-tags-mobile").insertAdjacentHTML("beforeend", tag);
+            }
         }
     });
 }
@@ -639,10 +651,10 @@ function update_results(data, current_page, total_pages, count) {
                                     </div>
                                     <div class="d-flex align-items-center " style="gap:2px;">
                                        <p class="text-start text-color m-0" style="width:fit-content;font-size: 12px;">
-                                            Engine:
+                                            Fuel Type:
                                        </p>
                                         <p class="text-start text-primary-red m-0" style="width:fit-content;font-size: 12px;">
-                                            3.7L
+                                            ${element.fuel.name_en}
                                        </p>
                                     </div>
                                     <div class="d-flex align-items-center " style="gap:2px;">
