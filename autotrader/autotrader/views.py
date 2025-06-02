@@ -16,6 +16,8 @@ from urllib.parse import urlencode
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
+from django.views.decorators.csrf import csrf_exempt
+
 import re
 
 
@@ -55,7 +57,7 @@ def home(request):
                                         # "cars_on_auction": cars_on_auction_serializer.data,
                                          "form_fields": form_fields})
 
-
+@csrf_exempt
 def form_submission(request):
     name = request.POST.get("name")
     country_code = request.POST.get("country_code")
