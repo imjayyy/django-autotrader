@@ -50,11 +50,6 @@ def home(request):
     'country' : country,
     }
 
-
-
-
-
-
     return render(request, 'home.html', {"vehicles_in_az": vehicles_in_az_serializer.data, 
                                         "electric_vehicles": electric_vehicles_serializer.data,  
                                         # "cars_on_auction": cars_on_auction_serializer.data,
@@ -70,7 +65,6 @@ def form_submission(request):
     # Optionally, add server-side validation
     if name and country_code and phone and is_valid_phone_number(phone):
         # Here you can save it to DB, send an email, or trigger any logic
-        # For now, we'll just print it (or you can save it)
 
         print(f"Callback Request: {name}, {country_code} {phone}")
 
