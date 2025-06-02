@@ -65,7 +65,7 @@ def form_submission(request):
 
 
     # Optionally, add server-side validation
-    if name and country_code and phone and is_valid_phone_number(phone):
+    if name and country_code and phone:
         # Here you can save it to DB, send an email, or trigger any logic
 
         print(f"Callback Request: {name}, {country_code} {phone}")
