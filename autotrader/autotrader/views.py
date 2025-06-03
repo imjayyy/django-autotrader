@@ -63,9 +63,10 @@ def form_submission(request):
     country_code = request.POST.get("country_code")
     phone = request.POST.get("phone")
 
+    print(f"Callback Request Test :) : {name}, {country_code} {phone}")
 
     # Optionally, add server-side validation
-    if name and country_code and phone:
+    if name and country_code and phone and is_valid_phone_number(phone):
         # Here you can save it to DB, send an email, or trigger any logic
 
         print(f"Callback Request: {name}, {country_code} {phone}")
