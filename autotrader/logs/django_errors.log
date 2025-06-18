@@ -1,0 +1,864 @@
+ERROR 2025-06-17 20:43:52,203 log Internal Server Error: /admin/auction/auctionvehicle/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: auction_auctionvehicle
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1926, in changelist_view
+    cl = self.get_changelist_instance(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 836, in get_changelist_instance
+    return ChangeList(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/views/main.py", line 123, in __init__
+    self.get_results(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/views/main.py", line 279, in get_results
+    result_count = paginator.count
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/paginator.py", line 93, in count
+    return c()
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: auction_auctionvehicle
+ERROR 2025-06-17 20:43:52,220 basehttp "GET /admin/auction/auctionvehicle/ HTTP/1.1" 500 176457
+ERROR 2025-06-17 21:03:05,765 log Internal Server Error: /admin/auction/auctionvehicle/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/response.py", line 74, in resolve_template
+    return get_template(template, using=self.using)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: admin/auction_api/auctionvehicle_changelist.html
+ERROR 2025-06-17 21:03:05,770 basehttp "GET /admin/auction/auctionvehicle/ HTTP/1.1" 500 80822
+ERROR 2025-06-17 21:03:30,991 log Internal Server Error: /admin/auction/auctionvehicle/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/response.py", line 74, in resolve_template
+    return get_template(template, using=self.using)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: admin/auction_api/auctionvehicle_changelist.html
+ERROR 2025-06-17 21:03:30,992 basehttp "GET /admin/auction/auctionvehicle/ HTTP/1.1" 500 80959
+ERROR 2025-06-17 21:03:38,100 log Internal Server Error: /admin/auction/auctionvehicle/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/response.py", line 74, in resolve_template
+    return get_template(template, using=self.using)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: admin/auction_api/auctionvehicle_changelist.html
+ERROR 2025-06-17 21:03:38,102 basehttp "GET /admin/auction/auctionvehicle/ HTTP/1.1" 500 80822
+ERROR 2025-06-17 21:22:10,605 log Internal Server Error: /admin/auction/auctionvehicle/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 63, in _wrapper_view_func
+    add_never_cache_headers(response)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/cache.py", line 292, in add_never_cache_headers
+    patch_response_headers(response, cache_timeout=-1)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/cache.py", line 283, in patch_response_headers
+    if not response.has_header("Expires"):
+AttributeError: 'NoneType' object has no attribute 'has_header'
+ERROR 2025-06-17 21:22:10,609 basehttp "GET /admin/auction/auctionvehicle/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 81706
+ERROR 2025-06-18 08:32:01,460 log Internal Server Error: /admin/auction/auctiondetails/2/change/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1889, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1747, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1855, in _changeform_view
+    "subtitle": str(obj) if obj else None,
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/models.py", line 94, in __str__
+    return f"AuctionVehicle Lot {self.lot_number} - {self.vehicle.model}"
+AttributeError: 'AuctionDetails' object has no attribute 'vehicle'
+ERROR 2025-06-18 08:32:01,478 basehttp "GET /admin/auction/auctiondetails/2/change/ HTTP/1.1" 500 110780
+ERROR 2025-06-18 09:50:52,858 log Internal Server Error: /admin/auction/auctiondetail/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such column: auction_auctiondetail.sale_date
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/options.py", line 2065, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such column: auction_auctiondetail.sale_date
+ERROR 2025-06-18 09:50:52,872 basehttp "GET /admin/auction/auctiondetail/ HTTP/1.1" 500 200015
+ERROR 2025-06-18 10:08:54,404 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 167, in import_auction_data
+    auction_obj = AuctionDetail.objects.create(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1821, in execute_sql
+    for sql, params in self.as_sql():
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1745, in as_sql
+    value_rows = [
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1746, in <listcomp>
+    [
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1747, in <listcomp>
+    self.prepare_value(field, self.pre_save_val(field, obj))
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1686, in prepare_value
+    return field.get_db_prep_save(value, connection=self.connection)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 954, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1607, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1585, in get_prep_value
+    value = super().get_prep_value(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1464, in get_prep_value
+    return self.to_python(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1546, in to_python
+    parsed = parse_datetime(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/dateparse.py", line 114, in parse_datetime
+    return datetime.datetime.fromisoformat(value)
+TypeError: fromisoformat: argument must be str
+ERROR 2025-06-18 10:08:54,422 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 199831
+ERROR 2025-06-18 10:33:48,396 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 173, in import_auction_data
+    auction_obj = AuctionDetail.objects.create(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1821, in execute_sql
+    for sql, params in self.as_sql():
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1745, in as_sql
+    value_rows = [
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1746, in <listcomp>
+    [
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1747, in <listcomp>
+    self.prepare_value(field, self.pre_save_val(field, obj))
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1686, in prepare_value
+    return field.get_db_prep_save(value, connection=self.connection)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 954, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1607, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1585, in get_prep_value
+    value = super().get_prep_value(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1464, in get_prep_value
+    return self.to_python(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1546, in to_python
+    parsed = parse_datetime(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/dateparse.py", line 114, in parse_datetime
+    return datetime.datetime.fromisoformat(value)
+TypeError: fromisoformat: argument must be str
+ERROR 2025-06-18 10:33:48,410 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 200271
+ERROR 2025-06-18 10:37:44,140 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: auction_auctiondetail.created_at
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 173, in import_auction_data
+    auction_obj = AuctionDetail.objects.create(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: auction_auctiondetail.created_at
+ERROR 2025-06-18 10:37:44,154 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 204304
+ERROR 2025-06-18 10:38:32,397 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 173, in import_auction_data
+    auction_obj = AuctionDetail.objects.create(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1821, in execute_sql
+    for sql, params in self.as_sql():
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1745, in as_sql
+    value_rows = [
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1746, in <listcomp>
+    [
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1747, in <listcomp>
+    self.prepare_value(field, self.pre_save_val(field, obj))
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1686, in prepare_value
+    return field.get_db_prep_save(value, connection=self.connection)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 954, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1607, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1585, in get_prep_value
+    value = super().get_prep_value(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1464, in get_prep_value
+    return self.to_python(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1546, in to_python
+    parsed = parse_datetime(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/dateparse.py", line 114, in parse_datetime
+    return datetime.datetime.fromisoformat(value)
+TypeError: fromisoformat: argument must be str
+ERROR 2025-06-18 10:38:32,410 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 200330
+ERROR 2025-06-18 10:50:15,469 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 184, in import_auction_data
+    sale_date=auction.get('active_bidding').get('sale_date'),
+AttributeError: 'list' object has no attribute 'get'
+ERROR 2025-06-18 10:50:15,477 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 103431
+ERROR 2025-06-18 10:51:35,450 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 184, in import_auction_data
+    sale_date=auction.get('active_bidding').get('sale_date'),
+AttributeError: 'list' object has no attribute 'get'
+ERROR 2025-06-18 10:51:35,458 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 103431
+ERROR 2025-06-18 10:56:09,792 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 188, in import_auction_data
+    sale_date=auction.get('active_bidding').get('sale_date'),
+AttributeError: 'list' object has no attribute 'get'
+ERROR 2025-06-18 10:56:09,797 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 103823
+ERROR 2025-06-18 10:56:48,203 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 177, in import_auction_data
+    auction_obj = AuctionDetail.objects.create(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1821, in execute_sql
+    for sql, params in self.as_sql():
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1745, in as_sql
+    value_rows = [
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1746, in <listcomp>
+    [
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1747, in <listcomp>
+    self.prepare_value(field, self.pre_save_val(field, obj))
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1686, in prepare_value
+    return field.get_db_prep_save(value, connection=self.connection)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 954, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1607, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1585, in get_prep_value
+    value = super().get_prep_value(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1464, in get_prep_value
+    return self.to_python(value)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 1567, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“1741856400000” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format.']
+ERROR 2025-06-18 10:56:48,216 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 195622
+ERROR 2025-06-18 10:58:13,004 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 188, in import_auction_data
+    sale_date=make_aware(active_bidding.get('sale_date')) if active_bidding.get('sale_date') else None,
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/timezone.py", line 290, in make_aware
+    if is_aware(value):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/timezone.py", line 256, in is_aware
+    return value.utcoffset() is not None
+AttributeError: 'str' object has no attribute 'utcoffset'
+ERROR 2025-06-18 10:58:13,011 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 111279
+ERROR 2025-06-18 11:00:16,217 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 129, in import_auction_data
+    last_sale = sales_history[-1] if sales_history else {}
+KeyError: -1
+ERROR 2025-06-18 11:00:16,224 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 104906
+ERROR 2025-06-18 11:01:18,207 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+car_details.models.BodyStyle.DoesNotExist: BodyStyle matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: car_details_bodystyle.name_en
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 138, in import_auction_data
+    body_style_obj, _ = BodyStyle.objects.get_or_create(name_en=auction['body_style'], defaults={'name_en': auction['body_style']})
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 923, in get_or_create
+    return self.create(**params), True
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: car_details_bodystyle.name_en
+ERROR 2025-06-18 11:01:18,221 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 203751
+ERROR 2025-06-18 11:08:21,052 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+car_details.models.BodyStyle.DoesNotExist: BodyStyle matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: car_details_bodystyle.name_en
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 139, in import_auction_data
+    body_style_obj, _ = BodyStyle.objects.get_or_create(name_en=auction['body_style'], defaults={'name_en': auction['body_style']})
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 923, in get_or_create
+    return self.create(**params), True
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: car_details_bodystyle.name_en
+ERROR 2025-06-18 11:08:21,069 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 203735
+ERROR 2025-06-18 11:09:23,222 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: auction_auctionvehicle.price
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 155, in import_auction_data
+    auctionvehicle = Vehicle.objects.create(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: auction_auctionvehicle.price
+ERROR 2025-06-18 11:09:23,236 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 210969
+ERROR 2025-06-18 11:11:29,784 log Internal Server Error: /admin/auction/auctiondetail/import-auctions/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+car_details.models.Drive.DoesNotExist: Drive matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: car_details_drive.name_en
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 143, in import_auction_data
+    drive_obj, _ = Drive.objects.get_or_create(name_en=auction['drive'], defaults={'name_en': auction['drive']})
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 923, in get_or_create
+    return self.create(**params), True
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: car_details_drive.name_en
+ERROR 2025-06-18 11:11:29,801 basehttp "GET /admin/auction/auctiondetail/import-auctions/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&make=&model=&year_from=&year_to=&auction_name=&auction_date_from=&auction_date_to=&current_bid_from=&current_bid_to=&estimate_retail_from=&estimate_retail_to=&created_at_from=&created_at_to= HTTP/1.1" 500 203355
+ERROR 2025-06-18 16:18:53,477 log Internal Server Error: /admin/auction/auctionvehicle/update-single-vehicle/
+Traceback (most recent call last):
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/admin.py", line 99, in update_single_vehicle
+    map_response_to_models_single_vehicle(data)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/autotrader/auction/map_data.py", line 121, in map_response_to_models_single_vehicle
+    fuel, _ = Fuel.objects.get_or_create(name=result.get("fuel") or "Unknown")
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 916, in get_or_create
+    return self.get(**kwargs), False
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1427, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1237, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/Users/macbook/Desktop/Projects/AUTOTRADER WEB/venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1725, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'name' into field. Choices are: auctionvehicle, id, name_az, name_en, vehicle
+ERROR 2025-06-18 16:18:53,493 basehttp "GET /admin/auction/auctionvehicle/update-single-vehicle/?api_token=6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684&vin_number=WBAXX110600Y47083&only_with_color= HTTP/1.1" 500 155498

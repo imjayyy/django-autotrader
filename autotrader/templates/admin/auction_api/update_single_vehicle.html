@@ -1,0 +1,80 @@
+
+
+
+{% extends "admin/change_list.html" %}
+
+{% block content_title %}
+    <h1>Auction Vehicle Import</h1>
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    .auction-import-form {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+    }
+    .auction-import-form .form-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .auction-import-form .form-row label {
+      width: 200px;
+      font-weight: bold;
+    }
+    .auction-import-form .form-row input,
+    .auction-import-form .form-row select {
+      flex: 1;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .auction-import-form input[type="submit"] {
+      background: #0b79d0;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .auction-import-form label{
+      margin-right: 10px;
+      color: #000;      
+    }
+
+    .auction-import-form input[type="submit"]:hover {
+      background: #095ea6;
+    }
+  </style>
+
+<h2>Update Single Auction Vehicle</h2>
+<form class="auction-import-form" method="get" action="{% url 'admin:update-single-vehicle' %}">
+    <div>
+        <label>API Token:</label>
+        <input type="text" name="api_token" value="6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684" required>
+    </div>
+    <div>
+        <label>VIN Number:</label>
+        <input type="text" name="vin_number" required>
+    </div>
+    <div>
+        <label>Only With Color:</label>
+        <select name="only_with_color">
+            <option value="">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit" class="default">Update Vehicle</button>
+    </div>
+</form>
+
+
+  {{ block.super }}
+{% endblock %}

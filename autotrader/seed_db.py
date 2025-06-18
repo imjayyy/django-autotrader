@@ -39,7 +39,7 @@ def insert_models_make():
     }
 
     for make_name, models in CAR_MODELS.items():
-        make = Make.objects.get(name=make_name)
+        make, _ = Make.objects.get_or_create(name=make_name)
         print(make)
         for model_name in models:
             Model.objects.get_or_create(name=model_name, make=make)       
@@ -58,29 +58,29 @@ def insert_sample_data():
     drive = ["Front Wheel Drive", "Rear Wheel Drive", "All Wheel Drive", "Four Wheel Drive"]
     colors = ["Red", "Blue", "Green", "Black", "White", "Silver", "Gray", "Yellow", "Orange", "Purple", "Brown", "Beige", "Gold", "Bronze", "Copper", "Pink", "Turquoise", "Lime", "Teal", "Magenta", "Violet", "Maroon", "Aquamarine", "Coral", "Salmon", "Khaki", "Indigo", "Azure", "Lavender", "Periwinkle", "Tan", "Thistle", "Plum", "Mauve", "Lilac", "Amber", "Ivory", "Crimson", "Fuchsia", "Wheat", "Lemon", "Peach", "Cream", "Lavender", "Cyan", "Mint", "Olive", "Apricot", "Navy", "Burgundy", "Emerald", "Sapphire", "Aqua", "Lemon", "Peach", "Lavender", "Cyan", "Mint", "Olive", "Apricot", "Navy", "Burgundy", "Emerald", "Sapphire", "Aqua"]
     
-    # for d in drive:
-    #     Drive.objects.get_or_create(name_az=d, name_en=d)
+    for d in drive:
+        Drive.objects.get_or_create(name_az=d, name_en=d)
     
-    # for color in colors:
-    #     Color.objects.get_or_create(name_az=color, name_en=color)
+    for color in colors:
+        Color.objects.get_or_create(name_az=color, name_en=color)
 
-    # for make in makes:
-    #     Make.objects.get_or_create(name=make)
+    for make in makes:
+        Make.objects.get_or_create(name=make)
     
-    # for bs in body_styles:
-    #     BodyStyle.objects.get_or_create(name_az=bs, name_en=bs)
+    for bs in body_styles:
+        BodyStyle.objects.get_or_create(name_az=bs, name_en=bs)
     
-    # for fuel in fuels:
-    #     Fuel.objects.get_or_create(name_az=fuel, name_en=fuel)
+    for fuel in fuels:
+        Fuel.objects.get_or_create(name_az=fuel, name_en=fuel)
     
-    # for country in countries:
-    #     Country.objects.get_or_create(name=country)
+    for country in countries:
+        Country.objects.get_or_create(name=country)
 
-    # for transmission in transmissions:
-    #     Transmission.objects.get_or_create(name_az=transmission, name_en=transmission)
+    for transmission in transmissions:
+        Transmission.objects.get_or_create(name_az=transmission, name_en=transmission)
 
-    # for status in statuses:
-    #     Status.objects.get_or_create(name_az=status, name_en=status)
+    for status in statuses:
+        Status.objects.get_or_create(name_az=status, name_en=status)
 
     for i in range(20):  # Insert 10 sample vehicles
         make = Make.objects.order_by('?').first()  # Select a random Make
@@ -101,7 +101,7 @@ def insert_sample_data():
                     # country=Country.objects.order_by('?').first(),
                     VIN=f'VIN{randint(100000, 999999)}',
                     currency='USD',
-                    feature_list="GPS, Sunroof, Leather Seats",
+                    # feature_list="GPS, Sunroof, Leather Seats",
                     number_of_seats=choice([2, 4, 5, 7]),
                     price=randint(5000, 50000),
                     # price_currency='USD',
@@ -132,7 +132,7 @@ def insert_sample_data():
                     # country=Country.objects.order_by('?').first(),
                     VIN=f'VIN{randint(100000, 999999)}',
                     currency='USD',
-                    feature_list="GPS, Sunroof, Leather Seats",
+                    # feature_list="GPS, Sunroof, Leather Seats",
                     number_of_seats=choice([2, 4, 5, 7]),
                     price=randint(5000, 50000),
                     # price_currency='USD',
@@ -240,8 +240,9 @@ def add_discount():
     print("Discount added successfully!")
 
 
-add_discount()
-# add_engine_type()
+
 # insert_models_make()
-# insert_sample_data()
-# insert_sample_vehicle_images()
+insert_sample_data()
+insert_sample_vehicle_images()
+add_discount()
+add_engine_type()

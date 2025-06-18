@@ -1,0 +1,131 @@
+{% extends "admin/change_list.html" %}
+
+{% block content_title %}
+    <h1>Auction Vehicle Import</h1>
+{% endblock %}
+
+{% block content %}
+<form method="get" action="{% url 'admin:import-auctions' %}">
+  <style>
+    .auction-import-form {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+    }
+    .auction-import-form .form-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .auction-import-form .form-row label {
+      width: 200px;
+      font-weight: bold;
+    }
+    .auction-import-form .form-row input,
+    .auction-import-form .form-row select {
+      flex: 1;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .auction-import-form input[type="submit"] {
+      background: #0b79d0;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .auction-import-form label{
+      margin-right: 10px;
+      color: #000;      
+    }
+
+    .auction-import-form input[type="submit"]:hover {
+      background: #095ea6;
+    }
+  </style>
+
+  <div class="auction-import-form">
+    <h3 style="color: #000;">Import Auction Vehicles</h3>
+
+    <div class="form-row">
+      <label for="api_token">API Token *</label>
+      <input type="text" id="api_token" name="api_token" value="6394dc91ece3542af402645dc9f2aa1b2c2dec923b24cf3d249373228a019684"  required>
+    </div>
+
+    <div class="form-row">
+      <label for="make">Make</label>
+      <input type="text" id="make" name="make">
+    </div>
+
+    <div class="form-row">
+      <label for="model">Model</label>
+      <input type="text" id="model" name="model">
+    </div>
+
+    <div class="form-row">
+      <label for="year_from">Year From</label>
+      <input type="text" id="year_from" name="year_from">
+    </div>
+
+    <div class="form-row">
+      <label for="year_to">Year To</label>
+      <input type="text" id="year_to" name="year_to">
+    </div>
+
+    <div class="form-row">
+      <label for="auction_name">Auction Name</label>
+      <input type="text" id="auction_name" name="auction_name">
+    </div>
+
+    <div class="form-row">
+      <label for="auction_date_from">Auction Date From</label>
+      <input type="date" id="auction_date_from" name="auction_date_from">
+    </div>
+
+    <div class="form-row">
+      <label for="auction_date_to">Auction Date To</label>
+      <input type="date" id="auction_date_to" name="auction_date_to">
+    </div>
+
+    <div class="form-row">
+      <label for="current_bid_from">Current Bid From</label>
+      <input type="number" id="current_bid_from" name="current_bid_from">
+    </div>
+
+    <div class="form-row">
+      <label for="current_bid_to">Current Bid To</label>
+      <input type="number" id="current_bid_to" name="current_bid_to">
+    </div>
+
+    <div class="form-row">
+      <label for="estimate_retail_from">Estimated Retail From</label>
+      <input type="number" id="estimate_retail_from" name="estimate_retail_from">
+    </div>
+
+    <div class="form-row">
+      <label for="estimate_retail_to">Estimated Retail To</label>
+      <input type="number" id="estimate_retail_to" name="estimate_retail_to">
+    </div>
+
+    <div class="form-row">
+      <label for="created_at_from">Created At From</label>
+      <input type="date" id="created_at_from" name="created_at_from">
+    </div>
+
+    <div class="form-row">
+      <label for="created_at_to">Created At To</label>
+      <input type="date" id="created_at_to" name="created_at_to">
+    </div>
+
+    <input type="submit" value="Import Vehicles">
+  </div>
+</form>
+
+  {{ block.super }}
+{% endblock %}
