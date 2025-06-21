@@ -1,0 +1,243 @@
+@media (min-width: 992px) and (max-width: 1300px) {
+  .top-bar .hide-d {
+    display: none !important;
+  }
+  .float-end.t-btns a {
+    font-size: 10px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .hide-t {
+    display: none;
+  }
+  .logo {
+    padding: 5px 2px !important;
+    width: 140px;
+    margin-top: 12px;
+  }
+  .top-bar .hide-d {
+    display: none !important;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .cll {
+    display: block !important;
+  }
+  .t-boxes .col-lg-4.col-md-6.col-sm-6 {
+    margin-top: 20px;
+  }
+  .video-tutorial h4 {
+    font-size: 14px !important;
+  }
+  .cc .col {
+    flex: 1 0 50%;
+  }
+  .nbs .col-8, .nbs .col-4 {
+    width: 100%;
+    margin: 10px 0;
+    padding: 0;
+  }
+}
+@media (max-width: 767px) {
+  .logo {
+    padding: 5px 2px !important;
+    width: 100px;
+    margin-left: 20px !important;
+  }
+  .hide-m {
+    display: none;
+  }
+  .hide-d {
+    display: block;
+  }
+  .search-bar input {
+    margin-top: 5px !important;
+    margin-bottom: 8px !important;
+  }
+  .navbar-toggler {
+    position: absolute;
+    top: -83px;
+    color: red !important;
+    left: 0;
+    box-shadow: none !important;
+  }
+  .menu-bar {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .banner, .maps, .video-sec {
+    margin-top: 85px !important;
+    background-size: cover;
+  }
+  .history .input-group.my-4.w-50.mx-auto {
+    width: 100% !important;
+  }
+  .international i {
+    height: 30px;
+  }
+  .question {
+    background-size: cover;
+  }
+  .contacts .col-md-4 {
+    margin: 10px 0;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .col-lg-3.col-md-12.col-sm-12.t-hide .bg-white.sidebar.pb-4.pt-2.px-3 {
+    display: block !important;
+  }
+  .box-layout .bg-light {
+    margin: 10px 0;
+  }
+  .mbtn {
+    padding: 0 !important;
+    position: relative !important;
+    color: red !important;
+    top: auto;
+    left: auto;
+    border: none;
+  }
+  .t-boxes .col-lg-4.col-md-6.col-sm-6 {
+    margin-top: 20px;
+  }
+  .nbs .col-8, .nbs .col-4 {
+    width: 100%;
+    margin: 10px 0;
+    padding: 0;
+  }
+  .nbs p {
+    line-height: 30px;
+  }
+  .car-detail .alert.alert-info .col-6 {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .similar-cars {
+    padding: 20px !important;
+  }
+}
+@media (max-width: 575px) {
+  .logo {
+    padding: 5px 2px !important;
+    width: 100px;
+    margin-left: 20px !important;
+  }
+  .hide-m {
+    display: none;
+  }
+  .hide-d {
+    display: block;
+  }
+  .search-bar input {
+    margin-top: 5px !important;
+    margin-bottom: 8px !important;
+  }
+  .navbar-toggler {
+    position: absolute;
+    top: -83px;
+    color: #537f6c !important;
+    left: 0;
+    box-shadow: none !important;
+  }
+  .menu-bar {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .banner, .maps, .video-sec {
+    margin-top: 85px !important;
+    background-size: cover;
+  }
+  .benefits .row .col-lg-3 {
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+  }
+  .history .input-group.my-4.w-50.mx-auto {
+    width: 100% !important;
+  }
+  .international i {
+    height: 30px;
+  }
+  .question {
+    background-size: cover;
+  }
+  .contacts .col-md-4 {
+    margin: 10px 0;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .col-lg-3.col-md-12.col-sm-12.t-hide .bg-white.sidebar.pb-4.pt-2.px-3 {
+    display: block !important;
+  }
+  .box-layout .bg-light {
+    margin: 10px 0;
+  }
+  .mbtn {
+    padding: 0 !important;
+    position: relative !important;
+    color: #537f6c !important;
+    top: auto;
+    left: auto;
+    border: none;
+  }
+  .help-center {
+    padding: 0 !important;
+  }
+  .t-boxes .col-lg-4.col-md-6.col-sm-6 {
+    margin-top: 20px;
+  }
+  .nbs .col-8, .nbs .col-4 {
+    width: 100%;
+    margin: 10px 0;
+    padding: 0;
+  }
+  .nbs p {
+    line-height: 30px;
+  }
+  .car-detail .alert.alert-info .col-6 {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .similar-cars {
+    padding: 20px !important;
+  }
+  @media (min-width: 992px) {
+  #s-bar.collapsed-sidebar {
+    display: none !important;
+  }
+
+  #full.expanded-content {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+}
+@media (max-width: 576px) {
+  .list-mobile .card img {
+    width: 100%;
+    height: auto;  
+    object-fit: contain;
+  }
+  .list-mobile .card {
+    flex-direction: column !important;
+  }
+}
+}

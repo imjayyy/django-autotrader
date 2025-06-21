@@ -93,6 +93,8 @@ AUTH_USER_MODEL = 'accounts.MyUser'
 # Application definition
 
 INSTALLED_APPS = [
+    'vehicles',
+        
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -109,7 +111,13 @@ INSTALLED_APPS = [
     'shipping',
     'auction',
     'api',
-    'general'
+    'general',
+
+
+
+    'import_export',
+
+
 ]
 
 MIDDLEWARE = [

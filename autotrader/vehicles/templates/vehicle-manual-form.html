@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vehicle Search Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding: 2rem;
+    }
+
+    .btn-success {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h3>Get Vehicle Details</h3>
+
+    <form id="vehicleForm" method="POST" action="{% url 'vechile_api_manual_form' %}">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="api_token" class="form-label">API Token</label>
+        <input type="text"  readonly class="form-control" id="api_token" name="api_token" value="{{ api_token }}" required>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="make" class="form-label">Make</label>
+          <input type="text" class="form-control" id="make" name="make" value="{{ saved_filters.make|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="model" class="form-label">Model</label>
+          <input type="text" class="form-control" id="model" name="model" value="{{ saved_filters.model|default:'' }}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="year_from" class="form-label">Year From</label>
+          <input type="text" class="form-control" id="year_from" name="year_from"
+            value="{{ saved_filters.year_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="year_to" class="form-label">Year To</label>
+          <input type="text" class="form-control" id="year_to" name="year_to"
+            value="{{ saved_filters.year_to|default:'' }}">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="auction_name" class="form-label">Auction Name</label>
+        <input type="text" class="form-control" id="auction_name" name="auction_name"
+          value="{{ saved_filters.auction_name|default:'' }}">
+      </div>
+
+      <!-- Read-only Auction Dates -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="auction_date_from" class="form-label">Auction Date From</label>
+          <input type="date" class="form-control" id="auction_date_from" name="auction_date_from"
+            value="{{ saved_filters.auction_date_from|default:'' }}" >
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="auction_date_to" class="form-label">Auction Date To</label>
+          <input type="date" class="form-control" id="auction_date_to" name="auction_date_to"
+            value="{{ saved_filters.auction_date_to|default:'' }}" >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="sale_price_from" class="form-label">Sale Price From</label>
+          <input type="number" class="form-control" id="sale_price_from" name="sale_price_from"
+            value="{{ saved_filters.sale_price_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="sale_price_to" class="form-label">Sale Price To</label>
+          <input type="number" class="form-control" id="sale_price_to" name="sale_price_to"
+            value="{{ saved_filters.sale_price_to|default:'' }}">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="is_buy_now" class="form-label">Is Buy Now (0/1)</label>
+        <input type="number" class="form-control" id="is_buy_now" name="is_buy_now" min="0" max="1"
+          value="{{ saved_filters.is_buy_now|default:'' }}">
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="odometer_from" class="form-label">Odometer From</label>
+          <input type="number" class="form-control" id="odometer_from" name="odometer_from"
+            value="{{ saved_filters.odometer_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="odometer_to" class="form-label">Odometer To</label>
+          <input type="number" class="form-control" id="odometer_to" name="odometer_to"
+            value="{{ saved_filters.odometer_to|default:'' }}">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="updated_at_from" class="form-label">Updated At From</label>
+          <input type="date" class="form-control" id="updated_at_from" name="updated_at_from"
+            value="{{ saved_filters.updated_at_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="updated_at_to" class="form-label">Updated At To</label>
+          <input type="date" class="form-control" id="updated_at_to" name="updated_at_to"
+            value="{{ saved_filters.updated_at_to|default:'' }}">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="estimate_retail_from" class="form-label">Estimated Retail From</label>
+          <input type="number" class="form-control" id="estimate_retail_from" name="estimate_retail_from"
+            value="{{ saved_filters.estimate_retail_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="estimate_retail_to" class="form-label">Estimated Retail To</label>
+          <input type="number" class="form-control" id="estimate_retail_to" name="estimate_retail_to"
+            value="{{ saved_filters.estimate_retail_to|default:'' }}">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="created_at_from" class="form-label">Created At From</label>
+          <input type="date" class="form-control" id="created_at_from" name="created_at_from"
+            value="{{ saved_filters.created_at_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="created_at_to" class="form-label">Created At To</label>
+          <input type="date" class="form-control" id="created_at_to" name="created_at_to"
+            value="{{ saved_filters.created_at_to|default:'' }}">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="car_info_vehicle_type" class="form-label">Vehicle Type</label>
+        <input type="text" class="form-control" id="car_info_vehicle_type" name="car_info_vehicle_type"
+          value="{{ saved_filters.car_info_vehicle_type|default:'' }}">
+      </div>
+
+      <!-- Page-related fields -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="per_page" class="form-label">Results Per Page</label>
+          <input type="number"  readonly class="form-control" id="perPage" name="per_page"
+            value="{{ saved_filters.per_page|default:'50' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="currentPage" class="form-label">Start Page Number</label>
+          <input type="number"   class="form-control" id="currentPage" name="page"
+            value="{{ saved_filters.page|default:'1' }}" min="1">
+        </div>
+      </div>
+
+      <button type="button" id="startJob" class="btn btn-success w-100">Execute</button>
+
+      <div class="mt-3 text-center">
+        <!-- <h5>📄 Fetch Progress: <span id="pageTracker">-</span></h5> -->
+      </div>
+    </form>
+
+  </div>
+
+<script>
+  let abortController = null;
+
+const startBtn = document.getElementById('startJob');
+const pageTracker = document.getElementById('pageTracker');
+
+startBtn.addEventListener('click', async () => {
+  const form = document.getElementById('vehicleForm');
+
+  startBtn.disabled = true;
+
+  let currentPage = parseInt(form.page.value) || 1;
+  const perPage = parseInt(form.per_page.value) || 50;
+  let totalPages = Infinity;
+  let totalSaved = 0;
+
+  abortController = new AbortController();
+
+  // Show loader text initially
+  pageTracker.textContent = '⏳ Starting fetch...';
+
+  try {
+    while (currentPage <= totalPages) {
+      pageTracker.textContent = `⏳ Fetching page ${currentPage}...`;
+
+      const formData = new FormData(form);
+      formData.set('page', currentPage);
+
+      const response = await fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+        },
+        body: formData,
+        signal: abortController.signal,
+      });
+
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error('Network response not ok: ' + text);
+      }
+
+      const data = await response.json();
+
+      totalPages = data.pagination.total_pages;
+      totalSaved += data.pagination.results_saved || 0;
+
+      pageTracker.textContent = `✅ Fetched page ${currentPage} of ${totalPages}`;
+
+      currentPage = data.pagination.next_page;
+
+      if (currentPage > totalPages) break;
+
+
+      currentPage++;
+
+      // Wait 3 seconds to avoid rate limits
+      await new Promise(resolve => setTimeout(resolve, 3000));
+    }
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      pageTracker.textContent = '🛑 Fetch stopped by user.';
+    } else {
+      pageTracker.textContent = '❌ Error: ' + error.message;
+      console.error(error);
+    }
+  }
+
+  startBtn.disabled = false;
+  stopBtn.classList.add('d-none');
+});
+
+
+</script>
+
+
+</body>
+
+</html>

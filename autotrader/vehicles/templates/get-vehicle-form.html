@@ -1,0 +1,259 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vehicle Search Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding: 2rem;
+    }
+
+    .btn-success {
+      color: #fff;
+      background-color: #537f6c;
+      border-color: #537f6c;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="d-flex justify-content-end mb-3">
+    <form method="POST" action="{% url 'toggle_scheduler' %}" class="me-2">
+      {% csrf_token %}
+      {% if scheduler_enabled %}
+      <input type="hidden" name="action" value="disable">
+      <button type="submit" class="btn btn-outline-danger">Disable Scheduler</button>
+      {% else %}
+      <input type="hidden" name="action" value="enable">
+      <button type="submit" class="btn btn-outline-primary">Enable Scheduler</button>
+      {% endif %}
+    </form>
+  </div>
+
+  <div class="container">
+    <h3>Get Vehicle Details</h3>
+
+    <form id="vehicleForm" method="POST" action="{% url 'get_vehicle' %}">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="api_token" class="form-label">API Token</label>
+        <input type="text"  readonly  class="form-control" id="api_token" name="api_token" value="{{ api_token }}" required>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="make" class="form-label">Make</label>
+          <input type="text" class="form-control" id="make" name="make" value="{{ saved_filters.make|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="model" class="form-label">Model</label>
+          <input type="text" class="form-control" id="model" name="model" value="{{ saved_filters.model|default:'' }}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="year_from" class="form-label">Year From</label>
+          <input type="text" class="form-control" id="year_from" name="year_from"
+            value="{{ saved_filters.year_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="year_to" class="form-label">Year To</label>
+          <input type="text" class="form-control" id="year_to" name="year_to"
+            value="{{ saved_filters.year_to|default:'' }}">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="auction_name" class="form-label">Auction Name</label>
+        <input type="text" class="form-control" id="auction_name" name="auction_name"
+          value="{{ saved_filters.auction_name|default:'' }}">
+      </div>
+
+      <!-- Read-only Auction Dates -->
+     <!-- Auction Dates always visible in DD-MM-YYYY if job running -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="auction_date_from" class="form-label">Auction Date From (Job Started)</label>
+          <input type="text" readonly class="form-control" value="{{ auction_date_from|date:'d-m-Y' }}" style="background: #eee;">
+        </div>
+        <div class="col-md-6 mb-3">
+         <label for="auction_date_to" class="form-label">Auction Date To (Job Ended)</label>
+          <input type="text" readonly class="form-control" value="{{ auction_date_to|date:'d-m-Y' }}" style="background: #eee;">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="sale_price_from" class="form-label">Sale Price From</label>
+          <input type="number" class="form-control" id="sale_price_from" name="sale_price_from"
+            value="{{ saved_filters.sale_price_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="sale_price_to" class="form-label">Sale Price To</label>
+          <input type="number" class="form-control" id="sale_price_to" name="sale_price_to"
+            value="{{ saved_filters.sale_price_to|default:'' }}">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="is_buy_now" class="form-label">Is Buy Now (0/1)</label>
+        <input type="number" class="form-control" id="is_buy_now" name="is_buy_now" min="0" max="1"
+          value="{{ saved_filters.is_buy_now|default:'' }}">
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="odometer_from" class="form-label">Odometer From</label>
+          <input type="number" class="form-control" id="odometer_from" name="odometer_from"
+            value="{{ saved_filters.odometer_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="odometer_to" class="form-label">Odometer To</label>
+          <input type="number" class="form-control" id="odometer_to" name="odometer_to"
+            value="{{ saved_filters.odometer_to|default:'' }}">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="updated_at_from" class="form-label">Updated At From</label>
+          <input type="date" class="form-control" id="updated_at_from" name="updated_at_from"
+            value="{{ saved_filters.updated_at_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="updated_at_to" class="form-label">Updated At To</label>
+          <input type="date" class="form-control" id="updated_at_to" name="updated_at_to"
+            value="{{ saved_filters.updated_at_to|default:'' }}">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="estimate_retail_from" class="form-label">Estimated Retail From</label>
+          <input type="number" class="form-control" id="estimate_retail_from" name="estimate_retail_from"
+            value="{{ saved_filters.estimate_retail_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="estimate_retail_to" class="form-label">Estimated Retail To</label>
+          <input type="number" class="form-control" id="estimate_retail_to" name="estimate_retail_to"
+            value="{{ saved_filters.estimate_retail_to|default:'' }}">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="created_at_from" class="form-label">Created At From</label>
+          <input type="date" class="form-control" id="created_at_from" name="created_at_from"
+            value="{{ saved_filters.created_at_from|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="created_at_to" class="form-label">Created At To</label>
+          <input type="date" class="form-control" id="created_at_to" name="created_at_to"
+            value="{{ saved_filters.created_at_to|default:'' }}">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="car_info_vehicle_type" class="form-label">Vehicle Type</label>
+        <input type="text" class="form-control" id="car_info_vehicle_type" name="car_info_vehicle_type"
+          value="{{ saved_filters.car_info_vehicle_type|default:'' }}">
+      </div>
+
+      <!-- Page-related fields -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="perPage" class="form-label">Results Per Page</label>
+          <input type="number" class="form-control" readonly id="perPage" name="per_page" value="{{ per_page }}"
+            style="pointer-events: none; background: #eee;">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="currentPage" class="form-label">Start Page Number</label>
+          <input type="number"
+                readonly
+                class="form-control"
+                id="currentPage"
+                name="page"
+                value="{{ page }}"
+                min="1"
+                style="pointer-events: none; background: #eee;">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+         <button type="button" id="saveFiltersBtn" class="btn btn-outline-secondary w-100">Save Filters</button>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h5>Fetch Progress Log</h5>
+        <pre id="fetchLog" style="background:#222; color:#caffb9; min-height:150px; padding:1em; border-radius:8px; font-size:1rem;"></pre>
+      </div>
+    </form>
+
+    {% if summary %}
+    <div class="alert alert-info mt-4">
+      <h5 class="mb-3">Fetch Summary</h5>
+      <ul class="mb-0">
+        <li><strong>VINs Saved:</strong> {{ summary.saved }}</li>
+        <li><strong>Updated Entry:</strong> {{ summary.marked_for_update }}</li>
+        <li><strong>Final Page Processed:</strong> {{ page }}</li>
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+
+<script>
+let polling = false;
+let lastLog = "";
+
+window.addEventListener('DOMContentLoaded', function () {
+  const isSchedulerEnabled = {{ scheduler_enabled|yesno:"true,false" }};
+  const fetchLog = document.getElementById('fetchLog');
+  if (!isSchedulerEnabled && fetchLog) {
+    fetchLog.textContent = '(Scheduler is disabled)';
+  }
+});
+
+</script>
+<script>
+document.getElementById('saveFiltersBtn').addEventListener('click', function() {
+  const form = document.getElementById('vehicleForm');
+  const formData = new FormData(form);
+  fetch("{% url 'save_vehicle_filters' %}", {
+    method: 'POST',
+    headers: {'X-CSRFToken': formData.get('csrfmiddlewaretoken')},
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.success){
+      alert('Filters saved!');
+    }
+  });
+});
+
+</script>
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  const fetchLog = document.getElementById('fetchLog');
+  //const eventSource = new EventSource("/stream-logs/");
+
+  eventSource.onmessage = function(event) {
+    fetchLog.textContent += event.data + "\n";
+    fetchLog.scrollTop = fetchLog.scrollHeight;
+  };
+
+ // eventSource.onerror = function() {
+   // fetchLog.textContent += "[ERROR] Lost connection to log stream.\n";
+   // eventSource.close();
+  //};
+});
+</script>
+
+
+</body>
+</html>

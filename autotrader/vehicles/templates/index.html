@@ -1,0 +1,601 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/screen.css' %}" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+  <title>Online Car Auction History</title>
+
+</head>
+
+<style> 
+    .messages {
+      margin-top: 20px;
+  }
+  
+  .alert {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+  }
+  
+  .btn-success {
+    color: #fff;
+    background-color: #537f6c;
+    border-color: #537f6c;
+    margin-bottom: -91px;
+    margin-left: 1796px;
+}
+</style>
+
+<body>
+  <header class="fixed-top">
+    <div class="top-bar bg-light">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12 d-flex align-items-center">
+          <a href="{% url 'index' %}" class="logo p-3 d-inline-block"><img src="{% static 'images/logo.png' %}" alt="logo"
+              class="img-fluid" width="100" height="30" /></a>
+          <a class="nav-link hide-d text-end ms-auto text-primary" aria-current="page"
+            href="https://wa.me/994104153545"><i class="fa-brands fa-whatsapp"></i> +994 (10) 415 35 45</a>
+        </div>
+        <div class="col-lg-6 col-md-4 col-sm-12">
+          <div class="search-bar position-relative">
+            <input type="text" class="form-control form-control-lg bg-white my-3 pe-5" id="search"
+              placeholder="Search by VIN or Lot number" autocomplete="off" />
+              <a id="search-btn" href="javascript:;"
+                class="btn btn-primary position-absolute end-0 top-50 translate-middle-y">
+                <i class="fa fa-search"></i>
+              </a>
+
+            <div id="search-results" class="list-group position-absolute w-100" style="z-index: 1000; display: none;">
+            </div>
+          </div>
+          
+        </div>
+        
+
+        
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-primary px-2 py-1 menu-bar">
+      <div class="container-fluid">
+        <button class="navbar-toggler border-0 bg-none text-white" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation"> <span class="fa fa-bars"></span> </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"> <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a> </li>
+           
+
+            
+          </ul>
+          <form class="d-flex">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item hide-m"> <a class="nav-link active" aria-current="page"
+                  href="https://wa.me/994104153545"><i class="fa-brands fa-whatsapp"></i> +994 (10) 415 35 45</a> </li>
+              <li class="nav-item hide-m"> <a class="nav-link active" aria-current="page"
+                  href="mailto:info@autoauctionshistory.com"><i class="fa fa-envelope"></i>
+                  info@autoauctionshistory.com</a> </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Toast Container -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 2000;">
+  {% if messages %}
+    {% for message in messages %}
+    <div class="toast align-items-center text-white bg-success border-0"
+     role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="4000" id="toast-message">
+
+        <div class="d-flex">
+          <div class="toast-body">
+            {{ message }}
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+  <!--------------------Header Section Code Ends Here----------------->
+  <section class="banner py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center text-white">
+          <h1 class="h1 fw-bold">Find Auction History of Your Vehicle</h1>
+          <!-- <h2 class="fw-light h4 py-2">Find from over 181,745 used Cars, Trucks and SUVs</h2> -->
+          <h2 class="fw-light h4 py-2">Find from over {{ total_vehicle_count|default:"0" }} used Cars, Trucks and SUVs</h2>
+
+        </div>
+      </div>
+  
+      <div class="bg-dark rounded my-4">
+        <form method="GET" action="{% url 'search' %}">
+          <div class="row">
+  
+            <!-- Make -->
+            <div class="col-sm-4 my-3">
+              <select name="make" class="form-select form-select-lg" id="makeSelect">
+                <option value="">All Makes</option>
+                {% for make in makes %}
+                <option value="{{ make|title|escape }}" {% if selected_make == make|title %}selected{% endif %}>{{ make|title }}</option>
+                {% endfor %}
+              </select>
+                      
+            </div>
+  
+            <!-- Model -->
+              <!-- <select name="model" class="form-select form-select-lg" id="modelSelect"> -->
+               <div class="col-sm-4 my-3">
+                  <select name="model" class="form-select form-select-lg" id="modelSelect" disabled>
+                      <option value="" disabled selected hidden>Select a make first to choose a model</option>
+                  </select>
+              </div>            
+  
+            <!-- Auction -->
+            <div class="col-sm-4 my-3">
+              <select name="auction"   id="auctionSelect" class="form-select form-select-lg">
+                <option value="">All Auctions</option>
+                {% for auction in auctions %}
+                  <option value="{{ auction }}" {% if request.GET.auction == auction %}selected{% endif %}>{{ auction }}</option>
+                {% endfor %}
+              </select>
+            </div>
+  
+            <!-- From Year -->
+            <div class="col-sm-4 mb-3">
+              <select name="from_year" id="fromYearSelect" class="form-select form-select-lg">
+                <option value="">From Year</option>
+                {% for year in years_asc %}
+                  <option value="{{ year }}" {% if request.GET.from_year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
+                {% endfor %}
+              </select>
+            </div>
+  
+            <!-- To Year -->
+            <div class="col-sm-4 mb-3">
+              <select name="to_year" id="toYearSelect" class="form-select form-select-lg">
+                <option value="">To Year</option>
+                {% for year in years_desc %}
+                  <option value="{{ year }}" {% if request.GET.to_year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
+                {% endfor %}
+              </select>
+            </div>
+  
+            <!-- Damage Type -->
+            <div class="col-sm-4 mb-3">
+              <select name="damage" id="damageSelect" class="form-select form-select-lg">
+                <option value="">Damage Type</option>
+                {% for damage in damages %}
+                  <option value="{{ damage }}" {% if request.GET.damage == damage %}selected{% endif %}>{{ damage }}</option>
+                {% endfor %}
+              </select>
+            </div>
+  
+            <!-- Sale Date From -->
+            <div class="col-sm-4 mb-3">
+              <input type="date" name="sale_date_from" class="form-control form-control-lg" placeholder="Sale Date From"
+                    value="{{ request.GET.sale_date_from }}" id="saleDateFrom"
+                    max="{{ now }}" onchange="updateSaleDateTo();">
+            </div>
+          
+            <!-- Sale Date To -->
+            <div class="col-sm-4 mb-3">
+              <input type="date" name="sale_date_to" class="form-control form-control-lg" placeholder="Sale Date To"
+                    value="{{ request.GET.sale_date_to }}" id="saleDateTo"
+                    min="{{ request.GET.sale_date_from }}" max="{{ now }}">
+            </div>
+
+            <!-- Search Button -->
+            <div class="col-sm-4 mb-3">
+              <button type="submit" class="btn btn-primary btn-lg text-uppercase w-100">
+                <i class="fa fa-search"></i> Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <section class="browse bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="h3 text-center">Today's Top Auction Picks</h3>
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              {% for car in top_picks %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                  <div class="card rounded-2 shadow-sm mt-4 cars-box">
+                    <a href="{% url 'car_details' car.id %}" class="text-decoration-none position-relative">
+                      {% if car.primary_photo %}
+                        <img src="{{ car.primary_photo }}" class="card-img-top" alt="{{ car.make }} {{ car.model }}">
+                      {% else %}
+                        <img src="{% static 'images/car1.jpg' %}" class="card-img-top" alt="Default Car Image">
+                      {% endif %}
+                      <small class="bg-warning py-2 px-4 text-dark fw-bold position-absolute d-inline-block start-0 end-0">
+                        <i class="fa fa-clock"></i> {{ car.created_at|default:"-" }} | ${{ car.est_retail_value|default:"0" }}
+                      </small>
+                    </a>
+                    <div class="card-body">
+                      <a href="{% url 'car_details' car.id %}" class="card-title h6 text-decoration-none mb-2 d-inline-block">
+                        {{ car.year }} {{ car.make }} {{ car.model }}
+                      </a>
+                      <p class="card-text">Location: {{ car.location|default:"-" }}</p>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>            
+            <!-- Large Static Card -->
+          <div class="col-lg-6 col-md-12 col-sm-12 hide-m" style="height: 524px;">
+            {% if top_picks|length > 0 %}
+            <div class="card rounded-2 shadow-sm mt-4 cars-box">
+              <a href="{% url 'car_details' top_picks.0.id %}" class="text-decoration-none position-relative">
+                <img src="{% if top_picks.0.primary_photo %}{{ top_picks.0.primary_photo }}{% else %}{% static 'images/car1.jpg' %}{% endif %}"
+                    class="card-img-top" alt="{{ top_picks.0.make }} {{ top_picks.0.model }}" />
+                <small class="bg-warning py-2 px-4 text-dark fw-bold position-absolute d-inline-block start-0">
+                  <i class="fa fa-clock"></i> {{ top_picks.0.created_at }} | ${{ top_picks.0.est_retail_value|default:"0" }}
+                </small>
+              </a>
+              <div class="card-body">
+                <a href="{% url 'car_details' top_picks.0.id %}" class="card-title h5 text-decoration-none mb-2 d-inline-block">
+                  {{ top_picks.0.year }} {{ top_picks.0.make }} {{ top_picks.0.model }}
+                </a>
+                <p class="card-text fs-6 mb-1">Location: {{ top_picks.0.location|default:"Unknown" }}</p>
+              </div>
+            </div>
+            {% endif %}
+          </div> 
+
+          <!-- 4 Smaller Cards (split in 2 rows) -->
+          <div class="col-lg-6 col-md-12 col-sm-12 p-0 hide-m" style="margin-left: 669px; margin-top: -547px;">        
+            <div class="row">
+              {% for car in top_picks|slice:"1:3" %}
+              <div class="col-md-6 col-sm-12">
+                <div class="card rounded-2 shadow-sm mt-4 cars-box">
+                  <a href="{% url 'car_details' car.id %}" class="text-decoration-none position-relative">
+                    <img src="{% if car.primary_photo %}{{ car.primary_photo }}{% else %}{% static 'images/car2.jpg' %}{% endif %}"
+                        class="card-img-top" alt="{{ car.make }} {{ car.model }}" />
+                    <small class="bg-warning py-2 px-4 text-dark fw-bold position-absolute d-inline-block start-0 end-0">
+                      <i class="fa fa-clock"></i> {{ car.created_at }} | ${{ car.est_retail_value|default:"0" }}
+                    </small>
+                  </a>
+                  <div class="card-body">
+                    <a href="{% url 'car_details' car.id %}" class="card-title h6 text-decoration-none mb-2 d-inline-block">
+                      {{ car.year }} {{ car.make }} {{ car.model }}
+                    </a>
+                    <p class="card-text">Location: {{ car.location|default:"Unknown" }}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="row" style="margin-top: -52px;">
+              {% for car in top_picks|slice:"3:5" %}
+              <div class="col-md-6 col-sm-12">
+                <div class="card rounded-2 shadow-sm mt-4 cars-box">
+                  <a href="{% url 'car_details' car.id %}" class="text-decoration-none position-relative">
+                    <img src="{% if car.primary_photo %}{{ car.primary_photo }}{% else %}{% static 'images/car2.jpg' %}{% endif %}"
+                        class="card-img-top" alt="{{ car.make }} {{ car.model }}" />
+                    <small class="bg-warning py-2 px-4 text-dark fw-bold position-absolute d-inline-block start-0 end-0">
+                      <i class="fa fa-clock"></i> {{ car.created_at }} | ${{ car.est_retail_value|default:"0" }}
+                    </small>
+                  </a>
+                  <div class="card-body">
+                    <a href="{% url 'car_details' car.id %}" class="card-title h6 text-decoration-none mb-2 d-inline-block">
+                      {{ car.year }} {{ car.make }} {{ car.model }}
+                    </a>
+                    <p class="card-text">Location: {{ car.location|default:"Unknown" }}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}           
+            </div>
+          </div> 
+  </section>
+   
+
+  <section class="auction-list bg-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="h3 text-center">Auto Auction History by Makes</h3>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 mt-5">
+          <h5 class="h5">All Makes</h5>
+        </div>
+
+        {% if make_counts %}
+        {% for make in make_counts %}
+        {% if make.make %}
+        <div class="col-lg-3 col-md-3 col-sm-6 mt-3">
+          <a href="{% url 'search' %}?make={{ make.make }}" class="text-decoration-none">
+            {{ make.make }}
+            <small class="text-muted">({{ make.count }})</small>
+          </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <div class="col-12 text-center">
+          <p>No makes found.</p>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+  // Set max date for 'Sale Date From' to today's date
+  document.getElementById('saleDateFrom').setAttribute('max', '{{ now }}');
+
+  function updateSaleDateTo() {
+    var saleDateFrom = document.getElementById('saleDateFrom').value;
+    var saleDateTo = document.getElementById('saleDateTo');
+    
+    if (saleDateFrom) {
+      saleDateTo.setAttribute('min', saleDateFrom);  // Ensure Sale Date To is after Sale Date From
+    }
+  }
+
+  // If Sale Date From is already selected, update Sale Date To dynamically
+  if (document.getElementById('saleDateFrom').value) {
+    updateSaleDateTo();
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const makeSelect = document.querySelector('select[name="make"]');
+    const modelSelect = document.querySelector('select[name="model"]');
+    const auctionSelect = document.querySelector('select[name="auction"]');
+    const searchForm = document.querySelector('form[action*="search"]');  // safer targeting
+
+    if (!makeSelect || !modelSelect || !auctionSelect || !searchForm) return;
+
+    // 1️⃣ Initially disable model dropdown if no make is selected
+    modelSelect.disabled = !makeSelect.value || makeSelect.value === 'All Makes';
+
+    // 2️⃣ Enable/disable based on make selection
+    makeSelect.addEventListener('change', function () {
+      const makeSelected = this.value && this.value !== 'All Makes';
+      modelSelect.disabled = !makeSelected;
+      if (!makeSelected) modelSelect.selectedIndex = 0;
+    });
+
+    // 3️⃣ Prevent form submission if filters are not chosen
+    searchForm.addEventListener('submit', function (e) {
+      const makeSelected = makeSelect.value && makeSelect.value !== 'All Makes';
+      const modelSelected = modelSelect.value && modelSelect.value !== 'All Models';
+      const auctionSelected = auctionSelect.value && auctionSelect.value !== 'All Auctions';
+      const fromYear = document.querySelector('select[name="from_year"]').value !== 'From Year';
+      const toYear = document.querySelector('select[name="to_year"]').value !== 'To Year';
+      const damage = document.querySelector('select[name="damage"]').value !== 'Damage type';
+      const saleFrom = document.querySelector('input[name="sale_date_from"]').value;
+      const saleTo = document.querySelector('input[name="sale_date_to"]').value;
+    
+      const anyFilterSelected =
+        makeSelected || modelSelected || auctionSelected || fromYear || toYear || damage || saleFrom || saleTo;
+    
+      if (!anyFilterSelected) {
+        e.preventDefault();
+        alert("Please select at least one filter to search vehicle history.");
+      }
+    });
+    
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('search');
+    const searchResults = document.getElementById('search-results');
+    let debounceTimer;
+
+    searchInput.addEventListener('input', function () {
+      const query = this.value.trim();
+
+      clearTimeout(debounceTimer);
+
+      if (query.length >= 2) {
+        debounceTimer = setTimeout(() => {
+          fetch(`/vehicle-search/?q=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(data => {
+              searchResults.innerHTML = '';
+
+              if (data.vehicles && data.vehicles.length > 0) {
+                data.vehicles.forEach(vehicle => {
+                  const item = document.createElement('a');
+                  item.href = `/car-details/${vehicle.id}/`;
+                  item.className = 'list-group-item list-group-item-action';
+
+                  const label = vehicle.vin.toLowerCase().includes(query.toLowerCase())
+                    ? `<strong>VIN:</strong> ${vehicle.vin}`
+                    : `<strong>Lot:</strong> ${vehicle.lot_number}`;
+
+                  item.innerHTML = `${label} <small class="text-muted">${vehicle.year} ${vehicle.make} ${vehicle.model}</small>`;
+                  searchResults.appendChild(item);
+                });
+              } else {
+                const item = document.createElement('div');
+                item.className = 'list-group-item text-muted';
+                item.textContent = 'No vehicles found';
+                searchResults.appendChild(item);
+              }
+
+              searchResults.style.display = 'block';
+            })
+            .catch(err => {
+              console.error('Search error:', err);
+              searchResults.style.display = 'none';
+            });
+        }, 300); // Debounce delay (ms)
+      } else {
+        searchResults.style.display = 'none';
+      }
+    });
+
+    // Hide results on outside click
+    document.addEventListener('click', function (e) {
+      if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+    const makeSelect = document.querySelector('#makeSelect');
+    const modelSelect = document.querySelector('#modelSelect');
+    
+    // Initially, disable the model select if no make is selected
+    modelSelect.disabled = !makeSelect.value;
+    
+    // When the make changes, make an AJAX request to get the models for that make
+    makeSelect.addEventListener('change', function () {
+        const selectedMake = this.value;
+
+        // If no make is selected, disable the model select
+        if (!selectedMake) {
+            modelSelect.disabled = true;
+            modelSelect.innerHTML = '<option value="">Select a make first to choose a model</option>';
+            return;
+        }
+
+        // Make AJAX request to fetch models for the selected make
+        $.ajax({
+            url: "{% url 'get_models_by_make' %}",
+            data: {
+                make: selectedMake  // Send the selected make to the backend
+            },
+            success: function (data) {
+                let modelOptions = '<option value="">Select a model</option>';
+                
+                // Populate model options based on the fetched models
+                data.models.forEach(function (model) {
+                    modelOptions += `<option value="${model}">${model}</option>`;
+                });
+
+                // Update the model select options and enable the select
+                modelSelect.innerHTML = modelOptions;
+                modelSelect.disabled = false;
+            },
+            error: function () {
+                console.error("Failed to fetch models");
+            }
+        });
+    });
+});
+
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var toastEl = document.getElementById('toast-message');
+    if (toastEl) {
+      var toast = new bootstrap.Toast(toastEl);
+      toast.show();
+    }
+  });
+  
+</script>
+
+<script>
+  function updateDropdowns() {
+    const make = document.getElementById('makeSelect').value;
+    const model = document.getElementById('modelSelect').value;
+
+    fetch(`/get-filtered-options/?make=${make}&model=${model}`)
+      .then(response => response.json())
+      .then(data => {
+        updateSelect('auctionSelect', data.auctions, 'All Auctions');
+        updateSelect('fromYearSelect', data.years, 'From Year');
+        updateSelect('toYearSelect', [...data.years].reverse(), 'To Year');
+        updateSelect('damageSelect', data.damages, 'Damage Type');
+      });
+  }
+
+  function updateSelect(id, items, defaultOption) {
+    const select = document.getElementById(id);
+    select.innerHTML = '';
+    select.append(new Option(defaultOption, ''));
+    items.forEach(item => {
+      if (item) {
+        select.append(new Option(item, item));
+      }
+    });
+  }
+
+  document.getElementById('makeSelect').addEventListener('change', updateDropdowns);
+  document.getElementById('modelSelect').addEventListener('change', updateDropdowns);
+</script>
+
+</body>
+
+<footer class="bg-dark py-4">
+  <div class="container">
+    <div class="row">
+      <div class="container py-1">
+        <div class="row">
+          <div class="col-md-4 col-sm-12"> <i
+              class="fa fa-clock p-2 bg-white rounded-1 border text-center text-primary float-start me-2"></i> <span
+              class="d-block text-white overflow-hidden line-heights"> <strong>Office Hours</strong>
+              <p>Monday-Friday, 09:00-18:00</p>
+            </span> </div>
+          <div class="col-md-4 col-sm-12">
+
+            <div class="mb-3"> <i
+                class="fa fa-envelope p-1 bg-primary text-white rounded-1 text-center float-start me-2"></i> <span
+                class="d-block overflow-hidden line-heights text-white">
+                <p><a href="mailto:info@autoauctionshistory.com"
+                    class="text-decoration-none text-white">info@autoauctionshistory.com</a></p>
+              </span></div>
+            <div class="mb-3"> <i
+                class="fab fa-whatsapp p-1 bg-primary text-white rounded-1 text-center float-start me-2 "></i> <span
+                class="d-block overflow-hidden line-heights text-white">
+                <p> <a href="https://wa.me/994104153545" class="text-decoration-none text-white"> Whatsapp: +994 (10)
+                    415 35 45</a></p>
+              </span></div>
+          </div>
+          <div class="col-md-4 col-sm-12"> <i
+              class="fa fa-map-marker-alt p-2 bg-white rounded-1 border text-center text-primary float-start me-2 "></i>
+            <span class="d-block overflow-hidden line-heights text-white">
+              <p>Baku, Azerbaijan</p>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 mt-5 mb-4"> <small class="text-muted line-heights">Copyright &copy; 2025 Auto Auctions
+          History, All Rights Reserved. </small> </div>
+    </div>
+  </div>
+</footer>
+</html>

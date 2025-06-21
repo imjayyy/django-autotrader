@@ -1,0 +1,2608 @@
+{% load static %}
+{% load humanize %}
+{% load query_tags %}
+{% load custom_tags %}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" />
+<link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet" />
+<link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+<link href="{% static 'css/screen.css' %}" rel="stylesheet" />
+<title>View &amp; Bid all Types of Salvage Autos in Auto Auctions | Repairable Salvage Cars Sale</title>
+</head>
+<body>
+
+  <header class="fixed-top">
+    <div class="top-bar bg-light">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12 d-flex align-items-center">
+          <a href="{% url 'index' %}" class="logo p-3 d-inline-block">
+            <img src="{% static 'images/logo.png' %}" alt="logo" class="img-fluid" width="100" height="30" />
+          </a>
+          <a class="nav-link hide-d text-end ms-auto text-primary" aria-current="page" href="https://wa.me/994104153545">
+            <i class="fa-brands fa-whatsapp"></i> +994 (10) 415 35 45
+          </a>
+        </div>
+        <div class="col-lg-6 col-md-4 col-sm-12">
+          <div class="search-bar position-relative">
+            <input type="text" class="form-control form-control-lg bg-white my-3 pe-5" id="search"
+              placeholder="Search by VIN or Lot number" autocomplete="off" />
+            <a id="search-btn" href="javascript:;" class="btn btn-primary position-absolute">
+              <i class="fa fa-search"></i>
+            </a>
+            <div id="search-results" class="list-group position-absolute w-100" style="z-index: 1000; display: none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-primary px-2 py-1 menu-bar">
+      <div class="container-fluid">
+        <button class="navbar-toggler border-0 bg-none text-white" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item hide-m">
+                <a class="nav-link active" aria-current="page" href="https://wa.me/994104153545">
+                  <i class="fa-brands fa-whatsapp"></i> +994 (10) 415 35 45
+                </a>
+              </li>
+              <li class="nav-item hide-m">
+                <a class="nav-link active" aria-current="page" href="mailto:info@autoauctionshistory.com">
+                  <i class="fa fa-envelope"></i> info@autoauctionshistory.com
+                </a>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  
+<!--------------------Header Section Code Ends Here----------------->
+
+<section class="breadcrumbs bg-white px-4 z-in pb-3">
+  <nav aria-label="breadcrumb" class="py-3">
+    <ol class="breadcrumb hide-m">
+      <li class="breadcrumb-item">
+        <a href="{% url 'index' %}" class="text-decoration-none">Home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Search</li>
+    </ol>
+  </nav>
+  <div class="row">
+    <div class="col-lg-10 col-md-9 col-8">
+      <div>
+        <!-- Keep button text as 'Filters' -->
+        <a href="javascript:;" id="filterToggleBtn" class="item btn btn-outline-primary rounded-pill px-4 m-1 active filtrs">
+          <i class="fa fa-list-dots"></i> Filters
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-3 col-4">
+      <div class="btn-group float-end" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+        <label class="btn btn-outline-primary" for="btnradio1">
+          <i class="fa fa-list"></i> <span class="hide-m">List</span>
+        </label>
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+        <label class="btn btn-outline-primary" for="btnradio3">
+          <i class="fa fa-columns"></i> <span class="hide-m">Grid</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</section>
+<!--------------------Breadcumb Section Code Ends Here----------------->
+<section class="border-top">
+  <div class="row">
+    <div class="col-lg-3 col-md-12 col-sm-12 t-hide d-none" id="s-bar">
+      <div class="bg-white sidebar pb-4 pt-2 px-3">
+        <div class="hide-d bg-primary p-2 cll">
+          <span class="float-start text-white">
+            <i class="fa fa-list-dots"></i> Filters ({{ active_filter_count }})
+          </span>
+          <a href="javascript:" class="text-decoration-none float-end text-white c-sidebar">
+            <i class="fa fa-times"></i>
+          </a>
+          <div class="clearfix"></div>
+        </div>
+         <!-- Selected Filters Section -->
+      <div id="selected-filters" class="my-3 flex-wrap d-none"></div>
+        <form method="get" action="{% url 'search' %}">
+          <div class="accordion" id="accordionSidebar">
+            <div class="accordion-item rounded-0 mt-3">
+              <h1 class="accordion-header text-primary py-3" style="font-size: 1.5em;">Auction Filters</h1>
+            </div>
+            <!-- Newly Added Lots -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingTwo">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5" type="button" data-bs-toggle="collapse" data-bs-target="#accordionSidebar-collapseTwo" aria-expanded="true" aria-controls="accordionSidebar-collapseTwo">
+                  Newly Added Lots
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseTwo" class="accordion-collapse collapse" aria-labelledby="accordionSidebar-headingTwo">
+                <div class="accordion-body px-0 pt-0">
+                  <div class="form-check my-2">
+                    <input class="form-check-input mt-0" type="checkbox" name="newly_added" value="24h" id="check1"
+                      onchange="this.form.submit();" {% if '24h' in newly_added %}checked{% endif %} />
+                    <label class="form-check-label d-block" for="check1">
+                      Last 24 Hours <small class="float-end">{{ newly_added_24h_count }}</small>
+                    </label>
+                  </div>
+                  <div class="form-check my-2">
+                    <input class="form-check-input mt-0" type="checkbox" name="newly_added" value="7d" id="check2"
+                      onchange="this.form.submit();" {% if '7d' in newly_added %}checked{% endif %} />
+                    <label class="form-check-label d-block" for="check2">
+                      Last 7 Days <small class="float-end">{{ newly_added_7d_count }}</small>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>            
+            <!-- Auction -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC15">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#accordionSidebar-collapseFiveC15"
+                  aria-expanded="true"
+                  aria-controls="accordionSidebar-collapseFiveC15">
+                  Auction company
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC15"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC15">
+                <div class="accordion-body px-0 pt-0">
+                  <div class="overflow-hidden">
+
+                    <form method="get" action="{% url 'search' %}">
+                      {% for auc in auctions %}
+                      <div class="form-check my-2">
+                        <input class="form-check-input mt-0"
+                              type="checkbox"
+                              id="check3oo{{ forloop.counter }}"
+                              name="auction"
+                              value="{{ auc.auction_name }}"
+                              {% if auc.auction_name in selected_auctions %}checked{% endif %}
+                              onchange="this.form.submit();">
+                        <label class="form-check-label d-block" for="check3oo{{ forloop.counter }}">
+                          {{ auc.auction_name }} <small class="float-end">{{ auc.count }}</small>
+                        </label>
+                      </div>
+                      {% endfor %}
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Buy Now -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC151">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC151"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC151"> 
+                  Buy Now 
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC151" class="accordion-collapse collapse" aria-labelledby="accordionSidebar-headingFiveC151">
+                <div class="accordion-body px-0 pt-0">
+                  <div class="overflow-hidden">
+
+                    <form method="get" action="{% url 'search' %}">
+                      {% for option in buy_now_options %}
+                      <div class="form-check my-2">
+                        <input class="form-check-input mt-0"
+                              type="checkbox"
+                              id="check3oo{{ forloop.counter }}"
+                              name="buy_now"
+                              value="{{ option.value }}"
+                              onchange="this.form.submit();"
+                              {% if option.value in selected_buy_now %}checked{% endif %}>
+                        <label class="form-check-label d-block" for="check3oo{{ forloop.counter }}">
+                          {{ option.value|title }}
+                          <small class="float-end">{{ option.count }}</small>
+                        </label>
+                      </div>
+                      {% endfor %}
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Sale Date -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingSaleDate">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseSaleDate"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseSaleDate"> Sale Date </button>
+              </h2>
+              <div id="accordionSidebar-collapseSaleDate"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingSaleDate">
+                <div class="accordion-body px-0 pt-0">
+                  <form method="get" action="{% url 'search' %}" onsubmit="return validateSaleDate();">
+                    <div class="mb-3">
+                      <label for="saleDateFrom" class="form-label">From</label>
+                      <input type="date"
+                            class="form-control"
+                            id="saleDateFrom"
+                            name="sale_date_from"
+                            value="{{ sale_date_from|default:'' }}"
+                            max="{{ today|date:'Y-m-d' }}" 
+                            onchange="updateMaxSaleDateTo();" required> <!-- Automatically submit on change -->
+                    </div>
+                    <div class="mb-3">
+                      <label for="saleDateTo" class="form-label">To</label>
+                      <input type="date"
+                            class="form-control"
+                            id="saleDateTo"
+                            name="sale_date_to"
+                            value="{{ sale_date_to|default:'' }}"
+                            max="{{ today|date:'Y-m-d' }}" 
+                            onchange="this.form.submit();" required> <!-- Automatically submit on change -->
+                    </div>
+                    <div class="text-end">
+                      <button class="btn btn-primary" type="submit">Apply</button>
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'sale_date_from' and key != 'sale_date_to' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- Sale Status -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC150">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC150"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC150">
+                  Sale Status
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC150"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC150">
+                <div class="accordion-body px-0 pt-0">
+                  <div class="overflow-hidden">
+                    <form method="get" action="{% url 'search' %}">
+                      {% for status, count in sale_status_counts.items %}
+                      <div class="form-check my-2">
+                        <input class="form-check-input mt-0"
+                              type="checkbox"
+                              id="check3oo{{ forloop.counter }}"
+                              name="sale_status"
+                              value="{{ status }}"
+                              onchange="this.form.submit();"
+                              {% if status in selected_sale_status %}checked{% endif %} />
+                        <label class="form-check-label d-block" for="check3oo{{ forloop.counter }}">
+                          {{ status }} <small class="float-end">{{ count }}</small>
+                        </label>
+                      </div>
+                      {% endfor %}
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Auction Location -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC1500">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC1500"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC150">
+                  Location
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC1500"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC1500">
+                <div class="accordion-body px-0 pt-0">
+                  <div class="overflow-hidden">
+                    <form method="GET" action="{% url 'search' %}">
+                      <input type="text" class="form-control mb-2" placeholder="Search location..." onkeyup="filterLocations(this)">
+                      <div id="location-scroll" style="max-height: 300px; overflow-y: auto; border: 1px solid #eee; padding: 6px 8px; border-radius: 6px;">
+                        {% for loc in locations_with_counts %}
+                        <div class="form-check my-2">
+                          <input class="form-check-input mt-0"
+                                type="checkbox"
+                                id="check3oo{{ forloop.counter }}"
+                                name="location"
+                                value="{{ loc.location }}"
+                                {% if loc.location in selected_locations %}checked{% endif %}
+                                onchange="this.form.submit();" />
+                          <label class="form-check-label d-block" for="check3oo{{ forloop.counter }}">
+                            {{ loc.location }} <small class="float-end">{{ loc.count }}</small>
+                          </label>
+                        </div>
+                        {% endfor %}
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Buyer Country -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC1600">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC1600"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC1600">
+                  Buyer Country
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC1600"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC1600">
+                <div class="accordion-body px-0 pt-0">
+                  <div class="overflow-hidden">
+                    <form method="GET" action="{% url 'search' %}">
+                      {% for country in buyer_countries %}
+                      <div class="form-check my-2">
+                        <input class="form-check-input mt-0"
+                              type="checkbox"
+                              id="check3oo{{ forloop.counter }}"
+                              name="buyer_country"
+                              value="{{ country.field }}"
+                              onchange="this.form.submit();"
+                              {% if country.field in selected_buyer_countries %}checked{% endif %} />
+                        <label class="form-check-label d-block" for="check3oo{{ forloop.counter }}">
+                          {{ country.field }} <small class="float-end">{{ country.count }}</small>
+                        </label>
+                      </div>
+                      {% endfor %}
+
+                      <!-- Preserve other filters -->
+                      {% for key, value in request.GET.items %}
+                        {% if key != 'buyer_country' %}
+                          <input type="hidden" name="{{ key }}" value="{{ value }}">
+                        {% endif %}
+                      {% endfor %}
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>   
+            <div class="accordion-item rounded-0">
+              <h1 class="accordion-header text-primary py-3" style="font-size: 1.5em;">Vehicle Filters</h1>
+            </div>
+            <!-- Make -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingThree">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseThree"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseThree">
+                  Make
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseThree"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingThree">
+                <div class="accordion-body px-0 pt-0">
+                  
+                  <!-- Search Box -->
+                  <div class="mb-3 position-relative se">
+                    <input type="text" class="form-control" id="searchMake" placeholder="Search" onkeyup="filterMakeList()" />
+                    <a href="javascript:;" class="position-absolute"><i class="fa fa-search"></i></a>
+                  </div>
+
+                  <!-- Make List -->
+                  <form method="GET" action="{% url 'search' %}">
+                    <div class="c-list" id="make-list" style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+                      {% for item in makes %}
+                        <div class="form-check my-2{% if forloop.counter > 5 %} d-none extra-make{% endif %}">
+                          <input class="form-check-input mt-0"
+                                type="checkbox"
+                                id="check{{ forloop.counter }}"
+                                name="make"
+                                value="{{ item.make }}"
+                                onchange="this.form.submit();"
+                                {% if item.make in selected_makes %}checked{% endif %} />
+                          <label class="form-check-label d-block" for="check{{ forloop.counter }}">
+                            {{ item.make }} <small class="float-end">{{ item.count }}</small>
+                          </label>
+                        </div>
+                      {% endfor %}
+
+                      <!-- No data message -->
+                      <div class="text-muted text-center no-make-data d-none">No data found</div>
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'make' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+
+                  <!-- Show More -->
+                  <div class="my-2">
+                    <a href="javascript:;" class="text-decoration-none more" onclick="toggleMakeList()">
+                      <i class="fa fa-angle-down me-2"></i> <span class="toggle-text">Show all makes A-Z</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Models -->
+            <div class="accordion-item rounded-0">
+                <h2 class="accordion-header" id="accordionSidebar-headingFour">
+                    <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionSidebar-collapseFour"
+                            aria-expanded="true"
+                            aria-controls="accordionSidebar-collapseFour">
+                        Models
+                    </button>
+                </h2>
+                <div id="accordionSidebar-collapseFour"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="accordionSidebar-headingFour">
+                    <div class="accordion-body px-0 pt-0">
+                        <div class="mb-3 position-relative se">
+                            <input type="text" class="form-control" id="searchModel" placeholder="Search" onkeyup="filterModelList()" />
+                            <a href="javascript:;" class="position-absolute"><i class="fa fa-search"></i></a>
+                        </div>
+
+                        <form method="GET" action="{% url 'search' %}">
+                            <!-- <div class="c-list2 overflow-hidden" id="model-list"> -->
+                              <div class="c-list2" id="model-list" style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+
+                                {% for item in models %}
+                                  <!-- <div class="form-check my-2{% if forloop.counter > 5 %} d-none extra-model{% endif %}"> -->
+                                    <div class="form-check my-2 model-item{% if forloop.counter > 5 %} d-none extra-model{% endif %}">
+                                    <input class="form-check-input mt-0"
+                                          type="checkbox"
+                                          id="check{{ forloop.counter }}b"
+                                          name="model"
+                                          value="{{ item.model }}"
+                                          onchange="this.form.submit();"
+                                          {% if item.model in selected_models %}checked{% endif %} />
+                                    <label class="form-check-label d-block" for="check{{ forloop.counter }}b">
+                                      {{ item.model|title }} <small class="float-end">{{ item.count }}</small>
+                                    </label>
+                                  </div>
+                                {% endfor %}
+
+                                <div class="text-muted text-center no-model-data d-none">No data found</div>
+                            </div>
+                            <!-- Preserve other filters -->
+                            {% for key, value in request.GET.items %}
+                                {% if key != 'model' %}
+                                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                                {% endif %}
+                            {% endfor %}
+                        </form>
+
+                        <div class="my-2">
+                            <a href="javascript:;" class="text-decoration-none more2" onclick="toggleModelList()">
+                              <i class="fa fa-angle-down me-2"></i>
+                              <span class="toggle-text">Show all models A-Z</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Year -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFive">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFive"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFive">
+                  Year
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFive"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFive">
+                <div class="accordion-body px-0 pt-0">
+                  <form method="GET" action="{% url 'search' %}">
+
+                    <!-- From Year -->
+                    <div class="mb-3">
+                      <label for="fromYear" class="form-label">From Year</label>
+                      <select class="form-select" id="fromYear" name="from_year" onchange="this.form.submit();">
+                        <option value="" disabled {% if not from_year %}selected{% endif %}>Select starting year</option>
+                        {% for item in years reversed %}
+                          <option value="{{ item.year }}"
+                                  {% if from_year and from_year|add:'0' == item.year|stringformat:"s" %}selected{% endif %}>
+                            {{ item.year }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+
+                    <!-- To Year -->
+                    <div class="mb-3">
+                      <label for="toYear" class="form-label">To Year</label>
+                      <select class="form-select" id="toYear" name="to_year" onchange="this.form.submit();">
+                        <option value="" disabled {% if not to_year %}selected{% endif %}>Select ending year</option>
+                        {% for item in years reversed %}
+                          <option value="{{ item.year }}"
+                                  {% if to_year and to_year|add:'0' == item.year|stringformat:"s" %}selected{% endif %}>
+                            {{ item.year }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'from_year' and key != 'to_year' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- Odometer -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingSix">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseSix"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseSix">
+                  Odometer
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseSix"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingSix">
+                <div class="accordion-body px-0 pt-0">
+                  <form method="get" action="{% url 'search' %}">
+                    
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'min_odometer' and key != 'max_odometer' %}
+                        {% if value %}
+                          <input type="hidden" name="{{ key }}" value="{{ value }}">
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+
+                    <div class="mb-3">
+                      <input type="number"
+                            class="form-control"
+                            name="min_odometer"
+                            id="MinMi"
+                            placeholder="Minimum"
+                            min="0"
+                            max="1000000"
+                            value="{{ min_odometer|default:'' }}">
+                    </div>
+                    <div class="mb-3">
+                      <input type="number"
+                            class="form-control"
+                            name="max_odometer"
+                            id="MaxMi"
+                            placeholder="Maximum"
+                            min="0"
+                            max="1000000"
+                            value="{{ max_odometer|default:'' }}">
+                    </div>
+                    <div class="text-end">
+                      <button type="submit" class="btn btn-primary">Apply</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>            
+            <!-- Engine Type -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC8">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC8"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC8">
+                  Engine Type
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC8"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC8">
+                <div class="accordion-body px-0 pt-0">
+
+                  <!-- Search -->
+                  <div class="mb-3 position-relative se">
+                    <input type="text" class="form-control" id="searchEngineType" placeholder="Search" onkeyup="filterEngineList()" />
+                    <a href="javascript:;" class="position-absolute"><i class="fa fa-search"></i></a>
+                  </div>
+
+                  <!-- List -->
+                  <form method="GET" action="{% url 'search' %}">
+                    <div class="c-list" id="engine-type-list" style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+                      {% for item in engine_types %}
+                        {% if item.engine_type %}
+                          <div class="form-check my-2 engine-item{% if forloop.counter > 5 %} d-none extra-engine{% endif %}">
+                            <input class="form-check-input mt-0"
+                                  type="checkbox"
+                                  id="check{{ forloop.counter }}e"
+                                  name="engine_type"
+                                  value="{{ item.engine_type }}"
+                                  onchange="this.form.submit();"
+                                  {% if item.engine_type in selected_engine_type %}checked{% endif %} />
+                            <label class="form-check-label d-block" for="check{{ forloop.counter }}e">
+                              {{ item.engine_type }} <small class="float-end">{{ item.count }}</small>
+                            </label>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                      <div class="text-muted text-center no-engine-data d-none">No data found</div>
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'engine_type' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+
+                  <!-- Toggle Button -->
+                  <div class="my-2">
+                    <a href="javascript:;" class="text-decoration-none more-engine" onclick="toggleEngineList()">
+                      <i class="fa fa-angle-down me-2"></i>
+                      <span class="toggle-text">Show all engines A-Z</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Fuel Type -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC12">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC12"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC12">
+                  Fuel Type
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC12" class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC12">
+                <div class="accordion-body px-0 pt-0">
+
+                  <!-- Search -->
+                  <div class="mb-3 position-relative se">
+                    <input type="text" class="form-control" id="searchFuelType" placeholder="Search" onkeyup="filterFuelList()" />
+                    <a href="javascript:;" class="position-absolute"><i class="fa fa-search"></i></a>
+                  </div>
+
+                  <!-- Fuel Type List -->
+                  <form method="GET" action="{% url 'search' %}">
+                    <div class="c-list10" id="fuel-type-list" style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+                      {% for item in fuel_types %}
+                        {% if item.fuel %}
+                          <div class="form-check my-2 fuel-item{% if forloop.counter > 5 %} d-none extra-fuel{% endif %}">
+                            <input class="form-check-input mt-0"
+                                  type="checkbox"
+                                  id="check{{ forloop.counter }}p"
+                                  name="fuel_type"
+                                  value="{{ item.fuel }}"
+                                  onchange="this.form.submit();"
+                                  {% if item.fuel in selected_fuel_type %}checked{% endif %} />
+                            <label class="form-check-label d-block" for="check{{ forloop.counter }}p">
+                              {{ item.fuel }} <small class="float-end">{{ item.count }}</small>
+                            </label>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                      <div class="text-muted text-center no-fuel-data d-none">No data found</div>
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'fuel_type' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+
+                  <!-- Toggle Button -->
+                  <div class="my-2">
+                    <a href="javascript:;" class="text-decoration-none more10" onclick="toggleFuelList()">
+                      <i class="fa fa-angle-down me-2"></i> <span class="toggle-text">Show all fuel types A-Z</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Color -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC3">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC3"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC3">
+                  Color
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC3" class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC3">
+                <div class="accordion-body px-0 pt-0">
+
+                  <!-- Search -->
+                  <div class="mb-3 position-relative se">
+                    <input type="text" class="form-control" id="searchColor" placeholder="Search" onkeyup="filterColorList()" />
+                    <a href="javascript:;" class="position-absolute"><i class="fa fa-search"></i></a>
+                  </div>
+
+                  <!-- Color List -->
+                  <form method="GET" action="{% url 'search' %}">
+                    <div class="c-list6" id="color-list" style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+                      {% for item in colors %}
+                        {% if item.color %}
+                          <div class="form-check my-2 color-item{% if forloop.counter > 5 %} d-none extra-color{% endif %}">
+                            <input class="form-check-input mt-0"
+                                  type="checkbox"
+                                  id="check{{ forloop.counter }}f"
+                                  name="color"
+                                  value="{{ item.color }}"
+                                  onchange="this.form.submit();"
+                                  {% if item.color in selected_color %}checked{% endif %} />
+                            <label class="form-check-label d-block" for="check{{ forloop.counter }}f">
+                              {{ item.color }} <small class="float-end">{{ item.count }}</small>
+                            </label>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                      <div class="text-muted text-center no-color-data d-none">No data found</div>
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'color' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+
+                  <!-- Toggle Button -->
+                  <div class="my-2">
+                    <a href="javascript:;" class="text-decoration-none more6" onclick="toggleColorList()">
+                      <i class="fa fa-angle-down me-2"></i> <span class="toggle-text">Show all colors A-Z</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Primary Damage -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC4">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC4"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC4">
+                  Primary Damage
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC4" class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC4">
+                <div class="accordion-body px-0 pt-0">
+
+                  <!-- Search -->
+                  <div class="mb-3 position-relative se">
+                    <input type="text" class="form-control" id="searchPrimaryDamage" placeholder="Search" onkeyup="filterPrimaryDamageList()" />
+                    <a href="javascript:;" class="position-absolute"><i class="fa fa-search"></i></a>
+                  </div>
+
+                  <!-- Primary Damage List -->
+                  <form method="GET" action="{% url 'search' %}">
+                    <div class="c-list7" id="primary-damage-list" style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+                      {% for item in primary_damages %}
+                        {% if item.primary_damage %}
+                          <div class="form-check my-2 primary-damage-item{% if forloop.counter > 5 %} d-none extra-primary-damage{% endif %}">
+                            <input class="form-check-input mt-0"
+                                  type="checkbox"
+                                  id="check{{ forloop.counter }}g"
+                                  name="primary_damage"
+                                  value="{{ item.primary_damage }}"
+                                  onchange="this.form.submit();"
+                                  {% if item.primary_damage in selected_primary_damage %}checked{% endif %} />
+                            <label class="form-check-label d-block" for="check{{ forloop.counter }}g">
+                              {{ item.primary_damage }} <small class="float-end">{{ item.count }}</small>
+                            </label>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                      <div class="text-muted text-center no-primary-damage d-none">No data found</div>
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'primary_damage' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+
+                  <!-- Toggle Button -->
+                  <div class="my-2">
+                    <a href="javascript:;" class="text-decoration-none more7" onclick="togglePrimaryDamageList()">
+                      <i class="fa fa-angle-down me-2"></i>
+                      <span class="toggle-text">Show all damages A-Z</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Secondary Damage -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC5">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC5"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC5">
+                  Secondary Damage
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC5" class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC5">
+                <div class="accordion-body px-0 pt-0">
+                  <div class="mb-3 position-relative se">
+                    <input type="text" class="form-control" id="searchSecondaryDamage" placeholder="Search" onkeyup="filterSecondaryDamageList()" />
+                    <a href="javascript:;" class="position-absolute"><i class="fa fa-search"></i></a>
+                  </div>
+
+                  <form method="GET" action="{% url 'search' %}">
+                    <div class="c-list10" id="secondary-damage-list" style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+                      {% for item in secondary_damages %}
+                        {% if item.secondary_damage %}
+                          <div class="form-check my-2 secondary-damage-item{% if forloop.counter > 5 %} d-none extra-secondary-damage{% endif %}">
+                            <input class="form-check-input mt-0"
+                                  type="checkbox"
+                                  id="check{{ forloop.counter }}h"
+                                  name="secondary_damage"
+                                  value="{{ item.secondary_damage }}"
+                                  onchange="this.form.submit();"
+                                  {% if item.secondary_damage in selected_secondary_damage %}checked{% endif %}>
+                            <label class="form-check-label d-block" for="check{{ forloop.counter }}h">
+                              {{ item.secondary_damage }} <small class="float-end">{{ item.count }}</small>
+                            </label>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                      <div class="text-muted text-center no-secondary-damage d-none">No data found</div>
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'secondary_damage' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+
+                  <div class="my-2">
+                    <a href="javascript:;" class="text-decoration-none more" onclick="toggleSecondaryDamageList()">
+                      <i class="fa fa-angle-down me-2"></i> <span class="toggle-text">Show all secondary damages A-Z</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Transmission -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC15">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC15"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC15">
+                  Transmission
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC15" class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC15">
+                <div class="accordion-body px-0 pt-0">
+
+                  <div class="mb-3 position-relative se">
+                    <input type="text" class="form-control" id="searchTransmission" placeholder="Search" onkeyup="filterTransmissionList()" />
+                    <a href="javascript:;" class="position-absolute"><i class="fa fa-search"></i></a>
+                  </div>
+
+                  <form method="GET" action="{% url 'search' %}">
+                    <div class="c-list10" id="transmission-list" style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+
+                      {% for item in transmissions %}
+                        {% if item.transmission %}
+                        <div class="form-check my-2 transmission-item{% if forloop.counter > 5 %} d-none{% endif %}">
+                            <input class="form-check-input mt-0"
+                                  type="checkbox"
+                                  id="check{{ forloop.counter }}oo"
+                                  name="transmission"
+                                  value="{{ item.transmission }}"
+                                  onchange="this.form.submit();"
+                                  {% if item.transmission in selected_transmission %}checked{% endif %}>
+                            <label class="form-check-label d-block" for="check{{ forloop.counter }}oo">
+                              {{ item.transmission }} <small class="float-end">{{ item.count }}</small>
+                            </label>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                      <div class="text-muted text-center no-transmission-data d-none">No data found</div>
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'transmission' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+
+                  <div class="my-2">
+                    <a href="javascript:;" class="text-decoration-none more" onclick="toggleTransmissionList()">
+                      <i class="fa fa-angle-down me-2"></i> <span class="toggle-text">Show all transmissions A-Z</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Cylinders -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC13">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC13"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC13">
+                  Cylinder
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC13" class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC13">
+                <div class="accordion-body px-0 pt-0">
+
+                  <!-- Search Box -->
+                  <div class="mb-3 position-relative se">
+                    <input type="text" class="form-control" id="searchCylinders" placeholder="Search" onkeyup="filterCylinderList()" />
+                    <a href="javascript:;" class="position-absolute"><i class="fa fa-search"></i></a>
+                  </div>
+
+                  <!-- Dynamic Form -->
+                  <form method="GET" action="{% url 'search' %}">
+                    <div class="c-list11" id="cylinder-list" style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+
+                      {% for item in cylinders %}
+                        {% if item.cylinders %}
+                          <div class="form-check my-2 cylinder-item{% if forloop.counter > 5 %} d-none{% endif %}">
+                            <input class="form-check-input mt-0"
+                                  type="checkbox"
+                                  id="check{{ forloop.counter }}q"
+                                  name="cylinders"
+                                  value="{{ item.cylinders }}"
+                                  onchange="this.form.submit();"
+                                  {% if item.cylinders in selected_cylinders %}checked{% endif %}>
+                            <label class="form-check-label d-block" for="check{{ forloop.counter }}q">
+                              {{ item.cylinders }} <small class="float-end">{{ item.count }}</small>
+                            </label>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                      <div class="text-muted text-center no-cylinder-data d-none">No data found</div>
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'cylinders' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+
+                  <!-- Show More -->
+                  <div class="my-2">
+                    <a href="javascript:;" class="text-decoration-none more11" onclick="toggleCylinderList()">
+                      <i class="fa fa-angle-down me-2"></i> <span class="toggle-text">Show all cylinders A-Z</span>
+                    </a>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!-- Body Style -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC9">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC9"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC9">
+                  Body Style
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC9" class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC9">
+                <div class="accordion-body px-0 pt-0">
+
+                  <!-- Search Box -->
+                  <div class="mb-3 position-relative se">
+                    <input type="text" class="form-control" id="searchBodyStyle" placeholder="Search" onkeyup="filterBodyStyleList()" />
+                    <a href="javascript:;" class="position-absolute"><i class="fa fa-search"></i></a>
+                  </div>
+
+                  <!-- Dynamic Body Style Form -->
+                  <form method="GET" action="{% url 'search' %}">
+                    <div class="c-list9" id="body-style-list" style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+                      {% for item in body_styles %}
+                        {% if item.body_style %}
+                          <div class="form-check my-2 body-style-item{% if forloop.counter > 5 %} d-none{% endif %}">
+                            <input class="form-check-input mt-0"
+                                  type="checkbox"
+                                  id="check{{ forloop.counter }}m"
+                                  name="body_style"
+                                  value="{{ item.body_style }}"
+                                  onchange="this.form.submit();"
+                                  {% if item.body_style in selected_body_style %}checked{% endif %}>
+                            <label class="form-check-label d-block" for="check{{ forloop.counter }}m">
+                              {{ item.body_style }} <small class="float-end">{{ item.count }}</small>
+                            </label>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                      <div class="text-muted text-center no-body-style-data d-none">No data found</div>
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'body_style' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+
+                  <!-- Show More -->
+                  <div class="my-2">
+                    <a href="javascript:;" class="text-decoration-none more9" onclick="toggleBodyStyleList()">
+                      <i class="fa fa-angle-down me-2"></i>
+                      <span class="toggle-text">Show all body styles A-Z</span>
+                    </a>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!-- Vehicle Type -->       
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC6">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC6"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC6">
+                  Vehicle Type
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC6" class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC6">
+                <div class="accordion-body px-0 pt-0">
+                  <!-- Search Box -->
+                  <div class="mb-3 position-relative se">
+                    <input type="text" class="form-control" id="searchVehicleType" placeholder="Search" onkeyup="filterVehicleTypeList()" />
+                    <a href="javascript:;" class="position-absolute"><i class="fa fa-search"></i></a>
+                  </div>
+
+                  <form method="GET" action="{% url 'search' %}">
+                    <div class="c-list" id="vehicle-type-list" style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+                      {% for item in vehicle_types %}
+                        {% if item.vehicle_type %}
+                          <div class="form-check my-2 vehicle-type-item{% if forloop.counter > 5 %} d-none{% endif %}">
+                            <input class="form-check-input mt-0"
+                                  type="checkbox"
+                                  id="vehicle_type_{{ forloop.counter }}"
+                                  name="vehicle_type"
+                                  value="{{ item.vehicle_type }}"
+                                  onchange="this.form.submit();"
+                                  {% if item.vehicle_type in selected_vehicle_type %}checked{% endif %}>
+                            <label class="form-check-label d-block" for="vehicle_type_{{ forloop.counter }}">
+                              {{ item.vehicle_type }} <small class="float-end">{{ item.count }}</small>
+                            </label>
+                          </div>
+                        {% endif %}
+                        <div class="text-muted text-center no-vehicle-type-data d-none">No data found</div>
+                      {% endfor %}
+                    </div>
+
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'vehicle_type' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+                  </form>
+
+                  <!-- Show More / Show Less Button -->
+                  <div class="my-2">
+                    <a href="javascript:;" class="text-decoration-none more" onclick="toggleVehicleTypeList()">
+                      <i class="fa fa-angle-down me-2"></i> <span class="toggle-text">Show all vehicle types A-Z</span>
+                    </a>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Driveline -->
+            <div class="accordion-item rounded-0">
+              <h2 class="accordion-header" id="accordionSidebar-headingFiveC7">
+                <button class="accordion-button collapsed px-0 fw-bold text-dark bg-none shadow-none h5"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSidebar-collapseFiveC7"
+                        aria-expanded="true"
+                        aria-controls="accordionSidebar-collapseFiveC7">
+                  Driveline
+                </button>
+              </h2>
+              <div id="accordionSidebar-collapseFiveC7" class="accordion-collapse collapse"
+                  aria-labelledby="accordionSidebar-headingFiveC7">
+                <div class="accordion-body px-0 pt-0">
+                  <form method="GET" action="{% url 'search' %}">
+                    <div class="overflow-hidden" id="driveline-list">
+                      {% for item in drivelines %}
+                        {% if item.field %}
+                          <div class="form-check my-2 driveline-item{% if forloop.counter > 5 %} d-none extra-driveline{% endif %}">
+                            <input class="form-check-input mt-0"
+                                  type="checkbox"
+                                  id="driveline_{{ forloop.counter }}"
+                                  name="driveline"
+                                  value="{{ item.field }}"
+                                  onchange="this.form.submit();"
+                                  {% if item.field in selected_driveline %}checked{% endif %}>
+                            <label class="form-check-label d-block" for="driveline_{{ forloop.counter }}">
+                              {{ item.field }} <small class="float-end">{{ item.count }}</small>
+                            </label>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+
+                      {% if not drivelines or drivelines|length == 0 %}
+                        <div class="text-muted text-center">No data available</div>
+                      {% endif %}
+                    </div>
+
+                    <!-- Preserve other filters -->
+                    {% for key, value in request.GET.items %}
+                      {% if key != 'driveline' %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                      {% endif %}
+                    {% endfor %}
+
+                    <!-- Show more/less toggle -->
+                    {% if drivelines|length > 5 %}
+                    <div class="my-2">
+                      <a href="javascript:;" class="text-decoration-none more" onclick="toggleDrivelineList()">
+                        <i class="fa fa-angle-down me-2"></i> <span class="toggle-text">Show all drivelines A-Z</span>
+                      </a>
+                    </div>
+                    {% endif %}
+                  </form>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>        
+      </div>
+    </div>
+    <div class="col-lg-9 col-md-12 col-sm-12 bg-light p-3" id="full">     
+
+    <h3 class="h3 my-2 float-start">
+      Auction Vehicle History <small class="h6 fw-normal ms-2">({{ total_vehicles }} Results found)</small>
+    </h3>
+    <div class="clearfix"></div>
+    <div class="table-outer list-style">
+      <div class="hide-d list-mobile">
+        {% with fallback_image=STATIC_URL|add:"images/car1.jpg" %}
+        {% for vehicle in vehicles %}
+        <div class="card mb-1 list-box rounded-0">
+          <div class="row g-0">
+            <div class="col-4">
+              <!-- <img src="{{ vehicle.primary_photo|default:fallback_image }}" class="img-fluid rounded-start" alt="Image" /> -->
+              <img src="{{ vehicle.primary_photo|default:fallback_image }}" 
+                  class="img-fluid vehicle-image"
+                  style="width:100%;height:auto;object-fit:contain;max-width:100vw;display:block;" 
+                  alt="Image" />
+            </div>          
+            <div class="col-8">
+              <div class="card-body p-2">
+                <h5 class="card-title text-primary fw-bold float-start">
+                  {{ vehicle.year }} {{ vehicle.make }} | {{ vehicle.model }}
+                </h5>
+                <a href="{% url 'car_details' vehicle.id %}" class="text-primary float-end"></a>
+                <div class="clearfix"></div>
+                <p class="card-text">
+                  Auction: <b>{{ vehicle.auction_name|default:'N/A' }}</b><br />
+                  Lot #: <b>{{ vehicle.lot_number|default:'N/A' }}</b><br />
+                  VIN: <b>{{ vehicle.vin|default:'N/A' }}</b><br />
+                  Damage: <b>{{ vehicle.primary_damage|default:'N/A' }}</b><br />
+                  Odometer: <b>{{ vehicle.odometer|default:'N/A' }}</b><br />
+                  Sale Status: <b>{{ vehicle.sale_status|default:'Not sold' }}</b><br />
+                  Sale Date: <b>{% if vehicle.latest_sale_date %}{{ vehicle.latest_sale_date }}{% else %} Not Available{% endif %} </b><br />
+                  <span>
+                    Final Bid:
+                    <b class="fs-6" style="color: #537f6c;">
+                      {% if vehicle.latest_purchase_price %}
+                        ${{ vehicle.latest_purchase_price|floatformat:0|intcomma }}
+                      {% else %}
+                        <span class="text-danger fw-normal">No Bid</span>
+                      {% endif %}
+                    </b>
+                  </span>
+                </p>
+                </p>
+                  <a href="{% url 'car_details' vehicle.id %}"
+                      class="btn btn-primary text-uppercase fw-bold rounded-pill w-100 py-2">
+                      More Details
+                  </a>
+              </div>
+            </div>
+            <hr />
+            
+          </div>
+        </div>
+        {% endfor %}
+        {% endwith %}
+      </div>
+      <table class="table table-bordered table-striped mt-2 hide-m">
+        <thead class="bg-dark text-white">
+          <tr>
+            <th class="py-3 w-110 text-center">Image</th>            
+            <th class="py-3 text-center">VIN</th>
+            <th class="py-3 text-center">Year Make Model</th>
+            <th class="py-3 text-center">Primary Damage</th>
+            <th class="py-3 text-center">Odometer</th>
+            <th class="py-3 text-center">Sale Status</th>
+            <th>
+              Sale date
+              <a href="?sort=sale_date&order={% if request.GET.order == 'asc' and request.GET.sort == 'sale_date' %}desc{% else %}asc{% endif %}{% if querystring %}&{{ querystring }}{% endif %}">
+                <i class="fa fa-sort{% if request.GET.sort == 'sale_date' %}{% if request.GET.order == 'asc' %}-up{% else %}-down{% endif %}{% endif %}"></i>
+              </a>
+            </th>
+
+            <th>
+              Final Bid
+              <a href="?sort=final_bid&order={% if request.GET.order == 'asc' and request.GET.sort == 'final_bid' %}desc{% else %}asc{% endif %}&{{ querystring }}">
+                <i class="fa fa-sort{% if request.GET.sort == 'final_bid' %}{% if request.GET.order == 'asc' %}-up{% else %}-down{% endif %}{% endif %}"></i>
+              </a>
+            </th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% with fallback_image=STATIC_URL|add:"images/car1.jpg" %}
+            {% if vehicles %}
+              {% for vehicle in vehicles %}
+                <tr>
+                  <td class="position-relative p-0 align-middle w-110 text-center">
+                    <img src="{{ vehicle.primary_photo|default:fallback_image }}" alt="Car" class="img-fluid" />
+                    <a href="{% url 'car_details' vehicle.id %}" class="position-absolute p-2 bottom-0 star-0 end-0 text-white text-decoration-none text-center d-block bg-dark w-100">See Details</a>
+                  </td>
+                  
+                  <td class="align-middle text-center">{{ vehicle.vin|default:'N/A' }}</td>
+                  <td class="align-middle text-center">{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}</td>
+                  <td class="align-middle text-center">{{ vehicle.primary_damage|default:'N/A' }}</td>
+                  <td class="align-middle text-center">{{ vehicle.odometer|default:'N/A'|intcomma }}</td>
+                  <td class="align-middle text-center">{{ vehicle.sale_status|default:'Not sold' }}</td>
+                  <td class="align-middle text-center">
+                    {% if vehicle.latest_sale_date %}
+                      {{ vehicle.latest_sale_date }}
+                    {% else %}
+                      Not Available
+                    {% endif %}
+                  </td>
+                  <td class="text-center align-middle" style="font-size: 1.2em; color: #537f6c;">
+                    <a href="{% url 'car_details' vehicle.id %}" class="text-decoration-none">
+                      ${{ vehicle.latest_purchase_price|floatformat:"0"|intcomma }}
+                    </a>
+                  </td>
+
+                </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="8" class="text-center text-danger py-4">
+                  Data not available
+                </td>
+              </tr>
+            {% endif %}
+          {% endwith %}
+        </tbody>
+      </table>
+
+    </div>
+
+
+    <div class="grid-style">
+            <div class="row">
+              {% if vehicles %}
+              {% for vehicle in vehicles %}
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card cars-boxx mt-4 position-relative">
+                  <div id="carouselExampleIndicators{{ vehicle.id }}" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      {% if vehicle.car_photos %}
+                        {% for photo_url in vehicle.car_photos %}
+                          <button type="button"
+                                  data-bs-target="#carouselExampleIndicators{{ vehicle.id }}"
+                                  data-bs-slide-to="{{ forloop.counter0 }}"
+                                  class="{% if forloop.first %}active{% endif %}"
+                                  aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                                  aria-label="Slide {{ forloop.counter }}"></button>
+                        {% endfor %}
+                      {% else %}
+                        <button type="button"
+                                data-bs-target="#carouselExampleIndicators{{ vehicle.id }}"
+                                data-bs-slide-to="0"
+                                class="active"
+                                aria-current="true"
+                                aria-label="Slide 1"></button>
+                      {% endif %}
+                    </div>
+
+                    
+                    <div class="carousel-inner">
+                      {% if vehicle.car_photos %}
+                        {% for photo_url in vehicle.car_photos %}
+                          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ photo_url }}" class="d-block w-100" alt="Car Image">
+                          </div>
+                        {% endfor %}
+                      {% else %}
+                        <div class="carousel-item active">
+                          <img src="{% static 'images/car1.jpg' %}" class="d-block w-100" alt="Default Image">
+                        </div>
+                      {% endif %}
+                    </div>
+
+                    
+                    <button class="carousel-control-prev bg-dark" type="button"
+                      data-bs-target="#carouselExampleIndicators{{ vehicle.id }}" data-bs-slide="prev">
+                      <i class="fa fa-arrow-left"></i>
+                    </button>
+                    <button class="carousel-control-next bg-dark" type="button"
+                      data-bs-target="#carouselExampleIndicators{{ vehicle.id }}" data-bs-slide="next">
+                      <i class="fa fa-arrow-right"></i>
+                    </button>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">
+                    <a href="{% url 'car_details' vehicle.id %}"
+                          class="text-decoration-none h5 fw-bold float-start mt-1">
+                          {{ vehicle.year }} {{ vehicle.make }} | {{ vehicle.model }}
+                    </a>
+                    </h5>
+                    <div class="clearfix"></div>
+                    <ul class="py-3">
+                    <li class="border-bottom py-2 d-flex justify-content-between align-items-center">
+                    <span class="text-start">Auction:</span>
+                    <span class="text-end fw-bold">{{ vehicle.auction_name|default:"N/A" }}</span>
+                    </li>
+                    <li class="border-bottom py-2 d-flex justify-content-between align-items-center">
+                    <span class="text-start">Lot #:</span>
+                    <span class="text-end fw-bold">{{ vehicle.lot_number|default:"N/A" }}</span>
+                    </li>
+                    <li class="border-bottom py-2 d-flex justify-content-between align-items-center">
+                    <span class="text-start">VIN:</span>
+                    <span class="text-end fw-bold">{{ vehicle.vin|default:"N/A" }}</span>
+                    </li>
+                    <li class="border-bottom py-2 d-flex justify-content-between align-items-center">
+                    <span class="text-start">Primary Damage:</span>
+                    <span class="text-end fw-bold">{{ vehicle.primary_damage|default:"N/A" }}</span>
+                    </li>
+                    <li class="border-bottom py-2 d-flex justify-content-between align-items-center">
+                    <span class="text-start">Buyer Country:</span>
+                    <span class="text-end fw-bold">{{ vehicle.buyer_country|default:"N/A" }}</span>
+                    </li>
+                    <li class="border-bottom py-2 d-flex justify-content-between align-items-center">
+                    <span class="text-start">Sale Status:</span>
+                    <span class="text-end fw-bold">{{ vehicle.sale_status|default:"Not sold" }}</span>
+                    </li>
+                    <li class="border-bottom py-2 d-flex justify-content-between align-items-center">
+                    <span class="text-start">Sale Date:</span>
+                    <span class="text-end fw-bold">{{ vehicle.latest_sale_date|default:'N/A' }}</span>
+                    </li>
+                    <li class="py-2 d-flex justify-content-between align-items-center">
+                    <span class="text-start">Current Bid:</span>
+                    <span class="text-end fw-bold fs-5">
+                            {% if vehicle.latest_purchase_price %}
+                              ${{ vehicle.latest_purchase_price|floatformat:0|intcomma }}
+                            {% else %}
+                    <span class="text-danger fw-normal">No Bid</span>
+                            {% endif %}
+                    </span>
+                    </li>
+                    </ul>
+                    <a href="{% url 'car_details' vehicle.id %}"
+                        class="btn btn-primary text-uppercase fw-bold rounded-pill w-100 py-2">
+                        More Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              {% else %}
+              <div class="col-12 text-center">
+                <p>No vehicles found.</p>
+              </div>
+              {% endif %}
+            </div>
+    </div>
+    <nav class="py-3" aria-label="Page navigation example">
+            {% if page_obj.has_other_pages %}
+              <ul class="pagination justify-content-center">
+          
+                <!-- Previous Button -->
+                {% if page_obj.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link" href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-left"></i></a>
+                  </li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link"><i class="fa fa-angle-left"></i></a>
+                  </li>
+                {% endif %}
+          
+                <!-- Page Numbers -->
+                {% for page_num in page_obj.paginator.page_range %}
+                  {% if page_num == page_obj.number %}
+                    <li class="page-item active"><a class="page-link" href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_num }}">{{ page_num }}</a></li>
+                  {% elif page_num >= page_obj.number|add:'-2' and page_num <= page_obj.number|add:'2' %}
+                    <li class="page-item"><a class="page-link" href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_num }}">{{ page_num }}</a></li>
+                  {% elif page_num == 1 or page_num == page_obj.paginator.num_pages %}
+                    <li class="page-item"><a class="page-link" href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_num }}">{{ page_num }}</a></li>
+                  {% elif page_num == page_obj.number|add:'-3' or page_num == page_obj.number|add:'3' %}
+                    <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                  {% endif %}
+                {% endfor %}
+          
+                <!-- Next Button -->
+                {% if page_obj.has_next %}
+                  <li class="page-item">
+                    <a class="page-link" href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right"></i></a>
+                  </li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link"><i class="fa fa-angle-right"></i></a>
+                  </li>
+                {% endif %}
+                    
+              </ul>
+            {% endif %}
+          </nav>    
+        </div>
+      </div>
+    </section>
+
+<footer class="bg-dark py-4">
+  <div class="container">
+    <div class="row">
+      <div class="container py-1">
+        <div class="row">
+          <div class="col-md-4 col-sm-12"> <i class="fa fa-clock p-2 bg-white rounded-1 border text-center text-primary float-start me-2"></i> <span class="d-block text-white overflow-hidden line-heights"> <strong>Office Hours</strong>
+            <p>Monday-Friday, 09:00-18:00</p>
+            </span> </div>
+          <div class="col-md-4 col-sm-12">
+          
+            <div class="mb-3"> <i class="fa fa-envelope p-1 bg-primary text-white rounded-1 text-center float-start me-2"></i> <span class="d-block overflow-hidden line-heights text-white">
+              <p><a href="mailto:info@autoauctionshistory.com" class="text-decoration-none text-white">info@autoauctionshistory.com</a></p>
+              </span></div>
+            <div class="mb-3"> <i class="fab fa-whatsapp p-1 bg-primary text-white rounded-1 text-center float-start me-2 "></i> <span class="d-block overflow-hidden line-heights text-white">
+              <p> <a href="https://wa.me/994104153545" class="text-decoration-none text-white"> Whatsapp: +994 (10) 415 35 45</a></p>
+              </span></div>
+          </div>
+          <div class="col-md-4 col-sm-12"> <i class="fa fa-map-marker-alt p-2 bg-white rounded-1 border text-center text-primary float-start me-2 "></i> <span class="d-block overflow-hidden line-heights text-white">
+            <p>Baku, Azerbaijan</p>
+            </span> </div>
+        </div>
+      </div>
+      <div class="col-sm-12 mt-5 mb-4"> <small class="text-muted line-heights">Copyright &copy; 2025 Auto Auctions History, All Rights Reserved. </small> </div>
+    </div>
+  </div>
+</footer>
+
+ 
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> 
+    <script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script> 
+
+    <script>
+       // To set the max date of saleDateTo based on the saleDateFrom
+      function updateMaxSaleDateTo() {
+        var saleDateFrom = document.getElementById("saleDateFrom").value;
+        var saleDateTo = document.getElementById("saleDateTo");
+
+        if (saleDateFrom) {
+          // Sale Date To's max should be the same as Sale Date From
+          saleDateTo.setAttribute("min", saleDateFrom);
+        }
+      }
+
+      // Validate that the 'From' date is not later than 'To' date
+      function validateSaleDate() {
+        var saleDateFrom = document.getElementById("saleDateFrom").value;
+        var saleDateTo = document.getElementById("saleDateTo").value;
+        
+        // Validate that the 'From' date is selected before the 'To' date
+        if (saleDateFrom && saleDateTo && new Date(saleDateFrom) > new Date(saleDateTo)) {
+          alert("The 'From' date cannot be later than the 'To' date.");
+          return false;
+        }
+        return true;
+      }
+
+      // Initialize saleDateTo's min date when page loads, if saleDateFrom is already selected
+      document.addEventListener('DOMContentLoaded', function() {
+        updateMaxSaleDateTo(); 
+      });
+    </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function(){
+    if (window.innerWidth < 992) {
+      document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
+        everydropdown.addEventListener('hidden.bs.dropdown', function () {
+          // after dropdown is hidden, then find all submenus
+            this.querySelectorAll('.submenu').forEach(function(everysubmenu){
+              // hide every submenu as well
+              everysubmenu.style.display = 'none';
+            });
+        })
+      });
+      document.querySelectorAll('.dropdown-menu a').forEach(function(element){
+        element.addEventListener('click', function (e) {
+            let nextEl = this.nextElementSibling;
+            if(nextEl && nextEl.classList.contains('submenu')) {	
+              // prevent opening link if link needs to open dropdown
+              e.preventDefault();
+              if(nextEl.style.display == 'block'){
+                nextEl.style.display = 'none';
+              } else {
+                nextEl.style.display = 'block';
+              }
+
+            }
+        });
+      })
+    }
+    }); 
+      
+    $(function () {
+      $('[data-bs-toggle="tooltip"]').tooltip();
+    });
+      
+    $('.owl-carousel').owlCarousel({
+        stagePadding: 0,
+        loop:false,
+        margin:10,
+      autoWidth:true,
+        nav:true,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:3
+            },
+            1000:{
+                items:7
+            }
+        }
+    });
+      
+
+   
+    $('.more3').click(function(){
+      $('.c-list3').css('height', 'auto');
+    });
+    $('.more4').click(function(){
+      $('.c-list4').css('height', 'auto');
+    });
+    $('.more5').click(function(){
+      $('.c-list5').css('height', 'auto');
+    });
+    $('.more6').click(function(){
+      $('.c-list6').css('height', 'auto');
+    });
+    $('.more7').click(function(){
+      $('.c-list7').css('height', 'auto');
+    });
+    $('.more8').click(function(){
+      $('.c-list8').css('height', 'auto');
+    });
+    $('.more9').click(function(){
+      $('.c-list9').css('height', 'auto');
+    });
+    $('.more10').click(function(){
+      $('.c-list10').css('height', 'auto');
+    });
+    $('.more11').click(function(){
+      $('.c-list11').css('height', 'auto');
+    });
+    $('.more12').click(function(){
+      $('.c-list12').css('height', 'auto');
+    });
+    $('.more13').click(function(){
+      $('.c-list13').css('height', 'auto');
+    });
+    $('.more14').click(function(){
+      $('.c-list14').css('height', 'auto');
+    });
+    $('.more15').click(function(){
+      $('.c-list153').css('height', 'auto');
+    });
+    $('.more16').click(function(){
+      $('.c-list16').css('height', 'auto');
+    });
+    $('.more17').click(function(){
+      $('.c-list17').css('height', 'auto');
+    });
+    $('.more18').click(function(){
+      $('.c-list18').css('height', 'auto');
+    });
+    $('.more19').click(function(){
+      $('.c-list19').css('height', 'auto');
+    });
+    $('.more20').click(function(){
+      $('.c-list20').css('height', 'auto');
+    });
+    $('#btnradio1').click(function(){
+      $('.list-style').show();
+      $('.grid-style').hide();
+    });
+    $('#btnradio3').click(function(){
+      $('.list-style').hide();
+      $('.grid-style').show();
+    });
+     $('.c-sidebar').click(function(){
+      $('#s-bar').toggleClass('d-none');
+    });
+    // Page load pe bhi check karo
+    $(document).ready(function() {
+      if ($('#s-bar').hasClass('d-none')) {
+        $('#full').removeClass('col-lg-9').addClass('col-lg-12');
+      }
+    });
+    $('.filtrs').click(function(){
+      $(this).toggleClass('active');
+      $('#s-bar').toggleClass('d-none');
+      // Desktop: adjust content width
+      if ($('#s-bar').hasClass('d-none')) {
+        $('#full').removeClass('col-lg-9').addClass('col-lg-12');
+      } else {
+        $('#full').removeClass('col-lg-12').addClass('col-lg-9');
+      }
+    });
+
+    </script>
+    <!-- VIN/Lot Live Search -->
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('search');
+    const searchResults = document.getElementById('search-results');
+
+    searchInput?.addEventListener('input', function () {
+      const query = searchInput.value.trim();
+      if (query.length >= 2) {
+        fetch(`/vehicle-search/?q=${encodeURIComponent(query)}`)
+          .then(response => response.json())
+          .then(data => {
+            searchResults.innerHTML = '';
+            if (data.vehicles.length > 0) {
+              data.vehicles.forEach(vehicle => {
+                const item = document.createElement('a');
+                item.href = `/car-details/${vehicle.id}/`;
+                item.className = 'list-group-item list-group-item-action';
+                item.innerHTML = vehicle.vin.toLowerCase().includes(query.toLowerCase())
+                  ? `<b>VIN:</b> ${vehicle.vin} <small class="text-muted">${vehicle.year} ${vehicle.make} ${vehicle.model}</small>`
+                  : `<b>Lot Number:</b> ${vehicle.lot_number} <small class="text-muted">${vehicle.year} ${vehicle.make} ${vehicle.model}</small>`;
+                searchResults.appendChild(item);
+              });
+              searchResults.style.display = 'block';
+            } else {
+              searchResults.innerHTML = '<div class="list-group-item">No vehicles found</div>';
+              searchResults.style.display = 'block';
+            }
+          })
+          .catch(console.error);
+      } else {
+        searchResults.style.display = 'none';
+      }
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
+        searchResults.style.display = 'none';
+      }
+    });
+    });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const selectedFiltersDiv = document.getElementById('selected-filters');
+      
+        function getUrlParams() {
+          const params = new URLSearchParams(window.location.search);
+          return params;
+        }
+      
+        function renderSelectedFilters() {
+          const selectedFiltersDiv = document.getElementById('selected-filters');
+          const params = new URLSearchParams(window.location.search);
+          selectedFiltersDiv.innerHTML = '';
+
+          const ignoredKeys = ['page'];
+          let filterableParams = [];
+          params.forEach((value, key) => {
+            if (!ignoredKeys.includes(key) && value.trim() !== '') {
+              filterableParams.push([key, value]);
+            }
+          });
+
+
+          if (filterableParams.length === 0) {
+            selectedFiltersDiv.classList.add('d-none');
+            return;
+          }
+
+          selectedFiltersDiv.classList.remove('d-none');
+          selectedFiltersDiv.classList.add('d-flex');
+
+          filterableParams.forEach(([key, value]) => {
+            const badge = document.createElement('span');
+            badge.className = 'bg-primary text-white rounded-pill py-1 px-3 me-2 mb-2 d-inline-flex align-items-center';
+            badge.innerHTML = `
+              ${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}
+              <a href="javascript:void(0);" class="text-white text-decoration-none ms-2 fw-bold remove-filter" data-key="${key}" data-value="${value}">×</a>
+            `;
+            selectedFiltersDiv.appendChild(badge);
+          });
+
+          const clearBtn = document.createElement('a');
+          clearBtn.href = window.location.pathname;
+          clearBtn.className = 'btn btn-danger btn-sm ms-2';
+          clearBtn.textContent = 'Clear All Filters';
+          selectedFiltersDiv.appendChild(clearBtn);
+        }
+
+
+      
+        // Event Delegation for removing specific filter
+        document.addEventListener('click', function (e) {
+          if (e.target.classList.contains('remove-filter')) {
+            const key = e.target.getAttribute('data-key');
+            const value = e.target.getAttribute('data-value');
+      
+            const params = getUrlParams();
+            const newParams = new URLSearchParams();
+      
+            params.forEach((v, k) => {
+              if (!(k === key && v === value)) {
+                newParams.append(k, v);
+              }
+            });
+      
+            window.location.search = newParams.toString();
+          }
+        });
+      
+        renderSelectedFilters();
+      });
+      
+    </script>
+
+    <script>
+      function filterLocations(input) {
+          var filter = input.value.toLowerCase();
+          var checkboxes = input.parentNode.querySelectorAll('.form-check');
+          checkboxes.forEach(function(div) {
+              var label = div.querySelector('label');
+              if (label && label.textContent.toLowerCase().includes(filter)) {
+                  div.style.display = '';
+              } else {
+                  div.style.display = 'none';
+              }
+          });
+      }
+        
+      let isMakeExpanded = false;
+
+      function filterMakeList() {
+        const input = document.getElementById("searchMake");
+        const filter = input.value.toLowerCase();
+        const container = document.querySelector("#make-list");
+        const items = container.querySelectorAll(".form-check");
+        const noDataMsg = container.querySelector(".no-make-data");
+
+        let hasVisible = false;
+        items.forEach(item => {
+          const label = item.textContent.toLowerCase();
+          const match = label.includes(filter);
+          if (match) {
+            item.classList.remove("d-none");
+            hasVisible = true;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        if (noDataMsg) {
+          noDataMsg.classList.toggle("d-none", hasVisible);
+        }
+      }
+
+      function toggleMakeList() {
+          const items = document.querySelectorAll("#make-list .form-check");
+          const toggleLink = document.querySelector(".more");
+          const toggleText = toggleLink.querySelector(".toggle-text");
+          const icon = toggleLink.querySelector("i");
+
+          isMakeExpanded = !isMakeExpanded;
+
+          items.forEach((item, index) => {
+            if (isMakeExpanded || document.getElementById("searchMake").value.trim() !== "") {
+              item.classList.remove("d-none");
+            } else {
+              if (index >= 5) {
+                item.classList.add("d-none");
+              } else {
+                item.classList.remove("d-none");
+              }
+            }
+          });
+
+          // Reset search input
+          document.getElementById("searchMake").value = "";
+          document.querySelector(".no-make-data").classList.add("d-none");
+
+          // Update toggle button text and icon
+          if (isMakeExpanded) {
+            toggleText.textContent = "Show less";
+            icon.classList.remove("fa-angle-down");
+            icon.classList.add("fa-angle-up");
+          } else {
+            toggleText.textContent = "Show all makes A-Z";
+            icon.classList.remove("fa-angle-up");
+            icon.classList.add("fa-angle-down");
+          }
+        }
+
+      let isModelExpanded = false; // global flag
+
+      function filterModelList() {
+        const input = document.getElementById("searchModel");
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll("#model-list .model-item");
+        let found = false;
+
+        items.forEach((item, index) => {
+          const label = item.textContent.toLowerCase();
+
+          if (label.includes(filter)) {
+            item.classList.remove("d-none");
+            found = true;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        document.querySelector(".no-model-data").classList.toggle("d-none", found);
+      }
+
+      function toggleModelList() {
+        const allItems = document.querySelectorAll("#model-list .model-item");
+        const toggleText = document.querySelector("#accordionSidebar-collapseFour .toggle-text");
+        const icon = document.querySelector("#accordionSidebar-collapseFour .fa");
+
+        isModelExpanded = !isModelExpanded; // toggle state
+
+        allItems.forEach((item, index) => {
+          if (isModelExpanded) {
+            item.classList.remove("d-none"); // show all
+          } else {
+            if (index >= 5) {
+              item.classList.add("d-none"); // hide after 5
+            } else {
+              item.classList.remove("d-none"); // show first 5
+            }
+          }
+        });
+
+        // Update button text and icon
+        if (isModelExpanded) {
+          toggleText.textContent = "Show less";
+          icon.classList.remove("fa-angle-down");
+          icon.classList.add("fa-angle-up");
+        } else {
+          toggleText.textContent = "Show all models A-Z";
+          icon.classList.remove("fa-angle-up");
+          icon.classList.add("fa-angle-down");
+        }
+      }
+
+      let isEngineExpanded = false;
+
+      function filterEngineList() {
+        const input = document.getElementById("searchEngineType");
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll("#engine-type-list .engine-item");
+        const noData = document.querySelector(".no-engine-data");
+
+        let hasVisible = false;
+        items.forEach((item) => {
+          const label = item.textContent.toLowerCase();
+          if (label.includes(filter)) {
+            item.classList.remove("d-none");
+            hasVisible = true;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        noData.classList.toggle("d-none", hasVisible);
+      }
+
+      function toggleEngineList() {
+        const items = document.querySelectorAll("#engine-type-list .engine-item");
+        const toggleText = document.querySelector("#accordionSidebar-collapseFiveC8 .toggle-text");
+        const icon = document.querySelector("#accordionSidebar-collapseFiveC8 .fa");
+
+        isEngineExpanded = !isEngineExpanded;
+
+        items.forEach((item, index) => {
+          if (isEngineExpanded) {
+            item.classList.remove("d-none");
+          } else {
+            if (index >= 5) {
+              item.classList.add("d-none");
+            } else {
+              item.classList.remove("d-none");
+            }
+          }
+        });
+
+        // Reset search input (optional)
+        document.getElementById("searchEngineType").value = "";
+        document.querySelector(".no-engine-data").classList.add("d-none");
+
+        // Update toggle text and icon
+        if (isEngineExpanded) {
+          toggleText.textContent = "Show less";
+          icon.classList.remove("fa-angle-down");
+          icon.classList.add("fa-angle-up");
+        } else {
+          toggleText.textContent = "Show all engines A-Z";
+          icon.classList.remove("fa-angle-up");
+          icon.classList.add("fa-angle-down");
+        }
+      }
+          
+      let isFuelExpanded = false;
+
+      function filterFuelList() {
+        const input = document.getElementById("searchFuelType");
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll("#fuel-type-list .fuel-item");
+        const noData = document.querySelector(".no-fuel-data");
+
+        let hasVisible = false;
+        items.forEach((item) => {
+          const label = item.textContent.toLowerCase();
+          if (label.includes(filter)) {
+            item.classList.remove("d-none");
+            hasVisible = true;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        noData.classList.toggle("d-none", hasVisible);
+      }
+
+      function toggleFuelList() {
+    const items = document.querySelectorAll("#fuel-type-list .fuel-item");
+    const toggleText = document.querySelector("#accordionSidebar-collapseFiveC12 .toggle-text");
+    const icon = document.querySelector("#accordionSidebar-collapseFiveC12 .fa");
+
+    isFuelExpanded = !isFuelExpanded;
+
+    items.forEach((item, index) => {
+      if (isFuelExpanded) {
+        item.classList.remove("d-none");
+      } else {
+        if (index >= 5) {
+          item.classList.add("d-none");
+        } else {
+          item.classList.remove("d-none");
+        }
+      }
+    });
+
+    // Clear search input and hide "no data"
+    document.getElementById("searchFuelType").value = "";
+    document.querySelector(".no-fuel-data").classList.add("d-none");
+
+    // Update toggle button text and icon
+    if (isFuelExpanded) {
+      toggleText.textContent = "Show less";
+      icon.classList.remove("fa-angle-down");
+      icon.classList.add("fa-angle-up");
+    } else {
+      toggleText.textContent = "Show all fuel types A-Z";
+      icon.classList.remove("fa-angle-up");
+      icon.classList.add("fa-angle-down");
+    }
+  }
+
+      let isColorExpanded = false;
+
+      function filterColorList() {
+        const input = document.getElementById("searchColor");
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll("#color-list .color-item");
+        const noData = document.querySelector(".no-color-data");
+
+        let hasVisible = false;
+        items.forEach((item) => {
+          const label = item.textContent.toLowerCase();
+          if (label.includes(filter)) {
+            item.classList.remove("d-none");
+            hasVisible = true;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        noData.classList.toggle("d-none", hasVisible);
+      }
+
+      function toggleColorList() {
+        const items = document.querySelectorAll("#color-list .color-item");
+        const toggleText = document.querySelector("#accordionSidebar-collapseFiveC3 .toggle-text");
+        const icon = document.querySelector("#accordionSidebar-collapseFiveC3 .fa");
+
+        isColorExpanded = !isColorExpanded;
+
+        items.forEach((item, index) => {
+          if (isColorExpanded) {
+            item.classList.remove("d-none");
+          } else {
+            if (index >= 5) {
+              item.classList.add("d-none");
+            } else {
+              item.classList.remove("d-none");
+            }
+          }
+        });
+
+        // Reset search input (optional)
+        document.getElementById("searchColor").value = "";
+        document.querySelector(".no-color-data").classList.add("d-none");
+
+        // Update toggle button text and icon
+        if (isColorExpanded) {
+          toggleText.textContent = "Show less";
+          icon.classList.remove("fa-angle-down");
+          icon.classList.add("fa-angle-up");
+        } else {
+          toggleText.textContent = "Show all colors A-Z";
+          icon.classList.remove("fa-angle-up");
+          icon.classList.add("fa-angle-down");
+        }
+      }
+      
+      let isPrimaryDamageExpanded = false;
+
+      function filterPrimaryDamageList() {
+        const input = document.getElementById("searchPrimaryDamage");
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll("#primary-damage-list .primary-damage-item");
+        const noData = document.querySelector(".no-primary-damage");
+
+        let hasVisible = false;
+        items.forEach((item) => {
+          const label = item.textContent.toLowerCase();
+          if (label.includes(filter)) {
+            item.classList.remove("d-none");
+            hasVisible = true;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        noData.classList.toggle("d-none", hasVisible);
+      }
+
+      function togglePrimaryDamageList() {
+        const items = document.querySelectorAll("#primary-damage-list .primary-damage-item");
+        const toggleText = document.querySelector("#accordionSidebar-collapseFiveC4 .toggle-text");
+        const icon = document.querySelector("#accordionSidebar-collapseFiveC4 .fa");
+
+        isPrimaryDamageExpanded = !isPrimaryDamageExpanded;
+
+        items.forEach((item, index) => {
+          if (isPrimaryDamageExpanded) {
+            item.classList.remove("d-none");
+          } else {
+            if (index >= 5) {
+              item.classList.add("d-none");
+            } else {
+              item.classList.remove("d-none");
+            }
+          }
+        });
+
+        // Clear search input and hide "no data"
+        document.getElementById("searchPrimaryDamage").value = "";
+        document.querySelector(".no-primary-damage").classList.add("d-none");
+
+        // Update toggle text and icon
+        if (isPrimaryDamageExpanded) {
+          toggleText.textContent = "Show less";
+          icon.classList.remove("fa-angle-down");
+          icon.classList.add("fa-angle-up");
+        } else {
+          toggleText.textContent = "Show all damages A-Z";
+          icon.classList.remove("fa-angle-up");
+          icon.classList.add("fa-angle-down");
+        }
+      }
+          
+      let isSecondaryExpanded = false;
+
+      function toggleSecondaryDamageList() {
+        const items = document.querySelectorAll("#secondary-damage-list .secondary-damage-item");
+        const toggleText = document.querySelector("#accordionSidebar-collapseFiveC5 .toggle-text");
+        const icon = document.querySelector("#accordionSidebar-collapseFiveC5 .fa");
+
+        isSecondaryExpanded = !isSecondaryExpanded;
+
+        items.forEach((item, index) => {
+          if (isSecondaryExpanded) {
+            item.classList.remove("d-none");
+          } else {
+            if (index >= 5) {
+              item.classList.add("d-none");
+            } else {
+              item.classList.remove("d-none");
+            }
+          }
+        });
+
+        // Clear search input and hide "no data"
+        document.getElementById("searchSecondaryDamage").value = "";
+        document.querySelector(".no-secondary-damage").classList.add("d-none");
+
+        // Update toggle text and icon
+        if (isSecondaryExpanded) {
+          toggleText.textContent = "Show less";
+          icon.classList.remove("fa-angle-down");
+          icon.classList.add("fa-angle-up");
+        } else {
+          toggleText.textContent = "Show all secondary damages A-Z";
+          icon.classList.remove("fa-angle-up");
+          icon.classList.add("fa-angle-down");
+        }
+      }
+
+      function filterSecondaryDamageList() {
+        const input = document.getElementById("searchSecondaryDamage");
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll("#secondary-damage-list .secondary-damage-item");
+        const noData = document.querySelector(".no-secondary-damage");
+
+        let hasVisible = false;
+
+        items.forEach((item) => {
+          const label = item.textContent.toLowerCase();
+          if (label.includes(filter)) {
+            item.classList.remove("d-none");
+            hasVisible = true;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        noData.classList.toggle("d-none", hasVisible);
+      }
+
+      let isTransmissionExpanded = false;
+
+      function filterTransmissionList() {
+        const input = document.getElementById("searchTransmission");
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll("#transmission-list .transmission-item");
+        const noData = document.querySelector(".no-transmission-data");
+
+        let hasVisible = false;
+
+        items.forEach((item) => {
+          const label = item.textContent.toLowerCase();
+          if (label.includes(filter)) {
+            item.classList.remove("d-none");
+            hasVisible = true;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        noData.classList.toggle("d-none", hasVisible);
+      }
+
+      function toggleTransmissionList() {
+        const items = document.querySelectorAll("#transmission-list .transmission-item");
+        const toggleText = document.querySelector("#accordionSidebar-collapseFiveC15 .toggle-text");
+        const icon = document.querySelector("#accordionSidebar-collapseFiveC15 .fa");
+
+        isTransmissionExpanded = !isTransmissionExpanded;
+
+        items.forEach((item, index) => {
+          if (isTransmissionExpanded) {
+            item.classList.remove("d-none");
+          } else {
+            if (index >= 5) {
+              item.classList.add("d-none");
+            } else {
+              item.classList.remove("d-none");
+            }
+          }
+        });
+
+        // Reset search and hide "no data" message
+        document.getElementById("searchTransmission").value = "";
+        document.querySelector(".no-transmission-data").classList.add("d-none");
+
+        // Update toggle button text and icon
+        if (isTransmissionExpanded) {
+          toggleText.textContent = "Show less";
+          icon.classList.remove("fa-angle-down");
+          icon.classList.add("fa-angle-up");
+        } else {
+          toggleText.textContent = "Show all transmissions A-Z";
+          icon.classList.remove("fa-angle-up");
+          icon.classList.add("fa-angle-down");
+        }
+      }
+
+
+      let isCylinderExpanded = false;
+
+      function filterCylinderList() {
+        const input = document.getElementById("searchCylinders");
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll("#cylinder-list .cylinder-item");
+        const noData = document.querySelector(".no-cylinder-data");
+
+        let hasVisible = false;
+
+        items.forEach((item) => {
+          const label = item.textContent.toLowerCase();
+          if (label.includes(filter)) {
+            item.classList.remove("d-none");
+            hasVisible = true;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        noData.classList.toggle("d-none", hasVisible);
+      }
+
+      function toggleCylinderList() {
+        const items = document.querySelectorAll("#cylinder-list .cylinder-item");
+        const toggleText = document.querySelector("#accordionSidebar-collapseFiveC13 .toggle-text");
+        const icon = document.querySelector("#accordionSidebar-collapseFiveC13 .fa");
+
+        isCylinderExpanded = !isCylinderExpanded;
+
+        items.forEach((item, index) => {
+          if (isCylinderExpanded) {
+            item.classList.remove("d-none");
+          } else {
+            if (index >= 5) {
+              item.classList.add("d-none");
+            } else {
+              item.classList.remove("d-none");
+            }
+          }
+        });
+
+        // Reset search input and hide "no data"
+        document.getElementById("searchCylinders").value = "";
+        document.querySelector(".no-cylinder-data").classList.add("d-none");
+
+        // Update toggle button text and icon
+        if (isCylinderExpanded) {
+          toggleText.textContent = "Show less";
+          icon.classList.remove("fa-angle-down");
+          icon.classList.add("fa-angle-up");
+        } else {
+          toggleText.textContent = "Show all cylinders A-Z";
+          icon.classList.remove("fa-angle-up");
+          icon.classList.add("fa-angle-down");
+        }
+      }
+      
+      let isBodyStyleExpanded = false;
+
+      function filterBodyStyleList() {
+        const input = document.getElementById("searchBodyStyle");
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll("#body-style-list .body-style-item");
+        const noData = document.querySelector(".no-body-style-data");
+
+        let hasVisible = false;
+
+        items.forEach((item) => {
+          const label = item.textContent.toLowerCase();
+          if (label.includes(filter)) {
+            item.classList.remove("d-none");
+            hasVisible = true;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        noData.classList.toggle("d-none", hasVisible);
+      }
+
+      function toggleBodyStyleList() {
+        const items = document.querySelectorAll("#body-style-list .body-style-item");
+        const toggleText = document.querySelector("#accordionSidebar-collapseFiveC9 .toggle-text");
+        const icon = document.querySelector("#accordionSidebar-collapseFiveC9 .fa");
+
+        isBodyStyleExpanded = !isBodyStyleExpanded;
+
+        items.forEach((item, index) => {
+          if (isBodyStyleExpanded) {
+            item.classList.remove("d-none");
+          } else {
+            if (index >= 5) {
+              item.classList.add("d-none");
+            } else {
+              item.classList.remove("d-none");
+            }
+          }
+        });
+
+        // Clear search input and reset "no data" message
+        document.getElementById("searchBodyStyle").value = "";
+        document.querySelector(".no-body-style-data").classList.add("d-none");
+
+        // Toggle icon and label
+        if (isBodyStyleExpanded) {
+          toggleText.textContent = "Show less";
+          icon.classList.remove("fa-angle-down");
+          icon.classList.add("fa-angle-up");
+        } else {
+          toggleText.textContent = "Show all body styles A-Z";
+          icon.classList.remove("fa-angle-up");
+          icon.classList.add("fa-angle-down");
+        }
+      }
+
+      let isVehicleTypeExpanded = false;
+
+      function filterVehicleTypeList() {
+        const input = document.getElementById("searchVehicleType");
+        const filter = input.value.toLowerCase();
+        const items = document.querySelectorAll("#vehicle-type-list .vehicle-type-item");
+        const noData = document.querySelector(".no-vehicle-type-data");
+
+        let hasVisible = false;
+
+        items.forEach((item) => {
+          const label = item.textContent.toLowerCase();
+          if (label.includes(filter)) {
+            item.classList.remove("d-none");
+            hasVisible = true;
+          } else {
+            item.classList.add("d-none");
+          }
+        });
+
+        noData.classList.toggle("d-none", hasVisible);
+      }
+
+      function toggleVehicleTypeList() {
+        const items = document.querySelectorAll("#vehicle-type-list .vehicle-type-item");
+        const toggleText = document.querySelector("#accordionSidebar-collapseFiveC6 .toggle-text");
+        const icon = document.querySelector("#accordionSidebar-collapseFiveC6 .fa");
+
+        isVehicleTypeExpanded = !isVehicleTypeExpanded;
+
+        items.forEach((item, index) => {
+          if (isVehicleTypeExpanded) {
+            item.classList.remove("d-none");
+          } else {
+            if (index >= 5) {
+              item.classList.add("d-none");
+            } else {
+              item.classList.remove("d-none");
+            }
+          }
+        });
+
+        // Clear search input and reset "no data"
+        document.getElementById("searchVehicleType").value = "";
+        document.querySelector(".no-vehicle-type-data").classList.add("d-none");
+
+        // Update toggle text and icon
+        if (isVehicleTypeExpanded) {
+          toggleText.textContent = "Show less";
+          icon.classList.remove("fa-angle-down");
+          icon.classList.add("fa-angle-up");
+        } else {
+          toggleText.textContent = "Show all vehicle types A-Z";
+          icon.classList.remove("fa-angle-up");
+          icon.classList.add("fa-angle-down");
+        }
+      }
+
+
+      function toggleDrivelineList() {
+        const hiddenItems = document.querySelectorAll(".extra-driveline");
+        const toggleText = document.querySelector("#accordionSidebar-collapseFiveC7 .toggle-text");
+
+        hiddenItems.forEach(item => item.classList.toggle("d-none"));
+
+        toggleText.innerText = toggleText.innerText.includes("Show all")
+          ? "Show less"
+          : "Show all drivelines A-Z";
+      }
+    
+    </script>
+
+    <script>
+      document.querySelector('.more').addEventListener('click', function () {
+        const hiddenItems = document.querySelectorAll('.extra-make');
+        const toggleText = this.querySelector('.toggle-text');
+        const icon = this.querySelector('.fa');
+
+        hiddenItems.forEach(item => {
+          item.classList.toggle('d-none');
+        });
+
+        // Toggle button text and icon
+        if (toggleText.innerText === 'Show all makes A-Z') {
+          toggleText.innerText = 'Show less';
+          icon.classList.remove('fa-angle-down');
+          icon.classList.add('fa-angle-up');
+        } else {
+          toggleText.innerText = 'Show all makes A-Z';
+          icon.classList.remove('fa-angle-up');
+          icon.classList.add('fa-angle-down');
+        }
+      });
+
+    </script>
+
+    <script>
+      document.querySelector('.more2').addEventListener('click', function () {
+        const hiddenItems = document.querySelectorAll('.extra-model');
+        const toggleText = this.querySelector('.toggle-text');
+        const icon = this.querySelector('.fa');
+
+        hiddenItems.forEach(item => {
+          item.classList.toggle('d-none');
+        });
+
+        // Toggle button text and icon
+        if (toggleText.innerText === 'Show all models A-Z') {
+          toggleText.innerText = 'Show less';
+          icon.classList.remove('fa-angle-down');
+          icon.classList.add('fa-angle-up');
+        } else {
+          toggleText.innerText = 'Show all models A-Z';
+          icon.classList.remove('fa-angle-up');
+          icon.classList.add('fa-angle-down');
+        }
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const sidebar = document.getElementById('s-bar');
+        const toggleBtn = document.getElementById('filterToggleBtn');
+        const content = document.getElementById('full');
+
+        toggleBtn.addEventListener('click', function () {
+          if (window.innerWidth >= 992) {
+            // Desktop view behavior
+            sidebar.classList.toggle('collapsed-sidebar');
+            content.classList.toggle('expanded-content');
+          } else {
+            // Mobile behavior: toggle 'show' class
+            sidebar.classList.toggle('show');
+            const toggleText = document.getElementById('filterToggleText');
+            if (toggleText) {
+              toggleText.textContent = sidebar.classList.contains('show') ? 'Hide Filters' : 'Show Filters';
+            }
+          }
+        });
+
+        // Close sidebar on mobile when clicking outside
+        document.addEventListener('click', function (e) {
+          if (window.innerWidth < 992 &&
+              sidebar.classList.contains('show') &&
+              !sidebar.contains(e.target) &&
+              !toggleBtn.contains(e.target)) {
+            sidebar.classList.remove('show');
+            const toggleText = document.getElementById('filterToggleText');
+            if (toggleText) toggleText.textContent = 'Show Filters';
+          }
+        });
+      });
+    </script>
+
+</body>
+</html>

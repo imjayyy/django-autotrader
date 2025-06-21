@@ -1,0 +1,9 @@
+{% extends "admin/change_list.html" %}
+
+{% block object-tools %}
+    {{ block.super }}
+
+    <a class="button" href="/admin-fetch-vehicles-form/"> Vehicles API Import Form</a>
+    <a class="button" href="/admin-fetch-vehicles-vin-form/"> Vehicles VIN API Import Form</a>
+
+    {% endblock %}

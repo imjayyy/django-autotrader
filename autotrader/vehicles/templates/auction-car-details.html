@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Autotrader - {% trans "Car Details" %}{% endblock %}
+
+{% block content %}
+<style>
+.accordion-button:not(.collapsed) {
+    color: red;
+    background-color: white;
+}
+.active {
+    border-color: #dc3545;
+}
+</style>
+
+<section>
+<div class="container pt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Car Details</li>
+        </ol>
+    </nav>
+
+    <div>
+        <h4 class="text-start hero-sub-text">{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }} {{ vehicle.series }}</h4>
+        <p class="text-start fs-6">
+            Lot <strong>#{{ vehicle.lot_id }}</strong> |
+            Sale Location: <span class="text-danger">{{ vehicle.location }}</span> |
+            Sale Date: <strong>{% if latest_sale.sale_date %}{{ latest_sale.sale_date }}{% else %}N/A{% endif %}</strong>
+        </p>
+    </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+    <div class="row">
+        <!-- car carousel -->
+        <div class="col-md-8 col-sm-12 mt-4 mb-3 p-3">
+            {% if photo_urls %}
+            <div id="carouselPhotos" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for url in photo_urls %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img src="{{ url }}" class="d-block w-100" alt="Car Photo">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselPhotos" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselPhotos" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+            {% else %}
+                <p>No images available.</p>
+            {% endif %}
+        </div>
+
+        <!-- car details card -->
+        <div class="col-md-4 col-sm-12 mb-2">
+            <div class="container mt-5">
+                <div class="card custom-card">
+                    <div class="card-header text-start">
+                        <i class="bi bi-card-text text-danger"></i>
+                        Lot #{{ vehicle.lot_id }} Details
+                    </div>
+                    <div class="custom-card-body">
+                        <div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">VIN:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.vin }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Odometer:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.odometer }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Title Code:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.doc_type }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Primary Damage:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.primary_damage }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Secondary Damage:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.secondary_damage|default:"N/A" }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Body Style:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.body_style }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Color:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.color }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Engine:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.engine_type }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Cylinders:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.cylinders }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Transmission:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.transmission }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Drive:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.drive }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Fuel:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.fuel }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Keys:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.car_keys }}</div>
+</div>
+<div class="row py-2 px-4">
+    <div class="col-6 border-bottom text-start">Highlights:</div>
+    <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.highlights|default:"N/A" }}</div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- pricing and sale info -->
+    <div class="row">
+        <div class="col-md-8 col-sm-12 mb-2">
+
+        </div>
+
+        <div class="col-md-4 col-sm-12 mb-2">
+            <div class="card custom-card shadow">
+                <div class="card-header text-start">
+                    <i class="bi bi-card-text text-danger"></i>
+                    Sale Information
+                </div>
+                <div class="custom-card-body" style="min-height: 425px;">
+                    <div class="row py-2 px-4">
+                        <div class="col-6 border-bottom text-start">Current Bid:</div>
+                        <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.currency_code|default:"USD" }}</div>
+                    </div>
+                    <div class="row py-2 px-4">
+                        <div class="col-6 border-bottom text-start">Buy now:</div>
+                        <div class="col-6 border-bottom text-end fw-bolder">${{ vehicle.buy_now_car|default:"0" }}</div>
+                    </div>
+                    <div class="row py-2 px-4">
+                        <div class="col-6 border-bottom text-start">Location:</div>
+                        <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.location }}</div>
+                    </div>
+                    <div class="row py-2 px-4">
+                        <div class="col-6 border-bottom text-start">Sale Date:</div>
+                        <div class="col-6 border-bottom text-end fw-bolder">
+                            {% if latest_sale.sale_date %}{{ latest_sale.sale_date }}{% else %}N/A{% endif %}
+                        </div>
+                    </div>
+                    <div class="row py-2 px-4">
+                        <div class="col-6 border-bottom text-start">Sale Status:</div>
+                        <div class="col-6 border-bottom text-end fw-bolder">{{ latest_sale.sale_status }}</div>
+                    </div>
+                    <div class="row py-2 px-4">
+                        <div class="col-6 border-bottom text-start">Last Updated:</div>
+                        <div class="col-6 border-bottom text-end fw-bolder">{{ vehicle.updated_at|date:"F d, Y, h:i A" }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Sales History Table -->
+<section>
+<div class="container">
+    <div class="my-5 card shadow">
+        <div class="table-header card-header text-start">
+            <i class="bi bi-file-earmark-spreadsheet-fill text-danger m-2"></i>Sales History
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered mt-2">
+                <thead class="table-light">
+                    <tr>
+                        <th>Lot #</th>
+                        <th>Auction</th>
+                        <th>Sale date</th>
+                        <th>Final bid</th>
+                        <th>Status</th>
+                        <th>Buyer country</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if sales_history %}
+                        {% for sale in sales_history %}
+                        <tr>
+                            <td>{{ sale.lot_id }}</td>
+                            <td>{{ sale.auction_name }}</td>
+                            <td>{{ sale.sale_date }}</td>
+                            <td>{{ sale.purchase_price }}</td>
+                            <td>{{ sale.status }}</td>
+                            <td>{{ sale.buyer_country }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr class="empty-row">
+                            <td colspan="6">No data available</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Additional Notes -->
+    <div class="my-5 card shadow">
+        <div class="card-header text-start">
+            <i class="bi bi-file-earmark-plus-fill text-danger m-2"></i>Additionally
+        </div>
+        <p class="fs-6 text-start px-4">
+            Avtomobil {% if latest_sale.sale_date %}{{ latest_sale.sale_date }}{% else %}tezliklə{% endif %} tarixdə hərraca çıxarılacaq...
+            <!-- Add translated or original auction message here -->
+        </p>
+    </div>
+</div>
+</section>
+
+
+{% endblock %}

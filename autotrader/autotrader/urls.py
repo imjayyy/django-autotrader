@@ -22,6 +22,7 @@ from django.views.i18n import set_language
 from car_details.views import get_models
 from django.conf import settings
 from django.conf.urls.static import static
+from vehicles.urls import urlpatterns as vehicles_urls
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -40,7 +41,10 @@ urlpatterns = [
     path('information-view/<int:id>/', views.information_view, name='information-view'),
     path('create-order/<int:id>/', views.create_order, name='create-order'),
     path('form-submission/', views.form_submission, name='form-submission'),
+    path('auction_vehicle_search_results/', views.auction_vehicle_search_results, name='auction-vehicle-search-results'),
 ]
+
+urlpatterns += vehicles_urls  # Include vehicle-related URLs
 
 urlpatterns += [
     path('i18n/', include('django.conf.urls.i18n')),  # Language switcher

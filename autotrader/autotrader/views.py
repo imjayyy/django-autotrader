@@ -17,8 +17,9 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_exempt
-
+from datetime import datetime, timedelta, timezone
 import re
+from vehicles.models import Vehicle as AuctionVehicle
 
 
 ADMIN_USER_EMAIL= settings.ADMIN_USER_EMAIL
@@ -126,6 +127,106 @@ def search_results(request):
                     'engine_type': list(vehicles.values_list("engine_type", flat=True).distinct())
                 })
     return render(request, 'search-results.html', {"form_fields": form_fields, 'query_params': query_params})
+
+
+def auction_vehicle_search_results(request):
+    query_params = request.GET.dict()
+
+    # Filter values for dropdowns (ordered according to sidebar)
+    form_fields = {
+        'odometer': {
+            'min': AuctionVehicle.objects.order_by('odometer').first().odometer if AuctionVehicle.objects.exists() else 0,
+            'max': AuctionVehicle.objects.order_by('-odometer').first().odometer if AuctionVehicle.objects.exists() else 999999
+        },
+        'year': list(AuctionVehicle.objects.values_list("year", flat=True).distinct()),
+        'vehicle_condition': list(AuctionVehicle.objects.values_list("highlights", flat=True).distinct()),
+        'make': list(AuctionVehicle.objects.values_list("make", flat=True).distinct()),
+        'model': list(AuctionVehicle.objects.values_list("model", flat=True).distinct()),
+        'engine_type': list(AuctionVehicle.objects.values_list("engine_type", flat=True).distinct()),
+        'transmission': list(AuctionVehicle.objects.values_list("transmission", flat=True).distinct()),
+        'fuel': list(AuctionVehicle.objects.values_list("fuel", flat=True).distinct()),
+        'drive': list(AuctionVehicle.objects.values_list("drive", flat=True).distinct()),
+        'cylinders': list(AuctionVehicle.objects.values_list("cylinders", flat=True).distinct()),
+        'auction_name': list(AuctionVehicle.objects.values_list("auction_name", flat=True).distinct()),
+        'auction_company': list(AuctionVehicle.objects.values_list("seller", flat=True).distinct()),
+        'location': list(AuctionVehicle.objects.values_list("location", flat=True).distinct()),
+        'body_style': list(AuctionVehicle.objects.values_list("body_style", flat=True).distinct()),
+        'sale_date': list(AuctionVehicle.objects.values_list("sales_history__sale_date", flat=True).distinct()),
+    }
+
+    vehicles = AuctionVehicle.objects.filter(to_be_published=True)
+
+    # 1. Newly Added Lots (last 7 days)
+    if query_params.get("newly_added") == "1":
+        vehicles = vehicles.filter(created_at__gte=now() - timedelta(days=7))
+
+    # 2. Odometer Range
+    if query_params.get("odometer_min"):
+        vehicles = vehicles.filter(odometer__gte=query_params["odometer_min"])
+    if query_params.get("odometer_max"):
+        vehicles = vehicles.filter(odometer__lte=query_params["odometer_max"])
+
+    # 3. Year
+    if query_params.get("year"):
+        vehicles = vehicles.filter(year=query_params["year"])
+
+    # 4. Vehicle Condition Type (e.g., highlights field)
+    if query_params.get("vehicle_condition"):
+        vehicles = vehicles.filter(highlights__icontains=query_params["vehicle_condition"])
+
+    # 5. Make
+    if query_params.get("make"):
+        vehicles = vehicles.filter(make__iexact=query_params["make"])
+
+    # 6. Model
+    if query_params.get("model"):
+        vehicles = vehicles.filter(model__iexact=query_params["model"])
+
+    # 7. Engine Type
+    if query_params.get("engine_type"):
+        vehicles = vehicles.filter(engine_type__iexact=query_params["engine_type"])
+
+    # 8. Transmission
+    if query_params.get("transmission"):
+        vehicles = vehicles.filter(transmission__iexact=query_params["transmission"])
+
+    # 9. Fuel Type
+    if query_params.get("fuel"):
+        vehicles = vehicles.filter(fuel__iexact=query_params["fuel"])
+
+    # 10. Drive Train
+    if query_params.get("drive"):
+        vehicles = vehicles.filter(drive__iexact=query_params["drive"])
+
+    # 11. Cylinder
+    if query_params.get("cylinders"):
+        vehicles = vehicles.filter(cylinders__iexact=query_params["cylinders"])
+
+    # 12. Auction Name
+    if query_params.get("auction_name"):
+        vehicles = vehicles.filter(auction_name__iexact=query_params["auction_name"])
+
+    # 13. Auction Company (seller)
+    if query_params.get("auction_company"):
+        vehicles = vehicles.filter(seller__iexact=query_params["auction_company"])
+
+    # 14. Location
+    if query_params.get("location"):
+        vehicles = vehicles.filter(location__iexact=query_params["location"])
+
+    # 15. Body Style
+    if query_params.get("body_style"):
+        vehicles = vehicles.filter(body_style__iexact=query_params["body_style"])
+
+    # 16. Sale Date (from JSONField sales_history)
+    if query_params.get("sale_date"):
+        vehicles = vehicles.filter(sales_history__sale_date=query_params["sale_date"])
+
+    return render(request, 'auction-search-results.html', {
+        "form_fields": form_fields,
+        "query_params": query_params,
+        "vehicles": vehicles,
+    })
 
 
 def search_filter(request):
